@@ -1,0 +1,378 @@
+<style>
+.bottom {
+	position: fixed;
+	bottom: 0;
+	color: red; /*width:100%;*/
+}
+</style>
+
+<ul class="sidebar-menu">
+	<li class="header">NAVEGACI&Oacute;N</li>
+	<?php
+	$msg = $this->loggedInAs ();
+	$perfil = $this->validaRol ();
+	
+	if ($perfil != 7) {
+		switch ($perfil) {
+			case 1 :
+				?>	<!-- EJECUTIVO -->
+	<li class=""><a href="#"><i class="fa fa-user"></i> <span>Clientes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cliente/buscarpornombre"><i
+					class="fa fa-search"></i>Buscar Cliente</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-institution"></i> <span>RUT</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/rut/buscarporsociedad"><i
+					class="fa fa-search"></i>Buscar por Rut asociado</a></li>
+		</ul></li>
+		
+	<li class=""><a href="#"><i class="fa fa-money"></i> <span>Cobro
+				Clientes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cobromasivo/ingresomasivocobro"><i
+					class="fa fa-plus-square"></i>Ingreso Masivo Cobros</a></li>
+			<li><a href="/index.php/cobromasivo/modificarcobromasivo"><i
+					class="fa fa-edit"></i>Modificar cobro Masivo</a></li>
+			<li><a href="/index.php/cobromasivo/enviomasivocobro"><i
+					class="fa fa-arrow-up"></i>Env&iacute;o de cobro Masivo</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-file-text"></i> <span>Orden de
+				Pago</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/pago/ingresoordendepago"><i
+					class="fa fa-plus-square"></i>Ingreso Orden de Pago</a></li>
+			<li><a href="/index.php/pago/verificacionordendepago"><i
+					class="fa fa-check-square"></i>Verificaci&oacute;n Orden de Pago</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-credit-card"></i> <span>PEC y
+				Pago Directo</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/pago/verificacionpecautopago"><i
+					class="fa fa-check-square"></i>PEC, Pago Directo y S/M</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-line-chart"></i> <span>Reportes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/reporte/cobroyestado"><i class="fa fa-dollar"></i>Cobro
+					y Estado</a></li>
+			<li><a href="/index.php/reporte/boleteo"><i class="fa  fa-file"></i>Boleteo</a></li>
+		</ul></li>					
+				<?php
+				break;
+			
+			case 2 :
+				?>		<!-- SUPERVISOR -->
+	<li class=""><a href="#"><i class="fa fa-user"></i> <span>Clientes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cliente/buscarpornombre"><i
+					class="fa fa-search"></i>Buscar Cliente</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-institution"></i> <span>RUT</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/rut/buscarporsociedad"><i
+					class="fa fa-search"></i>Buscar por Rut asociado</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-money"></i> <span>Cobro
+				Clientes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cobromasivo/ingresomasivocobro"><i
+					class="fa fa-plus-square"></i>Ingreso Masivo Cobros</a></li>
+			<li><a href="/index.php/cobromasivo/modificarcobromasivo"><i
+					class="fa fa-edit"></i>Modificar cobro Masivo</a></li>
+			<li><a href="/index.php/cobromasivo/enviomasivocobro"><i
+					class="fa fa-arrow-up"></i>Env&iacute;o de cobro Masivo</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-file-text"></i> <span>Orden de
+				Pago</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/pago/ingresoordendepago"><i
+					class="fa fa-plus-square"></i>Ingreso Orden de Pago</a></li>
+			<li><a href="/index.php/pago/verificacionordendepago"><i
+					class="fa fa-check-square"></i>Verificaci&oacute;n Orden de Pago</a></li>
+		</ul></li>
+	<li class=""><a href="#"><i class="fa fa-credit-card"></i> <span>PEC y
+				Pago Directo</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/pago/verificacionpecautopago"><i
+					class="fa fa-check-square"></i>PEC, Pago Directo y S/M</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-line-chart"></i> <span>Reportes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/reporte/cobroyestado"><i class="fa fa-dollar"></i>Cobro
+					y Estado</a></li>
+			<li><a href="/index.php/reporte/boleteo"><i class="fa  fa-file"></i>Boleteo</a></li>
+
+		</ul></li>		
+				<?php
+				break;
+			
+			case 3 :
+				?>		<!-- GERENTE -->
+	<li class=""><a href="#"><i class="fa fa-user"></i> <span>Clientes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cliente/buscarpornombre"><i
+					class="fa fa-search"></i>Buscar Cliente</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-institution"></i> <span>RUT</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/rut/buscarporsociedad"><i
+					class="fa fa-search"></i>Buscar por Rut asociado</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-money"></i> <span>Cobro
+				Clientes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cobromasivo/ingresomasivocobro"><i
+					class="fa fa-plus-square"></i>Ingreso Masivo Cobros</a></li>
+			<li><a href="/index.php/cobromasivo/modificarcobromasivo"><i
+					class="fa fa-edit"></i>Modificar cobro Masivo</a></li>
+			<li><a href="/index.php/cobromasivo/enviomasivocobro"><i
+					class="fa fa-arrow-up"></i>Env&iacute;o de cobro Masivo</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-users"></i> <span>Compensaciones</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/compensacion/buscarcobro"><i
+					class="fa fa-search"></i>Buscar Cobros</a></li>
+		</ul></li>
+
+
+	<li class=""><a href="#"><i class="fa fa-line-chart"></i> <span>Reportes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/reporte/cobroyestado"><i class="fa fa-dollar"></i>Cobro
+					y Estado</a></li>
+			<li><a href="/index.php/reporte/cartolabancaria"><i
+					class="fa fa-file-text"></i>Cartola Bancaria</a></li>
+			<li><a href="/index.php/reporte/boleteo"><i class="fa  fa-file"></i>Boleteo</a></li>
+			<li><a href="/index.php/reporte/consolidado"><i
+					class="fa fa-thumbs-up"></i>Consolidado</a></li>
+		</ul></li>							
+				<?php
+				break;
+			
+			case 4 :
+				?>	<!-- ADMINISTRATIVO REMUNERACIONES -->
+	<li class=""><a href="#"><i class="fa fa-user"></i> <span>Clientes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cliente/buscarpornombre"><i
+					class="fa fa-search"></i>Buscar Cliente</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-money"></i> <span>Cobro
+				Clientes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cobromasivo/ingresomasivocobro"><i
+					class="fa fa-plus-square"></i>Ingreso Masivo Cobros</a></li>
+			<li><a href="/index.php/cobromasivo/modificarcobromasivo"><i
+					class="fa fa-edit"></i>Modificar cobro Masivo</a></li>
+			<li><a href="/index.php/impuesto/modificaimpuesto"><i
+					class="fa fa-edit"></i>Modificar Impuesto &Uacute;nico</a></li>		
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-line-chart"></i> <span>Reportes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/reporte/cobroyestado"><i class="fa fa-dollar"></i>Cobro
+					y Estado</a></li>
+		</ul></li>							
+				<?php
+				break;
+			
+			case 5 :
+				?>		<!-- ADMINISTRATIVO CONTRALORIA -->
+	<li class=""><a href="#"><i class="fa fa-user"></i> <span>Clientes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cliente/buscarpornombre"><i
+					class="fa fa-search"></i>Buscar Cliente</a></li>
+		</ul></li>
+		
+	<li class=""><a href="#"><i class="fa fa-dollar"></i> <span>
+				Mensualidades y Servicios</span></a>
+		<ul class="treeview-menu">
+
+			<li><a href="/index.php/cobromensualidadservicio/ingresomensualidadservicios"><i
+					class="fa fa-plus"></i>Nuevo Cobro</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-users"></i> <span>Compensaciones</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cartola/cargacartola"><i
+					class="fa fa-spinner"></i>Carga Cartola</a></li>
+			<li><a href="/index.php/compensacion/movimientoscartola"><i
+					class="fa fa-files-o"></i>Movimientos Cartola</a></li>
+			<li><a href="/index.php/compensacion/buscarcobro"><i
+					class="fa fa-search"></i>Buscar Cobros</a></li>
+		</ul></li>
+	<li class=""><a href="#"><i class="fa fa-file-text"></i> <span>Orden de
+				Pago</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/pago/ingresoordendepago"><i
+					class="fa fa-plus-square"></i>Ingreso Orden de Pago</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-line-chart"></i> <span>Reportes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/reporte/cobroyestado"><i class="fa fa-dollar"></i>Cobro
+					y Estado</a></li>
+			<li><a href="/index.php/reporte/cartolabancaria"><i
+					class="fa fa-file-text"></i>Cartola Bancaria</a></li>
+		</ul></li>
+	<li class=""><a href="#"><i class="fa fa-line-chart"></i> <span>Cartola</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cartola/listadocartolas"><i
+					class="fa fa-dollar"></i>Ver cartolas cargadas</a></li>
+			<li><a href="/index.php/cartola/cargacartola"><i class="fa fa-dollar"></i>Cargar
+					Cartola</a></li>
+		</ul></li>				
+				<?php
+				break;
+			
+			case 6 :
+				?>	<!-- MANTENEDOR -->
+	<li class=""><a href="#"><i class="fa fa-user"></i> <span>Clientes</span></a>
+		<ul class="treeview-menu">
+
+			<li><a href="/index.php/cliente/ingresarcliente"><i
+					class="fa fa-user-plus"></i>Nuevo Cliente</a></li>
+
+			<li><a href="/index.php/cliente/buscarpornombre"><i
+					class="fa fa-search"></i>Buscar Cliente</a></li>
+		</ul></li>
+	<li class=""><a href="#"><i class="fa fa-pencil"></i> <span>Mantenedores</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/valores/mantenedorvalores"><i
+					class="fa fa-pencil"></i>Valores</a></li>
+			<li><a href="/index.php/concepto/mantenedorconceptocobro"><i
+					class="fa fa-pencil"></i>Concepto de Cobro</a></li>
+			<li><a href="/index.php/proveedor/mantenedorproveedores"><i
+					class="fa fa-pencil"></i>Proveedores</a></li>
+			<li><a href="/index.php/usuario/mantenedorusuarios"><i
+					class="fa fa-pencil"></i>Usuarios</a></li>
+		</ul></li>						
+				<?php
+				break;
+		}
+	} else {
+		?>
+	<li class=""><a href="#"><i class="fa fa-user"></i> <span>Clientes</span></a>
+		<ul class="treeview-menu">
+
+			<li><a href="/index.php/cliente/ingresarcliente"><i
+					class="fa fa-user-plus"></i>Nuevo Cliente</a></li>
+
+			<li><a href="/index.php/cliente/buscarpornombre"><i
+					class="fa fa-search"></i>Buscar Cliente</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-institution"></i> <span>RUT</span></a>
+		<ul class="treeview-menu">
+
+			<li><a href="/index.php/rut/buscarporsociedad"><i
+					class="fa fa-search"></i>Buscar por Rut asociado</a></li>
+		</ul></li>
+
+
+	<li class=""><a href="#"><i class="fa fa-dollar"></i> <span>
+				Mensualidades y Servicios</span></a>
+		<ul class="treeview-menu">
+
+			<li><a href="/index.php/cobromensualidadservicio/ingresomensualidadservicios"><i
+					class="fa fa-plus"></i>Nuevo Cobro</a></li>
+		</ul></li>
+
+
+	<li class=""><a href="#"><i class="fa fa-money"></i> <span>Cobro
+				Clientes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cobromasivo/ingresomasivocobro"><i
+					class="fa fa-plus-square"></i>Ingreso Masivo Cobros</a></li>
+
+
+
+			<li><a href="/index.php/cobromasivo/modificarcobromasivo"><i
+					class="fa fa-edit"></i>Modificar cobro Masivo</a></li>
+			<li><a href="/index.php/impuesto/modificaimpuesto"><i
+					class="fa fa-edit"></i>Modificar Impuesto &Uacute;nico</a></li>		
+			<li><a href="/index.php/cobromasivo/enviomasivocobro"><i
+					class="fa fa-arrow-up"></i>Env&iacute;o de cobro Masivo</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-users"></i> <span>Compensaciones</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cartola/cargacartola"><i
+					class="fa fa-spinner"></i>Carga Cartola</a></li>
+			<li><a href="/index.php/compensacion/movimientoscartola"><i
+					class="fa fa-files-o"></i>Movimientos Cartola</a></li>
+			<li><a href="/index.php/compensacion/buscarcobro"><i
+					class="fa fa-search"></i>Buscar Cobros</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-file-text"></i> <span>Orden de
+				Pago</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/pago/ingresoordendepago"><i
+					class="fa fa-plus-square"></i>Ingreso Orden de Pago</a></li>
+			<li><a href="/index.php/pago/verificacionordendepago"><i
+					class="fa fa-check-square"></i>Verificaci&oacute;n Orden de Pago</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-credit-card"></i> <span>PEC y
+				Pago Directo</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/pago/verificacionpecautopago"><i
+					class="fa fa-check-square"></i>PEC, Pago Directo y S/M</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-pencil"></i> <span>Mantenedores</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/valores/mantenedorvalores"><i
+					class="fa fa-pencil"></i>Valores</a></li>
+			<li><a href="/index.php/concepto/mantenedorconceptocobro"><i
+					class="fa fa-pencil"></i>Concepto de Cobro</a></li>
+			<li><a href="/index.php/proveedor/mantenedorproveedores"><i
+					class="fa fa-pencil"></i>Proveedores</a></li>
+			<li><a href="/index.php/usuario/mantenedorusuarios"><i
+					class="fa fa-pencil"></i>Usuarios</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-line-chart"></i> <span>Reportes</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/reporte/cobroyestado"><i class="fa fa-dollar"></i>Cobro
+					y Estado</a></li>
+			<li><a href="/index.php/reporte/cartolabancaria"><i
+					class="fa fa-file-text"></i>Cartola Bancaria</a></li>
+			<li><a href="/index.php/reporte/boleteo"><i class="fa  fa-file"></i>Boleteo</a></li>
+			<li><a href="/index.php/reporte/consolidado"><i
+					class="fa fa-thumbs-up"></i>Consolidado</a></li>
+		</ul></li>
+
+	<li class=""><a href="#"><i class="fa fa-line-chart"></i> <span>Cartola</span></a>
+		<ul class="treeview-menu">
+			<li><a href="/index.php/cartola/listadocartolas"><i
+					class="fa fa-dollar"></i>Ver cartolas cargadas</a></li>
+			<li><a href="/index.php/cartola/cargacartola"><i class="fa fa-dollar"></i>Cargar
+					Cartola</a></li>
+		</ul></li>
+			<?php
+	}
+	
+	?>
+
+</ul>
+<!-- /.sidebar-menu -->
+
+
+
+<ul class="sidebar-menu bottom">
+	<li class=""><a href="/index.php/auth/logout"><i class="fa fa-sign-out"></i>
+			<span>SALIR</span></a></li>
+</ul>
+<!-- /.sidebar-menu -->

@@ -1,0 +1,328 @@
+<section class="content-header">
+
+	<h1>Mantenedor de Usuarios</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-pencil"></i> Mantenedores</a></li>
+		<li class="active">Mantenedor de Usuarios</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<!-- Formulario Usuarios  -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Crear nuevo usuario<strong>
+			
+			</h3>
+		</div>
+		<form role="form" action="" method="post" id="formNuevoUsuario">
+			<div class="box-body">
+
+				<div class="form-group">
+					<label for="nombreUsuarioInput">Nombre Usuario</label> <input
+						id="nombreUsuarioInput" name="nombreUsuarioInput" type="text"
+						class="form-control" placeholder="Jaime Fuentealba">
+				</div>
+
+				<div class="form-group">
+					<label for="emailUsuarioInput">Email</label> <input
+						id="emailUsuarioInput" name="emailUsuarioInput" type="email"
+						class="form-control" placeholder="usuario@email.cl">
+				</div>
+
+				<div class="form-group">
+					<label for="passwordUsuarioInput">Password</label> <input
+						id="passwordUsuario" name="passwordUsuarioInput" type="password"
+						class="form-control" placeholder="**********">
+				</div>
+
+				<div class="form-group">
+					<label for="conPasswordUsuarioInput">Confirmar Password</label> <input
+						id="conPasswordUsuario" name="conPasswordUsuarioInput"
+						type="password" class="form-control" placeholder="**********">
+				</div>
+
+				<div class="form-group">
+					<label for="perfilUsuarioSelect">Perfil</label> <select
+						id="perfilUsuarioSelect" name="perfilUsuarioSelect"
+						class="form-control">
+						<option value="">Seleccione</option>
+						<option value="1">Ejecutivo</option>
+						<option value="2">Supervisor</option>
+						<option value="3">Gerente</option>
+						<option value="4">Administrativo Remuneraciones</option>
+						<option value="5">Administrativo Contralor&iacute;a</option>
+						<option value="6">Mantenedor</option>
+					</select>
+				</div>
+
+				<!-- Mensajes del registro de usuario -->
+				<div class="form-group hide" id="mensajeCorrectoRegistro">
+
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeCorrectoRegistro" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ok !
+						</h4>
+						<p>Usuario creado correctamente</p>
+					</div>
+
+				</div>
+
+				<div class="form-group hide" id="mensajeProblemasRegistro">
+
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeProblemasRegistro" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ops !
+						</h4>
+						<p>Problemas a crear un nuevo usuario</p>
+					</div>
+
+				</div>
+
+				<div class="form-group hide" id="mensajeEmailEncontrado">
+
+					<div class="alert alert-warning alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeEmailEncontrado" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ok !
+						</h4>
+						<p>El email que intenta registrar ya se encuantra en el registro</p>
+					</div>
+
+				</div>
+
+
+			</div>
+
+			<div class="box-footer">
+				<div class="box-body">
+					<button type="submit" class="btn btn-primary">
+						Guardar <span class="fa fa-save"></span>
+					</button>
+				</div>
+			</div>
+
+		</form>
+
+	</div>
+	<!-- Termina formulario Usuarios  -->
+
+	<!-- Listado de Usuarios -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Listado de Usuarios<strong>
+			
+			</h3>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+
+				<div class="box-body">
+
+					<div class="form-group">
+						<table id="tableListadoUsuarios"
+							class="table table-bordered table-hover cell-border compact">
+
+							<thead>
+								<th>id</th>
+								<th>Nombre</th>
+								<th>Perfil</th>
+								<th>email</th>
+							</thead>
+
+						</table>
+					</div>
+
+					<div class="form-group hide" id="seleccionaUsuarioLista">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close cierraWarning"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Opps !
+							</h4>
+							<p>Primero debe seleccionar un usuario</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="usuarioEliminado">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close cierraWarning"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Usuario Eliminado Correctamente</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="mensajeCorrectoEdit">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close"
+								id="buttonMensajeCorrectoEdit" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Usuario actualizado correctamente</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="mensajeProblemasEdit">
+
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close"
+								id="buttonMensajeProblemasEdit" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Problemas al actualizar el usuario</p>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="box-footer">
+					<div class="form-group">
+						<button class="btn btn-success marginBottomButton editUser">
+							Modificar <span class="fa fa-edit"></span>
+						</button>
+						<button class="btn btn-danger marginBottomButton deletUser"
+							id="buttonEliminarUsuario">
+							Eliminar <span class="fa fa-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina listado de Usuarios -->
+
+	<!---------- Ventanas Modales ---------->
+
+	<!-- Modal Borrar Usuarios -->
+	<div class="modal modal-danger fade" id="modalEliminarUsuario">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Eliminar Usuario</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Est&aacute; a punto de eliminar un usuario, seguro quiere
+						realizar esta acci&oacute;n?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"
+						data-dismiss="modal">
+						<span class="fa fa-remove"></span>
+					</button>
+					<button type="button" data-dismiss="modal" id="eliminaUsuario"
+						class="btn btn-outline">
+						<span class="fa fa-check"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Borrar Usuarios -->
+
+	<!-- Modal Editar Usuario -->
+	<div class="modal modal-success fade" id="modalEditarUsuario">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Editar Usuario</strong>
+					</h4>
+				</div>
+				<form role="form" action="" method="post" id="formModificaUsuario">
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="nombreUsuarioEdit">Nombre Usuario</label> <input
+								id="nombreUsuarioEdit" name="nombreUsuarioEdit" type="text"
+								class="form-control" placeholder="Jaime Fuentealba">
+						</div>
+						<div class="form-group">
+							<label for="emailUsuarioEdit">Email</label> <input
+								id="emailUsuarioEdit" name="emailUsuarioEdit" type="email"
+								class="form-control" placeholder="usuario@email.cl">
+						</div>
+						<div class="form-group">
+							<label for="passwordUsuarioEdit">Password</label> <input
+								id="passwordUsuarioEdit" name="passwordUsuarioInputEdit"
+								type="password" class="form-control" placeholder="**********">
+						</div>
+						<div class="form-group">
+							<label for="conPasswordUsuarioEdit">Confirmar Password</label> <input
+								id="conPasswordUsuarioEdit" name="conPasswordUsuarioEdit"
+								type="password" class="form-control" placeholder="**********">
+						</div>
+						<div class="form-group">
+							<label for="perfilUsuarioSelectEdit">Perfil</label> <select
+								id="perfilUsuarioSelectEdit" name="perfilUsuarioSelectEdit"
+								class="form-control">
+								<option value="">Seleccione</option>
+								<option value="1">Ejecutivo</option>
+								<option value="2">Supervisor</option>
+								<option value="3">Gerente</option>
+								<option value="4">Administrativo Remuneraciones</option>
+								<option value="5">Administrativo Contralor&iacute;a</option>
+								<option value="6">Mantenedor</option>
+							</select>
+						</div>
+
+						<div class="form-group hide" id="mensajeEmailEncontradoEdit">
+
+							<div class="alert alert-warning alert-dismissable">
+								<button type="button" class="close"
+									id="buttonMensajeEmailEncontradoEdit" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ok !
+								</h4>
+								<p>El email que intenta actualizar ya se encuantra</p>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline pull-left"
+							data-dismiss="modal">
+							<span class="fa fa-remove"></span>
+						</button>
+						<button type="submit" class="btn btn-outline">
+							<span class="fa fa-check"></span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Edita Usuario -->
+
+</section>

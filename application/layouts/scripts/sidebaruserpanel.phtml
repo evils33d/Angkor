@@ -1,0 +1,18 @@
+<?php
+$auth = Zend_Auth::getInstance ();
+if ($auth->hasIdentity ()) {
+	$username = $auth->getIdentity ()->lc01_nombreUsuario;
+	$apellido = $auth->getIdentity ()->lc01_apellidoPaternoUsuario;
+}
+
+?>
+<div class="user-panel">
+	<div class="pull-left image">
+		<img src="/dist/img/my_photo.png" class="img-circle" alt="User Image" />
+	</div>
+	<div class="pull-left info">
+		<p><?=$username." ".$apellido?></p>
+		<!-- Status -->
+		<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+	</div>
+</div>

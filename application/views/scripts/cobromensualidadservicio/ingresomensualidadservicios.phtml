@@ -1,0 +1,209 @@
+<section class="content-header">
+
+	<h1>Ingreso Mensualidades y Servicios, <?= $this->titulo ?></h1>
+
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-money"></i> Cobros</a></li>
+		<li class="active">Ingreso Mensualidades y Servicios</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<!-- Busqueda de Clientes -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Buscar Rut</strong>
+			</h3>
+		</div>
+		<form action="" method="post" id="formBusquedaMensualidadesServicios">
+			<div class="box-body">
+
+				<div class="form-group">
+					<label for="ejecutivoSelect">Ejecutivo</label> <select
+						class="form-control" id="ejecutivoSelect" name="ejecutivoSelect">
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="clienteEjecutivoSelect">Clientes</label> <select
+						class="form-control" id="clienteEjecutivoSelect"
+						name="clienteEjecutivoSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="rutClieneteSelect">RUT Asociados</label> <select
+						class="form-control" id="rutClieneteSelect"
+						name="rutClieneteSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+
+					<label for="dateCobroInput">Fecha de Cobro</label>
+					<div class="input-group">
+						<input id="dateCobroInput" name="fecha"
+							data-provide="datepicker" value="<?= $this->fecha ?>" type="text" class="form-control"
+							placeholder="mm-yyyy"> <span
+							class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					</div>
+
+				</div>
+
+			</div>
+			<div class="box-footer">
+				<button type="submit" id="buttonSubmit" class="btn btn-primary">
+					Buscar <span class="fa fa-search"></span>
+				</button>
+			</div>
+		</form>
+	</div>
+
+
+	<!-- Tabla de Resultados Cobros Mensualidad y Servicios -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Listado de Clientes</strong>
+			</h3>
+		</div>
+
+		<div class="box-body">
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+
+						<label for="valorUF">Valor de la UF</label> <select id="valorUF"
+							class="form-control" disabled></select>
+					</div>
+
+					<div class="form-group">
+
+						<div class="alert alert-warning alert-dismissable hide"
+							id="actualizarUF">
+							<button type="button" class="close" id="buttonActualizarUF"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Atenci&oacute;n !
+							</h4>
+							<p>Debe actualizar valor de la UF para el mes seleccionado</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<blockquote style="font-size: small;">
+					<ul class="list-unstyled">
+						<li>1.- Solo ser&aacute;n registrados los cobros con valores
+							mayores a 0.</li>
+						<li>2.- Si la casilla aparece desactivada es por que el cobro ya
+							est&aacute; realizado.</li>
+					</ul>
+				</blockquote>
+			</div>
+
+			<div class="form-group">
+
+				<div class="alert alert-success alert-dismissable hide"
+					id="registroCobrosMS">
+					<button type="button" class="close" id="buttonRegistroCobrosMS"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-ok"></i> Ok !
+					</h4>
+					<p>Cobros registrado correctamente</p>
+				</div>
+
+				<div class="alert alert-warning alert-dismissable hide"
+					id="sinCobros">
+					<button type="button" class="close" id="buttonSinCobros"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>Solo se registrar&aacute;n cobros con valores mayores a 0</p>
+				</div>
+
+				<div class="alert alert-danger alert-dismissable hide"
+					id="problemasRegistroCobrosMS">
+					<button type="button" class="close"
+						id="buttonProblemasRegistroCobrosMS" aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-remove"></i> Ops !
+					</h4>
+					<p>Problemas al realizar el registro</p>
+				</div>
+				
+				<div class="alert alert-warning alert-dismissable hide"
+					id="numeroNegativo">
+					<button type="button" class="close"
+						id="buttonNumeroNegativo" aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>No se pueden ingresar n&uacute;meros negativos</p>
+				</div>
+				
+				<div class="alert alert-warning alert-dismissable hide"
+					id="seleccioneFecha">
+					<button type="button" class="close"
+						id="buttonSeleccioneFecha" aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>Debe seleccionar la fecha</p>
+				</div>
+
+			</div>
+
+			<div class="form-group">
+
+				<?= $this->tablaMenSer; ?>			
+				
+				<?php
+				
+				if ($this->msnbusqueda == '1') {
+					?>
+				<div class="alert alert-success alert-dismissable"
+					<?php
+				} else {
+					?>
+					
+					<div class="alert alert-success alert-dismissable" hidden=""
+						<?php
+				}
+				?> id="problemasRegistroCobrosMS">
+						<h4>
+							<i class="icon fa fa-check"></i> Atenci&oacute;n
+						</h4>
+						<p>Click en buscar para iniciar</p>
+					</div>
+
+
+				</div>
+
+				<div class="box-footer">
+					<button type="button" id="buttonMensualidadServicio"
+						class="btn btn-primary">
+						Guardar <span class="fa fa-save"></span>
+					</button>
+				</div>
+
+			</div>
+			<!-- Termina Tabla de Resultados Cobros Mensualidad y Servicios -->
+
+</section>
+
+
+
+
+

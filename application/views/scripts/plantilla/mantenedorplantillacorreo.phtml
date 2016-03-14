@@ -1,0 +1,237 @@
+<section class="content-header">
+
+	<h1>Mantenedor de Plantillas</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-pencil"></i> Mantenedores</a></li>
+		<li class="active">Mantenedor de Plantillas</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<!-- Crear Nueva Plantilla -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Crear una nueva plantilla<strong>
+			
+			</h3>
+		</div>
+		
+		<form role="form" action="" action="" id="formPlantillaCorreo">
+
+			<div class="box-body">
+
+				<div class="form-group">
+					<label for="nombrePlantillaInput">Nombre de la Plantilla</label> <input
+						id="nombrePlantillaInput" name="nombrePlantillaInput" type="text" class="form-control"
+						placeholder="Saludo de bienvenida">
+				</div>
+
+				<div class="form-group">
+					<label for="textoEnvioInput">Texto</label>
+					<textarea id="textoEnvioInput" name="textoEnvioInput" class="form-control" rows="3"
+						placeholder="Hola buenas tardes..."></textarea>
+				</div>
+				
+				<!-- Mensajes del registro Plantilla -->
+				<div class="form-group hide" id="mensajeCorrectoRegistro">
+
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeCorrectoRegistro" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ok !
+						</h4>
+						<p>Plantilla creada correctamente</p>
+					</div>
+
+				</div>
+
+				<div class="form-group hide" id="mensajeProblemasRegistro">
+
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeProblemasRegistro" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ops !
+						</h4>
+						<p>Problemas a crear una nueva plantilla</p>
+					</div>
+
+				</div>
+				
+				<div class="form-group hide" id="mensajeRegistroNombreIgual">
+
+					<div class="alert alert-warning alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeRegistroNombreIgual" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ops !
+						</h4>
+						<p>El concepto que trata de registrar ya existe</p>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="box-footer">
+
+				<button type="submit" class="btn btn-primary">
+					Guardar <span class="fa fa-save"></span>
+				</button>
+
+			</div>
+
+		</form>
+		
+	</div>
+
+	<!-- Listado de Plantillas -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Listado de Plantillas<strong>
+			
+			</h3>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box-body">
+
+					<div class="form-group">
+						<table id="tableMantenedorPlantillas"
+							class="table table-bordered table-hover cell-border compact">
+
+							<thead>
+								<th>Nombre Plantilla</th>
+								<th>Texto</th>
+								<th>Acci&oacute;n</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Saludo</td>
+									<td>Hola buenos dias....</td>
+									<td align="right">
+										<button class="btn btn-success btn-sm marginBottomButton"
+											data-toggle="modal" data-target="#modalEditarPlantillaCorreo"
+											id="buttonEditarPlantilla">
+											Modificar <span class="fa fa-edit"></span>
+										</button>
+										<button class="btn btn-danger btn-sm marginBottomButton"
+											data-toggle="modal"
+											data-target="#modalEliminarPlantillaCorreo"
+											id="buttonEliminarPlantilla">
+											Eliminar <span class="fa fa-remove"></span>
+										</button>
+									</td>
+
+								</tr>
+								<tr>
+									<td>Despedida</td>
+									<td>Se despide Atte</td>
+									<td align="right">
+										<button class="btn btn-success btn-sm marginBottomButton"
+											data-toggle="modal" data-target="#modalEditarPlantillaCorreo"
+											id="buttonEditarPlantilla">
+											Modificar <span class="fa fa-edit"></span>
+										</button>
+										<button class="btn btn-danger btn-sm marginBottomButton"
+											data-toggle="modal"
+											data-target="#modalEliminarPlantillaCorreo"
+											id="buttonEliminarPlantilla">
+											Eliminar <span class="fa fa-remove"></span>
+										</button>
+									</td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!---------- Ventanas Modales ---------->
+
+	<!-- Modal Borrar Plantilla Correo -->
+	<div class="modal modal-danger fade" id="modalEliminarPlantillaCorreo">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Eliminar Plantilla de Correo</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Est&aacute; a punto de eliminar una plantilla, seguro quiere
+						realizar esta acci&oacute;n?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"
+						data-dismiss="modal">
+						<span class="fa fa-remove"></span>
+					</button>
+					<button type="button" data-dismiss="modal" class="btn btn-outline">
+						<span class="fa fa-check"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Borrar Plantilla Correo -->
+
+	<!-- Modal Editar Plantilla Correo -->
+	<div class="modal modal-success fade" id="modalEditarPlantillaCorreo">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Editar Plantilla de Correo</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="nombrePlantillaInput">Nombre de la Plantilla</label> <input
+							id="nombrePlantillaInput" type="text" class="form-control"
+							placeholder="Saludo de bienvenida">
+					</div>
+
+					<div class="form-group">
+
+						<label for="textoInput">Texto</label>
+						<textarea class="form-control" rows="3"
+							placeholder="Hola buenas tardes..."></textarea>
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"
+						data-dismiss="modal">
+						<span class="fa fa-remove"></span>
+					</button>
+					<button type="button" data-dismiss="modal" class="btn btn-outline">
+						<span class="fa fa-check"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Borrar Plantilla Correo -->
+
+</section>

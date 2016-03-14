@@ -1,0 +1,1103 @@
+<section class="content-header">
+	<h1>Datos RUT Asociado</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-user"></i> Cliente</a></li>
+		<li class="active">Datos Rut Asociado</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<!-- Sección Datos Del RUT -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Datos del RUT</strong>
+			</h3>
+		</div>
+		
+		<?php
+		$disabledData = "";
+		$disabledPrevired = "";
+		
+		if ($this->rol == '1' || $this->rol == '2' || $this->rol == '3') {
+			$disabledData = "disabled";
+			$disabledPrevired = "disabled";
+		}
+		
+		if ($this->rol == '4') {
+			$disabledData = "disabled";
+			$disabledPrevired = "";
+		}
+		
+		if ($this->rol == '5') {
+			$disabledData = "";
+			$disabledPrevired = "disabled";
+		}
+		
+		if ($this->rol == '6') {
+			$disabledData = "disabled";
+			$disabledPrevired = "disabled";
+		}
+		?>
+		
+		<form role="form" action="" method="post" id="formDatosRutAsociado">
+			<div class="row">
+				<div class="box-body">
+
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label for="nombreCliente">Nombre Cliente</label> <input
+								type="text" class="form-control" id="nombreCliente"
+								placeholder="Amanda L&oacute;pez" name="nombreCliente"
+								disabled="disabled">
+						</div>
+
+						<div class="form-group">
+							<label for="razonSocial">Nombre / Raz&oacute;n social</label> <input
+								type="text" class="form-control" id="razonSocial"
+								name="razonSocial" placeholder="Andr&eacute;s Fuentes">
+						</div>
+
+						<div class="form-group">
+							<label for="tipoPersonaSelect">Tipo Persona</label> <select
+								class="form-control" id="tipoPersonaSelect"
+								name="tipoPersonaSelect">
+								<option value="">Seleccione</option>
+								<option value="2">Natural</option>
+								<option value="3">Jur&iacute;dica</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+
+							<label for="valorMensualidadInput">Valor Mensualidad en UF</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+								<input type="text" id="valorMensualidadInput"
+									name="valorMensualidadInput" class="form-control control"
+									<?= $disabledData ?>>
+							</div>
+						</div>
+
+						<div class="form-group">
+
+							<label for="valorOtroServiciosInput">Valor Otros Servicios Fijos
+								UF</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+								<input id="valorOtroServiciosInput"
+									name="valorOtroServiciosInput" type="text"
+									class="form-control control" <?= $disabledData ?>>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label>Meta Boleteo Anual</label>
+							<div class="row">
+								<div class="col-xs-6">
+									<button type="button" class="btn btn-warning"
+										id="clickMetaBoleteo">
+										Modificar <span class="fa fa-edit">
+									
+									</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label for="ejecutivoSelect">Ejecutivo</label> <select
+								class="form-control" id="ejecutivoSelect" disabled="disabled">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="datosRutInput">RUT</label> <input type="text"
+								maxlength="12" class="form-control" id="datosRutInput"
+								name="datosRutInput" placeholder="12.345.678-0">
+						</div>
+
+						<div class="form-group">
+							<label for="numeroSociedadInput">N&uacute;mero Sociedad</label> <input
+								type="text" class="form-control control"
+								id="numeroSociedadInput" name="numeroSociedadInput"
+								placeholder="000000">
+						</div>
+
+						<div class="form-group">
+							<label for="tipoSociedadSelect">Tipo de Sociedad (persona
+								jur&iacute;dica)</label> <select class="form-control"
+								id="tipoSociedadSelect" name="tipoSociedadSelect">
+								<option value="">Seleccione</option>
+							</select>
+						</div>
+
+						<div class="box box-info">
+							<div class="row">
+								<div class="box-body">
+									<div class="form-group">
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="ivaCheck">I.V.A</label>
+											<input type="checkbox" id="ivaCheck" class="minimal"
+												name="ivaCheck">
+										</div>
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="f29Check">F 29</label>
+											<input type="checkbox" id="f29Check" class="minimal"
+												name="f29Check">
+										</div>
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="rentaCheck">Renta</label>
+											<input type="checkbox" id="rentaCheck" class="minimal"
+												name="rentaCheck">
+										</div>
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="previredCheck">Previred</label>
+											<input type="checkbox" id="previredCheck" class="minimal"
+												name="previredCheck" <?= $disabledPrevired ?>>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group hide" id="previredPersonaNatural">
+
+							<div class="box box-info">
+								<div class="box-header with-border">
+									<h4 class="box-title">Si tiene previred y es persona natural</h4>
+								</div>
+								<div class="row">
+									<div class="box-body">
+										<div class="col-xs-3">
+											<label style="padding-right: 15px" for="empresarialCheck">Empresarial</label>
+											<input type="checkbox" id="empresarialCheck" class="minimal"
+												name="empresarialCheck" <?= $disabledPrevired ?>>
+										</div>
+										<div class="col-xs-3">
+											<label style="padding-right: 15px" for="independienteCheck">Independiente</label>
+											<input type="checkbox" id="independienteCheck"
+												name="independienteCheck" class="minimal"
+												<?= $disabledPrevired ?>>
+										</div>
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="nanaCheck">Nanas</label>
+											<input type="checkbox" id="nanaCheck" class="minimal"
+												name="nanaCheck" <?= $disabledPrevired ?>>
+										</div>
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="otroCheck">Otro</label>
+											<input type="checkbox" id="otroCheck" class="minimal"
+												name="otroCheck" <?= $disabledPrevired ?>>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="form-group hide" id="previredPersonaJuridica">
+							<div class="box box-info">
+								<div class="box-header with-border">
+									<h4 class="box-title">Si tiene previred y es persona
+										jur&iacute;dica</h4>
+								</div>
+								<div class="row">
+									<div class="box-body">
+										<div class="col-xs-3">
+											<label style="padding-right: 15px" for="socioCheck">Socios</label>
+											<input type="checkbox" id="socioCheck" class="minimal"
+												<?= $disabledPrevired ?>>
+										</div>
+										<div class="col-xs-4">
+											<label style="padding-right: 15px" for="trabajadorCheck">Trabajadores</label>
+											<input type="checkbox" id="trabajadorCheck" class="minimal"
+												<?= $disabledPrevired ?>>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="box-footer">
+				<button type="submit" class="btn btn-success" id="buttonIngresaRut">
+					Modificar <span class="fa fa-edit">
+				
+				</button>
+			</div>
+
+		</form>
+	</div>
+
+	<!-- Panel Meta de Boleteo -->
+	<div class="box box-warning" id="metasBoleteo" hidden="">
+
+		<div class="box-header with-border">
+			<h4 class="box-title">Metas del Boleteo</h4>
+			<button type="button" id="cierraMetaBoleteo" class="close"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+		<div class="box-body">
+
+
+			<div class="col-md-6">
+				<form role="form" method="post" action="" id="formMetaBoleteo">
+					<label for="anioMetasSelect">A&#241;o</label>
+					<div class="form-group">
+
+
+						<select class="form-control" id="anioMetasSelect"
+							name="anioMetasSelect">
+							<option value="">Seleccione</option>
+							<option value="2020">2020</option>
+							<option value="2019">2019</option>
+							<option value="2018">2018</option>
+							<option value="2017">2017</option>
+							<option value="2016">2016</option>
+							<option value="2015">2015</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="montoMetasInput">Monto</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-dollar"></i></span><input
+								type="text" class="form-control" id="montoMetasInput"
+								name="montoMetasInput" placeholder="100.000" />
+						</div>
+					</div>
+
+					<!-- Mensajes del registro MetasBoleteo -->
+					<div class="form-group hide" id="mensajeCorrectoRegistroMeta">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close"
+								id="buttonMensajeCorrectoRegistroMeta" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Meta de boleteo guardada correctamente</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="mensajeProblemasRegistroMeta">
+
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close"
+								id="buttonMensajeProblemasRegistro" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Problemas a crear un nuevo cliente</p>
+						</div>
+
+					</div>
+
+
+					<div class="form-group">
+						<button class="btn btn-warning" id="buttonMetaBoleteo"
+							type="submit">
+							Guardar <span class="fa fa-plus-square">
+						
+						</button>
+					</div>
+				</form>
+
+			</div>
+
+			<div class="col-md-6">
+				<table id="tablaMetaBoleteo" class="table compact">
+					<thead>
+						<th>A&#241;o</th>
+						<th>Monto</th>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Sección Datos Personales -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Datos Personales</strong>
+			</h3>
+		</div>
+
+		<div class="box-body">
+			<div class="row">
+				<div class="col-md-6">
+
+					<div class="form-group">
+
+						<label for="fechaNacimientoDateInput">Fecha Nacimiento</label> <input
+							id="fechaNacimientoDateInput" name="fechaNacimientoDateInput"
+							type="text" class="form-control" placeholder="dd-mm-yyyy"
+							data-date-format="dd-mm-yyyy" disabled>
+					</div>
+
+					<div class="form-group">
+						<label for="espcialidadInput">Especialidad</label> <input
+							type="text" class="form-control" id="espcialidadInput"
+							placeholder="Inform&aacute;tico" disabled>
+					</div>
+
+					<div class="form-group">
+						<label for="sexoSelect">Sexo</label> <select disabled
+							class="form-control" id="sexoSelect">
+							<option value="">Seleccione</option>
+							<option value="m">Masculino</option>
+							<option value="f">Femenino</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+
+					<div class="form-group">
+						<label for="trabajo1ClienteInput">Lugar de trabajo 1</label> <input
+							type="text" class="form-control" id="trabajo1ClienteInput"
+							disabled placeholder="Direcci&oacute;n Trabajo N 1">
+					</div>
+					<div class="form-group">
+						<label for="trabajo2ClienteInput">Lugar de trabajo 2</label> <input
+							type="text" class="form-control" id="trabajo2ClienteInput"
+							disabled placeholder="Direcci&oacute;n Trabajo N 2">
+					</div>
+					<div class="col-xs-4">
+						<div class="form-group">
+							<label for="seguroVidaCheck" style="padding-right: 5px">Seguro de
+								Vida Anual</label> <input type="checkbox" id="seguroVidaCheck"
+								name="seguroVidaCheck" class="minimal" disabled>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="box-footer">
+			<button class="btn btn-success" type="submit"
+				id="buttonModificaDatosPersonales">
+				Modificar <span class="fa fa-edit">
+			
+			</button>
+		</div>
+	</div>
+
+	<!-- Sección Claves y Cuenta Corriente -->
+	<div class="row">
+		<div class="col-md-6">
+			<!-- Sección Datos Bancario -->
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">
+						<strong>Claves</strong>
+					</h3>
+				</div>
+
+				<div class="box-body">
+				   	<?php
+								if ($this->rol == '4' || $this->rol == '5' || $this->rol == '6') {
+									?>
+				   			<div class="form-group">
+						<label for="claveSIIInput">Clave SII</label> <input type="text"
+							class="form-control control sii" placeholder="*******"
+							disabled="disabled">
+					</div>				   			
+				   	<?php
+								} else {
+									?>
+				   			<div class="form-group">
+						<label for="claveSIIInput">Clave SII</label> <input type="text"
+							class="form-control control sii" id="claveSIIInput"
+							name="claveSIIInput" placeholder="*******" disabled="disabled">
+					</div>				   							
+				   	<?php
+								}
+								?>
+
+					<?php
+					if ($this->rol == '5') {
+						?>
+				   		<div class="form-group">
+						<label for="clavePreviredInput">Clave Previred</label> <input
+							type="text" class="form-control control previredInput"
+							placeholder="*******" disabled="disabled">
+					</div>
+				   		
+				   	
+				   	<?php
+					} else {
+						?>
+					   	<div class="form-group">
+						<label for="clavePreviredInput">Clave Previred</label> <input
+							type="text" class="form-control control previredInput"
+							id="clavePreviredInput" name="clavePreviredInput"
+							placeholder="*******" disabled="disabled">
+					</div>
+				   	
+				   	
+				   	<?php
+					}
+					?>
+
+					
+				</div>
+				<div class="box-footer">
+				<?php
+				
+				if ($this->rol == '4' || $this->rol == '5' || $this->rol == '6') {
+					?>
+					<button class="btn btn-success" disabled>
+						Modificar <span class="fa fa-edit">
+					
+					</button>
+					
+					
+					<?php
+				} else {
+					?>
+					<button class="btn btn-success" type="
+						submit"
+						id="buttonModificaClaves">
+						Modificar <span class="fa fa-edit">
+					
+					</button>
+					<?php
+				}
+				?>
+				
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<!-- Sección Datos Bancario -->
+			<div class="box box-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">
+						<strong>Datos Bancarios</strong>
+					</h3>
+				</div>
+				<div class="box-body">
+					<div class="form-group">
+						<label for="bancoInput">Banco</label> <select class="form-control"
+							id="bancoInput" name="bancoInput" disabled>
+
+						</select>
+
+
+					</div>
+					<div class="form-group">
+						<label for="numeroCuentaInput">N&uacute;mero de Cuenta</label> <input
+							type="text" class="form-control control" id="numeroCuentaInput"
+							name="numeroCuentaInput" placeholder="0-00000" disabled>
+					</div>
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-success type="
+						submit" id="buttonModificaDatosBanco">
+						Modificar <span class="fa fa-edit">
+					
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Sección Finanzas del Rut Asociado -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Finanzas del RUT Asociado</strong>
+			</h3>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box-body">
+					<div class="form-group">
+						<label for="nombreClienteFinanzasInput">Cobros pendientes de Pago</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+							<input type="text" class="form-control"
+								id="nombreClienteFinanzasInput" disabled="disabled" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Sección Movimientos Del RUT -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Movimientos del RUT</strong>
+			</h3>
+		</div>
+		<form role="form" method="" action="" id="formMovimientosRut">
+			<div class="row">
+				<div class="box-body">
+
+					<div class="col-md-12">
+						<div class="form-group">
+
+							<label>Seleccione una fecha de inicio y termino</label> <input
+								type="text" placeholder="dd-mm-yyyy - dd-mm-yyyy"
+								class="form-control pull-right" id="fechaDesdeHasta"
+								name="fechaDesdeHasta">
+
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<br />
+						<div class="form-group">
+							<label for="estadoSelect">Estado</label> <select
+								class="form-control" id="estadoSelect" name="estadoSelect">
+							</select>
+						</div>
+
+					</div>
+
+					<div class="col-md-6">
+						<br />
+						<div class="form-group">
+							<label for="golsaMovimientosInput">Glosa</label> <input
+								type="text" class="form-control" id="golsaMovimientosInput"
+								name="golsaMovimientosInput" placeholder="Detalles">
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="box-footer">
+				<button class="btn btn-primary" type="submit">
+					Buscar <span class="fa fa-search"></span>
+				</button>
+			</div>
+		</form>
+	</div>
+
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Resultados</strong>
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box-body">
+
+					<div class="form-group">
+						<table
+							class="table table-bordered table-hover cell-border compact"
+							id="tableMovimientosRut">
+
+							<thead>
+								<th>Id</th>
+								<th>Tipo</th>
+								<th>Fecha</th>
+								<th>Glosa</th>
+								<th>RUT Asociado</th>
+								<th>Monto UF</th>
+								<th>Monto Cobrado</th>
+								<th>Monto Pagado</th>
+								<th>Estado</th>
+								<th>Forma de Pago</th>
+							</thead>
+
+						</table>
+					</div>
+
+					<div class="form-group hide" id="seleccionaCobroLista">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close"
+								id="buttonCierraMsgCobroLista" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>Primero debe seleccionar un cobro de la lista</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="noAnulaCobro">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonNoAnulaCobro"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>Este cobro no puede ser anulado</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="cobroAnulado">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonCobroAnulado"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>El cobro se encuentra anulado</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="errorAccionMovimiento">
+
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close"
+								id="buttonErrorAccionMovimiento" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-remove"></i> Ops !
+							</h4>
+							<p>Problemas al realizar la acci&oacute;n</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="movimientoAnulado">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" id="buttonMovimientoAnulado"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Cobro anulado correctamente</p>
+						</div>
+
+					</div>
+
+
+					<div class="form-group hide" id="noModificaMasivo">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonNoModificaMasivo"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>No se pueden modificar cobros masivos</p>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-success marginBottomButton"
+						id="buttonModificarCobroIndividual">
+						Modificar <span class="fa fa-edit"></span>
+					</button>
+					<button class="btn btn-danger marginBottomButton"
+						data-toggle="modal" data-target="modalEliminarMovimientosRut"
+						id="buttonEliminarMovimiento">
+						Anular <span class="fa fa-remove">
+					
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina sección Movimientos Del RUT -->
+
+	<!---------- Ventanas Modales ---------->
+
+
+	<!-- Modal Edicion Datos Personales -->
+	<div class="modal modal-success fade" id="modalEdicionDatosPersonales">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Modifica Datos Personales</strong>
+					</h4>
+				</div>
+				<form action="" method="post" id="formActualizaPersonales">
+					<div class="modal-body">
+
+						<div class="form-group">
+
+							<label for="fechaNacimientoDateEdit">Fecha Nacimiento</label> <input
+								id="fechaNacimientoDateEdit" name="fechaNacimientoDateEdit"
+								data-provide="datepicker" type="text"
+								class="form-control datepicker" placeholder="dd-mm-yyyy"
+								data-date-format="dd-mm-yyyy">
+						</div>
+
+						<div class="form-group">
+							<label for="espcialidadEdit">Especialidad</label> <input
+								type="text" class="form-control" id="espcialidadEdit"
+								name="espcialidadEdit" placeholder="Inform&aacute;tico">
+						</div>
+
+						<div class="form-group">
+							<label for="sexoSelectEdit">Sexo</label> <select
+								class="form-control" id="sexoSelectEdit" name="sexoSelectEdit">
+								<option value="">Seleccione</option>
+								<option value="m">Masculino</option>
+								<option value="f">Femenino</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="trabajo1ClienteEdit">Lugar de trabajo 1</label> <input
+								type="text" class="form-control" id="trabajo1ClienteEdit"
+								name="trabajo1ClienteEdit"
+								placeholder="Direcci&oacute;n Trabadisabledjo N 1">
+						</div>
+
+						<div class="form-group">
+							<label for="trabajo2ClienteEdit">Lugar de trabajo 2</label> <input
+								type="text" class="form-control" id="trabajo2ClienteEdit"
+								name="trabajo2ClienteEdit"
+								placeholder="Direcci&oacute;n Trabajo N 2">
+						</div>
+
+						<div class="col-xs-4">
+							<div class="form-group">
+								<label for="seguroVidaCheck" style="padding-right: 5px">Seguro
+									de Vida Anual</label> <input type="checkbox"
+									id="seguroVidaCheckEdit" name="seguroVidaCheckEdit"
+									class="minimal">
+							</div>
+						</div>
+
+						<br> <br>
+
+						<div class="form-group">
+
+							<div class="alert alert-success alert-dismissable hide"
+								id="personalesActualizada">
+								<h4>
+									<i class="icon fa fa-check"></i> Ok !
+								</h4>
+								<p>Datos personales actualizados correctamente</p>
+							</div>
+
+							<div class="alert alert-danger alert-dismissable hide"
+								id="personalesErrorActualiza">
+								<h4>
+									<i class="icon fa fa-remove"></i> Ops !
+								</h4>
+								<p>Problemas al realizar la acci&oacute;n</p>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-outline">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Edicion Datos Personales -->
+
+	<!-- Modal Edicion Datos Claves -->
+	<div class="modal modal-success fade" id="modalEdicionDatosClaves">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Modifica Claves</strong>
+					</h4>
+				</div>
+				<form action="" id="formActualizaClaves">
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label for="claveSIIInput">Clave SII</label> <input type="text"
+								class="form-control control" id="siiClaveEdit"
+								name="siiClaveEdit" placeholder="*******">
+						</div>
+
+						<div class="form-group">
+							<label for="clavePreviredInput">Clave Previred</label> <input
+								type="text" class="form-control control" id="previredClaveEdit"
+								name="previredClaveEdit" placeholder="*******">
+						</div>
+
+
+						<div class="form-group">
+
+							<div class="alert alert-success alert-dismissable hide"
+								id="claveActualizada">
+								<h4>
+									<i class="icon fa fa-check"></i> Ok !
+								</h4>
+								<p>Claves actualizadas correctamente</p>
+							</div>
+
+							<div class="alert alert-danger alert-dismissable hide"
+								id="claveErrorActualiza">
+								<h4>
+									<i class="icon fa fa-remove"></i> Ops !
+								</h4>
+								<p>Problemas al realizar la acci&oacute;n</p>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-outline">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Edicion Datos Claves -->
+
+	<!-- Modal Edicion Datos Bancarios -->
+	<div class="modal modal-success fade" id="modalEdicionDatosBancarios">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Modifica Datos Bancarios</strong>
+					</h4>
+				</div>
+				<form action="" id="formaEditaDatosBancarios">
+					<div class="modal-body">
+
+						<div class="form-group">
+							<select class="form-control" id="bancoSelectEdit"
+								name="bancoSelectEdit">
+								<option value="">Seleccione</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="numeroCuentaEdit">N&uacute;mero de Cuenta</label> <input
+								type="text" class="form-control control" id="numeroCuentaEdit"
+								name="numeroCuentaEdit" placeholder="0-00000">
+						</div>
+
+						<div class="form-group">
+
+							<div class="alert alert-success alert-dismissable hide"
+								id="bancoActualizada">
+								<h4>
+									<i class="icon fa fa-check"></i> Ok !
+								</h4>
+								<p>Datos Bancarios actualizados correctamente</p>
+							</div>
+
+							<div class="alert alert-danger alert-dismissable hide"
+								id="bancoErrorActualiza">
+								<h4>
+									<i class="icon fa fa-remove"></i> Ops !
+								</h4>
+								<p>Problemas al realizar la acci&oacute;n</p>
+							</div>
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="bancoExiteNumeroCuenta">
+								<h4>
+									<i class="icon fa fa-warning"></i> Ops !
+								</h4>
+								<p>El N&uacute;mero de cuenta ya existe</p>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-outline">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Edicion Datos Bancarios -->
+
+	<!-- Modal Bajar RUT -->
+	<div class="modal modal-danger fade" id="modalBajaRut">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Bajar RUT</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Est&aacute; a punto de dar baja a un RUT, seguro quiere realizar
+						esta acci&oacute;n?</p>
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" class="btn btn-outline pull-left"
+						data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+					<button type="button" data-dismiss="modal" class="btn btn-outline">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Confirma Baja RUT -->
+
+	<!-- Modal Eliminar Movimientos RUT -->
+	<div class="modal modal-danger fade" id="modalEliminarMovimientosRut">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Eliminar Movimiento del RUT</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Est&aacute; a punto de eliminar los movimientos del RUT, seguro
+						quiere realizar esta acci&oacute;n?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"
+						data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+					<button type="button" class="btn btn-outline"
+						id="buttonAnularCobro">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Eliminar Movimientos RUT -->
+
+	<!-- Modal Rut Incorrecto -->
+	<div class="modal modal-danger fade" id="modalRutIncorrecto">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Atenci&oacute;n</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>El rut ingresado es incorrecto</p>
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" data-dismiss="modal" class="btn btn-outline">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Rut Incorrecto -->
+
+	<!-- Modal Edicion Rut Correcto -->
+	<div class="modal modal-success fade" id="modalEdicionRutCorrecta">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Ok</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Los datos se han actualizado correctamente</p>
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" data-dismiss="modal" class="btn btn-outline">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Edicion Rut Correcto -->
+
+	<!-- Modal Problemas al realizar la accion -->
+	<div class="modal modal-danger fade" id="modalProblemasAccion">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Ops !</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Problemas al realizar la acci&oacute;n</p>
+				</div>
+				<div class="modal-footer">
+
+					<button type="button" data-dismiss="modal" class="btn btn-outline">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Problemas al realizar la accion -->
+
+</section>

@@ -1,0 +1,355 @@
+<section class="content-header">
+	<h1>Mantenedor de Valores</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-pencil"></i> Mantenedores</a></li>
+		<li class="active">Mantenedor de Valores</li>
+	</ol>
+</section>
+
+<section class="content">
+
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Valores UF y Tasas<strong>
+			
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="box-body">
+
+				<!-- *** Mantenedor de UF *** -->
+				<div class="col-md-4">
+
+					<div class="box box-success">
+						<div class="box-header with-border">
+							<h3 class="box-title">Valor UF</h3>
+						</div>
+
+						<form role="form" method="post" action="" id="formMantenedorUF">
+
+							<div class="box-body">
+
+								<div class="form-group">
+									<label for="anioUFSelect">A&ntilde;o</label> <select
+										class="form-control" id="anioUFSelect" name="anioUFSelect">
+										<option value="">Seleccione</option>
+										<option value="2020">2020</option>
+										<option value="2019">2019</option>
+										<option value="2018">2018</option>
+										<option value="2017">2017</option>
+										<option value="2016">2016</option>
+										<option value="2015">2015</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="mesUFSelect">Mes</label> <select
+										class="form-control" id="mesUFSelect" name="mesUFSelect">
+										<option value="">Seleccione</option>
+										<option value="01">Enero</option>
+										<option value="02">Febrero</option>
+										<option value="03">Marzo</option>
+										<option value="04">Abril</option>
+										<option value="05">Mayo</option>
+										<option value="06">Junio</option>
+										<option value="07">Julio</option>
+										<option value="08">Agosto</option>
+										<option value="09">Septiembre</option>
+										<option value="10">Octubre</option>
+										<option value="11">Noviembre</option>
+										<option value="12">Diciembre</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="ufValorInput">Valor UF</label>
+
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+										<input type="text" class="form-control"
+											id="ufValorInput" name="ufValorInput">
+									</div>
+								</div>
+
+								<div class="form-group hide" id="valorUfGuardado">
+
+									<div class="alert alert-success alert-dismissable">
+										<button type="button" class="close" id="buttonValorUfGuardado"
+											aria-hidden="true">&times;</button>
+										<h4>
+											<i class="icon fa fa-check"></i> Ok !
+										</h4>
+										<p>Valor guardado correctamente</p>
+									</div>
+								</div>
+
+								<div class="form-group hide" id="valorUfProblemaGuardado">
+
+									<div class="alert alert-danger alert-dismissable">
+										<button type="button" class="close"
+											id="buttonvalorUfProblemaGuardado" aria-hidden="true">&times;</button>
+										<h4>
+											<i class="icon fa fa-check"></i> Opss !
+										</h4>
+										<p>Problemas al realizar la acci&oacute;n</p>
+									</div>
+								</div>
+
+								<div class="form-group hide" id="valorNoPermitidoUf">
+
+									<div class="alert alert-warning alert-dismissable">
+										<button type="button" class="close"
+											id="buttonValorNoPermitidoUf" aria-hidden="true">&times;</button>
+										<h4>
+											<i class="icon fa fa-check"></i> Opss !
+										</h4>
+										<p>Valor no permitido</p>
+									</div>
+								</div>
+
+
+							</div>
+							<div class="box-footer">
+								<div class="box-body">
+									<button type="submit" class="btn btn-primary"
+										id="buttonValores">
+										Guardar <span class="fa fa-save"></span>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- Termina mantenedor de UF -->
+
+				<!-- *** Mantenedor de Tasa *** -->
+				<div class="col-md-4">
+
+					<div class="box box-success">
+						<div class="box-header with-border">
+							<h3 class="box-title">Tasa Retenci&oacute;n</h3>
+						</div>
+
+						<form role="form" method="post" action="" id="formMantenedorTasa">
+
+							<div class="box-body">
+								<div class="form-group">
+									<label for="anioTasaSelect">A&ntilde;o</label> <select
+										class="form-control" id="anioTasaSelect" name="anioTasaSelect">
+										<option value="">Seleccione</option>
+										<option value="2020">2020</option>
+										<option value="2019">2019</option>
+										<option value="2018">2018</option>
+										<option value="2017">2017</option>
+										<option value="2016">2016</option>
+										<option value="2015">2015</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="mesTasaSelect">Mes</label> <select
+										class="form-control" id="mesTasaSelect" name="mesTasaSelect">
+										<option value="">Seleccione</option>
+										<option value="01">Enero</option>
+										<option value="02">Febrero</option>
+										<option value="03">Marzo</option>
+										<option value="04">Abril</option>
+										<option value="05">Mayo</option>
+										<option value="06">Junio</option>
+										<option value="07">Julio</option>
+										<option value="08">Agosto</option>
+										<option value="09">Septiembre</option>
+										<option value="10">Octubre</option>
+										<option value="11">Noviembre</option>
+										<option value="12">Diciembre</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="tasaValorInput">Tasa Retenci&oacute;n</label>
+									<div class="input-group">
+										<span class="input-group-addon"><strong>%</strong></span>
+										<input type="text" class="form-control" id="tasaValorInput"
+											name="tasaValorInput" >
+									</div>
+								</div>
+
+								<!-- Mensajes de Tasa -->
+
+								<div class="form-group hide" id="valorTasaGuardado">
+
+									<div class="alert alert-success alert-dismissable">
+										<button type="button" class="close"
+											id="buttonValorTasaGuardado" aria-hidden="true">&times;</button>
+										<h4>
+											<i class="icon fa fa-check"></i> Ok !
+										</h4>
+										<p>Valor guardado correctamente</p>
+									</div>
+								</div>
+
+								<div class="form-group hide" id="valorTasaProblemaGuardado">
+
+									<div class="alert alert-danger alert-dismissable">
+										<button type="button" class="close"
+											id="buttonValorTasaProblemaGuardado" aria-hidden="true">&times;</button>
+										<h4>
+											<i class="icon fa fa-check"></i> Opss !
+										</h4>
+										<p>Problemas al realizar la acci&oacute;n</p>
+									</div>
+								</div>
+
+								<div class="form-group hide" id="valorNoPermitidoTasa">
+
+									<div class="alert alert-warning alert-dismissable">
+										<button type="button" class="close"
+											id="buttonValorNoPermitidoTasa" aria-hidden="true">&times;</button>
+										<h4>
+											<i class="icon fa fa-check"></i> Opss !
+										</h4>
+										<p>Valor no permitido</p>
+									</div>
+								</div>
+
+								<!-- Termina mensajes de Tasa -->
+
+							</div>
+							<div class="box-footer">
+								<div class="box-body">
+									<button type="submit" class="btn btn-primary"
+										id="buttonValores">
+										Guardar <span class="fa fa-save"></span>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+				<!-- Termina Mantenedor de Tasas -->
+
+				<!-- *** Mantenedor Tasa de Retencion *** -->
+				<div class="col-md-4">
+
+					<div class="box box-success">
+						<div class="box-header with-border">
+							<h3 class="box-title">Tasa Impuesto</h3>
+						</div>
+
+						<form role="form" method="post" action=""
+							id="formMantenedorRetencion">
+
+							<div class="box-body">
+
+								<div class="form-group">
+									<label for="anioRetencionSelect">A&ntilde;o</label> <select
+										class="form-control" id="anioRetencionSelect"
+										name="anioRetencionSelect">
+										<option value="">Seleccione</option>
+										<option value="2020">2020</option>
+										<option value="2019">2019</option>
+										<option value="2018">2018</option>
+										<option value="2017">2017</option>
+										<option value="2016">2016</option>
+										<option value="2015">2015</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="mesRetencionSelect">Mes</label> <select
+										class="form-control" id="mesRetencionSelect"
+										name="mesRetencionSelect">
+										<option value="">Seleccione</option>
+										<option value="01">Enero</option>
+										<option value="02">Febrero</option>
+										<option value="03">Marzo</option>
+										<option value="04">Abril</option>
+										<option value="05">Mayo</option>
+										<option value="06">Junio</option>
+										<option value="07">Julio</option>
+										<option value="08">Agosto</option>
+										<option value="09">Septiembre</option>
+										<option value="10">Octubre</option>
+										<option value="11">Noviembre</option>
+										<option value="12">Diciembre</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+								
+									<label for="retencionValorInput">Tasa Impuesto</label>
+									<div class="input-group">
+										<span class="input-group-addon"><strong>%</strong></span>
+										<input type="text" class="form-control"
+											id="retencionValorInput" name="retencionValorInput"
+											>
+									</div>
+								</div>
+
+								<!-- Mensajes de Tasa -->
+
+								<div class="form-group hide" id="valorRetencionGuardado">
+
+									<div class="alert alert-success alert-dismissable">
+										<button type="button" class="close"
+											id="buttonValorRetencionGuardado" aria-hidden="true">&times;</button>
+										<h4>
+											<i class="icon fa fa-check"></i> Ok !
+										</h4>
+										<p>Valor guardado correctamente</p>
+									</div>
+								</div>
+
+								<div class="form-group hide" id="valorRetencionProblemaGuardado">
+
+									<div class="alert alert-danger alert-dismissable">
+										<button type="button" class="close"
+											id="buttonValorRetencionProblemaGuardado" aria-hidden="true">&times;</button>
+										<h4>
+											<i class="icon fa fa-check"></i> Opss !
+										</h4>
+										<p>Problemas al realizar la acci&oacute;n</p>
+									</div>
+								</div>
+
+								<div class="form-group hide" id="valorNoPermitidoRenta">
+
+									<div class="alert alert-warning alert-dismissable">
+										<button type="button" class="close"
+											id="buttonValorNoPermitidoRenta" aria-hidden="true">&times;</button>
+										<h4>
+											<i class="icon fa fa-check"></i> Opss !
+										</h4>
+										<p>Valor no permitido</p>
+									</div>
+								</div>
+
+								<!-- Termina mensajes de Tasa -->
+
+							</div>
+
+							<div class="box-footer">
+								<div class="box-body">
+									<button type="submit" class="btn btn-primary"
+										id="buttonValores">
+										Guardar <span class="fa fa-save"></span>
+									</button>
+								</div>
+							</div>
+
+						</form>
+
+					</div>
+				</div>
+				<!-- Termina mantenedor de Retencion -->
+
+			</div>
+		</div>
+		
+	</div>
+
+</section>

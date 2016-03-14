@@ -1,0 +1,1367 @@
+<section class="content-header">
+	<h1>Detalle del Cliente</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-user"></i> Cliente</a></li>
+		<li class="active">Detalle Cliente</li>
+	</ol>
+</section>
+
+<section class="content">
+
+	<!-- Sección Detalle Cliente -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Datos del Cliente</strong>
+			</h3>
+		</div>
+		
+			<div class="row">
+				<div class="box-body">
+
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="nombreClienteInput">Nombre del Cliente</label> <input
+								type="text" class="form-control" id="nombreClienteInput"
+								name="nombreClienteInput" disabled>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="fechaIngresoInput">Fecha de Ingreso</label> <input
+								id="fechaIngresoInput" name="fechaIngresoInput"
+								data-provide="datepicker" type="text" class="form-control"
+								placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy"
+								disabled="disabled">
+
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="ejecutivoSelect">Ejecutivo</label> <select
+								class="form-control" id="ejecutivoSelect" name="ejecutivoSelect"
+								disabled="disabled">
+							</select>
+						</div>
+					</div>
+
+					<!-- Mensajes del mantenedor-->
+
+
+					<div class="col-md-12">
+						<div class="form-group hide" id="clienteEliminado">
+
+							<div class="alert alert-success alert-dismissable">
+								<button type="button" class="close"
+									id="buttonCierraMsgEliminado" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ok !
+								</h4>
+								<p>Cliente eliminado correctamente</p>
+							</div>
+
+						</div>
+
+						<div class="form-group hide" id="clienteActualizado">
+
+							<div class="alert alert-success alert-dismissable">
+								<button type="button" class="close"
+									id="buttonCierraMsgActualizado" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ok !
+								</h4>
+								<p>Cliente actualizado correctamente</p>
+							</div>
+						</div>
+
+						<div class="form-group hide" id="mensajeProblemaAccion">
+
+							<div class="alert alert-danger alert-dismissable">
+								<button type="button" class="close"
+									id="buttonMensajeProblemaAccion" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ops !
+								</h4>
+								<p>Problemas al realizar la acci&oacute;n</p>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<?php
+			if ($this->rol == '6' || $this->rol == '7') {
+				?>
+			<div class="box-footer">
+				<button type="button" class="btn btn-success"
+					id="buttonModificarCliente">
+					Modificar <span class="fa fa-edit"></span>
+				</button>
+				<button type="button" class="btn btn-danger" id="buttonBajarCliente">
+					Dar de Baja <span class="fa fa-remove"></span>
+				</button>
+			</div>
+			<?php }?>
+		
+	</div>
+
+	<?php
+	if ($this->rol == '1' || $this->rol == '2' || $this->rol == '3' || $this->rol == '4' || $this->rol == '5' || $this->rol == '7') {
+		?>
+
+	<!-- Listado RUTs Asociados -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Listado de RUTs Asociados</strong>
+			</h3>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box-body">
+
+					<div class="form-group">
+						<table id="tableRutAsociados"
+							class="table table-bordered table-hover cell-border compact">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Nombre / Raz&oacute;n Social</th>
+									<th>N&uacute;mero Sociedad</th>
+									<th>RUT</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+					<!-- Mensajes del registro Conceptos -->
+					<div class="form-group hide" id="mensajeCorrectoElimina">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close"
+								id="buttonMensajeCorrectoElimina" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Rut eliminado correctamente</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="mensajeProblemasAccion">
+
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close"
+								id="buttonMensajeProblemasAccion" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Problemas al realizar la acci&oacute;n</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="seleccionaRutLista">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonCierraMsgSeleccion"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Primero debe seleccionar un rut de la lista</p>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="box-footer">
+
+					<button type="button" class="btn btn-primary"
+						id="buttonAgregarOtroRut">
+						Agregar Otro RUT <span class="fa fa-plus-square"></span>
+					</button>
+
+					<button type="button" class="btn btn-primary"
+						id="buttonIngresoCobro">
+						Ingresar cobro <span class="glyphicon glyphicon-arrow-down"></span>
+					</button>
+
+					<button type="button" class="btn btn-primary" id="buttonDatosRut">
+						Datos <span class="fa fa-database"></span>
+					</button>
+
+					<button type="button" class="btn btn-primary" id="buttonBajaRut">
+						Borrar <span class="glyphicon glyphicon-remove"></span>
+					</button>
+
+
+				</div>
+				<!--End Box-Body  -->
+			</div>
+		</div>
+	</div>
+
+	<!-- Sección Contactos Asociados -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Contactos Asociados</strong>
+			</h3>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box-body">
+
+					<table id="tableContactosAsociados"
+						class="table table-bordered table-hover cell-border compact">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Tel&eacute;fono</th>
+								<th>Celular</th>
+								<th>Email</th>
+								<th>Boleteo</th>
+								<th>Cobro</th>
+							</tr>
+						</thead>
+
+					</table>
+
+					<br>
+
+					<div class="form-group hide" id="mensajeCorrectoEliminaContacto">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close"
+								id="buttonMensajeCorrectoEliminaContacto" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Contacto eliminado correctamente</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="contactoActualizado">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close"
+								id="buttonContactoActualizado" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Contacto actualizado correctamente</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="mensajeProblemasAccionContacto">
+
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close"
+								id="buttonMensajeProblemasAccionContacto" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Problemas al realizar la acci&oacute;n</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="seleccionaContactoLista">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close"
+								id="buttonCierraContactoLista" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Primero debe seleccionar un contacto de la lista</p>
+						</div>
+
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+
+		<div class="box-footer">
+
+			<button type="button" id="buttonNuevoContacto"
+				class="btn btn-primary">
+				Agregar Otro Contacto <span class="fa fa-plus-square">
+			
+			</button>
+
+			<button type="button" id="buttonDatosContacto"
+				class="btn btn-primary">
+				Datos <span class="fa fa-database">
+			
+			</button>
+
+			<button type="button" id="buttonBorrarContacto"
+				class="btn btn-primary">
+				Borrar <span class="glyphicon glyphicon-remove">
+			
+			</button>
+
+		</div>
+	</div>
+
+	<!-- Sección Finanzas del Cliente -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Finanzas Cliente</strong>
+			</h3>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box-body">
+					<table id="tableFinanzasCliente"
+						class="table table-bordered table-hover cell-border compact">
+						<thead>
+							<th>Cobros Pendientes de Pago</th>
+							<th>Saldo a Favor</th>
+						</thead>
+					<?php
+		if (isset ( $this->cliente )) {
+			?>	
+					
+					<tbody>
+							<tr>
+								<td><?=$this->cant_cobros_pendientes?></td>
+								<td style="max-width: 400px;">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-dollar"></i> </span>
+										<input id="saldoInput" type="text" class="form-control"
+											value="<?=number_format($this->cliente[0]['ci03_saldo'],0,'','.')?>"
+											placeholder="0" disabled> <input id="idCliente" type="hidden"
+											class="form-control"
+											value="<?=$this->cliente[0]['ci03_idcliente']?>">
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					
+					<?php
+		}
+		?>	
+						
+					</table>
+				</div>
+				<div class="box-footer">
+					<button id="btnDevolucion" class="btn btn-primary"
+						data-toggle="modal" data-target="#modalDevolucionCliente">
+						Devoluci&oacute;n <span class="glyphicon glyphicon-arrow-up">
+					
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Sección Envio de email renta -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Cobro de Renta</strong>
+			</h3>
+		</div>
+
+		<div class="box-body">
+
+			<div class="col-md-6">
+				<div class="row">
+
+					<div class="form-group">
+						<label>A&ntilde;o</label> <select class="form-control"
+							id="anioRenta">
+							<option value="">Seleccione</option>
+							<option value="2020">2020</option>
+							<option value="2019">2019</option>
+							<option value="2018">2018</option>
+							<option value="2017">2017</option>
+							<option value="2016">2016</option>
+							<option value="2015">2015</option>
+						</select>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="form-group">
+				<table id="tableListadoRutRenta"
+					class="table table-bordered table-hover cell-border compact">
+					<thead>
+						<th>Id</th>
+						<th>Rut</th>
+						<th>Monto</th>
+						<th>A&ntilde;o</th>
+					</thead>
+				</table>
+			</div>
+
+			<div class="row">
+				<form role="form" action="" method="post" id="formEnvioEmailRenta">
+
+					<div class="col-md-6">
+
+						<!-- Sección Email Cobro -->
+						<div class="box box-warning" id="panelCabecerasRenta" hidden="">
+							<div class="box-header with-border">
+								<h3 class="box-title">
+									<strong>Email Cobro Renta</strong>
+								</h3>
+							</div>
+
+
+							<div class="box-body">
+
+								<div class="form-group">
+									<label for="asuntoEmailRenta">Asunto</label> <input
+										class="form-control" id="asuntoEmailRenta"
+										name="asuntoEmailRenta" type="text" placeholder="Asunto...">
+								</div>
+
+								<div class="form-group">
+									<label for="cuerpoEmailRenta">Cuerpo</label>
+									<textarea class="form-control" rows="3"
+										placeholder="Cuerpo del email..." id="cuerpoEmailRenta"
+										name="cuerpoEmailRenta"></textarea>
+								</div>
+
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-md-6">
+
+						<!-- Sección Vista previa del email -->
+						<div class="box box-warning" id="panelVistaRenta" hidden="">
+							<div class="box-header with-border">
+								<h3 class="box-title">
+									<strong>Vista Previa</strong>
+								</h3>
+								<button type="button" id="cierraPanelesRenta" class="close"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+
+							<div class="box-body">
+								<h4>Para:</h4>
+								<p id="paraEmailRenta"></p>
+								<hr />
+								<h4>Asunto:</h4>
+								<p id="asuntoVistaRenta"></p>
+								<hr />
+
+								<p>
+									Estimado(a) <strong id="nombreCliente"></strong>
+								</p>
+
+								<p>Adjunto informaci&oacute;n para pago de Renta</p>
+
+								<table
+									class="border: 1px solid black; border-collapse: collapse;">
+									<thead>
+										<tr>
+											<th
+												style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white; width:240px;">Contribuyente</th>
+
+											<th
+												style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Monto
+												Renta</th>
+											<th style="border: 1px solid black; padding: 5px; background-color: white; color: white;"> </th>
+											
+											<th style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Dep. Angkor (1)</th>
+											
+											<th style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Pago Directo Cliente (2)</th>
+
+										</tr>
+									</thead>
+									<tbody id="dataCobroRenta">
+
+									</tbody>
+								</table>
+
+								<br>
+
+								<p id="msjDepAngkor"></p>
+								
+								<p id="msjPagoDirecto"></p>
+							
+
+								<strong id="cuerpoVistaEmailRenta"></strong>
+
+								<p>
+									Se despide atentamente <strong id="nombreUsuarioEmailRenta"></strong>,
+									<strong id="perfilUsuarioEmailRenta"></strong> de ANGKOR.
+								</p>
+
+							</div>
+							<div class="box-footer">
+								<button class="btn btn-success" type="submit" id="submitRenta">
+									Enviar <span class="fa fa-send"></span>
+								</button>
+							</div>
+						</div>
+
+					</div>
+
+				</form>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+
+					<div class="form-group hide" id="enviaEmailRenta">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" id="buttonEnviaEmailRenta"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Email cobro de Renta enviado correctamente</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="problemasEnvioRenta">
+
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close"
+								id="buttonProblemasEnvioRenta" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-remove"></i> Ops !
+							</h4>
+							<p>Problemas al realizar la acci&oacute;n</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="anioCobroNoCorresponde">
+
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close"
+								id="buttonAnioCobroNoCorresponde" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-remove"></i> Ops !
+							</h4>
+							<p>Problemas al realizar la acci&oacute;n</p>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<div class="box-footer">
+			<button type="button" class="btn btn-warning" id="buttonCobroRenta">
+				Enviar Email Renta <span class="fa fa-envelope-o">
+			
+			</button>
+		</div>
+
+	</div>
+
+	<!-- Sección Movimientos del Cliente -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Movimientos Del Cliente</strong>
+			</h3>
+		</div>
+		<form role="form" method="post" action="" id="formBusquedaMovimientos">
+			<div class="row">
+				<div class="box-body">
+
+					<div class="col-md-12">
+
+						<div class="form-group">
+							<label>Seleccione una fecha de inicio y termino</label> <input
+								type="text" placeholder="dd/mm/yyyy - dd/mm/yyyy"
+								class="form-control pull-right" id="fechaDesdeHasta"
+								name="reservation">
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<br />
+						<div class="form-group">
+							<label for="estadoSelect">Estado</label> <select
+								class="form-control" id="estadoSelect" name="estadoSelect">
+							</select>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<br />
+						<div class="form-group">
+							<label for="golsaInput">Glosa</label> <input type="text"
+								class="form-control" id="golsaInput" name="golsaInput"
+								placeholder="Detalle">
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<div class="box-footer">
+				<button class="btn btn-primary">
+					Buscar <span class="fa fa-search">
+				
+				</button>
+			</div>
+
+		</form>
+	</div>
+
+	<!-- Tabla de resultados Movimientos Cliente-->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Resultados</strong>
+			</h3>
+		</div>
+
+		<div class="box-body">
+
+			<div class="form-group">
+				<table class="table table-bordered table-hover cell-border compact"
+					id="tableMovimientosCliente">
+
+					<thead>
+						<th>Id</th>
+						<th>Tipo</th>
+						<th>Fecha</th>
+						<th>Glosa</th>
+						<th>RUT Asociado</th>
+						<th>Monto UF</th>
+						<th>Monto Cobrado</th>
+						<th>Monto Pagado</th>
+						<th>Estado</th>
+						<th>Forma de Pago</th>
+					</thead>
+
+				</table>
+			</div>
+
+			<!-- Seccion para envio de email -->
+			<div class="row">
+
+				<form role="form" action="" method="post" id="envioEmailCliente">
+
+					<div class="col-md-6">
+
+						<!-- Sección Email Cobro -->
+						<div class="box box-warning" id="panelEnviarEmail" hidden="">
+							<div class="box-header with-border">
+								<h3 class="box-title">
+									<strong>Email Cobro</strong>
+								</h3>
+							</div>
+							<div class="box-body">
+
+								<div class="form-group">
+									<label for="asuntoEmail">Asunto</label> <input
+										class="form-control" id="asuntoEmail" name="asuntoEmail"
+										type="text" placeholder="Asunto...">
+								</div>
+
+								<div class="form-group">
+									<label for="emailInternoEjecutivo">Cuerpo</label>
+									<textarea class="form-control" rows="3"
+										placeholder="Cuerpo del email..." id="emailInternoEjecutivo"
+										name="emailInternoEjecutivo"></textarea>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-md-6">
+
+						<!-- Sección Vista previa del email -->
+						<div class="box box-warning" id="panelVistaPrevia" hidden="">
+							<div class="box-header with-border">
+								<h3 class="box-title">
+									<strong>Vista Previa</strong>
+								</h3>
+								<button type="button" id="cierraEmailCobro" class="close"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+
+							<div class="box-body">
+								<h4>Para:</h4>
+								<p id="paraEmailVista"></p>
+								<hr />
+								<h4>Asunto:</h4>
+								<p id="asuntoEmailVista"></p>
+								<hr />
+
+								<p>
+									Estimado (a) <strong id="nombreClienteCobro"></strong>
+								</p>
+
+								<p>Adjunto informaci&oacute;n para pago</p>
+
+								<table
+									class="border: 1px solid black; border-collapse: collapse;">
+									<thead>
+										<tr>
+											<th
+												style="width:190px;border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Contribuyente</th>
+
+											<th
+												style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Concepto</th>
+											<th
+												style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Valor
+												UF</th>
+											<th
+												style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Total
+												UF</th>
+											<th
+												style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Monto</th>
+
+										</tr>
+									</thead>
+									<tbody id="table">
+
+									</tbody>
+								</table>
+					
+
+								<br />
+
+								<p id="msj"></p>
+								
+
+								<strong><p id="textoEmailEnvio"></p></strong>
+
+								<p>
+									Se despide atentamente <strong id="nombreUsuarioEmail"></strong>,
+									<strong id="perfilUsuarioEmail"></strong> de ANGKOR.
+								</p>
+
+							</div>
+
+							<div class="box-footer">
+								<button class="btn btn-success" style="margin-bottom: 2px">
+									Enviar <span class="fa fa-send"></span>
+								</button>
+							</div>
+
+						</div>
+
+					</div>
+
+				</form>
+
+			</div>
+			<!-- Termina seccion para envio de email -->
+
+			<!-- Seccion de mensajes -->
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<div class="form-group hide" id="seleccionaCobroLista">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close"
+								id="buttonCierraMsgCobroLista" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Primero debe seleccionar un cobro de la lista</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="estadoCobroAnulado">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonEstadoCobroAnulado"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>El cobro se encuentra anulado</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="cobroVerificado">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonCobroVerificado"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Solo se pueden enviar emails a cobros pendientes</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="cobroNoPuedeEliminar">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close"
+								id="buttonCobroNoPuedeEliminar" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Este cobro no puede ser eliminado</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="sinContactoAsociados">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close"
+								id="buttonSinContactoAsociados" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Primero debe registrar contactos asociados o habilitar
+								opci&oacute;n de env&iacute;o.</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="emailEnviado">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" id="buttonEmailEnviado"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Cobro enviado correctamente</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="cobroEliminado">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" id="buttonCobroEliminado"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Cobro eliminado Correctamente</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="cobroEliminado">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" id="buttonCobroEliminado"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Cobro Eliminado Correctamente</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="emailProblemaAccion">
+
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close"
+								id="buttonEmailProblemaAccion" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-remove"></i> Ops !
+							</h4>
+							<p>Problemas al realizar la acci&oacute;n</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="soloUnCobro">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonSoloUnCobro"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>Solo debe seleccionar un cobro</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="noModifica">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonNoModifica"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>El cobro no es modificable</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="noEmailMasivo">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonNoEmailMasivo"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>Solo se pueden enviar email a cobros individuales</p>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+			<!-- Termina Seccion de mensajes -->
+
+		</div>
+		<div class="box-footer">
+			<button class="btn btn-success" id="buttonModificarCobro">
+				Modificar <span class="fa fa-edit"></span>
+			</button>
+			<button class="btn btn-danger" id="buttonEliminaCobro">
+				Anular <span class="fa fa-remove"></span>
+			</button>
+			<button type="button" class="btn btn-warning" id="emailCobro">
+				Enviar Email Cobro <span class="fa fa-envelope-o">
+			
+			</button>
+
+		</div>
+
+	</div>
+
+	<!-- Sección Historial de envios -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Historial de env&iacute;os de correo de cobro</strong>
+			</h3>
+		</div>
+
+		<div class="box-body">
+
+			<div class="form-group">
+				<table id="tableHistorialCobros"
+					class="table table-bordered table-hover cell-border compact">
+					<thead>
+						<tr>
+							<th>Rut</th>
+							<th>Concepto de Cobro</th>
+							<th>Fecha de Env&iacute;o</th>
+							<th>Usuario</th>
+							<th>Texto Env&iacute;o</th>
+							<th>Asunto</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+
+		</div>
+	</div>
+
+	<?php
+	}
+	?>
+
+	<!---------- Ventanas Modales ---------->
+
+	<!-- Modal Baja Cliente -->
+	<div class="modal modal-danger fade" id="modalBajaCliente">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Baja Cliente</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Est&aacute; a punto de dar baja a un cliente, seguro quiere
+						realizar esta acci&oacute;n?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"
+						data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+					<button type="button" id="buttonBajaCliente"
+						class="btn btn-outline">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Confirma Baja Cliente -->
+
+	<!-- Modal Elimina Cobro Cliente -->
+	<div class="modal modal-danger fade" id="modalEliminarCobro">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Eliminar Cobro del Cliente</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Est&aacute; a punto de eliminar un cobro, seguro quiere realizar
+						esta acci&oacute;n?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"
+						data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+					<button type="button" id="buttonEliminarCobro"
+						class="btn btn-outline">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina  Modal Elimina Cobro Cliente -->
+
+	<!-- Modal Confirma Baja Rut Asociado -->
+	<div class="modal modal-danger fade" id="modalBajaRutAsoiado">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Borrar RUT Asociado</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Est&aacute; a punto de dar baja a un Rut Asociado, seguro quiere
+						realizar esta acci&oacute;n?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"
+						data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+					<button type="button" id="buttonConfirmaBajaRut"
+						class="btn btn-outline">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Confirma Baja Rut Asociado -->
+
+	<!-- Modal Confirma Elimina Movimientos Cliente -->
+	<div class="modal modal-danger fade" id="modalEliminaMovimiento">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Borra Movimiento de Cliente</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Est&aacute; a punto de eliminar el movimiento del cliente,
+						seguro quiere realizar esta acci&oacute;n?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"
+						data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+					<button type="button" data-dismiss="modal" class="btn btn-outline">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Confirma Elimina Movimientos Cliente -->
+
+	<!-- Modal Edita Datos Cliente -->
+	<div class="modal modal-success fade" id="modalEditarCliente">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Editar Cliente</h4>
+				</div>
+
+				<form role="form" action="" id="formClienteEditar">
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label for="nombreClienteEdit">Nombre del Cliente</label> <input
+								type="text" class="form-control" id="nombreClienteEdit"
+								name="nombreClienteEdit" placeholder="Amanda L&oacute;pez">
+						</div>
+
+						<div class="form-group">
+							<label for="fechaIngresoEdit">Fecha de Ingreso</label> <input
+								id="fechaIngresoEdit" name="fechaIngresoEdit"
+								data-provide="datepicker" type="text" class="form-control"
+								placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy"
+								disabled="disabled">
+
+						</div>
+
+						<div class="form-group">
+							<label for="ejecutivoSelectEdit">Ejecutivo</label> <select
+								class="form-control" id="ejecutivoSelectEdit"
+								name="ejecutivoSelectEdit" <?php if($this->rol == 7 || $this->rol == 6){echo '';}else{echo 'disabled="disabled"';}?>>
+
+							</select>
+						</div>
+
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline pull-left"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						<button type="submit" class="btn btn-outline">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- Modal Termina Editar Datos Cliente -->
+
+	<!-- Modal Aviso elimina cliente -->
+	<div class="modal modal-success fade" id="modalAvisoEliminaCliente">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Ok !</strong>
+					</h4>
+				</div>
+
+				<div class="modal-body">
+
+					<p>El cliente ha sido eliminado correctamente</p>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" data-dismiss="modal" class="btn btn-outline">
+						<span class="fa fa-check"></span>
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- Modal Aviso elimina cliente -->
+
+	<!-- Modal Devolucion Cliente -->
+	<div class="modal modal-success fade" id="modalDevolucionCliente">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Devoluci&oacute;n</strong>
+					</h4>
+				</div>
+
+				<form role="" method="post" action="" id="formDevolucionCliente">
+					<div class="modal-body">
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="box-body">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-dollar"></i> </span>
+										<input type="text" class="form-control" id="devolucionInput"
+											name="devolucionInput" placeholder="0">
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline pull-left"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						<button id="btnEnviaDevolucion" type="button"
+							class="btn btn-outline">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Termina  Modal Devolucion Cliente  -->
+
+	<!-- Modal Confirma Baja Contacto Asociado -->
+	<div class="modal modal-danger fade" id="modalBorraContactoAsociado">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Borra Contacto Asociado</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Est&aacute; a punto de eliminar un contacto asociado, seguro
+						quiere realizar esta acci&oacute;n?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"
+						data-dismiss="modal">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+					<button type="button" id="buttonEliminaContacto"
+						class="btn btn-outline">
+						<span class="glyphicon glyphicon-ok"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Confirma Contacto Asociado -->
+
+	<!-- Modal Editar Datos Contacto asociado -->
+	<div class="modal modal-success fade" id="modalEditarContacto">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Editar Contacto</h4>
+				</div>
+
+				<form role="form" action="" id="formContactoEditar">
+					<div class="modal-body">
+
+						<div class="form-group">
+							<label for="nombreContactoEdit">Nombre</label> <input type="text"
+								class="form-control" id="nombreContactoEdit"
+								name="nombreContactoEdit" placeholder="Amanda L&oacute;pez">
+						</div>
+
+						<div class="form-group">
+							<label for="emailContactoEdit">Email</label> <input type="email"
+								class="form-control" id="emailContactoEdit"
+								name="emailContactoEdit" placeholder="contacto@email.com">
+						</div>
+
+						<div class="form-group">
+							<label for="telefonoContactoEdit">Telefono</label> <input
+								type="text" class="form-control" id="telefonoContactoEdit"
+								name="telefonoContactoEdit" placeholder="022-111 111">
+						</div>
+
+						<div class="form-group">
+							<label for="celularContactoEdit">Celular</label> <input
+								type="text" class="form-control" id="celularContactoEdit"
+								name="celularContactoEdit" placeholder="+569-111-111-11">
+						</div>
+
+						<div class="form-group" style="padding-right: 15px">
+
+							<div class="col-xs-2">
+								<label for="boleteoCheckEdit">Boleteo</label> <input
+									type="checkbox" id="boleteoCheckEdit" name="boleteoCheckEdit"
+									class="minimal">
+							</div>
+							<div class="col-xs-1">
+								<label for="cobroCheckEdit">Cobro</label> <input type="checkbox"
+									id="cobroCheckEdit" name="cobroCheckEdit" class="minimal">
+							</div>
+
+						</div>
+						<br> <br>
+
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline pull-left"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						<button type="submit" id="buttonEditarContacto"
+							class="btn btn-outline">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- Modal Termina Editar Datos Contacto asociado -->
+
+</section>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><?=$this->nombre_sitio?></title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<!-- Select2 -->
+<link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+<!-- Bootstrap 3.3.4 -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Ionicons -->
+<link href="/ionicons/css/ionicons.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- datepicker, estilos calendario -->
+<link href="/plugins/datepicker/datepicker3.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- DateRangePicker -->
+<link href="/plugins/daterangepicker/daterangepicker-bs3.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- DATA TABLES -->
+<!-- <link href="/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />-->
+<link href="/plugins/datatables/jquery.dataTables.css" rel="stylesheet"
+	type="text/css" />
+<link href="/plugins/datatables/dataTables.tableTools.css"
+	rel="stylesheet">
+
+<link href="/plugins/datatables/dataTables.responsive.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- iCheck for checkboxes and radio inputs -->
+<link href="../../plugins/iCheck/all.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- Theme style -->
+<link href="/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+<link href="/dist/css/skins/<?=$this->skin?>.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style>
+.editar {
+	width: 20px;
+	height: 40px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#formBuscarCobro .error {
+	color: Crimson
+}
+
+#formNumeroFactura .error {
+	color: white
+}
+
+#formTipoDePago .error {
+	color: white
+}
+
+.btn {
+	margin: 1px;
+}
+</style>
+</head>
+<!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+<body class="<?=$this->skin?> sidebar-mini">
+	<div class="wrapper">
+
+
+		<!-- Main Header -->
+      	<?=$this->render('head.phtml') ?>	
+  <!-- Fin Main Header -->
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+
+				<!-- Sidebar user panel (optional) -->
+				<?=$this->render('sidebaruserpanel.phtml') ?>	
+		  <!-- Fin Sidebar user panel -->
+
+				<!-- Sidebar Menu -->
+				<?=$this->render('menu.phtml') ?>		
+        </section>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<!-- Main content -->
+       
+          <?=$this->layout()->content?>
+       
+        <!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+			
+			<?= $this->render('footer.phtml')?>
+
+      <!-- Control Sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED JS SCRIPTS -->
+
+	<!-- jQuery 2.1.4 -->
+	<script src="/plugins/jQuery/jQuery-2.1.4.min.js"
+		type="text/javascript"></script>
+
+	<!-- Script RUT -->
+	<script src="/plugins/jQueryRut/jquery.Rut.js" type="text/javascript"></script>
+
+	<!-- Bootstrap 3.3.2 JS -->
+	<script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<!-- DATA TABES SCRIPT -->
+	<script src="/plugins/datatables/jquery.dataTables.min.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/datatables/dataTables.responsive.js"
+		type="text/javascript"></script>
+
+	<!-- <script src="/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+	<!-- SlimScroll -->
+	<script src="/plugins/slimScroll/jquery.slimscroll.min.js"
+		type="text/javascript"></script>
+	<!-- FastClick -->
+
+	<script src="/plugins/datatables/fnReloadAjax.js" cache="false"></script>
+	<script src="/plugins/datatables/dataTables.tableTools.js"
+		cache="false"></script>
+
+	<script src="/plugins/fastclick/fastclick.min.js"
+		type="text/javascript"></script>
+	<!-- AdminLTE App -->
+	<script src="/dist/js/app.min.js" type="text/javascript"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="/dist/js/demo.js" type="text/javascript"></script>
+
+	<!-- date-picker -->
+	<script src="/plugins/datepicker/bootstrap-datepicker.js"
+		type="text/javascript"></script>
+
+	<!-- date-range-picker -->
+	<script src="/plugins/daterangepicker/moment.js" type="text/javascript"></script>
+	<script src="/plugins/daterangepicker/daterangepicker.js"
+		type="text/javascript"></script>
+
+	<!-- iCheck 1.0.1 Script checkbox y radiobuttons -->
+	<script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
+	<!-- Script Solo Numeros  -->
+	<script type="text/javascript"
+		src="/plugins/jquerynumeric/jquery.numeric.js"></script>
+
+	<!-- Jquery Validate -->
+	<script src="/plugins/jqueryvalidate/jquery.validate.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/additional-methods.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/messages_es.min.js"
+		type="text/javascript"></script>
+
+	<!-- Select2 -->
+	<script src="../../plugins/select2/select2.full.min.js"></script>
+
+	<script type="text/javascript">
+
+	$(function()
+	 {
+		
+		obtenerEjecutivos('#ejecutivoSelect');
+		obtenerEstadosCobro('#estadoSelect');		
+		
+		var tablaBusquedaCobros=$('#tablePagarCobros').dataTable( {
+   	        dom: 'T<"clear">lfrtip',
+   	        bFilter: false,
+   	        "responsive":true,
+   	        "bLengthChange": false,
+   	        "autoWidth": false,
+	   	     tableTools: {
+	             "sSwfPath": "/swf/copy_csv_xls_pdf.swf",
+	             "aButtons": [
+	                        { sExtends: "csv",
+	                          sFileName: 'cobros.csv',
+	                          sFieldSeperator: ",",
+	                          sButtonClass: 'btn btn-danger' 
+	                        },
+	                        { sExtends: "xls",
+	                          sFileName: 'cobros.xls',
+	                          sButtonClass:'btn btn-success'
+	                          
+	                        },
+	                        { sExtends: "pdf",
+	                          sFileName: 'cobros.pdf',
+	                          sButtonClass:'btn btn-warning'
+	                        } 
+	                    ] 
+	         },
+   	        "language": {
+   				"lengthMenu": "Desplegando _MENU_ registros por p&aacute;gina",
+   				"zeroRecords": "Nada encontrado - Lo sentimos",
+   				"info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+   				"infoEmpty": "No hay registros disponibles",
+   				"infoPostFix":    "",
+   				"thousands":      ",",
+   				"loadingRecords": "Cargando...",
+   				"processing":     "Procesando...",
+   				"search":         "Buscar:",
+   				"infoFiltered ": "(Filtrando de un total de _MAX_ registros)",
+   				"paginate": {
+   					"first":      "Primero",
+   					"last":       "&Uacute;ltimo",
+   					"next":       "Siguiente",
+   					"previous":   "Anterior"
+   					}
+   				}
+   	        
+   	    } );
+
+		listaCobrosCompensados(tablaBusquedaCobros);
+
+		var id_user = '<?= $this->id_usuario ?>';
+		var perfil=<?= $this->rol ?>;
+		
+		switch(perfil)
+		{
+			case 1:	
+				$('#ejecutivoSelect').val(id_user);
+				$('#ejecutivoSelect').attr({"disabled":true});
+				
+				obtenerClientesByjecutivo('#clienteSelect',$('#ejecutivoSelect').val());
+				listadoCobros($('#ejecutivoSelect').val(),tablaBusquedaCobros,'1');
+				
+			break;
+			
+		}	
+		
+		$('#ejecutivoSelect').select2();
+		$('#clienteSelect').select2();
+		$('#rutSelect').select2();
+		$('#tipoSelect').select2();
+		$('#estadoSelect').select2();	
+	
+		
+		$('#formBuscarCobro').validate({
+			debug:true,
+			rules:{
+				ejecutivoSelect:{
+					required:true
+				},
+				clienteSelect:{
+					required:true
+				},
+				rutSelect:{
+					required:true
+				},
+				tipoSelect:{
+					required:true
+				},
+				fechaDesdeHasta:{
+					required:true
+				}
+			},
+			messages:{
+				ejecutivoSelect:"Debe seleccionar un elemento de la lista",
+				clienteSelect:"Debe seleccionar un elemento de la lista",
+				rutSelect:"Debe seleccionar un elemento de la lista",
+				tipoSelect:"Debe seleccionar un elemento de la lista",
+				fechaDesdeHasta:"Debe ingresar un rango de fechas",
+			},
+			invalidHandler:function(event, validator)
+			{				
+			},	
+			submitHandler:function(form)
+			{
+
+				form.preventDefault();
+				rangoFecha=$('#fechaDesdeHasta').val().toString().split('-');
+				fechaInicio=rangoFecha[0].toString().replace(' ','').split('/');
+				fechaFinal=rangoFecha[1].toString().replace(' ','').split('/');
+				
+				datos="idCliente="+$('#clienteSelect').val()+
+					  "&idRut="+$('#rutSelect').val()+
+					  "&estado="+$('#estadoSelect').val()+
+					  "&tipoCobro="+$('#tipoSelect').val()+
+					  "&fechaInicio="+fechaInicio[2]+"-"+fechaInicio[1]+"-"+fechaInicio[0]+
+					  "&fechaFinal="+fechaFinal[2]+"-"+fechaFinal[1]+"-"+fechaFinal[0];
+				  
+				
+				url = '/index.php/compensacion/busquedacobrostipofecha?'+datos;
+
+				tablaBusquedaCobros.fnClearTable();				
+				tablaBusquedaCobros.fnReloadAjax(url);					
+			}
+		});         
+
+
+
+		$('#tipoSelect').on('change',function()
+		{
+			var tipo=1;
+			
+			if($('#tipoSelect').val()=='2')
+			{
+			 tipo=2;				
+			}	
+
+			url = '/index.php/compensacion/busquedatipocobro?tipoCobro='+tipo;
+			tablaBusquedaCobros.fnClearTable();				
+			tablaBusquedaCobros.fnReloadAjax(url);	
+			 
+		});
+
+		$('#ejecutivoSelect').on('change',function()
+		{
+			if($('#ejecutivoSelect').val()!='')
+			{
+				listadoCobros($('#ejecutivoSelect').val(),tablaBusquedaCobros,'1');
+
+				obtenerClientesByjecutivo('#clienteSelect',$('#ejecutivoSelect').val());
+			}	
+		});
+		
+		$('#clienteSelect').on('change',function()
+		{
+			if($('#clienteSelect').val()!='')
+			{
+				listadoCobros($('#clienteSelect').val(),tablaBusquedaCobros,'2');
+				
+				obtenerRutCliente('#rutSelect',$('#clienteSelect').val());
+			}			
+		});	
+
+		$('#rutSelect').on('change',function()
+		{
+			if($('#rutSelect').val()!='')
+			{
+				listadoCobros($('#rutSelect').val(),tablaBusquedaCobros,'3');			
+			}			
+		});
+
+
+		$('#estadoSelect').on('change',function()
+		{
+					var estado= $('#estadoSelect').val();
+					var valor = '0';
+					var id = '0';
+
+					if($('#ejecutivoSelect').val()!='')
+					{
+						valor = '1';
+						id = $('#ejecutivoSelect').val();
+					}
+					
+					if($('#clienteSelect').val()!='')
+					{
+						valor = '2';
+						id = $('#clienteSelect').val()
+					}
+
+					if($('#rutSelect').val()!='')
+					{
+						valor = '3';
+						id = $('#rutSelect').val()
+					}
+
+					if(estado!='')
+					{
+						listadoCobros2(id,tablaBusquedaCobros,valor,estado);
+					}
+
+					
+					/*var input = $( "div#tablePagarCobros_filter" ).find( "input" );
+					input.val(estado);
+
+					e = jQuery.Event("keyup");
+					e.which = 13 //enter key
+					input.trigger(e);*/
+					 
+	    });
+		
+		
+		$('#fechaDesdeHasta').daterangepicker(); 		
+
+
+
+		function listaCobrosCompensados(table)
+		{
+			url = '/index.php/compensacion/listadocobros';
+			table.fnClearTable();				
+			table.fnReloadAjax(url);	
+		}
+
+		function obtenerEjecutivos(objetivo)
+		{				
+		    url = '/index.php/usuario/listar';
+			    
+			$(objetivo).empty();			
+						
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+		
+			var dato="";
+			
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+					    
+			    	$.each(datos.data, function( index, value ) {
+					
+						 $('<option>').
+						   attr({value:value[0]}).
+						   text(value[1]).
+						   appendTo(objetivo);
+					});
+			    }
+			}); 			
+		} 
+		
+		function obtenerClientesByjecutivo(objetivo,idEjecutivo)
+		{				
+		    url = '/index.php/cliente/listarbyejecutivo?idUsuario='+idEjecutivo;
+			    
+			$(objetivo).empty();			
+						
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+
+			var dato="";
+			
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+				    
+			    	$.each(datos.data, function( index, value ) {
+						 $('<option>').
+						   attr({value:value[0]}).
+						   text(value[1]).
+						   appendTo(objetivo);
+			    	});
+			    }
+			}); 			
+		} 
+
+		function obtenerRutCliente(objetivo,idCliente)
+		{				
+		    url = '/index.php/rut/listadorutbyidcliente';	    						
+
+			$(objetivo).empty();
+					
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false, selected: true}).
+			appendTo(objetivo);
+
+			var dato="idCliente="+idCliente;
+		
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+				    
+			    	$.each(datos.data, function( index, value ) {
+						 var detalle=value[3]+" - "+value[1];
+						
+						 $('<option>').
+						   attr({value:value[0]}).
+						   text(detalle).
+						   appendTo(objetivo);
+					});
+			    }
+			}); 
+			
+		}
+		
+		function verificarHonorario()
+		{
+			var tipo=false;
+			$('#tablePagarCobros').find('tr.selected').each(function(){
+				verificar=$(this).find('td:first').next().html();
+
+				if(verificar=='Honorario')
+				{
+					tipo=true;
+				}
+			});	
+			return tipo;
+		}	
+		
+		function listadoCobros(id,table,desde)
+		{
+			 url = '/index.php/compensacion/busquedacobros?id='+id+"&desde="+desde;
+			 table.fnClearTable();				
+			 table.fnReloadAjax(url);
+		}
+
+		function listadoCobros2(id,table,valor,estado)
+		{
+			 url = '/index.php/compensacion/busquedacobrosporestado?id='+id+"&desde="+valor+"&estado="+estado;
+			 table.fnClearTable();				
+			 table.fnReloadAjax(url);
+		}
+
+
+		function obtenerEstadosCobro(objetivo)
+		{				
+		    url = '/index.php/cobro/obtenerestados';
+			    
+			$(objetivo).empty();			
+						
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+		
+			var dato="";
+			
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+					    
+			    	$.each(datos.data, function( index, value ) {
+						 $('<option>').
+						   attr({value:value.nombre_estado}).
+						   text(value.nombre_estado).
+						   appendTo(objetivo);
+					});
+			    }
+			}); 			
+		} 
+
+
+
+		//me indica si el cobro que estoy modificando es honorario o cobroindividual
+		//ya que las tablas para los honorarios y cobros individuales estan sepradas.
+		function tipoCobro()
+		{
+			var tipo="";
+						
+			$('#tablePagarCobros').find('tr.selected').each(function(){
+				tipo=$(this).find('td:first').next().html();		
+				if(tipo=="Honorario")
+				{
+					id="1";
+				}
+				else
+				{
+					id="2";
+				}
+						
+			});
+			
+			return id;
+		}
+		
+	});
+	
+	</script>
+
+</body>
+</html>

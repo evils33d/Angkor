@@ -1,0 +1,490 @@
+<section class="content-header">
+	<h1>Movimientos de la Cartola</h1>
+	<ol class="breadcrumb">
+		<li><a href="/index.php/sistema/index"><i class="fa fa-users"></i>
+				Compensaciones</a></li>
+		<li class="active">Movimientos Cartola</li>
+	</ol>
+</section>
+
+<section class="content">
+
+	<!-- Sección Movimientos -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Movimientos</strong>
+			</h3>
+		</div>
+		<form role="form" method="post" id="formBuscarCartola">
+			<div class="row">
+
+				<div class="col-md-12">
+					<div class="box-body">
+
+
+						<div class="form-group">
+							<label for="compensacionSelect">Estado de Compensaci&oacute;n</label>
+							<select class="form-control" id="compensacionSelect" name="compensacionSelect">
+								<option value="">Seleccione</option>
+							<?php 
+							
+							if(isset($this->filtroEstado)){
+								$estado = $this->filtroEstado;
+							}else {
+								$estado = "0";
+							}
+							
+							
+							foreach($this->estados as $key => $valor)
+							{
+							?>									
+								<option value="<?=$valor['ci36_idEstadoCompensacion']?>" <?php if($estado == $valor['ci36_idEstadoCompensacion']){echo "selected";}?>><?=$valor['ci36_nombreEstado']?></option>
+							<?php 
+							}
+							?>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Seleccione una fecha de inicio y termino</label> <input
+								type="text" placeholder="dd/mm/yyyy - dd/mm/yyyy"
+								class="form-control pull-right" id="fechaDesdeHasta"
+								name="fechaDesdeHasta" value="<?php if(isset($this->filtroFecha)){echo $this->filtroFecha;}?>">
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+
+
+			<div class="box-footer">
+				<button type="submit" class="btn btn-primary">Buscar <span class="fa fa-search"></span>
+				</button>
+			</div>
+
+		</form>
+
+	</div>
+
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Resultados</strong>
+			</h3>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box-body">
+					<table class="table table-bordered table-hover cell-border compact"
+						id="tableMovimientos">
+						<thead>
+							<th>Id Movimiento</th>
+							<th>Fecha</th>
+							<th>Detalle Movimiento</th>
+							<th>Cheque o Cargo</th>
+							<th>Dep&oacute;sito o Abono</th>
+							<th>Monto Compensado</th>
+							<th>Por Compensar</th>
+							<th>Doc</th>
+							<th>Estado</th>
+							<th>Acci&oacute;n</th>
+						</thead>
+						<tbody>
+<?php 
+foreach($this->detalle as $key => $detalle)
+{
+	
+	$valorPorCompensar=number_format(($detalle['ci17_cheque_cargo']+$detalle['ci17_deposito_abono'])-$detalle['ci17_montoCompensado'],0,',','.');
+?> 						
+							<tr>
+							
+								<td><?=$detalle['ci17_idDetalleCartola']?></td>
+								<td><?=$detalle['ci17_fechaMovimiento']?></td>
+								<td><?=$detalle['ci17_detalleMovimiento']?></td>
+								<td>$<?=number_format($detalle['ci17_cheque_cargo'],0,',','.')?></td>
+								<td>$<?=number_format($detalle['ci17_deposito_abono'],0,',','.')?></td>
+								<td>$<?=number_format($detalle['ci17_montoCompensado'],0,'','.')?></td>		
+								<td>$<?=$valorPorCompensar?></td>	
+								<td><?=(int)$detalle['ci17_nroDocumento']?></td>								
+								<td><?=$detalle['ci36_nombreEstado']?></td>	
+								<td align="right">
+
+								<?php 
+								if($detalle['ci36_idEstadoCompensacion'] != 2)
+								{
+								?>
+									<button   data-doc="<?=$detalle['ci17_nroDocumento']?>" id="<?=$detalle['ci17_idDetalleCartola']?>" data-tipo="<?=($detalle['ci17_cheque_cargo']!=0?1:2)?>" data-valor="<?=($detalle['ci17_cheque_cargo']+$detalle['ci17_deposito_abono'])-$detalle['ci17_montoCompensado']?>" class="btn bg-blue btn-flat btn-sm marginBottomButton btnCompensar" data-toggle="modal" data-target="#modalCompensaciones">
+										Compensar <span class="fa fa-dollar"></span>
+									</button>
+
+									<button data-doc="<?=$detalle['ci17_nroDocumento']?>" data-id="<?=$detalle['ci17_idDetalleCartola']?>" data-tipo="<?=($detalle['ci17_cheque_cargo']!=0?1:2)?>" data-valor="<?=($detalle['ci17_cheque_cargo']+$detalle['ci17_deposito_abono'])-$detalle['ci17_montoCompensado']?>" class="btn bg-blue btn-flat btn-sm marginBottomButton btnPagoProveedor" data-toggle="modal" data-target="#modalPagoProveedor"> 
+									Pago a proveedor 
+									<span class="fa fa-money"></button>
+								
+								<?php 
+								}
+								if($detalle['ci36_idEstadoCompensacion'] != 1)
+								{
+								?>
+									<button id="<?=$detalle['ci17_idDetalleCartola']?>" class="btn bg-blue btn-flat btn-sm marginBottomButton verDetalleCompensacion" data-toggle="modal" data-target="#modalDetalleCompensacion">
+										Detalle compensaciones <span class="fa fa-file-text-o"></span>
+									</button>
+								<?php 
+								}
+								?>
+								</td>
+							</tr>
+<?php 
+}
+?>							
+						</tbody>
+					</table>
+					<br />
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</section>
+
+<!---------- Ventanas Modales ---------->
+
+<!-- Modal Pago a Proveedor-->
+<div class="modal fade" id="modalPagoProveedor">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Pago a Proveedor</strong>
+				</h4>
+			</div>
+			<form role="form" action="" method="post" id="formPagoProveedor">
+				<div class="modal-body">
+				
+					<div class="form-group">
+									<label for="estadoSelect">Monto del movimiento</label>
+									<div class="input-group">									
+										<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+										<input type="text" class="form-control control" id="montoMovimientoFormateado2"	name="montoMovimientoFormateado2" value="" disabled>
+									</div>
+					</div>		
+									
+					<div class="form-group">
+						<label for="proveedorSelect">Categor&iacute;a</label> <select
+							class="form-control" id="proveedorSelect" name="proveedorSelect" required>
+							<option value="">Seleccione</option>
+							<?php 
+							if(isset($this->proveedores))
+							{
+								foreach ( $this->proveedores as $key => $prov )
+								{
+									?>
+										<option value="<?=$prov['ci28_idproveedor']?>"><?=utf8_encode($prov['ci28_nombreproveedor'])?></option>
+									<?php 
+								}
+							}							
+							?>
+						</select>
+					</div>
+					
+					<div class="form-group">
+						<label for="observacionInput">Observaci&oacute;n</label> <input
+							type="text" class="form-control" id="observacionInput"
+							name="observacionInput" placeholder="Detalle de Observaciones">
+					</div>
+					<div class="form-group">
+						<label for="montoInput">Monto</label> 
+						<div class="input-group">									
+							<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+							<input type="text"
+								class="form-control control"  id="montoInputProveedor" name="montoInputProveedor" placeholder="0">
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+
+					<button id="btnGuardarPago" type="submit" class="btn bg-blue btn-outline pull-left"	id="myButton">
+						Guardar Pago <span class="fa fa-save"></span>
+					</button>
+
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Pago a Proveedor -->
+
+<!-- Modal Detalle Compensaciones-->
+<div class="modal fade" id="modalDetalleCompensacion">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Detalle Compensaci&oacute;n</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<table class="table table-bordered table-hover cell-border compact"
+					id="tableDetalleCompensaciones">
+					<thead>
+						<th>Fecha</th>
+						<th>Glosa</th>
+						<th>Tipo Compensacion</th>
+						<th>Rut Asociado</th>
+						<th>Cliente</th>
+						<th>Monto Compensado</th>
+						<!-- <th>Acci&oacute;n</th>-->
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+
+			</div>
+			<div class="modal-footer"></div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Detalle Compensaciones-->
+
+<!-- Modal Compensaciones-->
+<div class="modal fade" id="modalCompensaciones">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Compensaciones</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+
+				<form role="form" action="" method="post" id="formCompensaciones">
+					<div class="row">
+						<div class="col-md-12">
+							<br />
+
+							<div class="col-md-6">
+
+								<div class="form-group">
+									<label for="ejecutivoSelect">Ejecutivo</label> 
+									<select class="form-control control" id="ejecutivoSelect" name=ejecutivoSelect>
+									</select>
+								</div>
+				
+								<div class="form-group">
+									<label for="clienteSelect">Clientes</label> 
+									<select	class="form-control control" id="clienteSelect" name="clienteSelect">
+										<option value="">Seleccione</option>
+									</select>
+								</div>
+				
+								<div class="form-group">
+									<label for="rutSelect">Ruts Del Cliente</label> <select	class="form-control control" id="rutSelect" name="rutSelect">
+										<option value="">Seleccione</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="tipoCobroCompensarSelect">Tipo Cobro</label> <select
+										class="form-control" id="tipoCobroCompensarSelect"
+										name="tipoCobroCompensarSelect">
+										<option value="">Seleccione</option>
+										<option value="1">Ingreso</option>
+										<option value="2">Canje</option>
+									</select>
+								</div>
+
+								
+							</div>
+
+							<div class="col-md-6">
+
+
+								<div class="form-group">
+									<label>Seleccione un Rango de Fecha</label> 
+									<input type="text" placeholder="dd/mm/yyyy - dd/mm/yyyy" class="form-control control" id="fechaDesdeHastaCompensacion"	name="fechaDesdeHastaCompensacion">
+								</div>
+								
+								<div class="form-group">
+									<label for="montoDesdeCompensarInput">Monto Cobro Desde</label>
+									<input type="text" class="form-control control" id="montoDesdeCompensarInput" name="montoDesdeCompensarInput" placeholder="$100.000">
+								</div>
+
+								<div class="form-group">
+									<label for="montoHastaCompensarInput">Monto Cobro Hasta</label>
+									<input type="text" class="form-control control"
+										id="montoHastaCompensarInput" name="montoHastaCompensarInput"
+										placeholder="$100.000">
+								</div>
+								
+								<div class="form-group">
+								<label for="estadoSelect">Estado del cobro</label> 
+								<select class="form-control control" id="estadoSelect" name="estadoSelect" disabled>
+									<option value="">Seleccione</option>
+								</select>
+				</div>
+							</div>
+						</div>
+					</div>
+					<div class="box-footer">
+						<button type="button" class="btn btn-primary" id="btnBuscar">
+							Buscar <span class="fa fa-search"></span>
+						</button>
+						<button type="button" class="btn btn-danger right" id="btnSaldo">
+							Traspasar Monto a Saldo de Cliente <span class="fa fa-reply"></span>
+						</button>
+						<button type="button" class="btn btn-success right" id="btnCompensaConSaldo">
+							Compensar con Saldo del Cliente <span class="fa fa-reply"></span>
+						</button>
+					</div>
+				</form>
+				<div class="box-footer">
+					<div class="col-md-12">
+									<div class="form-group">
+												<label id="labelMonto" for="estadoSelect">Monto del movimiento</label>
+									</div>
+									<div class="input-group">
+										<!-- <label>Monto a compensar</label>-->										 
+										<input type="hidden" id="montoMovimiento"	name="montoMovimiento" value="" disabled>
+										<input type="hidden" id="idMovimiento"	name="idMovimiento" value="" disabled>
+										<input type="hidden" id="tipo_movimiento"	name="tipo_movimiento" value="" disabled>
+										<input type="hidden" id="documentoMovimiento"	name="documentoMovimiento" value="" disabled>	
+										<input type="hidden" id="flagCompensaConSaldo"	name="flagCompensaConSaldo" value="0" disabled>
+										<input type="hidden" id="montoMovimientoGuardado"	name="montoMovimientoGuardado" value="" disabled>
+										
+										<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+										<input type="text" class="form-control control" id="montoMovimientoFormateado"	name="montoMovimientoFormateado" value="" disabled>
+									</div>
+										
+					</div>
+				</div>
+				<form name="cobrosCompensados" id="cobrosCompensados" role="form" action="" method="post">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="box-body">
+								<table class="table table-bordered table-hover cell-border compact" id="tablaBusquedaCobros">
+									<thead>
+										<th>Fecha</th>
+										<th>Glosa</th>
+										<th>Num Soc.</th>
+										<th>RUT</th>
+										<th>Monto Cobro</th>
+										<th>Monto Comp.</th>
+										<th>Monto a Comp.</th>
+										<th>Estado</th>
+										<th>Documento</th>
+										<th>Monto a Compensar</th>
+									</thead>
+									<tbody>
+										
+
+									</tbody>
+								</table>
+								<br />
+							</div>
+
+						</div>
+					</div>
+
+				</form>
+			</div>
+			<!-- ALERTA DE QUE NOS HEMOS EXCEDIDO EN LA ASIGNACIÓN DE MONTOS -->
+			
+			<div class="modal-body"  id="alertaMonto">
+            <div class="col-md-12">
+              <div class="box box-solid">
+                  <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i>Error!</h4>
+						Los montos asignados a los cobros no pueden sobrepasar el monto total del movimiento.
+                    </div>
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+        	</div>
+        	
+        	<!-- -------------------------------------------- -->
+        	
+        		<!-- ALERTA DE QUE NOS HEMOS EXCEDIDO EN LA ASIGNACIÓN DE MONTOS -->
+			
+			<div class="modal-body"  id="alertaMontoCobro">
+            <div class="col-md-12">
+              <div class="box box-solid">
+                  <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i>Error!</h4>
+						No puede exceder el monto a compensar del Cobro.
+                    </div>
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+        	</div>
+        	
+        	<!-- -------------------------------------------- -->
+        	
+        	<!-- MENSAJE DE QUE LA COMPENSACIÓN FUE EXITOSA -->
+        	
+        	<div class="modal-body"  id="alertaMontoExito">
+            <div class="col-md-12">
+              <div class="box box-solid">
+                  <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-check"></i>Exito!</h4>
+						Los cobros fueron compensados correctamente.
+                    </div>
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+        	</div>
+        	<!-- ------------------------------------------- -->
+        	
+			<div class="modal-footer">
+				<button type="button" class="btn bg-blue btn-outline pull-left" data-dismiss="modal" name="guardarCompensacion" id="guardarCompensacion">
+					Guardar Compensaci&oacute;n <span class="fa fa-save"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Compensacionesr -->
+
+<!-- Modal Rut Incorrecto -->
+<div class="modal modal-danger fade" id="modalRutIncorrecto">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Atenci&oacute;n</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>El rut ingresado es incorrecto</p>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" data-dismiss="modal" class="btn btn-outline">
+					<span class="fa fa-check"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Rut Incorrecto -->

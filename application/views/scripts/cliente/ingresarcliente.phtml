@@ -1,0 +1,148 @@
+<section class="content-header">
+	<h1>Nuevo Cliente</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-user"></i> Cliente</a></li>
+		<li class="active">Nuevo Cliente</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Datos Cliente</strong>
+			</h3>
+		</div>
+		<form role="form" method="post" action="" id="formIngresoCliente">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="box-body">
+
+						<div class="form-group">
+							<label for="ejecutivoSelect">Ejecutivo</label> <select
+								class="form-control" id="ejecutivoSelect" name="ejecutivoSelect">
+							</select>
+						</div>
+						
+						<div class="form-group">
+							<label for="nombreClienteInput">Nombre del Cliente</label> <input
+								type="text" class="form-control" id="nombreClienteInput"
+								name="nombreClienteInput" placeholder="Amanda L&oacute;pez">
+						</div>
+
+						<div class="form-group">
+							<label for="fechaIngresoInput">Fecha de Ingreso</label> <input
+								id="fechaIngresoInput" name="fechaIngresoInput"
+								data-provide="datepicker" type="text" class="form-control"
+								placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy"
+								disabled="disabled">
+
+						</div>
+
+						<!-- Mensajes del registro Conceptos -->
+						<div class="form-group hide" id="mensajeCorrectoRegistro">
+
+							<div class="alert alert-success alert-dismissable">
+								<button type="button" class="close"
+									id="buttonMensajeCorrectoRegistro" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ok !
+								</h4>
+								<p>Cliente registrado correctamente</p>
+							</div>
+
+						</div>
+
+						<div class="form-group hide" id="mensajeProblemasRegistro">
+							<div class="alert alert-danger alert-dismissable">
+								<button type="button" class="close"
+									id="buttonMensajeProblemasRegistro" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ops !
+								</h4>
+								<p>Problemas a crear un nuevo cliente</p>
+							</div>
+						</div>
+
+						<div class="form-group hide" id="mensajeNombreEncontrado">
+							<div class="alert alert-warning alert-dismissable">
+								<button type="button" class="close"
+									id="buttonMensajeNombreEncontrado" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ops !
+								</h4>
+								<p>El nombre que intenta rgistrar ya existe</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+			
+		
+			<div class="box-footer">
+
+				<input type="submit" class="btn btn-success" value="Ingresar">
+
+			</div>
+			
+		</form>
+	</div>
+
+</section>
+
+<!-- Modal Alertas -->
+<div class="modal modal-danger fade" id="modalAlertaErrorFormulario">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Alerta</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>Faltan Datos por completar</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-outline">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal modal-success fade" id="modalAlertaOkFormulario">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Ok</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>Datos registrados correctamente</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-outline">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Alertas -->
+

@@ -1,0 +1,473 @@
+<section class="content-header">
+	<h1>Ingresar RUT Asociado</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-user"></i> Cliente</a></li>
+		<li class="active">Ingresar Rut Asociado</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<!-- Sección Datos Del RUT -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Datos del RUT</strong>
+			</h3>
+		</div>
+		
+		<?php
+		$disabledData = "";
+		$disabledPrevired = "";
+		$value = "";
+		
+		if ($this->rol == '1' || $this->rol == '2' || $this->rol == '3') {
+			$disabledData = "disabled";
+			$disabledPrevired = "disabled";
+			$value = "0";
+		}
+		
+		if ($this->rol == '4') {
+			$disabledData = "disabled";
+			$disabledPrevired = "";
+			$value = "0";
+		}
+		
+		if ($this->rol == '5') {
+			$disabledData = "";
+			$disabledPrevired = "disabled";
+		}
+		
+		if ($this->rol == '6') {
+			$disabledData = "disabled";
+			$disabledPrevired = "disabled";
+			$value = "0";
+		}
+		?>
+		
+		<form role="form" action="" method="post" id="ingresaRutAsociado">
+			<div class="row">
+				<div class="box-body">
+
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label for="nombreCliente">Nombre Cliente</label> <input
+								type="text" class="form-control" id="nombreCliente"
+								placeholder="Amanda L&oacute;pez" name="nombreCliente"
+								disabled="disabled">
+						</div>
+
+						<div class="form-group">
+							<label for="razonSocial">Nombre / Raz&oacute;n social</label> <input
+								type="text" class="form-control control" id="razonSocial"
+								name="razonSocial" placeholder="Andr&eacute;s Fuentes">
+						</div>
+
+						<div class="form-group">
+							<label for="tipoPersonaSelect">Tipo Persona</label> <select
+								class="form-control control" id="tipoPersonaSelect"
+								name="tipoPersonaSelect">
+								<option value="">Seleccione</option>
+								<option value="2">Natural</option>
+								<option value="3">Jur&iacute;dica</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+
+							<label for="valorMensualidadInput">Valor Mensualidad en UF</label>
+
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+								<input id="valorMensualidadInput" name="valorMensualidadInput"
+									type="text" value="<?php echo $value ?>"
+									class="form-control control" <?= $disabledData ?>>
+							</div>
+
+
+						</div>
+
+						<div class="form-group">
+
+							<label for="valorOtroServiciosInput">Valor Otros Servicios Fijos
+								UF</label>
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-dollar"></i></span><input
+									id="valorOtroServiciosInput" name="valorOtroServiciosInput"
+									value="<?php echo $value ?>" type="text"
+									class="form-control control" <?= $disabledData ?>>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="valorOtroServiciosInput">Meta de Boleteo</label>
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+										<input type="text" class="form-control control"
+											id="montoMetasInput" name="montoMetasInput" />
+									</div>
+
+								</div>
+								<div class="col-xs-6">
+									<select for="" class="form-control control"
+										id="anioMetasSelect" name="anioMetasSelect">
+										<option value="">Seleccione</option>
+										<option value="2020">2020</option>
+										<option value="2019">2019</option>
+										<option value="2018">2018</option>
+										<option value="2017">2017</option>
+										<option value="2016">2016</option>
+										<option value="2015">2015</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label for="ejecutivoSelect">Ejecutivo</label> <select
+								class="form-control" id="ejecutivoSelect" disabled="disabled">
+
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="datosRutInput">RUT</label> <input type="text"
+								maxlength="12" class="form-control control" id="datosRutInput"
+								name="datosRutInput" placeholder="12.345.678-0">
+						</div>
+
+						<div class="form-group">
+							<label for="numeroSociedadInput">N&uacute;mero Sociedad</label> <input
+								type="text" class="form-control control"
+								id="numeroSociedadInput" name="numeroSociedadInput"
+								placeholder="000000">
+						</div>
+
+						<div class="alert alert-warning alert-dismissable hide" id="numSociedadaExiste">
+							<button type="button" class="close"
+								id="buttonNumSociedadaExiste" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>El n&uacute;mero de sociedad ya existe</p>
+						</div>
+
+						<div class="form-group" id="sociedadIngresoRut">
+							<label for="tipoSociedadSelect">Tipo de Sociedad (persona
+								jur&iacute;dica)</label> <select class="form-control control"
+								id="tipoSociedadSelect" name="tipoSociedadSelect">
+								<option value="">Seleccione</option>
+							</select>
+						</div>
+
+						<div class="box box-info">
+
+							<div class="row">
+								<div class="box-body">
+									<div class="form-group">
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="ivaCheck">I.V.A</label>
+											<input type="checkbox" id="ivaCheck" name="ivaCheck"
+												class="minimal">
+										</div>
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="f29Check">F 29</label>
+											<input type="checkbox" id="f29Check" class="minimal"
+												name="f29Check">
+										</div>
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="rentaCheck">Renta</label>
+											<input type="checkbox" id="rentaCheck" class="minimal"
+												name="rentaCheck">
+										</div>
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="previredCheck">Previred</label>
+											<input type="checkbox" id="previredCheck"
+												name="previredCheck" class="minimal" <?=$disabledPrevired ?>>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group hide" id="previredPersonaNatural">
+
+							<div class="box box-info">
+								<div class="box-header with-border">
+									<h4 class="box-title">Si tiene previred y es persona natural</h4>
+								</div>
+								<div class="row">
+									<div class="box-body">
+										<div class="col-xs-3">
+											<label style="padding-right: 15px" for="empresarialCheck">Empresarial</label>
+											<input type="checkbox" id="empresarialCheck" class="minimal"
+												name="empresarialCheck">
+										</div>
+										<div class="col-xs-3">
+											<label style="padding-right: 15px" for="independienteCheck">Independiente</label>
+											<input type="checkbox" id="independienteCheck"
+												class="minimal" name="independienteCheck">
+										</div>
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="nanaCheck">Nanas</label>
+											<input type="checkbox" id="nanaCheck" class="minimal"
+												name="nanaCheck">
+										</div>
+										<div class="col-xs-2">
+											<label style="padding-right: 15px" for="otroCheck">Otro</label>
+											<input type="checkbox" id="otroCheck" class="minimal"
+												name="otroCheck">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group hide" id="previredPersonaJuridica">
+							<div class="box box-info">
+								<div class="box-header with-border">
+									<h4 class="box-title">Si tiene previred y es persona
+										jur&iacute;dica</h4>
+								</div>
+								<div class="row">
+									<div class="box-body">
+										<div class="col-xs-3">
+											<label style="padding-right: 15px" for="socioCheck">Socios</label>
+											<input type="checkbox" id="socioCheck" class="minimal"
+												name="socioCheck">
+										</div>
+										<div class="col-xs-4">
+											<label style="padding-right: 15px" for="trabajadorCheck">Trabajadores</label>
+											<input type="checkbox" id="trabajadorCheck" class="minimal"
+												name="trabajadorCheck">
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="col-md-6">
+								<!-- Sección Datos Bancario -->
+								<div class="box box-success">
+									<div class="box-header with-border">
+										<h3 class="box-title">
+											<strong>Claves</strong>
+										</h3>
+									</div>
+
+									<div class="box-body">
+
+										<div class="form-group">
+											<label for="claveSIIInput">Clave SII</label> <input
+												type="text" class="form-control control" id="claveSIIInput"
+												name="claveSIIInput" placeholder="*******">
+										</div>
+
+										<div class="form-group">
+											<label for="clavePreviredInput">Clave Previred</label> <input
+												type="text" class="form-control control"
+												id="clavePreviredInput" name="clavePreviredInput"
+												placeholder="*******">
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+
+								<!-- Sección Datos Bancario -->
+								<div class="box box-success">
+									<div class="box-header with-border">
+										<h3 class="box-title">
+											<strong>Datos Bancarios</strong>
+										</h3>
+									</div>
+
+									<div class="box-body">
+
+										<div class="form-group">
+											<label for="bancoSelect">Banco</label> <select
+												class="form-control" id="bancoSelect" name="bancoSelect">
+											</select>
+										</div>
+
+										<div class="form-group">
+											<label for="numeroCuentaInput">N&uacute;mero de Cuenta</label>
+											<input type="text" class="form-control control"
+												id="numeroCuentaInput" name="numeroCuentaInput"
+												placeholder="0-00000">
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="box box-success">
+							<div class="box-header with-border">
+								<h3 class="box-title">
+									<strong>Datos Personales</strong>
+								</h3>
+							</div>
+							<div class="row">
+								<div class="box-body">
+									<div class="col-md-6">
+
+										<div class="form-group">
+											<label for="fechaNacimientoDateInput">Fecha Nacimiento</label>
+											<input id="fechaNacimientoDateInput"
+												name="fechaNacimientoDateInput" data-provide="datepicker"
+												type="text" class="form-control control"
+												placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+
+										</div>
+										<div class="form-group">
+											<label for="espcialidadInput">Especialidad</label> <input
+												type="text" class="form-control control"
+												id="espcialidadInput" name="espcialidadInput"
+												placeholder="Inform&aacute;tico">
+										</div>
+										<div class="form-group">
+											<label for="sexoSelect">Sexo</label> <select
+												class="form-control control" id="sexoSelect"
+												name="sexoSelect">
+												<option value="">Seleccione</option>
+												<option value="m">Masculino</option>
+												<option value="f">Femenino</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="trabajo1ClienteInput">Lugar de trabajo 1</label>
+											<input type="text" class="form-control control"
+												id="trabajo1ClienteInput" name="trabajo1ClienteInput"
+												placeholder="Direcci&oacute;n Trabajo N 1"
+												name="trabajo1ClienteInput">
+										</div>
+										<div class="form-group">
+											<label for="trabajo2ClienteInput">Lugar de trabajo 2</label>
+											<input type="text" class="form-control control"
+												id="trabajo2ClienteInput"
+												placeholder="Direcci&oacute;n Trabajo N 2"
+												name="trabajo2ClienteInput">
+										</div>
+
+										<div class="form-group">
+											<label for="seguroVidaCheck" style="padding-right: 10px">Seguro
+												de Vida Anual</label> <input type="checkbox"
+												id="seguroVidaCheck" name="seguroVidaCheck" class="minimal"
+												name="seguroVidaCheck">
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Mensajes del registro Ruts Asociados -->
+					<div class="col-md-12">
+
+						<div class="form-group hide" id="mensajeCorrectoRegistro">
+
+							<div class="alert alert-success alert-dismissable">
+								<button type="button" class="close"
+									id="buttonMensajeCorrectoRegistro" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ok !
+								</h4>
+								<p>Rut registrado correctamente</p>
+							</div>
+
+						</div>
+
+						<div class="form-group hide" id="mensajeProblemasRegistro">
+
+							<div class="alert alert-danger alert-dismissable">
+								<button type="button" class="close"
+									id="buttonMensajeProblemasRegistro" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ops !
+								</h4>
+								<p>Problemas al asociar un nuevo Rut</p>
+							</div>
+
+						</div>
+
+						<div class="form-group hide" id="mensajeRutEncontrado">
+
+							<div class="alert alert-warning alert-dismissable">
+								<button type="button" class="close"
+									id="buttonMensajeRutEncontrado" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ops !
+								</h4>
+								<p>El rut que intenta ingresar ya se encuentra registrado</p>
+							</div>
+
+						</div>
+
+					</div>
+					<!-- Termina mensajes del registro Ruts Asociados -->
+
+				</div>
+			</div>
+			<div class="box-footer">
+				<button type="submit" class="btn btn-success" id="buttonIngresaRut">
+					Ingresar <span class="fa fa-plus-square-o">
+				
+				</button>
+			</div>
+
+		</form>
+	</div>
+
+</section>
+
+<!---------- Ventanas Modales ---------->
+
+<!-- Modal Rut Incorrecto -->
+<div class="modal modal-danger fade" id="modalRutIncorrecto">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Atenci&oacute;n</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>El rut ingresado es incorrecto</p>
+			</div>
+			<div class="modal-footer">
+
+				<button type="button" data-dismiss="modal" class="btn btn-outline">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Rut Incorrecto -->

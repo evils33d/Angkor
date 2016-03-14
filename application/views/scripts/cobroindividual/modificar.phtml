@@ -1,0 +1,204 @@
+<section class="content-header">
+
+	<h1>Modificar Cobros</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-money"></i> Cobros</a></li>
+		<li class="active">Modificar Cobro</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<form role="form" action="" method="post" id="formModificaCobro">
+		<div class="box box-primary">
+
+			<div class="box-header with-border">
+				<h3 class="box-title">
+					<strong>Modificar Cobro</strong>
+				</h3>
+			</div>
+
+			<div class="box-body">
+
+				<div class="box box-info">
+					<div class="box-header with-border">
+						<h3 class="box-title">Detalle del rut asociado</h3>
+					</div>
+					<div class="box-body">
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Rut</label> <input type="text" id="rutCliente"
+										disabled="disabled" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Raz&oacute;n Social</label> <input type="text" value=""
+										disabled="disabled" id="razonSocialRut" class="form-control">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="nombreClienteEdit">Nombre del Cliente</label> <input
+						type="text" class="form-control" name="nombreClienteEdit"
+						id="nombreClienteEdit" placeholder="Amanda L&oacute;pez"
+						disabled="disabled">
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label for="tipoCobroSelectEdit">Tipo de Cobro</label> <select
+								class="form-control control" id="tipoCobroSelectEdit"
+								name="tipoCobroSelectEdit" disabled="disabled">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="golsaEdit">Glosa</label> <input type="text"
+								class="form-control control" id="golsaEdit" name="golsaEdit"
+								placeholder="Descripci&oacute;n">
+						</div>
+
+						<div class="form-group">
+							<label for="">Valor de la UF</label> <select class="form-control"
+								id="ufSelect" disabled="disabled">
+							</select>
+						</div>
+						
+						<div class="form-group">
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="actualizarUF">
+								<button type="button" class="close" id="buttonActualizarUF"
+									aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-warning"></i> Atenci&oacute;n !
+								</h4>
+								<p>Debe actualizar valor de la UF para el mes seleccionado</p>
+							</div>
+							
+						</div>
+
+						<div class="form-group">
+
+							<div class="row">
+								<div class="col-xs-6">
+									<label for="ingresoMontoUfEdit">Monto en UF</label>
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+										<input type="text" id="ingresoMontoUfEdit"
+											name="ingresoMontoUfEdit" class="form-control control">
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<label for="ingresoMontoMonedaEdit">Monto en Moneda</label>
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+										<input type="text" id="ingresoMontoMonedaEdit"
+											name="ingresoMontoMonedaEdit" class="form-control control">
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="observacionesEdit">Observaciones</label> <input
+								type="text" class="form-control control" id="observacionesEdit"
+								name="observacionesEdit" placeholder="Detalles">
+						</div>
+					</div>
+
+
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label for="ejecutivoSelectEdit">Ejecutivo</label> <select
+								class="form-control" id="ejecutivoSelectEdit"
+								name="ejecutivoSelectEdit" disabled="disabled">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="fechaCobroEdit">Fecha de Cobro</label> <input
+								id="fechaCobroEdit" name="fechaCobroEdit"
+								data-provide="datepicker" type="text"
+								class="form-control control" placeholder="dd-mm-yyyy"
+								data-date-format="dd-mm-yyyy">
+
+						</div>
+
+						<div class="form-group">
+							<label for="rutEdit">Rut</label> <input type="text"
+								class="form-control control" name="rutEdit" id="rutEdit"
+								placeholder="12.3456.789-0" disabled="disabled">
+						</div>
+
+						<div class="form-group">
+							<label for="formaPagoSelectEdit">Forma de Pago</label> <select
+								class="form-control control" id="formaPagoSelectEdit"
+								name="formaPagoSelectEdit">
+								<option value="">Seleccione</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="ingresoCheckEdit">&#191;Es ingreso?</label>
+							<div class="row">
+								<div class="col-xs-6">
+									<input type="checkbox" id="ingresoCheckEdit"
+										name="ingresoCheckEdit" class="minimal" disabled="disabled">
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<!-- Mensajes del registro Conceptos -->
+				<div class="form-group hide" id="mensajeCorrectoModificacion">
+
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeCorrectoModificacion" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ok !
+						</h4>
+						<p>Cobro modificado correctamente</p>
+					</div>
+
+				</div>
+
+				<div class="form-group hide" id="mensajeProblemasModificacion">
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeProblemasModificacion" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ops !
+						</h4>
+						<p>Problemas al realizar la modificaci&oacute;n del cobro</p>
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="box-footer">
+				<button id="buttonCobroIndividual" type="submit" class="btn btn-success">
+					Modificar <span class="fa fa-save"></span>
+				</button>
+			</div>
+		</div>
+	</form>
+
+
+</section>

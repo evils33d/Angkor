@@ -1,0 +1,199 @@
+<section class="content-header">
+
+	<h1>Verificaci&oacute;n Orden de Pago</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="/index.php/sistema/index"><i class="fa fa-file-text"></i>
+				Orden de Pago</a></li>
+		<li class="active">Verificaci&oacute;n Orden de Pago</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<!-- Filtrar Orden de pago -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Orden de Pago</strong>
+			</h3>
+		</div>
+
+		<form role="form" action="" method="post" id="formBuscarOrdenPago">
+			<div class="box-body">
+
+				<div class="form-group">
+					<label for="ejecutivoOrdenPagoSelect">Ejecutivo</label> <select
+						class="form-control control control" id="ejecutivoOrdenPagoSelect"
+						name="ejecutivoOrdenPagoSelect">
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="clienteVerificaPagoSelect">Clientes</label> <select
+						class="form-control control" id="clienteVerificaPagoSelect"
+						name="clienteVerificaPagoSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="rutVerificaPagoSelect">Ruts Del Cliente</label> <select
+						class="form-control control" id="rutVerificaPagoSelect"
+						name="rutVerificaPagoSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>Seleccione una fecha de inicio y termino</label> <input
+						type="text" placeholder="dd/mm/yyyy - dd/mm/yyyy"
+						class="form-control pull-right control" id="fechaDesdeHasta"
+						name="fechaDesdeHasta">
+				</div>
+			</div>
+			<div class="box-footer">
+				<button type="submit" class="btn btn-primary">
+					Buscar <span class="fa fa-search"></span>
+				</button>
+			</div>
+
+		</form>
+
+	</div>
+
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Listado de cobros por verificar</strong>
+			</h3>
+		</div>
+
+		<form role="form" action="" method="post">
+
+			<div class="box-body">
+				<div class="form-group">
+					<table class="table table-bordered table-hover cell-border compact"
+						id="tablaVerificarPagos">
+						<thead>
+							<th>IdCobro</th>
+							<th>Tipo</th>
+							<th>IdPago</th>
+							<th>Fecha</th>
+							<th>Glosa</th>
+							<th>N&uacute;mero Sociedad</th>
+							<th>RUT Asociado</th>
+							<th>Monto Cobrado</th>
+							<th>Dinero Recibido</th>
+							<th>Folio</th>
+							<th>Estado</th>
+							<th>Forma de Pago</th>
+							<th>Observaciones</th>
+						</thead>
+					</table>
+				</div>
+				
+				<div class="form-group hide" id="mensajeSeleccioneCobro">
+					<div class="alert alert-warning alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeSeleccioneCobro" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-warning"></i> Ops !
+						</h4>
+						<p>Primero debe seleccionar un cobro</p>
+					</div>
+				</div>
+				
+				<div class="form-group hide" id="mensajeCobroVerificado">
+					<div class="alert alert-warning alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeCobroVerificado" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-warning"></i> Ops !
+						</h4>
+						<p>El pago ya est&aacute; verificado</p>
+					</div>
+				</div>
+				
+				<div class="form-group hide" id="mensajeMontosNoIguales">
+					<div class="alert alert-warning alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeMontosNoIguales" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-warning"></i> Ops !
+						</h4>
+						<p>El cobro no est&aacute; cancelado totalmente </p>
+					</div>
+				</div>
+				
+				<div class="form-group hide" id="registroNumeroFolio">
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close"
+							id="buttonRegistroNumeroFolio" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ok !
+						</h4>
+						<p>N&uacute;mero de folio registrado correctamente</p>
+					</div>
+				</div>
+				
+				<div class="form-group hide" id="errorAccion">
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close"
+							id="buttonErrorAccion" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-remove"></i> Ops !
+						</h4>
+						<p>Preblemas al realizar la acci&oacute;n</p>
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="box-footer">
+				<button type="button" class="btn btn-primary" id="verificaOrdenPago">
+					Verificar Pago <span class="fa fa-check"></span>
+				</button>
+			</div>
+		</form>
+
+
+	</div>
+
+</section>
+
+<!---------- Ventanas Modales ---------->
+
+
+<!-- Modal Verificar Orden de Pago -->
+<div class="modal modal-success fade" id="modalVerificaOrdenPago">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Verifcar Orden de Pago</strong>
+				</h4>
+			</div>
+			<form role="form" action="" method="post" id="formVerificaPagoFolio">
+				<div class="modal-body">
+					<label for="folioPago">Folio cup&oacute;n de pago</label> <input
+						type="text" id="folioPago" name="folioPago" class="form-control" placeholder="00000">
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-outline">
+						<span class="fa fa-check"></span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Verificar Orden de Pago -->

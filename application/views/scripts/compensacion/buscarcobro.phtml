@@ -1,0 +1,655 @@
+<section class="content-header">
+
+	<h1>B&uacute;squeda de Cobros</h1>
+	<ol class="breadcrumb">
+		<li><a href="/index.php/sistema/index"><i class="fa fa-users"></i>
+				Compensaciones</a></li>
+		<li class="active">Buscar Cobros</li>
+	</ol>
+</section>
+
+<section class="content">
+
+	<!-- Filtro Búsqueda de cobros -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Buscar Cobro</strong>
+			</h3>
+		</div>
+
+		<form role="form" action="" method="post" id="formBuscarCliente">
+
+			<div class="box-body">
+
+				<div class="form-group">
+					<label for="ejecutivoSelect">Ejecutivo</label> <select
+						class="form-control control" id="ejecutivoSelect"
+						name=ejecutivoSelect>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="clienteSelect">Clientes</label> <select
+						class="form-control control" id="clienteSelect"
+						name="clienteSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="rutSelect">Ruts Del Cliente</label> <select
+						class="form-control control" id="rutSelect" name="rutSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="tipoSelect">Tipo Cobro</label> <select
+						class="form-control control" id="tipoSelect" name="tipoSelect">
+						<option value="">Seleccione</option>
+						<option value="1">Ingreso</option>
+						<option value="2">Canje</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>Seleccione una fecha de inicio y termino</label> <input
+						type="text" placeholder="dd-mm-yyyy - dd-mm-yyyy"
+						class="form-control pull-right control" id="fechaDesdeHasta"
+						name="fechaDesdeHasta">
+				</div>
+
+			</div>
+			<div class="box-footer">
+				<button type="submit" class="btn btn-primary">
+					Buscar <span class="fa fa-search"></span>
+				</button>
+			</div>
+		</form>
+
+	</div>
+	<!-- Filtro Búsqueda de cobros -->
+
+	<!-- Listado de cobros -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Resultados</strong>
+			</h3>
+		</div>
+		<div class="box-body">
+			<div class="form-group">
+				<table class="table table-bordered table-hover cell-border compact"
+					id="tablePagarCobros">
+					<thead>
+						<th>Id</th>
+						<th>Tipo</th>
+						<th>Fecha</th>
+						<th>Glosa</th>
+						<th>N&uacute;mero Sociedad</th>
+						<th>RUT Asociado</th>
+
+						<th>Clave Previred</th>
+						<th>Clave SII</th>
+
+						<th>Cuenta Dep&oacute;sito</th>
+						<th>Monto Cobrado</th>
+						<th>Monto Pagado</th>
+						<th>Estado</th>
+						<th>Forma de Pago</th>
+						<th>N&uacute;mero Factura</th>
+						<th>Observaciones</th>
+					</thead>
+
+				</table>
+			</div>
+
+			<div class="form-group hide" id="seleccionaCobroLista">
+
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" id="buttonSeleccionaCobroLista"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>Primero debe seleccionar un cobro de la lista</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="seleccionaHonorarios">
+
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" id="buttonSeleccionaHonorarios"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>Solo se puede ingresar n&uacute;meros de facturas en cobros de
+						honorarios</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="anulaSoloPendientes">
+
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" id="buttonAnulaSoloPendientes"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>Solo se pueden anular cobros en estado pendiente</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="cobroEstadoAnulado">
+
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" id="buttonCobroEstadoAnulado"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>El cobro se encuentra anulado</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="opcionNoAplica">
+
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" id="buttonOpcionNoAplica"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>Esta opci&oacute;n no aplica para este cobro</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="cobroPagado">
+
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" id="buttonCobroPagado"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>El cobro ya est&aacute; pagado</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="registraNumeroFactura">
+
+				<div class="alert alert-success alert-dismissable">
+					<button type="button" class="close"
+						id="buttonRegistraNumeroFactura" aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-check"></i> Ok !
+					</h4>
+					<p>Se ha registrado el n&uacute;mero de factura correctamente</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="cobroAnulado">
+
+				<div class="alert alert-success alert-dismissable">
+					<button type="button" class="close" id="buttonCobroAnulado"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-check"></i> Ok !
+					</h4>
+					<p>Cobro anulado correctamente</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="registraDatosPago">
+
+				<div class="alert alert-success alert-dismissable">
+					<button type="button" class="close" id="buttonRegistraDatosPago"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-check"></i> Ok !
+					</h4>
+					<p>Pago Registrado Correctamente</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="autorizacionRealizada">
+
+				<div class="alert alert-success alert-dismissable">
+					<button type="button" class="close"
+						id="buttonAutorizacionRealizada" aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-check"></i> Ok !
+					</h4>
+					<p>Autorizaci&oacute;n realizada correctamente</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="errorAccion">
+
+				<div class="alert alert-danger alert-dismissable">
+					<button type="button" class="close" id="buttonErrorAccion"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-remove"></i> Ops !
+					</h4>
+					<p>Problemas al realizar la acci&oacute;n</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="pagoNoAutorizado">
+
+				<div class="alert alert-danger alert-dismissable">
+					<button type="button" class="close" id="buttonPagoNoAutorizado"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-remove"></i> Ops !
+					</h4>
+					<p>Este cobro primero debe ser autorizado para pagar</p>
+				</div>
+
+			</div>
+
+			<div class="form-group hide" id="soloUnaFila">
+
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" id="buttonSoloUnaFila"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>Debe seleccionar solo un cobro</p>
+				</div>
+
+			</div>
+			
+			<div class="form-group hide" id="noDatosPago">
+
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" id="buttonNoDatosPago"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>No existen datos de pago asociados</p>
+				</div>
+
+			</div>
+			
+			
+			<div class="form-group hide" id="noAutorizado">
+
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" id="buttonNoAutorizado"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-warning"></i> Ops !
+					</h4>
+					<p>Solo puede pagar pagos de Canjes</p>
+				</div>
+
+			</div>
+
+		</div>
+		
+		<div class="box-footer">
+			<?php if($this->rol=='3' || $this->rol=='7'){ ?>
+			
+			<button type="submit" class="btn btn-primary" id="buttonDatosPago">
+				Pagar <span class="fa fa-check"></span>
+			</button>
+			
+			<?php } if($this->rol=='5' || $this->rol=='7'){ ?>
+		
+			<button class="btn btn-success" id="buttonNumeroFactura">
+				N&uacute;mero Factura <span class="fa  fa-hospital-o"></span>
+			</button>
+			
+			<?php }?>
+		
+			<button class="btn btn-danger pull-right" id="buttonAnular">
+				Anular <span class="fa  fa-remove"></span>
+			</button>
+		
+			<?php if($this->rol=='3' || $this->rol=='7'){ ?>
+			
+			<button class="btn btn-warning pull-right" id="buttonAutorizarPago">
+				Autorizar Pago <span class="fa  fa-edit"></span>
+			</button>
+			<?php } ?>
+		
+			<button class="btn btn-info pull-right" id="buttonVerDatosPago">
+				Ver Datos Pago <span class="fa  fa-search"></span>
+			</button>
+		
+		</div>
+
+	</div>
+	<!-- Listado de cobros -->
+
+</section>
+
+<!---------- Ventanas Modales ---------->
+
+<!-- Modal Ingreso Numero de fatura-->
+<div class="modal modal-success fade" id="modalngresarNumeroFactura">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Guardar n&uacute;mero de factura</strong>
+				</h4>
+			</div>
+			
+			
+			<form role="form" action="" method="post" id="formNumeroFactura">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="numeroFacturaInput"><strong>N&uacute;mero de Factura</strong></label>
+						<input type="text" id="numeroFacturaInput"
+							name="numeroFacturaInput" class="form-control"
+							placeholder="000000">
+					</div>
+
+					<div class="form-group hide" id="existeFactura">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonExisteFactura"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-remove"></i> Ops !
+							</h4>
+							<p>El n&uacute;mero de factura ya existe</p>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="submit" data-dismiss="modal"
+						class="btn btn-success btn-outline pull-left">
+						<span class="fa fa-remove"></span>
+					</button>
+					<button type="submit"
+						class="btn btn-success btn-outline pull-right">
+						Guardar<span class="fa fa-save"></span>
+					</button>
+				</div>
+			</form>
+			
+
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Ingreso Numero de fatura -->
+
+<!-- Modal Ingreso Datos de pago-->
+<div class="modal modal-primary fade" id="modalIngresoDatosPago">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Ingresar datos de pago</strong>
+				</h4>
+			</div>
+
+			<form role="form" action="" method="post" id="formDatosPago">
+				<div class="modal-body">
+
+					<div class="row">
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="pagoElectronicoRadio"> <input type="radio"
+									id="pagoElectronicoRadio" name="tipoPago" class="minimal-blue" />
+									Pago Electr&oacute;nico
+								</label>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="pagoChequeRadio"> <input type="radio"
+									id="pagoChequeRadio" name="tipoPago" class="minimal-blue" />
+									Pago con cheque
+								</label>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="msgTipoPago">
+						<p>
+							<strong>Debe seleccionar el tipo de pago</strong>
+						</p>
+					</div>
+
+					<div class="form-group">
+						<label for="numeroTransferenciaInput">N&uacute;mero de
+							Transferencia / cheque</label> <input type="text"
+							class="form-control" id="numeroTransferenciaInput"
+							name="numeroTransferenciaInput" placeholder="000000">
+					</div>
+					<div class="form-group">
+						<label for="totalPagoInput">Total a pagar</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-dollar"></i> </span>
+							<input type="text" class="form-control" id="totalPagoInput"
+								disabled>
+						</div>
+					</div>
+
+					<div class="form-group hide" id="numeroDocumentoEncontrado">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close"
+								id="buttonNumeroDocumentoEncontrado" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>El n&uacute;mero de documento ya est&aacute; registrado</p>
+						</div>
+					</div>
+
+					<div class="form-group hide" id="existePagoAsociado">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonExistePagoAsociado"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>El cobro ya tiene un pago asociado</p>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="submit" data-dismiss="modal"
+						class="btn btn-success btn-outline pull-left">
+						<span class="fa fa-remove"></span>
+					</button>
+
+					<button type="submit" class="btn btn-succes btn-outline pull-right">
+						<span class="fa fa-save"></span>
+					</button>
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Ingreso Datos de pago -->
+
+<!-- Modal Rut Incorrecto -->
+<div class="modal modal-danger fade" id="modalRutIncorrecto">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Atenci&oacute;n</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>El rut ingresado es incorrecto</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline">
+					<span class="fa fa-check"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Rut Incorrecto -->
+
+<!-- Modal Anular-->
+<div class="modal modal-danger fade" id="modalAnularCobro">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Atenci&oacute;n</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>Est&aacute; a punto de anular el cobro, est&aacute; seguro de
+					realizar esta acci&oacute;n</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal"
+					class="btn btn-outline pull-left">
+					<span class="fa fa-remove"></span>
+				</button>
+
+				<button type="button" class="btn btn-outline pull-right"
+					id="anulaCobro">
+					<span class="fa fa-check"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Anular -->
+
+<!-- Modal Confirma Autorizacion de pago-->
+<div class="modal modal-warning fade"
+	id="modalAutorizaPagoExtraordinario">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong> <span class="fa fa-warning"></span> Atenci&oacute;n
+					</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>Est&aacute; seguro que desea autorizar este pago?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal"
+					class="btn btn-outline pull-left">
+					<span class="fa fa-remove"></span>
+				</button>
+
+				<button type="button" class="btn btn-outline pull-right"
+					id="buttonAutorizarPagoExtraordinario">
+					<span class="fa fa-check"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Confirma Autorizacion de pago-->
+
+<!-- Modal Visualiza Datos del Pago-->
+<div class="modal modal-info fade" id="modalVerDatosPago">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong> Datos del Pago </strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+
+				<div class="form-group">
+					<label for="verUsuarioRegistro">Usuario</label> <input
+						type="text" class="form-control" id="verUsuarioRegistro" disabled>
+				</div>
+
+				<div class="form-group">
+					<label for="verTipoPago">Tipo de Pago</label> <input
+						type="text" class="form-control" id="verTipoPago" disabled>
+				</div>
+
+				<div class="form-group">
+					<label for="verNumeroDocumento">N&uacute;mero de
+						Transferencia / cheque</label> <input type="text"
+						class="form-control" id="verNumeroDocumento" disabled>
+				</div>
+				
+				<div class="form-group">
+					<label for="verfechaRegistro">Fecha Registro</label> <input
+						type="text" class="form-control" id="verfechaRegistro" disabled>
+				</div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline pull-right"
+					data-dismiss="modal">
+					<span class="fa fa-remove"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Visualiza Datos del Pago-->
+
+
+
+
+
+
+
+
+

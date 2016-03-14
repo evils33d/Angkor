@@ -1,0 +1,532 @@
+<section class="content-header">
+
+	<h1>Ingreso Cobros Masivos <?= $this->titulo ?>  </h1>
+	
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-money"></i> Cobros</a></li>
+		<li class="active">Ingreso Cobros Masivos</li>
+	</ol>
+</section>
+
+<section class="content">
+
+	<!-- Busqueda de Clientes -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Seleccione los filtros</strong>
+			</h3>
+		</div>
+
+		<form action="" method="post" id="formBusquedaCoboMasivo">
+
+			<div class="box-body">
+
+				<input type="text" value="<?=$this->rol?>" hidden="" name="perfil">
+
+				<div class="form-group">
+					<label for="tipoCobroSelect">Tipo de Cobro</label> <select
+						class="form-control" id="tipoCobroSelect" name="tipoCobroSelect">
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="ejecutivoSelect">Ejecutivo</label> <select
+						class="form-control" id="ejecutivoSelect" name="ejecutivoSelect">
+					</select>
+					<strong class="hide" id="seleccioneEjecutivo" style="color: Crimson; padding: 0px; margin: 0px;">Debe seleccionar al ejecutivo</strong>
+				</div>
+
+				<div class="form-group">
+					<label for="nombreClienteSelect">Clientes</label> <select
+						class="form-control" id="nombreClienteSelect"
+						name="nombreClienteSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="rutCobroMasivoSelect">RUT Asociados</label> <select
+						class="form-control" id="rutCobroMasivoSelect"
+						name="rutCobroMasivoSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group" id="renta">
+					<label for="dateCobroInput">Fecha de Cobro</label>
+
+					<div class="input-group">
+						<input class="form-control dateCobroRenta" name="dateCobroInput"
+							value="<?= $this->calendario ?>" data-provide="datepicker"
+							type="text"> <span class="input-group-addon"><i
+							class="fa fa-calendar"></i></span>
+					</div>
+				</div>
+
+				<div class="form-group" id="f29">
+					<label for="dateCobroInput">Fecha de Cobro</label>
+					<div class="input-group">
+						<input class="form-control dateCobroF29" name="dateCobroInput"
+							value="<?= $this->calendario ?>" data-provide="datepicker"
+							type="text"> <span class="input-group-addon"><i
+							class="fa fa-calendar"></i></span>
+					</div>
+
+				</div>
+
+				<div class="form-group">
+
+					<div class="alert alert-warning alert-dismissable hide"
+						id="seleccioneEjecutivo">
+						<button type="button" class="close" id="buttonSeleccioneEjecutivo"
+							aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-warning"></i> Ops !
+						</h4>
+						<p>Debe seleccionar el ejecutivo</p>
+					</div>
+					
+					<?php
+					if ($this->resultados == '') {
+						?>	
+							<div class="alert alert-warning alert-dismissable hide" id="sinDatos">
+						<?php
+					} else {
+						?>
+							<div class="alert alert-warning alert-dismissable" id="sinDatos">
+							<?php
+					}
+					
+					?> 
+							<button type="button" class="close" id="buttonSinDatos"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>No se encontraron datos</p>
+						</div>
+						
+					<?php 
+					
+						if($this->tasas == '0')
+						{
+							
+							?>
+						<div class="alert alert-warning alert-dismissable">
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>Debe actualizar el valor de las tasas en el mantenedor de
+								valores.</p>
+						</div>
+						<?php 
+							
+						}
+					
+					?>								
+						
+						
+					</div>
+
+				</div>
+				<div class="box-footer">
+					<button type="submit" class="btn btn-primary">
+						Buscar <span class="fa fa-search"></span>
+					</button>
+				</div>
+		
+		</form>
+	</div>
+
+	<!-- Tabla de Resultados Cobros F29 -->
+	<?php
+	
+	if ($this->hidef29 == '1') {
+		?>
+			<div class="box box-primary">
+			<?php
+	} else {
+		?>
+			<div class="box box-primary" hidden="">
+			<?php
+	}
+	?>	
+		<div class="box-header with-border">
+				<h3 class="box-title">
+					<strong>Cobro Masivo F29</strong>
+				</h3>
+			</div>
+
+			<div class="box-body">
+				<div class="row">
+
+					<div class="col-md-12">
+
+						<div class="form-group">
+
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="ingreseFecha">
+								<button type="button" class="close" id="buttonIngreseFecha"
+									aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-warning"></i> Ops !
+								</h4>
+								<p>Debe ingresar la fecha del cobro</p>
+							</div>
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="campoRequeridoF29">
+								<button type="button" class="close" id="buttonCampoRequeridoF29"
+									aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-warning"></i> Ops !
+								</h4>
+								<p>Debe seleccionar una forma de pago</p>
+							</div>
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="sinDatosRegistroF29">
+								<button type="button" class="close"
+									id="buttonSinDatosRegistroF29" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-warning"></i> Ops !
+								</h4>
+								<?php 
+								
+									if($this->rol=='4')
+									{
+									?>
+									<p>Debe ingresar un monto</p>
+									<?php 
+									
+									}
+									else
+									{
+									?>
+									<p>Debe ingresar un monto y seleccionar una forma de pago</p>
+									<?php
+									}
+								?>	
+								
+							</div>
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="realizarCalculoF29">
+								<button type="button" class="close"
+									id="buttonRealizarCalculoF29" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-warning"></i> Ops !
+								</h4>
+								<p>Primero debe realizar el calculo de valores</p>
+							</div>
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="numeroNegativo">
+								<button type="button" class="close" id="buttonNumeroNegativo"
+									aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-warning"></i> Ops !
+								</h4>
+								<p>No se pueden ingresar n&uacute;meros negativos</p>
+							</div>
+
+
+							<div class="alert alert-success alert-dismissable hide"
+								id="registraF29">
+								<button type="button" class="close" id="buttonRegistraF29"
+									aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ok !
+								</h4>
+								<p>Cobro registrado correctamente</p>
+							</div>
+
+							<div class="alert alert-danger alert-dismissable hide"
+								id="errorRegistroF29">
+								<button type="button" class="close" id="buttonErrorRegistroF29"
+									aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-remove"></i> Ops !
+								</h4>
+								<p>Problemas al realizar la acci&oacute;n</p>
+							</div>
+
+						</div>
+
+						<div class="form-group">
+		
+							<?=$this->tablaf29;?>
+							
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="box-footer">
+				<button type="button" id="buttonF29" class="btn btn-primary">
+					Guardar <span class="fa fa-save"></span>
+				</button>
+
+				<button type="button" id="buttonCalculoF29" class="btn btn-success">
+					Calcular <span class="fa fa-calculator"></span>
+				</button>
+			</div>
+
+		</div>
+		<!-- Termina Tabla de Resultados Cobros F29 -->
+
+		<!-- Tabla de Resultados Cobros Renta -->
+
+<?php
+
+if ($this->hideRenta == '1') {
+	?>
+			<div class="box box-primary">
+			<?php
+} else {
+	?>
+			<div class="box box-primary" hidden="">
+			<?php
+}
+?>	
+
+			<div class="box-header with-border">
+					<h3 class="box-title">
+						<strong>Cobro Masivo Renta</strong>
+					</h3>
+				</div>
+
+				<div class="box-body">
+					<div class="row">
+
+						<div class="col-md-12">
+							<div class="form-group">
+							
+								<div class="alert alert-warning alert-dismissable hide"
+									id="seleccionarFormaPagoCorrecta">
+									<button type="button" class="close"
+										id="buttonSeleccionarFormaPagoCorrecta" aria-hidden="true">&times;</button>
+									<h4>
+										<i class="icon fa fa-warning"></i> Ops !
+									</h4>
+									<p>Seleccione Formas de Pago Correctas para los montos ingresados</p>
+								</div>
+
+								<div class="alert alert-warning alert-dismissable hide"
+									id="ingreseFechaRenta">
+									<button type="button" class="close"
+										id="buttonIngreseFechaRenta" aria-hidden="true">&times;</button>
+									<h4>
+										<i class="icon fa fa-warning"></i> Ops !
+									</h4>
+									<p>Debe ingresar la fecha del cobro</p>
+								</div>
+
+								<div class="alert alert-warning alert-dismissable hide"
+									id="campoRequeridoRenta">
+									<button type="button" class="close"
+										id="buttonCampoRequeridoRenta" aria-hidden="true">&times;</button>
+									<h4>
+										<i class="icon fa fa-warning"></i> Ops !
+									</h4>
+									<p>Debe seleccionar la forma de pago</p>
+								</div>
+
+								<div class="alert alert-success alert-dismissable hide"
+									id="registraRenta">
+									<button type="button" class="close" id="buttonRegistraRenta"
+										aria-hidden="true">&times;</button>
+									<h4>
+										<i class="icon fa fa-check"></i> Ok !
+									</h4>
+									<p>Cobro registrado correctamente</p>
+								</div>
+
+								<div class="alert alert-danger alert-dismissable hide"
+									id="errorRegistroRenta">
+									<button type="button" class="close"
+										id="buttonErrorRegistroRenta" aria-hidden="true">&times;</button>
+									<h4>
+										<i class="icon fa fa-remove"></i> Ops !
+									</h4>
+									<p>Problemas al realizar la acci&oacute;n</p>
+								</div>
+
+								<div class="alert alert-warning alert-dismissable hide"
+									id="sindatosRegistroRenta">
+									<button type="button" class="close"
+										id="buttonSindatosRegistroRenta" aria-hidden="true">&times;</button>
+									<h4>
+										<i class="icon fa fa-warning"></i> Ops !
+									</h4>
+									<p>Debe ingresar un monto y seleccionar una forma de pago</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<?=$this->tablaRenta;?>
+						</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="box-footer">
+					<button type="button" id="buttonRenta" class="btn btn-primary">
+						Guardar <span class="fa fa-save"></span>
+					</button>
+				</div>
+
+			</div>
+			<!-- Termina Tabla de Resultados Cobros Renta -->
+
+			<!-- Tabla de Resultados Cobros Previred -->
+			
+			
+			<?php
+			
+			if ($this->hidePrevired == '1') {
+				?>
+						<div class="box box-primary">
+						<?php
+			} else {
+				?>
+						<div class="box box-primary" hidden="">
+						<?php
+			}
+			?>	
+				<div class="box-header with-border">
+						<h3 class="box-title">
+							<strong>Cobro Masivo Previred</strong>
+						</h3>
+					</div>
+
+					<div class="box-body">
+
+						<div class="form-group">
+						
+							<div class="alert alert-warning alert-dismissable hide"
+								id="seleccionarFormaPagoCorrectaP">
+								<button type="button" class="close"
+									id="buttonSeleccionarFormaPagoCorrectaP" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-warning"></i> Ops !
+								</h4>
+								<p>Seleccione Formas de Pago Correctas para los montos ingresados</p>
+							</div>
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="ingreseFechaPrevired">
+								<button type="button" class="close"
+									id="buttonIngreseFechaRentaPrevired" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-warning"></i> Ops !
+								</h4>
+								<p>Debe ingresar la fecha del cobro</p>
+							</div>
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="campoRequeridoPrevired">
+								<button type="button" class="close"
+									id="buttonCampoRequeridoPrevired" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-warning"></i> Ops !
+								</h4>
+								<p>Debe seleccionar la forma de pago</p>
+							</div>
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="numeroNegativoPrevired">
+								<button type="button" class="close"
+									id="buttonNumeroNegativoPrevired" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ops !
+								</h4>
+								<p>No se pueden ingresar n&uacute;meros negativos</p>
+							</div>
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="sinDatosRegistroPrevired">
+								<button type="button" class="close"
+									id="buttonSinDatosRegistroPrevired" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-warning"></i> Ops !
+								</h4>
+								<p>Debe ingresar un monto y seleccionar una forma de pago</p>
+							</div>
+
+							<div class="alert alert-success alert-dismissable hide"
+								id="registraPrevired">
+								<button type="button" class="close" id="buttonRegistraPrevired"
+									aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-check"></i> Ok !
+								</h4>
+								<p>Cobro registrado correctamente</p>
+							</div>
+
+							<div class="alert alert-danger alert-dismissable hide"
+								id="errorRegistroPrevired">
+								<button type="button" class="close"
+									id="buttonErrorRegistroPrevired" aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-remove"></i> Ops !
+								</h4>
+								<p>Problemas al realizar la acci&oacute;n</p>
+							</div>
+
+						</div>
+
+						<div class="form-group">
+			
+								<?=$this->tablaPrevired;?>
+								
+							</div>
+
+					</div>
+
+
+					<div class="box-footer">
+						<button type="button" id="buttonPrevired" class="btn btn-primary">
+							Guardar <span class="fa fa-save"></span>
+						</button>
+					</div>
+
+				</div>
+				<!-- Termina Tabla de Resultados Cobros Previred -->
+
+</section>
+
+
+<!---------- Ventanas Modales ---------->
+
+<!-- Modal Rut Incorrecto -->
+<div class="modal modal-danger fade" id="modalRutIncorrecto">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Atenci&oacute;n</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>El rut ingresado es incorrecto</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-outline">Ok</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Rut Incorrecto -->
+
+
+

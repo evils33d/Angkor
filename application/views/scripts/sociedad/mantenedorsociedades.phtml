@@ -1,0 +1,85 @@
+<section class="content-header">
+	<h1>Mantenedor de Sociedades</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-pencil"></i> Mantenedores</a></li>
+		<li class="active">Mantenedor de Sociedades</li>
+	</ol>
+</section>
+
+<section class="content">
+
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Sociedades<strong>
+			
+			</h3>
+		</div>
+		
+		<div class="box-body">
+
+			<!-- *** Mantenedor de Sociedades *** -->
+
+			<form role="form" method="post" action=""
+				id="formMantenedorSociedades">
+
+				<div class="box-body">
+
+					<div class="form-group">
+						<label for="tipoSociedadSelect">Tipo Sociedad</label> <select
+							class="form-control" id="tipoSociedadSelect"
+							name="tipoSociedadSelect">
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="valorImpuestoSociedadInput">Impuesto Sociedad</label>
+						<input type="text" class="form-control" placeholder="100%"
+							id="valorImpuestoSociedadInput" name="valorImpuestoSociedadInput">
+					</div>
+
+					<!-- Mensajes Accion -->
+					<div class="form-group hide" id="valorSociedadGuardado">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" id="buttonValorSociedadGuardado"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Valor guardado correctamente</p>
+						</div>
+					</div>
+
+					<div class="form-group hide" id="valorSociedadProblemaGuardado">
+
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close"
+								id="buttonValorSociedadProblemaGuardado" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Opss !
+							</h4>
+							<p>Problemas al realizar la acci&oacute;n</p>
+						</div>
+					</div>
+					<!-- Termina mensajes Accion -->
+
+				</div>
+				<div class="box-footer">
+
+					<button type="submit" class="btn btn-primary" id="buttonValores">
+						Guardar <span class="fa fa-save"></span>
+					</button>
+
+				</div>
+			</form>
+
+			<!-- Termina mantenedor de Sociedades -->
+
+		</div>
+
+
+	</div>
+
+</section>

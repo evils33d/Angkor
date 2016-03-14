@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><?=$this->nombre_sitio?></title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<!-- Select2 -->
+<link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+<!-- Bootstrap 3.3.4 -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Ionicons -->
+<link href="/ionicons/css/ionicons.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- datepicker, estilos calendario -->
+<link href="/plugins/datepicker/datepicker3.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- DateRangePicker -->
+<link href="/plugins/daterangepicker/daterangepicker-bs3.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- DATA TABLES -->
+<!-- <link href="/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />-->
+<link href="/plugins/datatables/jquery.dataTables.css" rel="stylesheet"
+	type="text/css" />
+<link href="/plugins/datatables/dataTables.tableTools.css"
+	rel="stylesheet">
+
+<link href="/plugins/datatables/dataTables.responsive.css"
+	rel="stylesheet" type="text/css" />
+
+
+<!-- iCheck for checkboxes and radio inputs -->
+<link href="../../plugins/iCheck/all.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- Theme style -->
+<link href="/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+<link href="/dist/css/skins/<?=$this->skin?>.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style>
+.editar {
+	width: 20px;
+	height: 40px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#formBuscarOrdenPago .error {
+	color: Crimson
+}
+
+#formIngresoOrdenPago .error {
+	color: white
+}
+</style>
+</head>
+<!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+<body class="<?=$this->skin?> sidebar-mini">
+	<div class="wrapper">
+
+
+		<!-- Main Header -->
+      	<?=$this->render('head.phtml') ?>	
+  <!-- Fin Main Header -->
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+
+				<!-- Sidebar user panel (optional) -->
+				<?=$this->render('sidebaruserpanel.phtml') ?>	
+		  <!-- Fin Sidebar user panel -->
+
+				<!-- Sidebar Menu -->
+				<?=$this->render('menu.phtml') ?>		
+        </section>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<!-- Main content -->
+       
+          <?=$this->layout()->content?>
+       
+        <!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+			
+			<?= $this->render('footer.phtml')?>
+
+      <!-- Control Sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED JS SCRIPTS -->
+
+	<!-- jQuery 2.1.4 -->
+	<script src="/plugins/jQuery/jQuery-2.1.4.min.js"
+		type="text/javascript"></script>
+
+	<!-- Script RUT -->
+	<script src="/plugins/jQueryRut/jquery.Rut.js" type="text/javascript"></script>
+
+	<!-- Bootstrap 3.3.2 JS -->
+	<script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<!-- DATA TABES SCRIPT -->
+	<script src="/plugins/datatables/jquery.dataTables.min.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/datatables/dataTables.responsive.js"
+		type="text/javascript"></script>
+
+	<!-- <script src="/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+	<!-- SlimScroll -->
+	<script src="/plugins/slimScroll/jquery.slimscroll.min.js"
+		type="text/javascript"></script>
+	<!-- FastClick -->
+
+	<script src="/plugins/datatables/fnReloadAjax.js" cache="false"></script>
+	<script src="/plugins/datatables/dataTables.tableTools.js"
+		cache="false"></script>
+
+
+	<script src="/plugins/fastclick/fastclick.min.js"
+		type="text/javascript"></script>
+	<!-- AdminLTE App -->
+	<script src="/dist/js/app.min.js" type="text/javascript"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="/dist/js/demo.js" type="text/javascript"></script>
+
+	<!-- date-picker -->
+	<script src="/plugins/datepicker/bootstrap-datepicker.js"
+		type="text/javascript"></script>
+
+	<!-- date-range-picker -->
+	<script src="/plugins/daterangepicker/moment.js" type="text/javascript"></script>
+	<script src="/plugins/daterangepicker/daterangepicker.js"
+		type="text/javascript"></script>
+
+	<!-- iCheck 1.0.1 Script checkbox y radiobuttons -->
+	<script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
+	<script src="/plugins/jquerynumeric/jquery.numeric.js"
+		type="text/javascript"></script>
+
+	<!-- Jquery Validate -->
+	<script src="/plugins/jqueryvalidate/jquery.validate.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/additional-methods.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/messages_es.min.js"
+		type="text/javascript"></script>
+
+	<!-- JQUERY Number -->
+	<script src="/plugins/jquerynumber/jquery.number.js"
+		type="text/javascript"></script>
+		
+	<!-- Select2 -->
+	<script src="../../plugins/select2/select2.full.min.js"></script>
+
+	<!-- page script -->
+	<script type="text/javascript">
+		$(function()
+		{
+			var ingresaOrden;
+			
+			obtenerEjecutivos('#ejecutivoOrdenPagoSelect');
+
+			obtenerListadoBancos('#nombreBancoSelect');
+			
+			obtenerConceptosCobro('#tipoCobroOrdenPagoSelect');
+
+			var tablaCobros=$('#tablePagarCobros').dataTable( { 
+				dom: 'T<"clear">lfrtip',       
+		        bFilter: true,
+		        "responsive":true,
+		        "bLengthChange": false,
+		        "autoWidth": false,	      
+		        tableTools: {
+		            "sSwfPath": "/swf/copy_csv_xls_pdf.swf",
+		            "sRowSelect": "single",
+		            "aButtons": [ ]
+		        },
+		        "language": {
+					"lengthMenu": "Desplegando _MENU_ registros por p&aacute;gina",
+					"zeroRecords": "Nada encontrado - Lo sentimos",
+					"info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+					"infoEmpty": "No hay registros disponibles",
+					"infoPostFix":    "",
+					"thousands":      ",",
+					"loadingRecords": "Cargando...",
+					"processing":     "Procesando...",
+					"search":         "Buscar:",
+					"infoFiltered ": "(Filtrando de un total de _MAX_ registros)",
+					"paginate": {
+						"first":      "Primero",
+						"last":       "&Uacute;ltimo",
+						"next":       "Siguiente",
+						"previous":   "Anterior"
+						}
+					}		
+		        
+		    } );
+
+			var id_user = '<?= $this->id_usuario ?>';
+			var perfil=<?= $this->rol ?>;
+			
+			switch(perfil)
+			{
+				case 1:	
+						$('#ejecutivoOrdenPagoSelect').val(id_user);
+						$('#ejecutivoOrdenPagoSelect').attr({"disabled":true});
+						obtenerClientesByjecutivo('#clienteOrdenPagoSelect',$('#ejecutivoOrdenPagoSelect').val());
+				break;
+				
+			}	
+			
+			$('#ejecutivoOrdenPagoSelect').select2();
+			$('#clienteOrdenPagoSelect').select2();
+			$('#rutOrdenPagoSelect').select2();	
+
+			
+		    
+			$('#montoInput').number( true, 0,',','.' );
+
+
+			$('#btnBuscar').on('click', function(){
+				listarCobros();
+			});
+		    
+			$('#ejecutivoOrdenPagoSelect').select2();
+			$('#clienteOrdenPagoSelect').select2();
+			$('#rutOrdenPagoSelect').select2();
+
+			var formOrdenPago=$('#formIngresoOrdenPago').validate({
+				debug:true,
+				rules:{
+					
+					numeroChequeInput:
+					{
+						required:true
+					},			
+					nombretitularInput:
+					{
+						required:true
+					},			
+					nombreBancoSelect:
+					{
+						required:true
+					},
+					montoInput:
+					{
+						required:true
+					}	
+				},
+				messages:{
+					
+					numeroChequeInput:"Debe ingresar el N&uacute;mero del cheque",
+					nombretitularInput:"Debe ingresar el nombre del titular",
+					nombreBancoSelect:"Debe seleccionar un elemento de la lista",
+					montoInput:"Debe ingresar el monto"
+				},
+				invalidHandler:function(event, validator)
+				{
+					
+				},	
+				submitHandler:function(datos)
+				{					
+					var montoPago=0;		
+								
+					//verifico que el monto de la orden de pago sea igual al monto cobrado
+					if($('#montoInput').val()==totalPagoCobrosSeleccionados().toString().replace(/\./g,''))
+					{
+						url = '/index.php/pago/registrarordenpago';						
+						
+						var datoOrdenPago="numeroCheque="+$('#numeroChequeInput').val()+
+										  "&titular="+$('#nombretitularInput').val()+
+										  "&banco="+$('#nombreBancoSelect').val()+
+										  "&montoOrden="+$('#montoInput').val()+
+										  "&idCobro="+obtenerIdCobro()+									  
+										  "&tipoCobro="+tipoCobro();
+						$.ajax({
+						    url: url,  
+						    type: "POST",
+						    data: datoOrdenPago,  
+						    async:false,
+						    success: function(datos)
+						    {
+							    if(datos.registro[0]=='1')
+								{
+									$('#mensajeCobroIngresado').removeClass('hide');
+									$('#modalIngresoOrdenPago').modal('hide');	
+									listarCobros();							
+							    }
+							    else if(datos.registro[0]=='2')
+							    {
+							    	$('#mensajeCobroProblema').removeClass('hide');
+							    	$('#modalIngresoOrdenPago').modal('hide');
+							    }
+							    else if(datos.registro[0]=='3')
+							    {
+							    	$('#mensajeNumeroCheque').removeClass('hide');
+							    	$('#numeroChequeInput').val('');
+							    }							    						
+						    },
+						    error(status)
+						    {
+						    	$('#mensajeCobroProblema').removeClass('hide');
+						    	$('#modalIngresoOrdenPago').modal('hide');
+						    }
+						});
+					}
+					else
+					{							
+						$('#mensajeMontoMayor').removeClass('hide');				
+					}				
+				}
+			});
+
+			$('#buttonOrdenDePago').on('click',function()
+			{		
+				if($('#tablePagarCobros tbody tr').hasClass('selected'))
+				{	
+					//estado cobro que sea distinto a dinero recibido. estadoCobro()
+					//el dinero recibido sea menor al dinero cobrado. dineroRecibido()
+							
+					if(estadoCobro())
+					{
+						//ingresa una nueva orden de pago
+						$('#modalIngresoOrdenPago').modal();
+						$('#montoTotalPago').val(totalPagoCobrosSeleccionados());
+												
+					}
+					else if(!estadoCobro() && dineroRecibido())
+					{
+						//actualiza orden de pago
+						$('#modalIngresoOrdenPago').modal();
+						$('#montoTotalPago').val("$ "+totalPagoCobrosSeleccionados());
+						obtieneOrdenPago(obtenerIdCobro(),tipoCobro());
+					}
+					else
+					{
+						$('#mensajeDineroRecibido').removeClass('hide');
+					}										
+				}
+				else
+				{
+					$('#mensajeSeleccioneCobro').removeClass('hide');
+				}	
+
+					
+					
+			});
+
+			$('#modalIngresoOrdenPago').on('hidden.bs.modal',function()
+			{				
+				formOrdenPago.resetForm();
+			});
+
+			$('#buttoMensajeMontoMayor').on('click',function()
+			{
+				$('#mensajeMontoMayor').addClass('hide');
+			});			
+
+			$('#ejecutivoOrdenPagoSelect').on('change',function()
+			{				
+				obtenerClientesByjecutivo('#clienteOrdenPagoSelect',$('#ejecutivoOrdenPagoSelect').val());															
+			});	
+
+			$('#clienteOrdenPagoSelect').on('change',function()
+			{						
+				obtenerRutCliente($('#clienteOrdenPagoSelect').val());				
+			});			
+
+			$('#buttonMensajeNumeroCheque').on('click',function()
+			{
+				$('#mensajeNumeroCheque').addClass('hide');
+			});
+
+			$('#buttonMensajeOrdenPagoAociada').on('click',function()
+			{
+				$('#mensajeOrdenPagoAociada').addClass('hide');
+			});
+			
+			$('#buttoMensajeCobroIngresado').on('click',function()
+			{
+				$('#mensajeCobroIngresado').addClass('hide');
+			});
+
+			$('#buttoMensajeCobroProblema').on('click',function()
+			{
+				$('#mensajeCobroProblema').addClass('hide');
+			});
+
+			$('#modalIngresoOrdenPago').on('hidden.bs.modal',function()
+			{				
+				$('#numeroChequeInput').val('');
+				$('#nombretitularInput').val('');
+				$('#nombreBancoInput').val('');
+				$('#montoInput').val('');
+			});
+
+			$('#buttonMensajeDineroRecibido').on('click',function()
+			{
+				$('#mensajeDineroRecibido').addClass('hide');
+			});
+
+			$('#buttonMensajeSeleccioneCobro').on('click',function()
+			{
+				$('#mensajeSeleccioneCobro').addClass('hide');
+			});
+
+			$('#rutOrdenPagoInput').Rut({		  
+				   on_error: function()
+				   { 
+					   $('#modalRutIncorrecto').modal();
+					   $('#rutOrdenPagoInput').val('');
+				   },
+				   format_on: 'keyup'
+			});
+
+			//$('#numeroChequeInput').numeric(',');
+
+			$('#numeroSociedadInput').numeric(',');
+
+			$('#fechaDesdeHasta').daterangepicker(); 	
+			
+		    $('input[type="checkbox"].minimal').iCheck({
+		       checkboxClass: 'icheckbox_minimal-blue',
+		    }); 
+		    
+		    function obtenerEjecutivos(objetivo)
+			{				
+			    url = '/index.php/usuario/listar';
+			    
+				$(objetivo).empty();			
+						
+				$('<option>').
+				attr({value:""}).
+				text('Seleccione').
+				prop({disabled: false}).
+				appendTo(objetivo);
+
+				var dato="";
+			
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos){
+					    
+				    	 $.each(datos.data, function( index, value ) {
+								
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(value[1]).
+							   appendTo(objetivo);
+						});
+				    }
+				}); 			
+			} 
+
+		    function obtenerClientesByjecutivo(objetivo,idEjecutivo)
+			{				
+			    url = '/index.php/cliente/listarbyejecutivo?idUsuario='+idEjecutivo;
+			    
+				$(objetivo).empty();			
+						
+				$('<option>').
+				attr({value:""}).
+				text('Seleccione').
+				prop({disabled: false}).
+				appendTo(objetivo);
+
+				var dato="";
+			
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos){
+					    
+				    	 $.each(datos.data, function( index, value ) {
+								
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(value[1]).
+							   appendTo(objetivo);
+						});
+				    }
+				}); 			
+			} 
+
+		    function obtenerConceptosCobro(objetivo)
+			{				
+			    url = '/index.php/concepto/listar';
+			    
+				$(objetivo).empty();			
+						
+				$('<option>').
+				attr({value:""}).
+				text('Seleccione').
+				prop({disabled: false}).
+				appendTo(objetivo);
+
+				var dato="";
+			
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato, 
+				    success: function(datos){
+					    
+				    	 $.each(datos.data, function( index, value ) {
+								
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(value[1]).
+							   appendTo(objetivo);
+						});
+				    }
+				}); 
+			}
+
+		    function obtenerRutCliente(idCliente)
+			{				
+			    url = '/index.php/rut/listadorutbyidcliente';
+			    						
+				objetivo = "#rutOrdenPagoSelect";
+
+				$('#rutOrdenPagoSelect').empty();
+						
+				$('<option>').
+				attr({value:""}).
+				text('Seleccione').
+				prop({disabled: false, selected: true}).
+				appendTo(objetivo);
+
+				var dato="idCliente="+idCliente;
+			
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos){
+
+				    	 $.each(datos.data, function( index, value ) {
+
+				    		 var detalle=value[3]+" - "+value[1];
+				    		 	
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(detalle).
+							   appendTo(objetivo);
+						});
+					    
+				    }
+				}); 
+				
+			  }
+
+			//obtengo los cobros asociados a los ruts de los clientes
+		    function listarCobros()
+			{
+				if($('#fechaDesdeHasta').val() != ''){
+					var data=$('#fechaDesdeHasta').val().split('-');
+					var dataInicio=$.trim(data[0]);
+					var inicioSplit=dataInicio.split('/');	
+					var dataFinal=$.trim(data[1]);
+					var finalSplit=dataFinal.split('/');	
+					var fechaInicio = inicioSplit[0]+"-"+inicioSplit[1]+"-"+inicioSplit[2];
+					var fechaFinal = finalSplit[0]+"-"+finalSplit[1]+"-"+finalSplit[2];			
+				}else{
+					var fechaInicio = '';
+					var fechaFinal ='';
+				}
+				
+				url = '/index.php/cobroindividual/obtenerlistadocobros?idCliente='+
+					  $('#clienteOrdenPagoSelect').val()+
+					  "&idRut="+$('#rutOrdenPagoSelect').val()+
+					  "&fechaInicio="+fechaInicio+
+					  "&fechaFinal="+fechaFinal+
+				  	  "&idUsuario="+$('#ejecutivoOrdenPagoSelect').val();
+				  
+				tablaCobros.fnClearTable();				
+				tablaCobros.fnReloadAjax(url);
+			}
+
+		  	//funcion para obtener el id cobro asociado al rut.
+			function obtenerIdCobro()
+			{				
+				var id="";
+				var cont=0;	
+				var idCobros=[];
+						
+					$('#tablePagarCobros').find('tr.selected').each(function(){
+						id=$(this).find('td:first').html();					
+						
+						idCobros[cont]=id;				
+						cont++;			
+						
+					});
+					
+				cont=0;
+				return idCobros;
+			}
+
+			//funcion para saber que tipo de cobro estoy pagando si es honorario o cobroIndividual
+			function tipoCobro()
+			{
+				var idTipo=[];
+				var tipo="";
+				var cont=0;			
+				$('#tablePagarCobros').find('tr.selected').each(function(){
+					tipo=$(this).find('td:first').next().html();		
+
+					if(tipo=="Masivo")
+					{
+						id="1";
+					}
+					else
+					{
+						id="2";
+					}
+					
+					idTipo[cont]=id;
+					cont++;
+				});
+			return idTipo;
+
+			}
+			
+			function totalPagoCobrosSeleccionados()
+			{
+				var totalPago=0;
+				
+				$('#tablePagarCobros').find('tr.selected').each(function()
+				{
+					totalPago=$.trim($(this).find('td:first').next().next().next().next().next().next().html().toString().replace('$ ',''));										
+				});
+				
+				return totalPago;
+			} 	  			
+
+			function obtenerListadoBancos(objetivo)
+			{
+				url = '/index.php/rut/listadobancos';
+			    
+				$(objetivo).empty();		
+				
+				$('<option>').
+				attr({value:""}).
+				text('Seleccione').
+				prop({disabled: false}).
+				appendTo(objetivo);
+							
+				var dato="";
+			
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos)
+				   	{
+					   	$.each(datos.bancos,function(index,value)
+						{
+					   		$('<option>').
+							attr({value:value[0]}).
+							text(value[1]).
+							appendTo(objetivo);
+							
+						});
+				    }
+				});	
+			} 		
+
+			function dineroRecibido()
+			{
+				var estado=false;
+						
+				$('#tablePagarCobros').find('tr.selected').each(function()
+				{
+					cobrado=$.trim($(this).find('td:first').next().next().next().next().next().next().html().toString().replace('$ ',''));
+								
+					recibido=$.trim($(this).find('td:first').next().next().next().next().next().next().next().html().toString().replace('$ ',''));	
+
+					if(recibido=='')
+					{
+						recibido=0;
+					}
+					
+					if(cobrado=='')
+					{
+						cobrado=0;
+					}					
+					
+					if(parseInt(recibido)<parseInt(cobrado))
+					{
+						estado=true;
+					}						
+				});
+				
+				return estado;
+
+			}
+
+			function estadoCobro()
+			{
+				var estado=false;
+						
+				$('#tablePagarCobros').find('tr.selected').each(function(){
+
+					tipo=$(this).find('td:first').next().next().next().next().next().next().next().next().next().html();		
+					
+					if(tipo!="dinero recibido")
+					{
+						estado=true;
+					}						
+				});
+				
+				return estado;
+
+			}
+
+			function obtieneOrdenPago(idCobro,tipoCobro)
+			{
+				url="/index.php/pago/obtieneordenpagobyidcobro";
+
+				var dato="idCobro="+idCobro+"&tipoCobro="+tipoCobro;
+
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos)
+				   	{	
+						if(datos.data[0]!='')
+						{
+							$('#nombreBancoSelect').val(datos.data[0]);
+							$('#nombretitularInput').val(datos.data[1]);
+							
+						}
+				    }
+				});	
+			}
+
+			listarCobros();
+			
+		});
+
+	</script>
+
+</body>
+</html>

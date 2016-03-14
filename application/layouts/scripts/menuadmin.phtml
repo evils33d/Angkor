@@ -1,0 +1,51 @@
+<?php 
+$msg = $this->loggedInAs();
+$perfil =  $this->validaRol();
+//echo $request->getControllerName()."::".$request->getActionName();
+?> 
+<div class="header">
+
+		<div class="caja_navegacion">
+
+
+			<a class="logo_top_header" href="#">Info Bridge</a>
+
+			<div class="barra_top">
+				<span>Bienvenido <?=$msg["nombre"]?>  <i> ( <?=$this->tipoperfil[0]['ap03_nombrePerfil']?> ) </i>
+				</span> 
+				<a class="link cerrar" href="<?=$msg["url_logout"]?>">CERRAR SESI&Oacute;N</a>
+
+			</div>
+
+
+			<div>
+				<ul class="adxm menu">
+				<li>
+						<a href="/index.php/admin/index/">Home</a>
+				</li>
+
+					
+				<li>
+						<a href="/index.php/usuario/index/">Usuarios</a>
+				</li>
+				
+				<li>
+						<a href="/index.php/centrocostos/index/">Centros de costo</a>
+				</li>
+				
+				<!--  <li>
+						<a href="/index.php/tienda/index/">Tiendas</a>
+				</li>-->
+				<li>
+						<a href="/index.php/estadosproyecto/index/">Estados Proyecto</a>
+				</li>
+				<li>
+						<a href="/index.php/tiposcomentario/index/">Tipos Comentarios</a>
+				</li>	
+
+
+				</ul>
+			</div>
+</div>
+</div>
+		<!--fin de caja navegacion-->

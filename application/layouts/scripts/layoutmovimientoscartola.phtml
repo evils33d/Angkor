@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><?=$this->nombre_sitio?></title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<!-- Select2 -->
+<link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+<!-- Bootstrap 3.3.4 -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Ionicons -->
+<link href="/ionicons/css/ionicons.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- DATA TABLES -->
+<!-- <link href="/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />-->
+<link href="/plugins/datatables/jquery.dataTables.css" rel="stylesheet"
+	type="text/css" />
+<link href="/plugins/datatables/dataTables.tableTools.css"
+	rel="stylesheet">
+
+<link href="/plugins/datatables/dataTables.responsive.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- datepicker, estilos calendario -->
+<link href="/plugins/datepicker/datepicker3.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- DateRangePicker -->
+<link href="/plugins/daterangepicker/daterangepicker-bs3.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- Theme style -->
+<link href="/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+<link href="/dist/css/skins/<?=$this->skin?>.min.css" rel="stylesheet"
+	type="text/css" />
+
+<link href="/plugins/JqueryAlerts/jquery.alerts.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style>
+.editar {
+	width: 20px;
+	height: 40px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.marginBottomButton {
+	margin-bottom: 3px;
+}
+
+#formBuscarCartola .error {
+	color: Crimson
+}
+
+#formPagoProveedor .error {
+	color: Crimson
+}
+
+#formCompensaciones .error {
+	color: Crimson
+}
+</style>
+</head>
+<!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+<body class="<?=$this->skin?> sidebar-mini">
+	<div class="wrapper">
+
+
+		<!-- Main Header -->
+      	<?=$this->render('head.phtml') ?>	
+  <!-- Fin Main Header -->
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+
+				<!-- Sidebar user panel (optional) -->
+				<?=$this->render('sidebaruserpanel.phtml') ?>	
+		  <!-- Fin Sidebar user panel -->
+
+				<!-- Sidebar Menu -->
+				<?=$this->render('menu.phtml') ?>		
+        </section>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<!-- Main content -->
+       
+          <?=$this->layout()->content?>
+       
+        <!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+			
+			<?= $this->render('footer.phtml')?>
+
+      <!-- Control Sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED JS SCRIPTS -->
+
+	<!-- jQuery 2.1.4 -->
+	<script src="/plugins/jQuery/jQuery-2.1.4.min.js"
+		type="text/javascript"></script>
+
+	<!-- Script RUT -->
+	<script src="/plugins/jQueryRut/jquery.Rut.js" type="text/javascript"></script>
+
+	<!-- Bootstrap 3.3.2 JS -->
+	<script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<!-- DATA TABES SCRIPT -->
+	<script src="/plugins/datatables/jquery.dataTables.min.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/datatables/dataTables.responsive.js"
+		type="text/javascript"></script>
+
+	<!-- <script src="/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+	<!-- SlimScroll -->
+	<script src="/plugins/slimScroll/jquery.slimscroll.min.js"
+		type="text/javascript"></script>
+	<!-- FastClick -->
+
+
+	<script src="/plugins/datatables/dataTables.tableTools.js"
+		cache="false"></script>
+
+	<script src="/plugins/datatables/fnReloadAjax.js" cache="false"></script>
+
+	<script src="/plugins/fastclick/fastclick.min.js"
+		type="text/javascript"></script>
+	<!-- AdminLTE App -->
+	<script src="/dist/js/app.min.js" type="text/javascript"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="/dist/js/demo.js" type="text/javascript"></script>
+
+	<!-- InputMask -->
+	<script src="../../plugins/input-mask/jquery.inputmask.js"
+		type="text/javascript"></script>
+	<script
+		src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"
+		type="text/javascript"></script>
+	<script src="../../plugins/input-mask/jquery.inputmask.extensions.js"
+		type="text/javascript"></script>
+
+	<!-- date-picker -->
+	<script src="/plugins/datepicker/bootstrap-datepicker.js"
+		type="text/javascript"></script>
+
+	<!-- date-range-picker -->
+	<script src="/plugins/daterangepicker/moment.js" type="text/javascript"></script>
+	<script src="/plugins/daterangepicker/daterangepicker.js"
+		type="text/javascript"></script>
+
+	<!-- Jquery Numeric -->
+	<script src="/plugins/jquerynumeric/jquery.numeric.js"
+		type="text/javascript"></script>
+
+	<!-- Jquery Validate -->
+
+	<script src="/plugins/jqueryvalidate/jquery.validate.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/additional-methods.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/messages_es.min.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/jquerynumber/jquery.number.js"
+		type="text/javascript"></script>
+		
+	<!-- page script -->
+	<script src="/plugins/JqueryAlerts/jquery.alerts.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jQuery/jquery-migrate-1.2.1.js"
+		type="text/javascript"></script>
+		
+	<!-- Select2 -->
+	<script src="../../plugins/select2/select2.full.min.js"></script>	
+		
+	
+	<script type="text/javascript">
+	
+	$('#compensacionSelect').select2();
+
+	function marcaInputDocumento(){
+
+		$("#tablaBusquedaCobros").find('input.montoacompensar').each(function (index, element) 
+		{
+			var numero_documento =$(this).attr('data-documento');
+
+			if(parseInt($('#documentoMovimiento').val()) == parseInt(numero_documento))
+			{
+				$(this).parent().parent().parent().css("background-color","#FBC5C5");					
+			}							
+		});
+	}
+	
+	
+	$( document ).on('click','.btnCompensar',function()
+	{
+						$('#tipo_movimiento').val($(this).attr('data-tipo'));
+						if($(this).attr('data-tipo') == 2)
+						{
+							$('#btnSaldo').show();							
+						}
+						
+
+						$('#montoMovimientoGuardado').val($(this).attr('data-valor').replace('.',''));
+						$('#montoMovimiento').val($(this).attr('data-valor').replace('.',''));
+						$('#documentoMovimiento').val($(this).attr('data-doc'));
+						var valor = $(this).attr('data-valor');
+						var id = $(this).attr('id');
+						$('#montoMovimientoFormateado').val(valor);
+						$('#montoMovimientoFormateado').number( true, 0,',','.' );
+						$('#idMovimiento').val(id);
+
+						if(parseInt($('#documentoMovimiento').val()) != 0)
+						{
+							marcaInputDocumento();
+						}
+
+	});
+
+
+	$( document ).on('click','.btnPagoProveedor',function()
+			{
+								$('#tipo_movimiento').val($(this).attr('data-tipo'));								
+								$('#montoMovimiento').val($(this).attr('data-valor').replace('.',''));
+								$('#documentoMovimiento').val($(this).attr('data-doc'));
+								$('#idMovimiento').val($(this).attr('data-id'));
+								var valor = $(this).attr('data-valor');
+								$('#montoMovimientoFormateado2').val(valor);
+								$('#montoMovimientoFormateado2').number( true, 0,',','.' );
+
+			});
+
+	$( document ).on('click','.paginate_button',function()
+			{
+						if(parseInt($('#documentoMovimiento').val()) != 0)
+						{
+								marcaInputDocumento();
+						}
+
+
+			});
+
+	
+	$( document ).on( 'keyup', '.montoacompensar', function () {
+		$(".montoacompensar").numeric();
+
+
+
+		if(parseInt($(this).val()) > parseInt($('#montoMovimiento').val()))
+		{
+			$(this).css("background-color","#FBC5C5");
+			
+		}
+		else
+		{
+			$(this).css("background-color","white");
+			
+			var suma= 0;
+			$("#tablaBusquedaCobros").find('input.montoacompensar').each(function (index, element) 
+			{
+				var valorinput = $(this).val()
+				
+				if(valorinput == "")
+				{
+					valorinput = 0;
+				}
+
+				suma = parseInt(valorinput)+parseInt(suma);
+				
+		        if(suma > $('#montoMovimiento').val() )
+			    {
+		        	$(this).css("background-color","#FBC5C5");
+		        }else
+			    {
+		        	$(this).css("background-color","white");
+		        }
+		    });
+					
+			var resta = parseInt($('#montoMovimiento').val())-parseInt(suma);
+			$('#montoMovimientoFormateado').val(resta);
+			//$('#montoMovimientoFormateado').number( true, 0,',','.' );
+
+		}
+	});
+
+	$( document ).on( 'keyup', '#montoInputProveedor', function ()
+	{
+	
+		if(parseInt($(this).val()) > parseInt($('#montoMovimiento').val()))
+		{
+			$(this).css("background-color","#FBC5C5");
+			
+		}
+		else
+		{
+			$(this).css("background-color","white");					
+			var resta = parseInt($('#montoMovimiento').val())-parseInt($(this).val());
+			$('#montoMovimientoFormateado2').val(resta);
+
+		}
+		
+	});
+
+
+	$( document ).on( 'click', '.montoacompensar', function () {
+
+		$(this).number( true, 0,',','.' );
+
+	});
+
+	
+	$(function(){
+
+		
+
+		var tableDetalleCompensaciones = $('#tableDetalleCompensaciones').dataTable( {
+	        bFilter: true,
+	        "responsive":true,
+	        "bLengthChange": false,
+	        "autoWidth": false,       
+	        "language": {
+				"lengthMenu": "Desplegando _MENU_ registros por p&aacute;gina",
+				"zeroRecords": "Nada encontrado - Lo sentimos",
+				"info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+				"infoEmpty": "No hay registros disponibles",
+				"infoPostFix":    "",
+				"thousands":      ",",
+				"loadingRecords": "Cargando...",
+				"processing":     "Procesando...",
+				"search":         "Buscar:",
+				"infoFiltered ": "(Filtrando de un total de _MAX_ registros)",
+				"paginate": {
+					"first":      "Primero",
+					"last":       "&Uacute;ltimo",
+					"next":       "Siguiente",
+					"previous":   "Anterior"
+					}
+				}        
+	    } );
+	    
+			
+
+
+		
+		
+	    function buscarDetalleCompensacion(movimiento)
+	    {
+	    	url = '/index.php/compensacion/busquedadetallecompensacion?';
+			url += 'movimiento='+movimiento;
+			
+			tableDetalleCompensaciones.fnClearTable();		
+			tableDetalleCompensaciones.fnReloadAjax(url);
+	    }
+
+
+		$('.verDetalleCompensacion').on('click',function()
+		{
+
+					var movimiento = $(this).attr('id');
+
+					if(movimiento !="")
+					{
+						buscarDetalleCompensacion(movimiento);
+					}
+
+
+		});
+
+		$('#btnSaldo').hide();
+		$('#alertaMonto').hide();
+		$('#alertaMontoExito').hide();
+		$('#alertaMontoCobro').hide();
+
+
+		
+		$('#btnSaldo').on('click',function(){
+
+			if($('#clienteSelect').val() != "")
+			{
+				 jConfirm('Est\u00e1s seguro que deseas compensar el movimiento traspasando el monto al saldo del cliente seleccionado?', 'Confirmacion', function(r){	   		
+
+			    		if(r){
+
+			    			var monto =$('#montoMovimientoFormateado').val().replace('.','');
+			    			var cliente = $('#clienteSelect').val();
+			    			var movimiento = $('#idMovimiento').val();
+			    			
+				    	    url = '/index.php/compensacion/traspasoasaldocliente';
+							
+							$.ajax({
+							    url: url,  
+							    type: "POST",
+							    data:{monto: monto, cliente: cliente,movimiento: movimiento},
+							    async:false,
+							    success: function(datos){
+	
+							    	var valor = $.parseJSON(datos);
+							    	if(valor.respuesta == true)
+							    	{
+							    		jAlert("El monto ha sido compensado y traspasado al saldo del cliente","Exito");
+								    	$('#montoMovimiento').val(0);
+								    	$('#montoMovimientoFormateado').val(0);
+								    	//buscarCobros();
+							    	}else{
+							    		jAlert("Se produjo un error al traspasar el monto. Por favor int\u00e9ntelo denuevo","Alerta");
+								    }
+							    }
+							});
+
+				    		
+			    			
+			    		}
+			    	 });
+
+				
+			}else{
+
+				jAlert("No ha seleccionado ning\u00fan cliente","Alerta");
+
+			}
+
+
+
+
+		});
+
+
+		$('#btnCompensaConSaldo').on('click',function(){
+
+			
+
+			var flag = $('#flagCompensaConSaldo').val();
+
+			if(flag == 1){
+
+				jAlert("Ud ya se encuentra compensando con el Saldo del cliente","Aviso");
+				
+			}else if($('#clienteSelect').val() != "")
+			{
+				 jConfirm('Est\u00e1s seguro que deseas compensar con el saldo del cliente?', 'Confirmacion', function(r){	   		
+
+			    		if(r){
+				    		
+			    			buscarCobros();
+			    			var idCliente = $('#clienteSelect').val();
+			    			url = '/index.php/compensacion/traesaldocliente';
+
+			    			$.ajax({
+							    url: url,  
+							    type: "POST",
+							    data:{idCliente:idCliente},
+							    async:false,
+							    success: function(datos){	
+							    	
+							    	if(datos.respuesta == true)
+							    	{
+							    		//jAlert("El monto ha sido compensado y traspasado al saldo del cliente","Exito");
+								    	//jAlert(datos.saldo,"Exito");
+								    	$('#montoMovimiento').val(datos.saldo);
+										$('#montoMovimientoFormateado').val(datos.saldo);
+										$('#montoMovimientoFormateado').number( true, 0,',','.' );										
+										$('#labelMonto').html('Monto Del Saldo');
+										$('#flagCompensaConSaldo').val('1');
+										$('#btnCompensaConSaldo').hide();
+								    	//$('#montoMovimiento').val(0);
+								    	//$('#montoMovimientoFormateado').val(0);
+								    	//buscarCobros();
+							    	}else{
+							    		jAlert("Error al traer el saldo","Alerta");
+								    }
+							    }
+							});
+	    			
+			    		}
+			    	 });
+
+				
+			}else{
+
+				jAlert("No ha seleccionado ning\u00fan cliente","Alerta");
+
+			}
+		});
+		
+		$('#guardarCompensacion').on('click',function(){
+
+			var idMovimiento = $('#idMovimiento').val();
+			var suma= 0;
+			var arregloCobros={};
+			var i=0;
+			var flag = true;
+			var tipo_movimiento = $('#tipo_movimiento').val();
+			var flagCompensaConsaldo = $('#flagCompensaConSaldo').val();	
+			var idCliente = 0;
+			var montoSaldoAnterior = 0;
+
+			if(flagCompensaConsaldo == '1'){
+				idCliente = $('#clienteSelect').val();
+				montoSaldoAnterior = $('#montoMovimiento').val();
+			}
+			
+			$("#tablaBusquedaCobros").find('input.montoacompensar').each(function (index, element) 
+			{
+				var valorinput = $(this).val();
+				var monto = $(this).attr('data-monto');
+				var documento = parseInt($(this).attr('data-documento'));
+				var id_input = $(this).attr('id');	
+				var flagpasarverificado =  false;			
+
+				if(documento !=0)
+				{
+					if(documento == parseInt($('#documentoMovimiento').val()))
+					{
+						var flagpasarverificado =  true;
+					}
+				}
+
+				if(parseInt(valorinput) > parseInt(monto))
+				{
+					 jAlert("El monto ingresado no puede ser mayor al monto a compensar","Alerta");
+					$(this).focus();
+					flag = false;
+				}
+				
+				if(valorinput == "")
+				{
+					valorinput = 0;
+				}
+
+				suma = parseInt(valorinput)+parseInt(suma);
+
+				if(valorinput != "")
+				{
+					arregloCobros [i] ={};
+					arregloCobros [i]['llave']= $(this).attr('id');
+					arregloCobros [i]['monto']= $(this).val();
+					arregloCobros [i]['pasarverificado']= flagpasarverificado;
+					i++;
+				}
+				
+		       
+		    });
+			
+			if(flag)
+			{
+				 if(suma > $('#montoMovimiento').val() )
+				 {
+					 jAlert("Ha ingresado un monto mayor que el del movimiento","Alerta");
+			     }else if(suma <= 0){
+			    	 jAlert("No ha ingresado ning\u00fan monto","Alerta");
+				 }
+			     else{
+
+			    	 jConfirm('Est\u00e1s Seguro que deseas compensar los cobros indicados?', 'Confirmacion', function(r) {	   		
+
+			    		if(r){
+				    		var datos = JSON.stringify(arregloCobros);
+				    		//var datos = $(arregloCobros).serializeArray()
+				    	    url = '/index.php/compensacion/guardacompensacion';				    
+							
+							$.ajax({
+							    url: url,  
+							    type: "POST",
+							    data:{data: datos, mov:idMovimiento,totalcompensado:suma,flagCompensaConsaldo:flagCompensaConsaldo,idCliente:idCliente,montoSaldoAnterior:montoSaldoAnterior}, 
+							    async:false,
+							    success: function(datos){
+	
+							    	var valor = $.parseJSON(datos);
+							    	if(valor.respuesta == true)
+							    	{
+								    	//$('#alertaMontoExito').show();
+								    	//$("#alertaMontoExito").fadeOut(10000);
+								    	jAlert("Los Cobros fueron compensados correctamente","Exito");
+								    	$('#montoMovimiento').val( parseInt($('#montoMovimiento').val())-suma);
+								    	buscarCobros();
+							    	}else{
+							    		jAlert("Se produjo un error al compensar los cobros. Por favor int\u00e9ntelo denuevo","Alerta");
+								    }
+							    }
+							}); 
+			    		}
+			    	 });
+									     
+			     }
+			}
+
+			return false;
+
+		});
+		
+		
+		inicializaDataTable($('#tableMovimientos'));
+		//inicializaDataTable($('#tableDetalleCompensaciones'));
+		obtenerEjecutivos('#ejecutivoSelect');	
+		obtenerEstadosCobro('#estadoSelect');	
+
+
+
+		var tablaBusquedaCobros = $('#tablaBusquedaCobros').dataTable( {
+	        bFilter: true,
+	        "responsive":true,
+	        "bLengthChange": true,
+	        "autoWidth": true,
+	        "language": {
+				"lengthMenu": "Desplegando _MENU_ registros por p&aacute;gina",
+				"zeroRecords": "Nada encontrado - Lo sentimos",
+				"info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+				"infoEmpty": "No hay registros disponibles",
+				"infoPostFix":    "",
+				"thousands":      ",",
+				"loadingRecords": "Cargando...",
+				"processing":     "Procesando...",
+				"search":         "Buscar:",
+				"infoFiltered ": "(Filtrando de un total de _MAX_ registros)",
+				"paginate": {
+					"first":      "Primero",
+					"last":       "&Uacute;ltimo",
+					"next":       "Siguiente",
+					"previous":   "Anterior"
+					}
+				}        
+	    } );
+
+		buscarCobros();
+	
+		
+		function inicializaDataTable(table){
+
+			table.dataTable( {
+		        bFilter: true,
+		        "responsive":true,
+		        "bLengthChange": false,
+		        "autoWidth": false,       
+		        "language": {
+					"lengthMenu": "Desplegando _MENU_ registros por p&aacute;gina",
+					"zeroRecords": "Nada encontrado - Lo sentimos",
+					"info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+					"infoEmpty": "No hay registros disponibles",
+					"infoPostFix":    "",
+					"thousands":      ",",
+					"loadingRecords": "Cargando...",
+					"processing":     "Procesando...",
+					"search":         "Buscar:",
+					"infoFiltered ": "(Filtrando de un total de _MAX_ registros)",
+					"paginate": {
+						"first":      "Primero",
+						"last":       "&Uacute;ltimo",
+						"next":       "Siguiente",
+						"previous":   "Anterior"
+						}
+					}        
+		    } );
+		}
+
+
+		$('#btnBuscar').on('click',function()
+		{
+			
+			$('#montoMovimientoFormateado').val($('#montoMovimiento').val());
+			buscarCobros();
+			//$('.montoacompensar').number( true, 0,',','.' );
+		});
+
+		$('#ejecutivoSelect').on('change',function()
+		{
+			
+					$('#flagCompensaConSaldo').val('0');
+					$('#btnCompensaConSaldo').show();
+					$('#labelMonto').html('Monto Del movimiento');
+					$('#montoMovimiento').val($('#montoMovimientoGuardado').val());
+					$('#montoMovimientoFormateado').val($('#montoMovimientoGuardado').val());
+					$('#montoMovimientoFormateado').number( true, 0,',','.' );
+
+					montoMovimientoGuardado
+
+					
+					if($('#ejecutivoSelect').val()!='')
+					{
+						obtenerClientesByjecutivo('#clienteSelect',$('#ejecutivoSelect').val());
+					}	
+		});
+
+		$('#clienteSelect').on('click',function()
+		{
+
+			$('#flagCompensaConSaldo').val('0');
+			$('#btnCompensaConSaldo').show();
+			$('#labelMonto').html('Monto Del movimiento');
+			$('#montoMovimiento').val($('#montoMovimientoGuardado').val());
+			$('#montoMovimientoFormateado').val($('#montoMovimientoGuardado').val());
+			$('#montoMovimientoFormateado').number( true, 0,',','.' );
+
+			if($('#clienteSelect').val()!='')
+			{
+				obtenerRutCliente('#rutSelect',$('#clienteSelect').val());
+			}			
+		});
+
+
+
+
+		
+		function obtenerEjecutivos(objetivo)
+		{				
+		    url = '/index.php/usuario/listar';
+			    
+			$(objetivo).empty();			
+						
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+		
+			var dato="";
+			
+			$.ajax({
+			    url: url,  
+			    type: "GET",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+
+
+			    	$.each(datos.data, function( index, value ) {
+						
+						 $('<option>').
+						   attr({value:value[0]}).
+						   text(value[1]).
+						   appendTo(objetivo);
+					});
+
+			    }
+			});
+		} 
+
+
+		function buscarCobros()
+		{				
+			var ejecutivoSelect = $('#ejecutivoSelect').val()
+			var clienteSelect = $('#clienteSelect').val()
+			var rutSelect = $('#rutSelect').val()
+			var fechaDesdeHastaCompensacion = $('#fechaDesdeHastaCompensacion').val();
+			var tipoCobroCompensarSelect = $('#tipoCobroCompensarSelect').val();		
+			var montoDesdeCompensarInput = $('#montoDesdeCompensarInput').val();
+			var montoHastaCompensarInput = $('#montoHastaCompensarInput').val();
+			var estadoSelect = $('#estadoSelect').val();
+			
+			
+
+			url = '/index.php/compensacion/busquedacobroscompensacion?';
+			url += 'ejecutivoSelect='+ejecutivoSelect;
+			url += '&clienteSelect='+clienteSelect;
+			url += '&rutSelect='+rutSelect;
+			url += '&fechaDesdeHastaCompensacion='+fechaDesdeHastaCompensacion;
+			url += '&tipoCobroCompensarSelect='+tipoCobroCompensarSelect;
+			url += '&montoDesdeCompensarInput='+montoDesdeCompensarInput;
+			url += '&montoHastaCompensarInput='+montoHastaCompensarInput;
+			url += '&estadoSelect='+estadoSelect;
+
+			
+			tablaBusquedaCobros.fnClearTable();		
+			
+			tablaBusquedaCobros.fnReloadAjax(url);
+		} 
+
+
+		function obtenerClientesByjecutivo(objetivo,idEjecutivo)
+		{				
+		    url = '/index.php/cliente/listarbyejecutivo?idUsuario='+idEjecutivo;
+			    
+			$(objetivo).empty();			
+						
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+
+			var dato="";
+			
+			$.ajax({
+			    url: url,  
+			    type: "GET",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+				    
+			    	$.each(datos.data, function( index, value ) {
+						
+						 $('<option>').
+						   prop({value:value[0]}).
+						   text(value[1]).
+						   appendTo(objetivo);
+					});
+			    }
+			}); 			
+		} 
+
+
+		function obtenerRutCliente(objetivo,idCliente)
+		{				
+		    url = '/index.php/rut/listadorutbyidcliente';	    						
+
+			$(objetivo).empty();
+					
+			$('<option>').
+			prop({value:""}).
+			text('Seleccione').
+			prop({disabled: false, selected: true}).
+			appendTo(objetivo);
+
+			var dato="idCliente="+idCliente;
+		
+			$.ajax({
+			    url: url,  
+			    type: "GET",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+				    
+			    	$.each(datos.data, function( index, value ) {
+						
+						 $('<option>').
+						   prop({value:value[0]}).
+						   text(value[1]).
+						   appendTo(objetivo);
+					});
+			    }
+			}); 
+			
+		}
+
+		function obtenerEstadosCobro(objetivo)
+		{				
+		    url = '/index.php/cobro/obtenerestados';
+			    
+			$(objetivo).empty();			
+						
+			$('<option>').
+			prop({value:""}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+		
+			var dato="";
+			
+			$.ajax({
+			    url: url,  
+			    type: "GET",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+					    
+			    	$.each(datos.data, function( index, value ) {
+
+
+			    		var flag = false;
+				    	
+					    if(value.id_estado == 1)
+						{
+							flag = true;
+						}
+
+				    	
+						 $('<option>').
+						   prop({value:value.id_estado}).
+						   prop('selected',flag).
+						   text(value.nombre_estado).
+						   appendTo(objetivo);
+					});
+			    }
+			}); 			
+		} 
+
+		$('#fechaDesdeHasta').daterangepicker(); 
+
+		function guardaPagoProveedor()
+		{
+
+
+				var idMovimiento = $('#idMovimiento').val();
+				var tipo_movimiento = $('#tipo_movimiento').val();
+				var monto = $('#montoMovimiento').val();
+				var valorinput = $('#montoInputProveedor').val();
+				var observacionInput = $('#observacionInput').val();
+	    		var proveedorSelect = $('#proveedorSelect').val();
+				var flag = true;
+
+				if(parseInt(valorinput) > parseInt(monto))
+				{
+					jAlert("El monto ingresado no puede ser mayor al monto del movimiento","Alerta");
+					$('#montoInputProveedor').focus();
+					flag = false;
+				}
+					
+				if(valorinput == "" || valorinput == 0)
+				{
+					jAlert("El monto ingresado no puede ser cero","Alerta");
+					flag = false;
+				}
+
+
+				if(flag)
+				{
+
+				    jConfirm('Est\u00e1s Seguro que deseas compensar el monto indicado?', 'Confirmacion', function(r) 
+					{	   		
+		    			if(r){
+			    	    	url = '/index.php/compensacion/guardapagoproveedor';		    
+						
+							$.ajax({
+						    	url: url,  
+						    	type: "POST",
+						    	data:{montopagar:valorinput, idmovimiento:idMovimiento,tipomovimiento:tipo_movimiento,proveedor:proveedorSelect,observacion:observacionInput},
+						    	async:false,
+						    	success: function(datos){
+						    		if(datos.respuesta == true)
+						    		{
+							    		jAlert("La compensaci\u00F3n se realiz\u00F3 correctamente","Exito");
+							    		$('#montoMovimiento').val( parseInt($('#montoMovimiento').val())-valorinput);
+							    		$('#montoInputProveedor').val('0');
+							    		$('#observacionInput').val('');
+							    		$('#proveedorSelect').val('');
+						    		}else{
+						    			jAlert("Se produjo un error al realizar la compensaci\u00F3n. Por favor int\u00e9ntelo nuevamente","Alerta");
+							    	}
+						   	 	}
+							}); 
+		    		}
+		    	 });
+								     
+		     
+				}
+				return false;
+		}
+
+		var formPagoProveedor=$('#formPagoProveedor').validate({
+			debug:true,
+			rules:{
+				categoriaSelect:{
+					required:true
+				},
+				observacionInput:{
+					required:true
+				},
+				montoInput:{
+					required:true
+				}
+			},
+			messages:{
+				categoriaSelect:"Debe seleccionar un elemento de la lista",
+				observacionInput:"Debe ingresar una observaci&oacute;n",
+				montoInput:"Debe ingresar un monto"
+			},
+			invalidHandler:function(event, validator){
+				
+			},	
+			submitHandler:function(form){
+				guardaPagoProveedor();
+			}	
+		});	
+
+		$('#fechaDesdeHastaCompensacion').daterangepicker(); 	
+
+		$('#modalPagoProveedor').on('hidden.bs.modal',function(){
+			formPagoProveedor.resetForm();
+			$('#categoriaSelect').css('color','black');
+			
+		});
+
+		$('#modalCompensaciones').on('hidden.bs.modal',function(){
+			$('#ejecutivoCompensarSelect').css('color','black');
+			$('#tipoCobroCompensarSelect').css('color','black');
+			
+		});
+		
+		$('#rutCompensarInput').Rut({		  
+					 on_error: function(){ 
+						 $('#modalRutIncorrecto').modal();	
+						 $("#rutCompensarInput").val('');
+					  },
+					   format_on: 'keyup'
+		});
+
+		$("#montoInput").numeric(',');
+		
+		$("#montoInputProveedor").numeric(',');
+		
+		$('#montoInputProveedor').number( true, 0,',','.' );
+
+		$("#montoDesdeCompensarInput").number( true, 0,',','.' );
+			   
+		$("#montoHastaCompensarInput").number( true, 0,',','.' );
+
+		$('#modalCompensaciones').on('hidden.bs.modal', function() {
+			window.location.reload(true);
+		});
+
+		$('#modalPagoProveedor').on('hidden.bs.modal', function() {
+			window.location.reload(true);
+		});
+
+
+});
+	
+    </script>
+</body>
+</html>

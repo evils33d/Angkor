@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><?=$this->nombre_sitio?></title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<!-- Select2 -->
+<link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+<!-- Bootstrap 3.3.4 -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- daterange picker, estilos calendario -->
+<link href="/plugins/daterangepicker/daterangepicker-bs3.css"
+	rel="stylesheet" type="text/css" />
+
+<link href="/plugins/datepicker/datepicker3.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- Ionicons -->
+<link href="/ionicons/css/ionicons.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- DATA TABLES -->
+<!-- <link href="/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />-->
+<link href="/plugins/datatables/jquery.dataTables.css" rel="stylesheet"
+	type="text/css" />
+<link href="/plugins/datatables/dataTables.tableTools.css"
+	rel="stylesheet">
+
+<link href="/plugins/datatables/dataTables.responsive.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- iCheck for checkboxes and radio inputs -->
+<link href="../../plugins/iCheck/all.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- Theme style -->
+<link href="/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+<link href="/dist/css/skins/<?=$this->skin?>.min.css" rel="stylesheet"
+	type="text/css" />
+
+<link href="/plugins/JqueryAlerts/jquery.alerts.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style>
+.editar {
+	width: 20px;
+	height: 40px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#formBuscarCliente .error {
+	color: Crimson
+}
+
+#formBusquedaMovimientos .error {
+	color: Crimson
+}
+
+#envioEmailCliente .error {
+	color: Crimson
+}
+
+#formClienteEditar .error {
+	color: Crimson
+}
+
+#formContactoEditar .error {
+	color: Crimson
+}
+
+#formEnvioEmailRenta .error {
+	color: Crimson
+}
+
+.btn {
+	margin-bottom: 2px;
+}
+</style>
+</head>
+<!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+<body class="<?=$this->skin?> sidebar-mini">
+	<div class="wrapper">
+
+
+		<!-- Main Header -->
+      	<?=$this->render('head.phtml') ?>	
+  <!-- Fin Main Header -->
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+
+				<!-- Sidebar user panel (optional) -->
+				<?=$this->render('sidebaruserpanel.phtml') ?>	
+		  <!-- Fin Sidebar user panel -->
+
+				<!-- Sidebar Menu -->
+				<?=$this->render('menu.phtml') ?>		
+        </section>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<!-- Main content -->
+       
+          <?=$this->layout()->content?>
+       
+        <!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+			
+			<?= $this->render('footer.phtml')?>
+
+      <!-- Control Sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED JS SCRIPTS -->
+
+	<!-- jQuery 2.1.4 -->
+	<script src="/plugins/jQuery/jQuery-2.1.4.min.js"
+		type="text/javascript"></script>
+
+	<!-- Bootstrap 3.3.2 JS -->
+	<script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!-- DATA TABES SCRIPT -->
+	<script src="/plugins/datatables/jquery.dataTables.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/datatables/dataTables.responsive.js"
+		type="text/javascript"></script>
+
+	<!-- <script src="/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+
+	<!-- SlimScroll -->
+	<script src="/plugins/slimScroll/jquery.slimscroll.min.js"
+		type="text/javascript"></script>
+
+	<!-- FastClick -->
+	<script src="/plugins/datatables/fnReloadAjax.js" cache="false"></script>
+	<script src="/plugins/datatables/dataTables.tableTools.js"
+		cache="false"></script>
+	<script src="/plugins/fastclick/fastclick.min.js"
+		type="text/javascript"></script>
+
+	<!-- AdminLTE App -->
+	<script src="/dist/js/app.min.js" type="text/javascript"></script>
+
+	<!-- AdminLTE for demo purposes -->
+	<script src="/dist/js/demo.js" type="text/javascript"></script>
+
+	<!-- date-range-picker -->
+	<script src="/plugins/daterangepicker/moment.js" type="text/javascript"></script>
+	<script src="/plugins/daterangepicker/daterangepicker.js"
+		type="text/javascript"></script>
+
+	<!-- date-picker -->
+	<script src="/plugins/datepicker/bootstrap-datepicker.js"
+		type="text/javascript"></script>
+
+	<!-- iCheck 1.0.1 Script checkbox y radiobuttons -->
+	<script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
+	<script type="text/javascript"
+		src="/plugins/jquerynumeric/jquery.numeric.js"></script>
+
+	<!-- Jquery Validate -->
+
+	<script src="/plugins/jqueryvalidate/jquery.validate.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/additional-methods.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/messages_es.min.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/jquerynumber/jquery.number.js"
+		type="text/javascript"></script>
+
+	<!-- page script -->
+	<script src="/plugins/JqueryAlerts/jquery.alerts.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jQuery/jquery-migrate-1.2.1.js"
+		type="text/javascript"></script>
+
+	<!-- Select2 -->
+	<script src="../../plugins/select2/select2.full.min.js"></script>
+
+	<script type="text/javascript">
+
+	$(function()
+	{	
+
+		$('#btnEnviaDevolucion').on('click',function(){
+
+			var monto =$('#devolucionInput').val().replace('.','');
+			var cliente = $('#idCliente').val();
+			var saldo = $('#saldoInput').val().replace('.','');
+
+			if(parseInt(monto) > parseInt(saldo))
+			{
+				jAlert("El monto de la devolucion no puede ser mayor al saldo!","Alerta");
+			}else if(monto == '' || monto == 0)
+			{
+				jAlert("Por favor ingrese el valor de la devolucion!","Alerta");
+			}else{
+			
+				jConfirm('Est\u00e1s seguro que deseas realizar esta devolucion?', 'Confirmacion', function(r){	
+		    		if(r){		    			
+			    	    url = '/index.php/cliente/realizadevolucion';						
+						$.ajax({
+						    url: url,  
+						    type: "POST",
+						    data:{monto: monto, cliente: cliente,saldo:saldo},
+						    async:false,
+						    success: function(datos){
+						    	//var valor = $.parseJSON(datos);
+						    	if(datos.respuesta == true)
+						    	{
+						    		$('#saldoInput').val(saldo-monto);
+						    		$('#devolucionInput').val(0);
+						    		$('#saldoInput').number(true,0,',','.');
+						    		jAlert("La devolucion se ha realizado correctamente!","Exito");
+						    	}else{
+						    		jAlert("Se produjo un error al realizar la devolucion. Por favor int\u00e9ntelo denuevo","Alerta");
+							    }
+						    }
+						});    			
+		    		}
+		    	 });
+			}
+
+	    	 
+			return false;
+		});
+
+		$('#devolucionInput').number(true,0,',','.');
+
+		var d = new Date();
+
+		$('#asuntoEmailRenta').val('Renta '+d.getFullYear());
+		$('#asuntoVistaRenta').text('Renta '+d.getFullYear());
+
+		$('#devolucionInput').on('keyup',function(){
+
+			var montoInput = $(this).val().replace('.','');
+			var montoSaldo = $('#saldoInput').val().replace('.','');
+			
+			if(parseInt(montoInput) > parseInt(montoSaldo))
+			{
+
+				$(this).css("background-color","#FBC5C5");
+				
+			}else
+			{
+
+				$(this).css("background-color","white");
+			}
+			
+
+		});
+		
+		//recupero el id del cliente seleccionado en la busqueda.
+		var idCliente="<?php echo $_REQUEST['idCliente'] ?>";	
+		var dominio = '<?=$this->urlaplicacion?>';
+		
+		if(idCliente=="")
+		{					
+			window.location.href=dominio+"index.php/cliente/buscarpornombre";
+		}
+
+
+		obtenerEstadosCobro('#estadoSelect');
+
+		//obtengo el listado de usuarios ejectuvos registrado.
+		obtenerEjecutivos('#ejecutivoSelect');
+
+		//obtengo los datos personales del cliente 
+		obtenerDatosCliente(idCliente,1);
+
+		var bajaCliente=false;
+
+		var tablaRutAsociados = dataTableInitialize($('#tableRutAsociados'));	
+		var tablaContactosAsociados = dataTableInitialize($('#tableContactosAsociados'));
+		var tablaHistorialCobros = dataTableInitialize( $('#tableHistorialCobros'));
+		var tableRutRenta =dataTableInitialize($('#tableListadoRutRenta'));
+
+
+		listadoRutsRenta(idCliente,tableRutRenta);
+		 
+		//obtengo el listado de los emails asociados al usuario que los envio y al cliente
+		listadoEmailCobro(idCliente,tablaHistorialCobros);
+
+		//obtenego el listado de los ruts asociados al cliente
+		listadoRutsAsociados(idCliente,tablaRutAsociados); 
+
+		//obtengo el listado de los contactos asociados al cliente y rut.
+		listadoContactosAsociados(idCliente,tablaContactosAsociados);
+		
+		function dataTableInitialize(table)
+		{
+			
+			var tabla = table.dataTable( { 
+				dom: 'T<"clear">lfrtip',       
+		        bFilter: true,
+		        "responsive":true,
+		        "bLengthChange": false,
+		        "autoWidth": false,
+		        "order":[],	      
+		        tableTools: {
+		            "sSwfPath": "/swf/copy_csv_xls_pdf.swf",
+		            "sRowSelect": "single",
+		            "aButtons": [ ]
+		        },
+		        "language": {
+					"lengthMenu": "Desplegando _MENU_ registros por p&aacute;gina",
+					"zeroRecords": "Nada encontrado - Lo sentimos",
+					"info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+					"infoEmpty": "No hay registros disponibles",
+					"infoPostFix":    "",
+					"thousands":      ",",
+					"loadingRecords": "Cargando...",
+					"processing":     "Procesando...",
+					"search":         "Buscar:",
+					"infoFiltered ": "(Filtrando de un total de _MAX_ registros)",
+					"paginate": {
+						"first":      "Primero",
+						"last":       "&Uacute;ltimo",
+						"next":       "Siguiente",
+						"previous":   "Anterior"
+						}
+					}	
+		    } );
+
+		    return tabla;
+		}
+
+		var tablaMovimientosCliente=$('#tableMovimientosCliente').dataTable( { 
+			dom: 'T<"clear">lfrtip',       
+	        bFilter: true,
+	        "responsive":true,
+	        "bLengthChange": false,
+	        "autoWidth": false,	      
+	        tableTools: 
+		    {
+	            "sSwfPath": "/swf/copy_csv_xls_pdf.swf",
+	            "sRowSelect": "single",
+	            "aButtons": [ ]
+	        },
+	        "language": {
+				"lengthMenu": "Desplegando _MENU_ registros por p&aacute;gina",
+				"zeroRecords": "Nada encontrado - Lo sentimos",
+				"info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+				"infoEmpty": "No hay registros disponibles",
+				"infoPostFix":    "",
+				"thousands":      ",",
+				"loadingRecords": "Cargando...",
+				"processing":     "Procesando...",
+				"search":         "Buscar:",
+				"infoFiltered ": "(Filtrando de un total de _MAX_ registros)",
+				"paginate": {
+					"first":      "Primero",
+					"last":       "&Uacute;ltimo",
+					"next":       "Siguiente",
+					"previous":   "Anterior"
+					}
+				}		
+	        
+	    } );
+
+		//obtengo el listado de los cobros asociado al cliente
+		listadoCobrosAsociadosAlCliente(idCliente,tablaMovimientosCliente);
+			
+		var tableFinanzas =dataTableInicialize($('#tableFinanzasCliente'));	
+
+	    function dataTableInicialize(table)
+	    {
+	    	var tabla = table.dataTable( {        
+		        bFilter: true,
+		        "responsive":true,
+		        "bLengthChange": false,
+		        "autoWidth": false, 
+		        "searching":false,     
+		        "paging":   false,
+		        "info":     false,	        
+		    } );
+
+		    return tabla;
+	    }
+
+	    $('#ejecutivoSelect').select2();
+	    $('#anioRenta').select2();
+	    $('#estadoSelect').select2();
+	    
+	    //listadoDetalleCobros(idCliente,tableFinanzas);
+
+
+	    /******************** Seccion Validacion  de Formularios *************************/		
+
+		
+		$('#formBusquedaMovimientos').validate({
+			debug:true,
+			rules:{
+				reservation:{
+					required:false
+				},
+				estadoSelect:{
+					required:false
+				},				
+				golsaInput:{
+					required:false
+				}				
+			},
+			messages:{
+				reservation:"Debe ingresar una fecha de inicio y termino",
+				estadoSelect:"Debe seleccionar un elemeneto de la lista",				
+				golsaInput:"Ingrese una glosa"
+			},
+			invalidHandler:function(event,validator)
+			{
+				//obtengo el listado de los cobros asociado al cliente
+				listadoCobrosAsociadosAlCliente(idCliente,tablaMovimientosCliente);
+			},
+			submitHandler:function(datos){
+
+				var fechaFiltroInicio="";
+				var fechaFiltroFinal="";
+				
+				if($('#fechaDesdeHasta').val()!='')
+				{
+					var data=$('#fechaDesdeHasta').val().split('-');	
+					var fechaInicial=$.trim(data[0]).split('/');
+					var fechaFinal=$.trim(data[1]).split('/');
+
+					fechaFiltroInicio=fechaInicial[0]+"-"+fechaInicial[1]+"-"+fechaInicial[2];
+					fechaFiltroFinal=fechaFinal[0]+"-"+fechaFinal[1]+"-"+fechaFinal[2];
+				}
+				
+				url = '/index.php/cobroindividual/filtramovimientos?id='+idCliente+
+																   '&fechaInicial='+fechaFiltroInicio+
+																   '&fechaFinal='+fechaFiltroFinal+
+																   '&idEstado='+$('#estadoSelect').val()+
+																   '&glosa='+$('#golsaInput').val()+
+																   '&origen=1';
+
+				tablaMovimientosCliente.fnClearTable();				
+				tablaMovimientosCliente.fnReloadAjax(url);
+				
+			}
+		});	
+
+
+		$('#formEnvioEmailRenta').validate({
+			debug:true,
+			rules:{
+				asuntoEmailRenta:{
+					required:true
+				},
+								
+			},
+			messages:{
+				asuntoEmailRenta:"Debe indicar el asunto",				
+			},
+			invalidHandler:function(event,validator)
+			{				
+				
+			},
+			submitHandler:function(datos)
+			{					
+					url = '/index.php/cliente/envioemailrenta';				
+										 
+		 			var datosEmail="textoCuerpo="+$('#cuerpoEmailRenta').val()+
+		 						   "&asunto="+$('#asuntoEmailRenta').val()+			  
+		 						   "&idUsuario="+'<?= $this->id_usuario ?>'+
+		 						   "&idCliente="+idCliente; 	
+								   						 
+		 			$.ajax({
+		 			    url: url,  
+		 			    type: "POST",
+		 			    data: datosEmail,  
+		 			    success: function(datos)
+		 			    {
+		 			    	if(datos.registro[0]=='1')
+							{
+								//$('#enviaEmailRenta').removeClass('hide');
+								jAlert("Email cobro de renta enviado correctamente.","Exito!");
+																
+		 			    		$("#panelCabecerasRenta").fadeToggle('slow');	
+		 						$('#panelVistaRenta').fadeToggle('slow');
+		 						$('#panelVistaRenta').removeClass('hide');	  
+
+		 						listadoEmailCobro(idCliente,tablaHistorialCobros);	   			
+							}
+							else if(datos.registro[0]=='2')
+					    	{
+								//$('#problemasEnvioRenta').removeClass('hide');
+								jAlert("Problemas al realizar la acci\u00f3n.","Error!");
+					    	}							
+		 			    },
+		 			    error : function(xhr, status) 
+		 			    {
+		 			    	//$('#problemasEnvioRenta').removeClass('hide');
+		 			    	jAlert("Problemas al realizar la acci\u00f3n.","Error!");
+		 			    }
+		 			}); 
+			}			
+
+		});	
+
+		var evioEmailCliente=$('#envioEmailCliente').validate({
+			debug:true,
+			rules:{
+				asuntoEmail:
+				{
+					required:true
+				}				
+			},
+			messages:{				
+				asuntoEmail:"Debe indicar el asunto"				
+			},
+			invalidHandler:function(event,validator)
+			{				
+				
+			},
+			submitHandler:function(datos)
+			{				
+				if($('#tableMovimientosCliente tbody tr').hasClass('selected'))
+				{					
+					url = '/index.php/cliente/envioemail';				
+										 
+		 			var datosEmail="textoCuerpo="+$('#emailInternoEjecutivo').val()+
+		 						   "&asunto="+$('#asuntoEmail').val()+			  
+		 						   "&idUsuario="+'<?= $this->id_usuario ?>'+
+		 						   "&idCliente="+idCliente+
+		 						   "&datosCobro="+obtenerIdsCobroEmail(); 	 						 
+		 				 							   
+		 			$.ajax({
+		 			    url: url,  
+		 			    type: "POST",
+		 			    data: datosEmail,  
+		 			    success: function(datos)
+		 			    {
+		 			    	if(datos.registro[0]=='1')
+							{
+		 			    		$('#emailEnvioCliente').val('');
+		 			    		$('#emailInternoEjecutivo').val(''); 
+		 			    		  
+		 			    		//$('#emailEnviado').removeClass('hide');
+		 			    		jAlert("Email enviado correctamente.","Exito!");
+		 			    		evioEmailCliente.resetForm();	  			
+		 						$('#panelEnviarEmail').fadeToggle("slow");
+		 						$('#panelVistaPrevia').fadeToggle("slow");		 						
+		 						
+		 			    		listadoEmailCobro(idCliente,tablaHistorialCobros);	 
+		 			    		$('#panelVistaPrevia').removeClass('vista');			    			
+							}
+							else if(datos.registro[0]=='2')
+					    	{
+								//$('#emailProblemaAccion').removeClass('hide');
+								jAlert("Problemas al realizar la acci\u00f3n.","Error");
+					    	}
+							else if(datos.registro[0]=='3')
+							{
+								//$('#sinContactoAsociados').removeClass('hide');
+								jAlert("Primero debe registrar contactos asociados o habilitar opci\u00f3n de env\u00edo.","Error");
+							}
+							else if(datos.registro[0]=='4')
+							{
+								//$('#emailProblemaAccion').removeClass('hide');
+								jAlert("Problemas al realizar la acci\u00f3n.","Error");
+							}
+		 			    },
+		 			    error : function(xhr, status) 
+		 			    {
+		 			    	//$('#emailProblemaAccion').removeClass('hide');
+		 			    	jAlert("Problemas al realizar la acci\u00f3n.","Error");
+		 			    }
+		 			});	 				
+				}
+				else
+				{
+					evioEmailCliente.resetForm();	  			
+					$('#panelEnviarEmail').fadeToggle("slow");
+					$('#seleccionaCobroLista').removeClass('hide');
+					//jAlert("Primero debe seleccionar un cobro de la lista","Aviso");
+				}		
+						
+			}
+		});
+
+		$('#formClienteEditar').validate({
+			debug:true,
+			rules:{
+				nombreClienteEdit:{
+					required:true
+				},
+				ejecutivoSelectEdit:{
+					required:true
+				}										
+			},
+			messages:{
+				nombreClienteEdit:"Debe ingresar el nombre del cliente",
+				ejecutivoSelectEdit:"Debe seleccionar un elemento de la lista"
+			},
+			invalidHandler:function(event, validator){
+				
+			},	
+			submitHandler:function(datos)
+			{
+				url = '/index.php/cliente/modificar';
+	        	 
+	 			var datosClienteEdit="nombreClienteEdit="+$('#nombreClienteEdit').val().toUpperCase()+
+	 								 "&idUsuarioEdit="+$('#ejecutivoSelectEdit').val()+
+	 								 "&idClienteEdit="+idCliente;                          
+	 		
+	 			$.ajax({
+	 			    url: url,  
+	 			    type: "POST",
+	 			    data: datosClienteEdit,  
+	 			    success: function(datos)
+	 			    {
+	 			    	if(datos.edicion[0]=='1')
+						{
+	 			    		$('#modalEditarCliente').modal('hide');
+	 			    		//$('#clienteActualizado').removeClass('hide');
+	 			    		jAlert("Cliente actualizado correctamente.","Exito!");
+	 			    		obtenerDatosCliente(idCliente,1);
+						}
+						else if(datos.edicion[0]=='2')
+				    	{
+							$('#modalEditarCliente').modal('hide');
+							//$('#mensajeProblemaAccion').removeClass('hide');
+							jAlert("Problemas al realizar la acci\u00f3n.","Error!");
+				    	}
+	 					
+	 			    },
+	 			    error : function(xhr, status) 
+	 			    {
+	 			    	$('#modalEditarCliente').modal('hide');
+	 			    	//$('#mensajeProblemaAccion').removeClass('hide');
+	 			    	jAlert("Problemas al realizar la acci\u00f3n.","Error!")
+	 			    }
+	 			}); 
+				
+			}			
+		});
+
+		var formEditarContacto=$('#formContactoEditar').validate({
+			debug:true,
+			rules:{
+				listadoRutContactoEdit:{
+					required:true
+				},					
+				nombreContactoEdit:{
+					required:true
+				},					
+				emailContactoeEdit:{
+					required:true
+				},					
+				telefonoContactoEdit:{
+					required:true
+				},					
+				celularContactoEdit:{
+					required:true
+				}	
+			},
+			messages:{
+				listadoRutClienteEdit:"Debe Seleccionar el rut",
+				nombreClienteEdit:"Debe ingresar el nombre",
+				emailClienteEdit:"Debe ingresar el email",
+				telefonoClienteEdit:"Debe ingresar el telefono",
+				celularClienteEdit:"Debe ingresar el celular",				
+			},
+			invalidHandler:function(event,validator){
+				
+			},
+			submitHandler:function(datos)
+			{			
+				var cobro='2';
+				var boleteo='2';
+				
+				if($('.cobro').hasClass('checked'))
+				{
+					cobro='1';
+				}
+
+				if($('.boleteo').hasClass('checked'))
+				{
+					boleteo='1';
+				}
+				
+				url = '/index.php/contacto/modificar';
+	        	 
+	 			var datosContactoEdit="nombreContacto="+$('#nombreContactoEdit').val().toUpperCase()+
+	 								  "&emailContacto="+$('#emailContactoEdit').val()+
+	 								  "&telefonoContacto="+$('#telefonoContactoEdit').val()+
+	 								  "&celularContacto="+$('#celularContactoEdit').val()+
+	 								  "&cobroContacto="+cobro+
+	 								  "&boleteoContacto="+boleteo+
+	 								  "&idContacto="+obtenerIdContactoAsociado();  
+				
+	 			$.ajax({
+	 			    url: url,  
+	 			    type: "POST",
+	 			    data: datosContactoEdit,  
+	 			    success: function(datos)
+	 			    {
+	 			    	if(datos.edicion[0]=='1')
+						{
+	 			    		$('#modalEditarContacto').modal('hide');
+	 			    		//$('#contactoActualizado').removeClass('hide');
+	 			    		jAlert("Contacto actualizado correctamente.","Exito!");	
+	 			    		
+	 			    		listadoContactosAsociados(idCliente,tablaContactosAsociados);
+						}
+						else if(datos.edicion[0]=='2')
+				    	{
+							$('#modalEditarContacto').modal('hide');
+							//$('#mensajeProblemasAccionContacto').removeClass('hide');
+							jAlert("Problemas al realizar la acci\u00f3n.","Error!");	
+				    	}
+	 					
+	 			    },
+	 			    error : function(xhr, status) 
+	 			    {
+	 			    	$('#modalEditarContacto').modal('hide');
+	 			    	//$('#mensajeProblemasAccionContacto').removeClass('hide');
+	 			    	jAlert("Problemas al realizar la acci\u00f3n.","Error!");	
+	 			    }
+	 			}); 
+	 			
+			}
+		});	
+
+		/******************** Termina seccion Validacion  de Formularios *************************/	
+
+		/*************Seccion Datos del Cliente***************/
+		
+		$('#buttonBajaCliente').on('click',function()
+		{
+			url = '/index.php/cliente/eliminar';
+       	 
+ 			var idClienteEl="idClienteElimina="+idCliente;                          
+ 			
+ 			$.ajax({
+ 			    url: url,  
+ 			    type: "POST",
+ 			    data: idClienteEl,  
+ 			    success: function(datos)
+ 			    {
+ 			    	if(datos.eliminar[0]=='1')
+					{
+ 			    		$('#modalBajaCliente').modal('hide');
+ 			    		$('#modalAvisoEliminaCliente').modal();
+					}
+					else if(datos.eliminar[0]=='2')
+			    	{
+						$('#modalEditarCliente').modal('hide');
+						//$('#mensajeProblemaAccion').removeClass('hide');
+						jAlert("Problemas al realizar la acci\u00f3n.","Error!")
+			    	}
+			    	else if(datos.eliminar[0]=='3')
+			    	{
+			    		jAlert("No se puede dar de baja, el cliente posee cobros pendientes.","Aviso!")
+			    	}
+ 					
+ 			    },
+ 			    error : function(xhr, status) 
+ 			    {
+ 			    	$('#modalEditarCliente').modal('hide');
+ 			    	//$('#mensajeProblemaAccion').removeClass('hide');
+ 			    	jAlert("Problemas al realizar la acci\u00f3n.","Error!")
+ 			    }
+ 			}); 
+		});
+		
+		$('#modalAvisoEliminaCliente').on('hidden.bs.modal',function()
+		{			
+			window.location.href=dominio+"index.php/cliente/buscarpornombre";			
+		});
+
+		$('#formClienteEditar').on('hidden.bs.modal',function()
+		{			
+			obtenerDatosCliente(idCliente,1);
+		});
+				
+		$('#buttonModificarCliente').on('click',function()
+		{
+			$('#modalEditarCliente').modal();
+
+			obtenerEjecutivos('#ejecutivoSelectEdit');
+			obtenerDatosCliente(idCliente,2);
+		});	
+
+		$('#buttonBajarCliente').on('click',function()
+		{
+			$('#modalBajaCliente').modal();	
+		});
+
+		$('#buttonCierraMsgEliminado').on('click',function()
+		{
+			$('#clienteEliminado').addClass('hide');
+		});	
+
+		$('#buttonCierraMsgActualizado').on('click',function()
+		{
+			$('#clienteActualizado').addClass('hide');
+		});
+
+		$('#buttonMensajeProblemaAccion').on('click',function()
+		{
+			$('#mensajeProblemaAccion').addClass('hide');
+		});	
+
+		$('#buttonBajarCliente').click(function()
+		{
+			bajaCliente=true;
+		});
+
+		$('#buttonBajaCliente').click(function()
+		{
+			$('#modalBajaCliente').modal();
+		});			
+
+		/************* Termina seccion Datos del Cliente **********************/
+
+		/************* Seccion Datos del RUT **********************************/
+		
+		$('#buttonDatosRut').on('click',function()
+        {
+        	if($('#tableRutAsociados tbody tr').hasClass('selected'))
+			{
+        		idRut=obtenerIdRut();        		
+				window.location.href=dominio+"index.php/rut/datosrut?idRut="+idRut;
+			}
+        	else
+        	{
+            	//$('#seleccionaRutLista').removeClass('hide');
+        		jAlert("Primero debe seleccionar un rut de la lista.","Aviso!");
+            }  
+        });
+        
+        $('#buttonBajaRut').click(function()
+        {
+
+        	if($('#tableRutAsociados tbody tr').hasClass('selected'))
+			{
+        		$('#modalBajaRutAsoiado').modal();
+			}
+        	else
+        	{
+            	//$('#seleccionaRutLista').removeClass('hide');
+        		jAlert("Primero debe seleccionar un rut de la lista.","Aviso!");
+            }           
+        });
+
+		$('#buttonConfirmaBajaRut').on('click',function()
+		{
+			url = '/index.php/rut/eliminar';
+       	 
+ 			var dato="idRut="+obtenerIdRut();
+ 		
+ 			$.ajax({
+ 			    url: url,  
+ 			    type: "POST",
+ 			    data: dato, 
+ 			    success: function(datos)
+ 			    {										
+ 					if(datos.eliminar[0]=='1')
+ 					{
+ 	 					//$('#mensajeCorrectoElimina').removeClass('hide');
+ 	 					jAlert("Rut eliminado correctamente.","Exito!");
+ 	 					listadoRutsAsociados(idCliente,tablaRutAsociados); 
+ 	 					$('#modalBajaRutAsoiado').modal('hide');
+ 	 					
+ 					}
+ 					else if(datos.eliminar[0]=='2')
+ 	 				{
+ 						//$('#mensajeProblemasAccion').removeClass('hide');
+ 						jAlert("Problemas al realizar la acci\u00f3n.","Error!");
+ 	 				}
+ 			    },
+ 			    error : function(xhr, status) 
+ 			    {
+ 			    	//$('#mensajeProblemasAccion').removeClass('hide');
+ 			    	jAlert("Problemas al realizar la acci\u00f3n.","Error!");
+			    }
+ 			}); 
+		});
+
+		$('#buttonCierraMsgSeleccion').on('click',function(){
+			$('#seleccionaRutLista').addClass('hide');
+		});
+
+		$('#buttonMensajeCorrectoElimina').on('click',function(){
+			$('#mensajeCorrectoElimina').addClass('hide');
+		});
+
+		$('#buttonMensajeProblemasAccion').on('click',function(){
+			//$('#mensajeProblemasAccion').removeClass('hide');
+			jAlert("Problemas al realizar la acci\u00f3n.","Error!");
+		});	
+		
+		$('#buttonAgregarOtroRut').on('click',function()
+		{
+			window.location.href=dominio+"index.php/rut/ingresardatosrut?idCliente="+idCliente;
+		});	
+
+		$('#buttonIngresoCobro').on('click',function()
+		{
+			if($('#tableRutAsociados tbody tr').hasClass('selected'))
+			{
+				window.location.href=dominio+"index.php/cobroindividual/cobroindividual?idRut="+obtenerIdRut();
+			}
+			else
+			{
+				//$('#seleccionaRutLista').removeClass('hide');
+				jAlert("Primero debe seleccionar un rut de la lista.","Aviso!");	
+			}
+		});
+		
+		/*************Termian Seccion Datos del RUT ***********************/
+		
+		/************** Seccion contacto asociado *************************/
+		
+		$('#buttonBorrarContacto').on('click',function()
+		{
+			if($('#tableContactosAsociados tbody tr').hasClass('selected'))
+			{
+				$('#modalBorraContactoAsociado').modal();
+			}
+			else
+			{
+				//$('#seleccionaContactoLista').removeClass('hide');
+				jAlert("Primero debe seleccionar un contacto de la lista.","Aviso!");	
+			}
+		});
+
+		$('#buttonDatosContacto').on('click',function()
+		{
+			if($('#tableContactosAsociados tbody tr').hasClass('selected'))
+			{
+				$('#modalEditarContacto').modal();
+
+				obtenerRutCliente(idCliente);				
+				obtenerDatosContactoEdit(obtenerIdContactoAsociado());
+			}
+			else
+			{
+				//$('#seleccionaContactoLista').removeClass('hide');
+				jAlert("Primero debe seleccionar un contacto de la lista.","Aviso!");	
+			}
+		});
+
+
+		$('#buttonEliminaContacto').on('click',function()
+		{
+			url = '/index.php/contacto/eliminar';
+	       	 
+ 			var dato="idContacto="+obtenerIdContactoAsociado();
+ 		
+ 			$.ajax({
+ 			    url: url,  
+ 			    type: "POST",
+ 			    data: dato, 
+ 			    success: function(datos)
+ 			    {										
+ 					if(datos.eliminar[0]=='1')
+ 					{
+ 	 					//$('#mensajeCorrectoEliminaContacto').removeClass('hide');
+ 	 					jAlert("Contacto eliminado correctamente","Exito!");
+ 	 					listadoContactosAsociados(idCliente,tablaContactosAsociados);
+ 	 					$('#modalBorraContactoAsociado').modal('hide');
+ 	 					
+ 					}
+ 					else if(datos.eliminar[0]=='2')
+ 	 				{
+ 						//$('#mensajeProblemasAccionContacto').removeClass('hide');
+ 						jAlert("Problemas al realizar la acci\u00f3n.","Error!");	
+ 	 				}
+ 			    },
+ 			    error : function(xhr, status) 
+ 			    {
+ 			    	//$('#mensajeProblemasAccionContacto').removeClass('hide');
+ 			    	jAlert("Problemas al realizar la acci\u00f3n.","Error!");	
+			    }
+ 			}); 
+		});
+
+		$('#buttonNuevoContacto').on('click',function()
+		{
+			window.location.href=dominio+"index.php/contacto/ingresarcontacto?idCliente="+idCliente;
+		});
+
+		$('#buttonMensajeCorrectoEliminaContacto').click(function(){
+			$('#mensajeCorrectoEliminaContacto').addClass('hide');
+	    });
+
+		$('#buttonMensajeProblemasAccionContacto').click(function(){
+			$('#mensajeProblemasAccionContacto').addClass('hide');
+	    });
+		
+		$('#buttonBorraContacto').click(function(){
+			$('#modalBorraContactoAsociado').modal();
+	    });
+
+	    $('#buttonCierraContactoLista').on('click',function()
+	   	{
+	    	$('#seleccionaContactoLista').addClass('hide');
+	    });
+
+	    $('#buttonContactoActualizado').on('click',function(){
+	    	$('#contactoActualizado').addClass('hide');
+		});
+
+	    $('#modalEditarContacto').on('hidden.bs.modal',function(){
+	    	formEditarContacto.resetForm();
+	    	$('#boleteoCheckEdit').attr({"aria-checked":false});
+			$('#cobroCheckEdit').attr({"aria-checked":false});		
+
+			$('.boleteo').removeClass('checked');	
+			$('.cobro').removeClass('checked');	
+		});	
+
+	    $('#boleteoCheckEdit').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue boleteo',
+     	});
+
+		 $('#cobroCheckEdit').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue cobro',
+     	});
+		
+		/************** Termina seccion contacto asociado ********************/
+		
+		/******************* Seccion email Cobro Renta *********************/
+				
+		$('#buttonCobroRenta').on('click',function()
+		{		
+				$("#panelCabecerasRenta").fadeToggle("slow");	
+				$('#panelVistaRenta').fadeToggle("slow");				
+
+				listaEmailVistaPrevia(idCliente,'renta');
+
+				datosUsuarioVistaPrevia(<?= $this->id_usuario ?>,'renta');
+
+				obtenerDatosRenta();				
+
+				if(!$('#panelVistaRenta').hasClass('vista'))
+				{
+					$('#panelVistaRenta').addClass('vista');	
+				}
+				else
+				{
+					$('#panelVistaRenta').removeClass('vista');	
+				}				
+			
+		});
+
+		function obtenerDatosRenta()
+		{
+			url="/index.php/cobromasivo/datosemailrenta";
+
+			datos="idCliente="+<?php echo $_REQUEST['idCliente'] ?>;
+
+			$('#dataCobroRenta').empty();
+			$('#msjDepAngkor').empty();
+			$('#msjPagoDirecto').empty();
+			
+			var total_depAngkor=0;
+			var total_pagoDirecto=0;
+
+			$.ajax({
+ 			    url: url,  
+ 			    type: "POST",
+ 			    data: datos, 
+ 			    success: function(datos)
+ 			    {
+ 	 			    if(datos.renta.length>0)
+ 	 			    {
+ 	 			    	$('#submitRenta').attr({"disabled":false});
+ 	 	 			    
+ 	 			    	 $.each(datos.renta, function( index, value ) 
+ 	 	 	 			 {	
+ 	 			    		$('#dataCobroRenta').append('<tr>'+
+	 	 	 	 			    							'<td style="border: 1px solid black; padding: 5px;">'+value[0]+'</td>'+
+	 	 	 	 			    							'<td style="border: 1px solid black; padding: 5px;">$ '+value[1]+'</td>'+
+	 	 	 	 			    							'<td style="border: 1px solid black; padding: 5px;"></td>'+
+	 	 	 	 			    							'<td style="border: 1px solid black; padding: 5px;">$ '+value[2]+'</td>'+
+	 	 	 	 			    							'<td style="border: 1px solid black; padding: 5px;">$ '+value[3]+'</td>'+
+ 	 	 	 			    							'</tr>');    							
+ 	 			    		total_depAngkor=value[4];
+ 	 						total_pagoDirecto=value[5];
+    						
+ 						 });	
+
+ 					    if(parseInt(total_depAngkor)>0)	 
+ 					    {
+ 					    	$('#msjDepAngkor').append('(1) Favor depositar o transferir a ANGKOR CONSULTING S.A., RUT 78342990-K, Banco de CHILE, cuenta corriente 00-005-02565-06.');
+ 					    }
+
+ 					    if(parseInt(total_pagoDirecto)>0)	 
+					    {
+					    	$('#msjPagoDirecto').append('(2) Listo para su pago directo en web del servicio');
+					    }
+
+ 	 			    	$('#dataCobroRenta').append('<tr>'+ 	 	 	 			    	
+					    								
+					    								'<td style="border: 1px solid black; padding: 5px;" colspan="2"><strong>Total</strong></td>'+
+					    								'<td style="border: 1px solid black; padding: 5px;"></td>'+
+					    								'<td style="border: 1px solid black; padding: 5px;"><strong>$ '+total_depAngkor+'</strong></td>'+
+					    								'<td style="border: 1px solid black; padding: 5px;"><strong>$ '+total_pagoDirecto+'</strong></td>'+
+					    							'</tr>');
+ 	 	 			}
+ 	 			    else
+ 	 			    {
+ 	 			    	$('#dataCobroRenta').append('<tr>'+
+						    							'<td style="border: 1px solid black; padding: 5px;"></td>'+
+						    							'<td style="border: 1px solid black; padding: 5px;"></td>'+
+						    							'<td style="border: 1px solid black; padding: 5px;"></td>'+
+						    							'<td style="border: 1px solid black; padding: 5px;"></td>'+
+						    							'<td style="border: 1px solid black; padding: 5px;"></td>'+
+					    							'</tr>'); 
+
+						$('#submitRenta').attr({"disabled":true});
+ 	 			    }
+ 	 			   
+ 			    },
+ 			    error:function(status)
+ 			    {
+ 	 			    
+ 			    }
+			});
+			
+		}
+
+		$('#tableListadoRutRenta').on('click',function()
+		{
+			if($('#panelVistaRenta').hasClass('vista'))
+			{
+				$("#panelCabecerasRenta").fadeToggle("slow");	
+				$('#panelVistaRenta').fadeToggle("slow");
+
+				$('#panelVistaRenta').removeClass('vista');
+			}
+		});
+
+		$('#cierraPanelesRenta').on('click',function()
+		{
+			$("#panelCabecerasRenta").fadeToggle("slow");	
+			$('#panelVistaRenta').fadeToggle("slow");
+			$('#panelVistaRenta').removeClass('vista');
+		});
+
+		$('#anioRenta').on('change',function()
+		{
+			if($('#panelVistaRenta').hasClass('vista'))
+			{
+				$("#panelCabecerasRenta").fadeToggle("slow");
+				$('#panelVistaRenta').fadeToggle("slow");
+				$('#panelVistaRenta').removeClass('vista');
+			}
+			
+		});
+
+		$('#anioRenta').on('change',function()
+		{
+			 url = '/index.php/rut/obtinerutrentabyanio?idCliente='+idCliente+"&anio="+$('#anioRenta').val();
+			 tableRutRenta.fnClearTable();				
+			 tableRutRenta.fnReloadAjax(url);
+		});
+
+		$('#buttonEnviaEmailRenta').on('click',function()
+		{
+			$('#enviaEmailRenta').addClass('hide');
+		});
+
+		$('#buttonAnioCobroNoCorresponde').on('click',function()
+		{
+			$('#anioCobroNoCorresponde').addClass('hide');
+		});
+		
+		$('#buttonProblemasEnvioRenta').on('click',function()
+		{
+			$('#problemasEnvioRenta').addClass('hide');
+		});
+		
+		$('#asuntoEmailRenta').on('keyup',function()
+		{			
+			$('#asuntoVistaRenta').text($('#asuntoEmailRenta').val());
+		});
+
+		$('#cuerpoEmailRenta').on('keyup',function()
+		{
+			$('#cuerpoVistaEmailRenta').text($('#cuerpoEmailRenta').val());
+		});
+
+		$('#buttonSeleccionaRutLista').on('click',function()
+		{
+			$('#seleccionaRutRentaLista').addClass('hide');
+		});
+
+		
+		/************** Termina Seccion email cobro Renta ******************/
+		
+		/************** Seccion email Cobro contacto asociado ****************/
+		
+		$('#emailCobro').on('click',function() 
+		{  			
+			if(!estodoCobro())
+			{
+				if($('#tableMovimientosCliente tbody tr').hasClass('selected'))
+				{							
+					if(obtieneEstadoCobro()!='anulado')
+					{
+						if(tipoCobro()!='3')
+						{
+							$("#panelEnviarEmail").fadeToggle("slow");	
+							$('#panelVistaPrevia').fadeToggle("slow");
+
+							obtenerIdsCobroEmail();
+
+							$('#panelVistaPrevia').addClass('vista');
+
+							$('#pagoAEmail').val('');
+							$('#asuntoEmail').val('');
+							$('#emailInternoEjecutivo').val('');	
+
+							$('#paraEmailVista').text('');
+							$('#asuntoEmailVista').text('');
+							$('#textoEmailEnvio').text('');	
+							$('#pagoAVista').text('');
+
+							listaEmailVistaPrevia(idCliente,'cobro');
+							
+							datosCobroVistaPrevia(obtenerIdCobro(),tipoCobro());
+
+							datosUsuarioVistaPrevia(<?= $this->id_usuario ?>,'cobro');
+						}
+						else
+						{
+							//$('#noEmailMasivo').removeClass('hide');
+							jAlert("No se pueden enviar emails a cobros individuales.","Aviso!");	
+						}
+					}
+					else
+					{
+						//$('#estadoCobroAnulado').removeClass('hide');
+						jAlert("El cobro se encuentra anulado.","Aviso!");		
+					}
+				}
+				else
+				{
+					//$('#seleccionaCobroLista').removeClass('hide');
+					jAlert("Primero debe seleccionar un cobro de la lista","Aviso!");
+					$('#panelVistaPrevia').removeClass('vista');
+				}	
+			}
+			else
+			{
+				//$('#cobroVerificado').removeClass('hide');
+				jAlert("Solo se pueden enviar emails a cobros pendientes","Aviso!");
+				$('#panelVistaPrevia').removeClass('vista');
+			}
+    	});
+
+    	$('#buttonNoEmailMasivo').on('click',function()
+    	{
+    		$('#noEmailMasivo').addClass('hide');
+        });
+		
+		$('#buttonEliminaCobro').on('click',function()
+		{			
+			if($('#tableMovimientosCliente tbody tr').hasClass('selected'))
+			{
+				if(parseInt(verificaSeleccionados())>1)
+				{
+					//$('#soloUnCobro').removeClass('hide');
+					jAlert("Solo debe seleccionar un cobro.","Aviso!");		
+				}
+				else
+				{
+
+					if(obtieneGlosa()=='F29'){							
+						jAlert("Este tipo de cobro no puede ser eliminado.","Aviso!");
+						return;
+					}
+					
+					if(obtieneEstadoCobro()!='anulado' && obtieneEstadoCobro()!='anulado(S/M)')
+					{
+						if( <?=$this->rol ?>!='5' && (obtieneGlosa()=='Cobro Mensualidad' || obtieneGlosa()=='Cobro Servicio Variable'))
+						{
+							if(<?=$this->rol ?>=='7')
+							{
+								$('#modalEliminarCobro').modal();
+							}
+							else
+							{
+								jAlert("No esta autorizado para eliminar este cobro.","Aviso!");	
+							}							
+						}
+						else if(<?=$this->rol ?>!='4' && obtieneGlosa()=='Previred')
+						{
+							if(<?=$this->rol ?>=='7')
+							{
+								$('#modalEliminarCobro').modal();
+							}
+							else
+							{
+								jAlert("No esta autorizado para eliminar este cobro.","Aviso!");	
+							}	
+						}
+						else
+						{
+							$('#modalEliminarCobro').modal();
+						}							
+					}
+					else
+					{
+						//$('#estadoCobroAnulado').removeClass('hide');
+						jAlert("El cobro se encuentra anulado.","Aviso!");		
+					}	
+				}			
+			}
+			else
+			{
+				//$('#seleccionaCobroLista').removeClass('hide');
+				jAlert("Primero debe seleccionar un cobro de la lista","Aviso");
+			}
+		});
+		
+		$('#buttonEliminarCobro').on('click',function()
+		{
+			if(estodoCobroPendiente())
+			{
+				url="/index.php/cobroindividual/modificaestadocobro";
+				
+				var datos="idCobro="+obtenerIdCobro()+"&tipoCobro="+tipoCobro();
+				
+				$.ajax({
+	 			    url: url,  
+	 			    type: "POST",
+	 			    data: datos, 
+	 			    success: function(datos)
+	 			    {
+						if(datos.estado[0]=='1')
+						{
+							$('#modalEliminarCobro').modal('hide');	
+		 			    	//$('#cobroEliminado').removeClass('hide');
+		 			    	jAlert("Cobro eliminado correctamente.","Exito!");	
+
+		 			    	listadoCobrosAsociadosAlCliente(idCliente,tablaMovimientosCliente);
+		 			    	
+		 			    	listadoRutsRenta(idCliente,tableRutRenta);
+						}
+						else if(datos.estado[0]=='2')
+						{
+							//$('#emailProblemaAccion').removeClass('hide');
+							jAlert("Problemas al realizar la acci\u00f3n.","Error");
+							$('#modalEliminarCobro').modal('hide');	
+						}
+	 			    		
+	 			    },
+	 			    error : function(xhr, status) 
+	 			    {
+	 			    	//$('#emailProblemaAccion').removeClass('hide');
+	 			    	jAlert("Problemas al realizar la acci\u00f3n.","Error");
+	 			    	$('#modalEliminarCobro').modal('hide');	
+				    }
+	 			}); 
+			}
+			else
+			{
+				//$('#cobroNoPuedeEliminar').removeClass('hide');
+				jAlert("Este cobro no puede ser eliminado.","Aviso!");
+				$('#modalEliminarCobro').modal('hide');	
+			}
+			
+		});
+
+		$('#buttonCobroNoPuedeEliminar').on('click',function()
+		{
+			$('#cobroNoPuedeEliminar').addClass('hide');
+		});
+
+		$('#buttonSoloUnCobro').on('click',function()
+		{
+			$('#soloUnCobro').addClass('hide');
+		});
+
+		$('#buttonCobroEliminado').on('click',function()
+		{
+			$('#cobroEliminado').addClass('hide');
+		});
+
+    	$('#tableMovimientosCliente').on('click',function()
+    	{
+        	if($('#panelVistaPrevia').hasClass('vista'))
+        	{
+        		$("#panelEnviarEmail").fadeToggle("slow");	
+				$('#panelVistaPrevia').fadeToggle("slow");
+				$('#panelVistaPrevia').removeClass('vista');
+        	}
+			
+        });
+
+		$('#buttonCobroVerificado').on('click',function()
+		{
+			$('#cobroVerificado').addClass('hide');
+		});
+
+    	$('#pagoAEmail').on('keyup',function()
+    	{
+        	$('#pagoAVista').text($('#pagoAEmail').val());
+        });
+
+		$('#asuntoEmail').on('keyup',function()
+		{
+			$('#asuntoEmailVista').text($('#asuntoEmail').val());
+		});
+
+		$('#emailInternoEjecutivo').on('keyup',function()
+		{
+			$('#textoEmailEnvio').text($('#emailInternoEjecutivo').val());
+		});
+
+		$('#cierraEmailCobro').click(function() 
+		{    						
+			$("#panelEnviarEmail").fadeToggle("slow");
+			$('#panelVistaPrevia').fadeToggle("slow");	
+			$('#panelVistaPrevia').removeClass('vista');
+    	});
+
+		$('#fechaDesdeHasta').daterangepicker();
+    	
+		/************** Termina Seccion email Cobro contacto asociado ****************/
+		
+
+		/************** Seccion Devolucion ****************/
+		
+		$('#modalDevolucionCliente').on('hidden.bs.modal',function(){
+			$('#devolucionInput').val(0);
+		});	
+
+		$("#devolucionInput").numeric(',');
+		
+		/************** Termina Seccion Devolucion *******************/
+		
+		
+		/****************movimientos del cliente**********************/
+		
+		$('#buttonModificarCobro').on('click',function()
+		{			
+			if($('#tableMovimientosCliente tbody tr').hasClass('selected'))
+			{			
+				if(parseInt(verificaSeleccionados())>1)
+				{					
+					jAlert("Solo debe seleccionar un cobro.","Aviso!");	
+				}
+				else
+				{
+					if(obtieneEstadoCobro()!='anulado' && obtieneEstadoCobro()!='anulado(S/M)')
+					{
+						if(tipoCobro()!='3')
+						{
+							if(<?=$this->rol ?>!='5' && (obtieneGlosa()=='Cobro Mensualidad' || obtieneGlosa()=='Cobro Servicio Variable'))
+							{
+
+								if(<?=$this->rol ?>=='7')
+								{
+									window.location.href=dominio+"index.php/cobroindividual/modificar?idCobro="+obtenerIdCobro()+"&tipo="+tipoCobro();
+								}
+								else
+								{
+									jAlert("No esta autorizado para modificar este cobro.","Aviso!");	
+								}								
+							}
+							else
+							{
+								window.location.href=dominio+"index.php/cobroindividual/modificar?idCobro="+obtenerIdCobro()+"&tipo="+tipoCobro();
+							}												
+							
+						}
+						else
+						{
+							//$('#noModifica').removeClass('hide');
+							jAlert("El cobro no es modificable.","Aviso!");	
+						}						
+					}	
+					else
+					{					
+						//$('#estadoCobroAnulado').removeClass('hide');
+						jAlert("El cobro se encuentra anulado.","Aviso!");		
+					}	
+				}
+			}
+			else
+			{
+				//$('#seleccionaCobroLista').removeClass('hide');
+				jAlert("Primero debe seleccionar un cobro de la lista","Aviso");
+			}		
+		});
+
+		function obtieneGlosa()
+		{
+			var glosa="";
+						
+			$('#tableMovimientosCliente').find('tr.selected').each(function(){
+
+				glosa=$(this).find('td:first').next().next().next().html();		
+					
+			});
+			
+			return glosa;
+		}
+
+		$('#buttonNoModifica').on('click',function()
+		{
+			$('#noModifica').addClass('hide');		
+		});
+		
+		$('#buttonEstadoCobroAnulado').on('click',function()
+		{
+		  $('#estadoCobroAnulado').addClass('hide');	
+		});
+
+		$('#buttonCierraMsgCobroLista').on('click',function()
+		{
+		  $('#seleccionaCobroLista').addClass('hide');
+		});
+
+		$('#buttonEmailEnviado').on('click',function()
+		{
+		  $('#emailEnviado').addClass('hide');
+		});
+
+		$('#buttonCobroEliminado').on('click',function()
+		{
+		  $('#cobroEliminado').addClass('hide');
+		});
+
+		$('#buttonEmailProblemaAccion').on('click',function()
+		{
+		  $('#emailProblemaAccion').addClass('hide');
+		});
+
+		$('#buttonSinContactoAsociados').on('click',function()
+		{
+		  $('#sinContactoAsociados').addClass('hide');
+		});
+		
+		/****************termina movimientos del cliente**********************/
+		
+		
+		/************** Funciones ****************/
+    	
+        function obtenerDatosCliente(idCliente,accion)
+        {
+        	url = '/index.php/cliente/obtener';
+        	 
+ 			var dato="idCliente="+idCliente;
+ 		
+ 			$.ajax({
+ 			    url: url,  
+ 			    type: "POST",
+ 			    data: dato, 
+ 			    async:false, 
+ 			    success: function(datos)
+ 			    {
+					//valida que el idcliente exista
+ 	 			    
+ 	 			    if(datos.cliente!=null)
+ 	 			    {
+ 	 			   		 //carga los datos, en la vista detalle cliente
+ 	 	 			    if(accion==1)
+ 	 	 	 			{ 	 	 			    	
+ 	 	 			    	$('#ejecutivoSelect').val(datos.cliente[3]);
+ 	 	 			    	
+ 	 	 			    	$('#nombreClienteInput').val(datos.cliente[0]);									
+
+ 	 	 			    
+
+ 	 						$('#fechaIngresoInput').val(datos.cliente[1]);
+ 	 	 	 			}
+ 	 	 	 			//carga los datos en ell formulario de edicion de datos del cliente
+ 	 	 			    else
+ 	 	 			    { 	 	 			    	
+ 	 	 			    	$('#ejecutivoSelectEdit').val(datos.cliente[3]); 
+ 	 	 			    	
+ 	 	 			    	$('#nombreClienteEdit').val(datos.cliente[0]);
+ 	 	 			    	
+ 	 						$('#fechaIngresoEdit').val(datos.cliente[1]); 	 						
+ 	 	 			    }
+ 	 			    } 
+ 	 			    else
+ 	 			    {
+ 	 					window.location.href=dominio+"index.php/cliente/buscarpornombre";
+ 	 			    }					
+ 					
+ 			    },
+ 			    error : function(xhr, status) 
+ 			    {
+ 			    	
+			    }
+ 			}); 
+        }
+
+        function obtenerEjecutivos(objetivo)
+		{				
+		    url = '/index.php/usuario/listar';
+		    
+			$(objetivo).empty();			
+					
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+
+			var dato="";
+		
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+
+
+			    	$.each(datos.data, function( index, value ) {
+						
+						 $('<option>').
+						   attr({value:value[0]}).
+						   text(value[1]).
+						   appendTo(objetivo);
+					});
+				    
+			    }
+			}); 			
+		}
+
+		function obtenerRutCliente(idCliente)
+		{				
+		    url = '/index.php/rut/listadorutbyidcliente';
+		    						
+			objetivo = "#listadoRutContactoEdit";
+
+			$('#listadoRutContactoEdit').empty();
+					
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false, selected: true}).
+			appendTo(objetivo);
+
+			var dato="idCliente="+idCliente;
+		
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+
+			    	$.each(datos.data, function( index, value ) {
+
+			    		 var detalle=value[3]+" - "+value[1];
+						 $('<option>').
+						   prop({value:value[0]}).
+						   text(detalle).
+						   appendTo(objetivo);
+					});	
+				   
+			    }
+			}); 
+			
+		}
+
+		function obtenerEstadosCobro(objetivo)
+		{				
+		    url = '/index.php/cobro/obtenerestados';
+			    
+			$(objetivo).empty();			
+						
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+		
+			var dato="";
+			
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+					    
+			    	$.each(datos.data, function( index, value ) {
+				    	
+						 $('<option>').
+						   attr({value:value.id_estado}).
+						   text(value.nombre_estado).
+						   appendTo(objetivo);
+					});
+			    }
+			}); 			
+		} 
+
+		function obtenerDatosContactoEdit(idContacto)
+		{				
+		    url = '/index.php/contacto/obtenercontactosbyidcontacto';
+		    
+			var dato="idContacto="+idContacto;
+		
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos)
+			    {			    				    			    
+				    $('#nombreContactoEdit').val(datos.contactos[0]);
+				    $('#emailContactoEdit').val(datos.contactos[1]);	
+				    $('#telefonoContactoEdit').val(datos.contactos[2]);
+				    $('#celularContactoEdit').val(datos.contactos[3]);
+				    			    
+				    if(datos.contactos[4]=='1')
+				    {
+				    	$('.boleteo').addClass('checked');
+	 			  		$('.boleteo').attr({"aria-checked":true}); 		
+				    }
+
+				    if(datos.contactos[5]=='1')
+					{
+				    	$('.cobro').addClass('checked');
+	 			  		$('.cobro').attr({"aria-checked":true}); 
+					}
+					
+			    }
+			}); 
+			
+		}
+		
+		//obtengo email para detallar a quien será enviado el correo.
+		function listaEmailVistaPrevia(idClientes,tipoCorreo)
+		{
+			url='/index.php/cliente/obtieneemailasociados';
+			
+			var dato="idCliente="+idClientes;
+			var emails="";
+			var nombres="";
+			
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos)
+			    {   				    
+					if(datos.emails!=null)
+					{
+						$.each(datos.emails,function(index, value)
+						{
+							emails+=value[0]+", ";	
+				 			nombres+=value[1]+", ";	
+						});
+						
+
+						if(tipoCorreo=='renta')
+						{							
+							$('#paraEmailRenta').text(emails.substring(0,emails.length-2));
+							$('#nombreCliente').text(nombres.substring(0,nombres.length-2));	
+						}
+						else
+						{
+							$('#paraEmailVista').text(emails.substring(0,emails.length-2));
+							$('#nombreClienteCobro').text(nombres.substring(0,nombres.length-2));
+						}	
+					}
+					else
+					{
+						if(tipoCorreo=='renta')
+						{
+							$('#paraEmailRenta').text("No existen emails asociados a este rut");	
+						}
+						else
+						{
+							$('#paraEmailVista').text("No existen emails asociados a este rut");		
+						}
+						
+					}
+			    }
+			}); 
+		}
+
+		//obtengo los datos del cobro para previsualizar el email
+		function datosCobroVistaPrevia(idCobro,tipoCobro)
+		{
+			url='/index.php/cliente/datoscobroemail';
+			
+			var dato="datosCobros="+obtenerIdsCobroEmail();
+
+			$('#table').empty();
+			$('#msj').empty();
+			
+			var montoTotal=0;
+			var formaPago="";
+			
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos)
+			    {   
+					$.each(datos.cobro, function( index, value ) 
+					{
+						$('#table').append('<tr>'+ 
+											   '<td style="border: 1px solid black; padding: 5px;">'+value[1]+'</td>'+
+											   '<td style="border: 1px solid black; padding: 5px;">'+value[0]+'</td>'+
+											   '<td style="border: 1px solid black; padding: 5px;">$ '+value[3]+'</td>'+
+									   		   '<td style="border: 1px solid black; padding: 5px;">'+value[2]+' UF</td>'+
+									   		   '<td style="border: 1px solid black; padding: 5px;">$ '+value[4]+'</td>'+ 
+								   			'</tr>');
+
+							montoTotal=value[5];
+							formaPago=value[6];
+							
+						});
+
+						switch(formaPago)
+						{
+							case '1':
+								   $('#msj').text('Favor depositar o transferir a ANGKOR CONSULTING S.A., RUT 78342990-K, Banco de CHILE, cuenta corriente 00-005-02565-06.');
+								  break;
+							case '2':$('#msj').text('Cheque a nombre del servicio.');
+								  break;
+							case '3':$('#msj').text('Listo para su pago directo en web del servicio.');
+								  break;
+							case '4':$('#msj').text('Informado por PEC.');								
+								  break;
+							case '5':$('#msj').text('Favor depositar o transferir a ANGKOR CONSULTING S.A., RUT 78342990-K, Banco de CHILE, cuenta corriente 00-005-02565-06.');
+								  break;
+						}
+
+						$('#table').append('<tr>'+ 
+								   				'<td style="border: 1px solid black; padding: 5px;" colspan="4"><strong>Total a pagar </strong></td>'+
+								   				'<td style="border: 1px solid black; padding: 5px;"><strong> $ '+montoTotal+' </strong></td>'+								   
+							   			   '</tr>');			    }
+			}); 
+		}
+
+		function obtenerIdsCobroEmail()
+		{
+			cobros="";
+			$('#tableMovimientosCliente').find('tr.selected').each(function()
+			{
+				cobros+=$(this).find('td:first').html()+"-"+$(this).find('td:first').next().html()+"/";
+			});
+
+			return cobros.substring(0,cobros.length);
+		}		
+
+		//obtengo los datos del usuario que enviará el email
+		function datosUsuarioVistaPrevia(idUsuario,tipoCobro)
+		{
+			url='/index.php/cliente/obtienedatosusuarioemail';
+			
+			var dato="idUsuario="+idUsuario;
+			
+			var emails="";
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos)
+			    {   				    
+					if(datos.usuario!=null)
+					{
+						if(tipoCobro=='renta')
+						{
+							$('#nombreUsuarioEmailRenta').text(datos.usuario[0]);
+							$('#perfilUsuarioEmailRenta').text(datos.usuario[1]);
+						}
+						else
+						{
+							$('#nombreUsuarioEmail').text(datos.usuario[0]);
+							$('#perfilUsuarioEmail').text(datos.usuario[1]);	
+						}
+						
+					}
+			    }
+			}); 
+		}
+
+		//funcion para obtener el listado cobros asociados al cliente
+		function listadoResumenCobros(idCliente,table)
+		{
+			 url = '/index.php/cobroindividual/obtenercobrobyidcliente?idCliente='+idCliente;
+			 table.fnClearTable();				
+			 table.fnReloadAjax(url);
+		}
+
+		//funcion para obtener el listado cobros asociados al cliente
+		function listadoEmailCobro(idCliente,table)
+		{
+			 url = '/index.php/cliente/listadoemail?idCliente='+idCliente;
+			 table.fnClearTable();				
+			 table.fnReloadAjax(url);
+		}
+
+		//funcion para obtener el listado contactos asociados al cliente 
+		function listadoContactosAsociados(idCliente,table)
+		{
+			 url = '/index.php/contacto/listarcontactosbyidcliente?idCliente='+idCliente;
+			 table.fnClearTable();				
+			 table.fnReloadAjax(url);
+		}
+
+		//funcion para obtener el listado cobros asociados al cliente 
+		function listadoCobrosAsociadosAlCliente(idCliente,table)
+		{
+			 url = '/index.php/cobroindividual/obtenercobrobyidcliente?idCliente='+idCliente;
+			 table.fnClearTable();				
+			 table.fnReloadAjax(url);
+		}	
+
+		//funcion para obtener el listado ruts con renta
+		function listadoRutsRenta(idCliente,table)
+		{
+			 url = '/index.php/rut/obtienerutrenta?idCliente='+idCliente;
+			 table.fnClearTable();				
+			 table.fnReloadAjax(url);
+		}	
+        
+        //funcion para obtener el listado ruts asociados al cliente 
+		function listadoRutsAsociados(idCliente,table)
+		{
+			 url = '/index.php/rut/listadorutbyidcliente?idCliente='+idCliente;
+			 table.fnClearTable();				
+			 table.fnReloadAjax(url);
+		}
+
+		//funcion para obtener el listado ruts asociados al cliente 
+		function listadoDetalleCobros(idCliente,table)
+		{
+			 url = '/index.php/cobroindividual/detallecobros?idCliente='+idCliente;
+			 table.fnClearTable();				
+			 table.fnReloadAjax(url);
+		}
+
+		//funcion para obtener el id del rut listado en el dataTable
+		function obtenerIdRut()
+		{
+			var id="";			
+				$('#tableRutAsociados').find('tr.selected').each(function(){
+					id=$(this).find('td:first').html();				
+				});
+			return id;
+		}
+
+		//funcion para obtener el id del rut listado en el dataTable de rentas
+		function obtenerIdRutRenta()
+		{
+			var id="";			
+				$('#tableListadoRutRenta').find('tr.selected').each(function(){
+					id=$(this).find('td:first').html();				
+				});
+			return id;
+		}
+
+		function obtieneAnioRenta()
+		{
+			var anio="";			
+			$('#tableListadoRutRenta').find('tr.selected').each(function(){
+				anio=$(this).find('td:first').next().next().next().html();				
+			});
+			return anio;
+		}
+
+		//funcion para obtener el id del rut listado en el dataTable
+		function obtenerIdContactoAsociado()
+		{
+			var id="";			
+				$('#tableContactosAsociados').find('tr.selected').each(function(){
+					id=$(this).find('td:first').html();				
+				});
+			return id;
+		}
+
+		//funcion para obtener el id cobro asociado al rut.
+		function obtenerIdCobro()
+		{
+			var id="";			
+				$('#tableMovimientosCliente').find('tr.selected').each(function(){
+					id=$(this).find('td:first').html();				
+				});
+			return id;
+		}
+
+		function obtenerIdRutRenta()
+		{
+			var id="";			
+				$('#tableListadoRutRenta').find('tr.selected').each(function(){
+					id=$(this).find('td:first').html();				
+				});
+			return id;
+		}
+		
+		//me indica si el cobro que estoy modificando es honorario o cobroindividual
+		//ya que las tablas para los honorarios y cobros indivudlaes estan sepradas.
+		function tipoCobro()
+		{
+			var tipo="";
+						
+			$('#tableMovimientosCliente').find('tr.selected').each(function(){
+				tipo=$(this).find('td:first').next().html();		
+				if(tipo=="Honorario")
+				{
+					id="1";
+				}
+				else if(tipo=="Cobro")
+				{
+					id="2";
+				}
+				else
+				{
+					id="3";
+				}
+						
+			});
+			
+			return id;
+		}
+
+		function estodoCobro()
+		{
+			var estado=false;
+					
+			$('#tableMovimientosCliente').find('tr.selected').each(function(){
+
+				tipo=$(this).find('td:first').next().next().next().next().next().next().next().next().html();		
+
+				if(tipo=="verificado")
+				{
+					estado=true;
+				}						
+			});
+			
+		return estado;
+
+		}
+
+		function estodoCobroPendiente()
+		{
+			var estado=false;
+					
+			$('#tableMovimientosCliente').find('tr.selected').each(function(){
+
+				tipo=$(this).find('td:first').next().next().next().next().next().next().next().next().html();		
+
+				if(tipo=="pendiente" || tipo=="pendiente(S/M)")
+				{
+					estado=true;
+				}						
+			});
+			
+		return estado;
+
+		}
+
+		function obtieneEstadoCobro()
+		{
+			var estado="";
+						
+			$('#tableMovimientosCliente').find('tr.selected').each(function()
+			{
+				estados=$(this).find('td:first').next().next().next().next().next().next().next().next().html();
+				
+				switch(estados)
+				{
+					case 'pendiente': 
+						estado='pendiente';  
+						break;
+					case 'dinero recibido': 
+						estado='dinero recibido';  
+						break;
+					case 'pago emitido': 
+						estado='pago emitido';  
+						break;
+					case 'verificado': 
+						estado='verificado';  
+						break;
+					case 'S/M': 
+						estado='S/M';  
+						break;
+					case 'anulado': 
+						estado='anulado'; 
+						break;
+					case 'anulado(S/M)': 
+						estado='anulado(S/M)'; 
+						break;	
+				}
+			});			
+
+			return $.trim(estado);			
+		}
+
+		function verificaSeleccionados()
+		{
+			var cont=0;
+			$('#tableMovimientosCliente').find('tr.selected').each(function()
+			{
+				if($('#tableMovimientosCliente tbody tr').hasClass('selected'))
+				{
+					cont++;	
+				}
+				
+			});
+
+			return cont;
+		}
+
+	});
+	
+	</script>
+
+
+</body>
+</html>

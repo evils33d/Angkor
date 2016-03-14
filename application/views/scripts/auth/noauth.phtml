@@ -1,0 +1,14 @@
+<?php 
+$msg = $this->loggedInAs();
+//echo $request->getControllerName()."::".$request->getActionName();
+?> 
+
+<!-- application/views/scripts/auth/login.phtml -->
+<div class="caja_formulario medida1 bg1 sombra1">
+	<div class="noauth">
+
+			Estimado <?=$msg["nombre"]?>, no estas autorizado para ingresar a esta &aacute;rea
+			<a class="link cerrar" href="<?=$msg["url_logout"]?>">SALIR</a>
+	</div>
+</div>
+

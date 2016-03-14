@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><?=$this->nombre_sitio?></title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+	
+<!-- JqueryAlerts -->
+<link href = "/plugins/JqueryAlerts/jquery.alerts.css" rel = "stylesheet"> 
+
+<!-- Select2 -->
+<link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+<!-- Bootstrap 3.3.4 -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Ionicons -->
+<link href="/ionicons/css/ionicons.min.css" rel="stylesheet"
+	type="text/css" />	
+	
+<!--Jquery Alert-->	
+
+<link href="../../plugins/JqueryAlerts/jquery.alerts.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- DATA TABLES -->
+
+<!-- <link href="/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />-->
+
+<link href="/plugins/datatables/jquery.dataTables.css" rel="stylesheet"
+	type="text/css" />
+
+<link href="/plugins/datatables/dataTables.tableTools.css"
+	rel="stylesheet">
+
+<link href="/plugins/datatables/dataTables.responsive.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- datepicker, estilos calendario -->
+<link href="/plugins/datepicker/datepicker3.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- DateRangePicker -->
+<link href="/plugins/daterangepicker/daterangepicker-bs3.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- iCheck for checkboxes and radio inputs -->
+<link href="../../plugins/iCheck/all.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- Theme style -->
+<link href="/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+<link href="/dist/css/skins/<?=$this->skin?>.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style>
+
+.editar {
+	width: 20px;
+	height: 40px;
+	padding: 0px;
+	margin: 0px;
+}
+
+
+
+#formBusquedaMensualidadesServicios .error {
+	color: Crimson
+}
+
+</style>
+
+
+</head>
+<!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+<body class="<?=$this->skin?> sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Main Header -->
+      	<?=$this->render('head.phtml') ?>	
+  <!-- Fin Main Header -->
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+
+				<!-- Sidebar user panel (optional) -->
+				<?=$this->render('sidebaruserpanel.phtml') ?>	
+		  <!-- Fin Sidebar user panel -->
+
+				<!-- Sidebar Menu -->
+				<?=$this->render('menu.phtml') ?>		
+        </section>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<!-- Main content -->
+       
+          <?=$this->layout()->content?>
+       
+        <!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+			
+			<?= $this->render('footer.phtml')?>
+
+      <!-- Control Sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED JS SCRIPTS -->
+
+	<!-- jQuery 2.1.4 -->
+	<script src="/plugins/jQuery/jQuery-2.1.4.min.js"
+		type="text/javascript"></script>
+
+	<!-- Script RUT -->
+	<script src="/plugins/jQueryRut/jquery.Rut.js" type="text/javascript"></script>
+
+	<!-- Bootstrap 3.3.2 JS -->
+	<script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!-- DATA TABES SCRIPT -->
+
+	<script src="/plugins/datatables/jquery.dataTables.min.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/datatables/dataTables.responsive.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/datatables/fnReloadAjax.js" cache="false"></script>
+
+	<script src="/plugins/datatables/dataTables.tableTools.js"
+		cache="false"></script>
+
+	<script src="/plugins/datatables/dataTables.fixedColumns.min.js"
+		cache="false"></script>
+
+	<!-- <script src="/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+
+	<!-- SlimScroll -->
+	<script src="/plugins/slimScroll/jquery.slimscroll.min.js"
+		type="text/javascript"></script>
+	<!-- FastClick -->
+
+	<script src="/plugins/fastclick/fastclick.min.js"
+		type="text/javascript"></script>
+
+	<!-- AdminLTE App -->
+	<script src="/dist/js/app.min.js" type="text/javascript"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="/dist/js/demo.js" type="text/javascript"></script>
+
+	<!-- date-picker -->
+	<script src="/plugins/datepicker/bootstrap-datepicker.js"
+		type="text/javascript"></script>
+
+	<!-- date-range-picker -->
+
+	<script src="/plugins/daterangepicker/moment.js" type="text/javascript"></script>
+	<script src="/plugins/daterangepicker/daterangepicker.js"
+		type="text/javascript"></script>
+
+	<!-- iCheck 1.0.1 Script checkbox y radiobuttons -->
+	<script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
+	<!-- Jquery Validate -->
+
+	<script src="/plugins/jqueryvalidate/jquery.validate.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/additional-methods.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/messages_es.min.js"
+		type="text/javascript"></script>
+
+	<!-- JQUERY Number -->
+	<script src="/plugins/jquerynumber/jquery.number.js"
+		type="text/javascript"></script>
+
+	<!-- Select2 -->
+	<script src="../../plugins/select2/select2.full.min.js"></script>
+	
+	<!-- page script -->
+	<script src = "/plugins/JqueryAlerts/jquery.alerts.js" type = "text/javascript"></script>
+	<script src = "/plugins/jQuery/jquery-migrate-1.2.1.js" type = "text/javascript"></script>
+	
+
+	
+	<script type="text/javascript">
+
+    $(function()
+	{	 
+
+    	var dominio = '<?=$this->urlaplicacion?>';
+
+    	$('#formBusquedaMensualidadesServicios').validate({
+			debug:true,
+			rules:{
+				ejecutivoSelect:{
+					required:false
+				},
+				clienteEjecutivoSelect:{
+					required:false
+				},
+				rutClieneteSelect:{
+					required:false
+				},
+				fecha:{
+					required:true
+				}
+					
+			},messages:{
+				fecha:" Debe seleccionar una fecha de cobro"
+			},	
+			submitHandler:function(form)
+			{
+				form.submit();
+			}
+		});
+		
+    	obtenerEjecutivos('#ejecutivoSelect');
+    	
+		if(<?= $this->idEjecutivo ?>!='0')
+		{
+			$('#ejecutivoSelect').val(<?= $this->idEjecutivo ?>);
+			obtenerClientesByjecutivo('#clienteEjecutivoSelect',$('#ejecutivoSelect').val());
+		}
+
+		if(<?= $this->idCliente ?>!='0')
+		{
+			if($('#ejecutivoSelect').val()!='')
+			{
+				$('#clienteEjecutivoSelect').val(<?= $this->idCliente ?>);
+				obtenerRutCliente('#rutClieneteSelect',$('#clienteEjecutivoSelect').val());
+			}
+		}
+
+		if(<?= $this->idRut ?>!='0')
+		{
+			if($('#clienteEjecutivoSelect').val()!='')
+			{	
+				$('#rutClieneteSelect').val(<?= $this->idRut ?>);
+			}
+		}
+
+	  	$('.mensualidad').number(true,0,',','.');
+
+	  	$('.servicio').number(true,0,',','.');
+	  	
+
+	  	$('#buttonActualizarUF').on('click',function()
+	  	{
+		  	$('#actualizarUF').addClass('hide');
+		});
+
+		$('#ejecutivoSelect').select2();
+		$('#clienteEjecutivoSelect').select2();
+		$('#rutClieneteSelect').select2();
+
+		$('#ejecutivoSelect').on('change',function()
+		{
+			obtenerClientesByjecutivo('#clienteEjecutivoSelect',$('#ejecutivoSelect').val());
+		});
+		
+		$('#clienteEjecutivoSelect').on('change',function()
+		{
+			obtenerRutCliente('#rutClieneteSelect',$('#clienteEjecutivoSelect').val());
+		});	
+
+		$('#dateCobroInput').on('click',function()
+		{
+			$('#buttonMensualidadServicio').attr({"disabled":true});
+		});	
+
+		$('#dateCobroInput').on('changeDate',function(){
+
+			fecha=$('#dateCobroInput').val().toString().split('-');
+			
+			url="/index.php/valores/obteneruf";
+
+			data="anioUf="+$.trim(fecha['1'].toString())+"&mesUf="+$.trim(fecha['0'].toString());
+
+			fecha="";
+
+			objetivo='#valorUF';
+			
+			$(objetivo).empty();
+
+			$('<option>').
+			attr({value:"0"}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+
+			$.ajax({
+			    url: url,  
+			    type: "GET",
+			    data: data,  
+			    success: function(datos)
+			   	{		 				  
+			    	if(datos.valoruf.length>0)
+			    	{
+						$('<option selected="selected">').
+						attr({value:datos.valoruf[1]}).
+						text("$ "+datos.valoruf[0]).
+						appendTo(objetivo);
+
+						valorUF=datos.valoruf[0];
+						
+						
+						$('#buttonSubmit').attr({"disabled":false});
+						$('#actualizarUF').addClass('hide');						
+				    }
+				    else
+				    {
+				    	 $('<option selected="selected">').
+						   attr({value:'sinuf'}).
+						   text("Sin Uf").
+						   appendTo(objetivo);
+						   $('#actualizarUF').removeClass('hide');
+						   $('#buttonMensualidadServicio').attr({"disabled":true});
+						   $('#buttonSubmit').attr({"disabled":true});
+				    }
+		 	    }
+			}); 
+		});
+
+		$('#dateCobroInput').datepicker({
+			 format: "mm-yyyy",
+			 viewMode: "months", 
+			 minViewMode: "months",
+			 autoclose:true
+		});				
+
+		$('#buttonMensualidadServicio').on('click',function()
+		{
+				if($('#dateCobroInput').val()!='')
+				{				
+					var datosMensualidadServicio=new Array();
+	
+					var fechaIngreso=$('#dateCobroInput').val();
+					var valorUF=$('#valorUF option:selected').text().toString().replace('$','');
+					var idUf=$('#valorUF option:selected').val();
+		
+					$('#tableMensualidadServicio tbody tr').each(function(index)
+					{
+						var idRut="", valorMensualidad="", valorServicio="", formaPago="", valorMonedaMensualidad="", valorMonedaServicio="";
+														 
+						$(this).children('td').each(function(index2)
+						{									
+							 switch(index2)
+							 {
+							  	case 0:		
+		
+							  		idRut=$(this).text();
+								  	
+						 			break;
+		
+							  	case 5:		
+		
+									if($(this).children('div.input-group').find('input').val()=='')
+									{
+										valorMensualidad='0';
+									}
+									else
+									{
+										montoUFmensualidad=(parseFloat($(this).children('div.input-group').find('input').val().toString().replace(/\./g,''))/parseFloat($.trim(valorUF)));
+										valorMensualidad=montoUFmensualidad.toFixed(2); 
+										valorMonedaMensualidad=$(this).children('div.input-group').find('input').val().toString().replace(/\./g,'');
+										validaNumeroNegativo(montoUFmensualidad);
+									}				  		
+								  	
+							 		break;
+		
+							  	case 6:		
+		
+							  		if($(this).children('div.input-group').find('input').val()=='')
+							  		{
+										valorServicio='0';
+							  		}
+									else
+									{
+										montoUFservicio=(parseFloat($(this).children('div.input-group').find('input').val().toString().replace(/\./g,''))/parseFloat($.trim(valorUF)));
+										valorServicio=montoUFservicio.toFixed(2);
+										valorMonedaServicio=$(this).children('div.input-group').find('input').val().toString().replace(/\./g,'');
+										validaNumeroNegativo(valorServicio);
+									}					  		 
+									
+							 		break;
+							 								  	
+							  	case 7:		
+		
+							  		formaPago= $(this).children('select').val(); 							
+								  	
+							 		break;
+							  }	 					 				  			 										
+						 });
+	
+							if( (valorMensualidad!='0'&&valorMensualidad!='0.00') || (valorServicio!='0'&&valorServicio!='0.00'))
+							{					 			
+								datosMensualidadServicio.push({idRut,valorMensualidad,valorServicio,formaPago,fechaIngreso,valorUF,idUf,valorMonedaMensualidad,valorMonedaServicio});	  						
+							}		 
+					});
+		
+					var json=JSON.stringify(datosMensualidadServicio);
+					
+					url='/index.php/cobromensualidadservicio/registracobromensualidadservicio';
+					
+					data="data="+json;
+					
+					if(!negativo)
+					{	
+						if(datosMensualidadServicio.length>0)
+						{					
+							$.ajax({
+							    url: url,  
+							    type: "POST",
+							    data: data,  
+							    success: function(datos)
+							   	{
+							    	if(datos.registro[0]=='1')
+							    	{						    	
+								    	jAlert("Cobro Registrado Correctamente!","Alerta");	
+
+								    	$('#buttonMensualidadServicio').attr({"disabled":true});
+								    	
+								    	window.location.href = dominio+"ingresomensualidadservicios";
+							    	}
+							    	else if(datos.registro[0]=='2')
+								    {
+							    		$('#problemasRegistroCobrosMS').removeClass('hide');
+							    		
+							    	}
+							    	else
+								    {
+							    		$('#problemasRegistroCobrosMS').removeClass('hide');
+							    		
+							    	}
+						 	    }
+							}); 
+						}
+						else
+						{
+							$('#sinCobros').removeClass('hide');
+							
+						}	
+					}
+					else
+					{
+						$('#numeroNegativo').removeClass('hide');
+					}
+
+					
+	
+					datosMensualidadServicio=[];		
+				}
+				else
+				{
+					$('#seleccioneFecha').removeClass('hide');
+					$('#buttonMensualidadServicio').attr({"disabled":true});
+				}
+		
+		});	
+
+
+		$('#buttonNumeroNegativo').on('click',function()
+		{
+			$('#numeroNegativo').addClass('hide');
+		});
+
+
+		$('#buttonSeleccioneFecha').on('click',function()
+		{
+			$('#seleccioneFecha').addClass('hide');
+		});
+				
+		var negativo=false;
+
+		function validaNumeroNegativo(numero)
+		 {	
+			 if(numero!='')		
+			 {
+				 if(numero<0)
+				 {
+					 negativo= true;
+				 }	 
+			 }	 			  
+
+			 return negativo;
+		 }
+
+		$('#buttonRegistroCobrosMS').on('click',function()
+		{
+			$('#registroCobrosMS').addClass('hide');
+		});
+
+		$('#buttonProblemasRegistroCobrosMS').on('click',function()
+		{
+			$('#problemasRegistroCobrosMS').addClass('hide');
+		});
+
+		$('#buttonSinCobros').on('click',function()
+		{
+			$('#sinCobros').addClass('hide');
+		});
+
+		//funcion para obtener a los ejecutvos y cargarlos al combobox
+		function obtenerEjecutivos(objetivo)
+		{				
+		   url = '/index.php/usuario/listar';
+		 	    
+		   $(objetivo).empty();
+						
+		   $('<option>').
+		   attr({value:""}).
+		   text('Seleccione').
+		   prop({disabled: false, selected: true}).
+		   appendTo(objetivo);
+
+			var dato="";
+				
+				$.ajax({
+				    url: url,  
+				    type: "GET",
+				    data: dato,  
+				    async:false,
+				    success: function(datos)
+				   	{
+				    	 $.each(datos.data, function( index, value ) 
+						 {								
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(value[1]).
+							   appendTo(objetivo);
+						});
+			 	    }
+				}); 			 		
+		 }
+
+		 function obtenerClientesByjecutivo(objetivo,idEjecutivo)
+		 {				
+			    url = '/index.php/cliente/listarbyejecutivo?idUsuario='+idEjecutivo;
+			    
+				$(objetivo).empty();			
+						
+				$('<option>').
+				attr({value:""}).
+				text('Seleccione').
+				prop({disabled: false}).
+				appendTo(objetivo);
+
+				var dato="";
+			
+				$.ajax({
+				    url: url,  
+				    type: "GET",
+				    data: dato,  
+				    async:false,
+				    success: function(datos){
+					    
+				    	 $.each(datos.data, function( index, value ) {
+								
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(value[1]).
+							   appendTo(objetivo);
+						});
+				    }
+				}); 			
+		 } 
+
+		 function obtenerRutCliente(objetivo,idCliente)
+		 {				
+			    url = '/index.php/rut/listadorutbyidcliente';
+				$(objetivo).empty();
+						
+				$('<option>').
+				attr({value:""}).
+				text('Seleccione').
+				prop({disabled: false, selected: true}).
+				appendTo(objetivo);
+
+				var dato="idCliente="+idCliente;
+			
+				$.ajax({
+				    url: url,  
+				    type: "GET",
+				    data: dato,  
+				    async:false,
+				    success: function(datos){
+
+				    	 $.each(datos.data, function( index, value ) {
+
+				    		 var detalle=value[3]+" - "+value[1];				    		 	
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(detalle).
+							   appendTo(objetivo);
+						});
+					    
+				    }
+				}); 
+		 } 
+			
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<section class="content-header">
+
+	<h1>Env&iacute;o Cobros Masivos</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-money"></i> Cobros</a></li>
+		<li class="active">Env&iacute;o Cobros Masivos</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<!-- Filtro Búsqueda de Clientes -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Buscar Cliente</strong>
+			</h3>
+		</div>
+		<form action="" id="formBusquedaCliente">
+			<div class="box-body">
+
+				<div class="form-group">
+					<label for="ejecutivoSelect">Ejecutivo</label> <select
+						class="form-control" id="ejecutivoSelect" name="ejecutivoSelect">
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="nombreClienteInput">Nombre del Cliente</label> <input
+						type="text" class="form-control" id="nombreClienteInput"
+						name="nombreClienteInput" placeholder="Amanda L&oacute;pez">
+				</div>
+			</div>
+			<div class="box-footer">
+				<button type="submit" class="btn btn-primary">
+					Buscar <span class="fa fa-search"></span>
+				</button>
+			</div>
+		</form>
+	</div>
+	<!-- Termina Filtro Búsqueda de Clientes -->
+
+	<!-- Resultados y Acciones -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Seleccionar Clientes</strong>
+			</h3>
+		</div>
+
+		<div class="box-body">
+
+			<div class="row">
+				<div class="col-md-6">
+					<label for="tipoCorreoSelect">Tipo de Correo</label> <select
+						class="form-control" id="tipoCorreoSelect" name="tipoCorreoSelect">
+						<option value="">Seleccione</option>
+						<option value="1">Cobro Mensual PPM</option>
+						<option value="2">Email Boleteo</option>
+					</select>
+
+				</div>
+
+				<div class="col-md-6" id="tituloFecha">
+					<label for="dateCobroAnio">Fecha</label>
+
+					<div class="input-group" id="fechaAnio">
+						<input id="dateCobroAnio" name="dateCobroAnio"
+							data-provide="datepicker" type="text" class="form-control"
+							placeholder="yyyy" data-date-format="yyyy"><span
+							class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					</div>
+
+					<div class="input-group" id="fechaMesAnio">
+						<input id="dateCobroMesAnio" name="dateCobroMesAnio"
+							data-provide="datepicker" type="text" class="form-control"
+							placeholder="mm-yyyy" data-date-format="mm-yyyy"><span
+							class="input-group-addon"><i class="fa fa-calendar"></i></span>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="form-group">
+
+				<table id="tableListadoClientes"
+					class="table table-bordered table-hover cell-border compact">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombre del Cliente</th>
+							<th>Ejecutivo</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+
+			</div>
+
+			<div class="row">
+
+				<!--*********** Sección Vista Previa  Boleteo ***********-->
+				<div class="col-md-12" id="panelBoleteo" hidden="">
+
+					<form action="" id="formBoleteo">
+
+						<div class="col-md-6">
+
+							<!-- Sección Email Cobro -->
+							<div class="box box-warning" id="">
+								<div class="box-header with-border">
+									<h3 class="box-title">
+										<strong>Email Boleteo</strong><strong id="anioRentaVista"></strong>
+									</h3>
+								</div>
+
+								<div class="box-body">
+
+									<div class="form-group">
+										<label for="asuntoEmailBoleteo">Asunto</label> <input
+											class="form-control" id="asuntoEmailBoleteo"
+											name="asuntoEmailBoleteo" type="text" placeholder="Asunto...">
+									</div>
+
+									<div class="form-group">
+										<label for="cuerpoEmailBoleteo">Cuerpo</label>
+										<textarea class="form-control" rows="3"
+											placeholder="Cuerpo del email..." id="cuerpoEmailBoleteo"
+											name="cuerpoEmailBoleteo"></textarea>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-6">
+
+							<div class="box box-warning" id="panelVistaBoleteo">
+								<div class="box-header with-border">
+									<h3 class="box-title">
+										<strong>Vista Previa</strong>
+									</h3>
+									<button type="button" id="cierraPanelesBoleteo" class="close"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+
+								<div class="box-body">
+									<h4>Para:</h4>
+									<p id="paraEmailBoleteo"></p>
+									<hr />
+									<h4>Asunto:</h4>
+									<p id="asuntoVistaBoleteo"></p>
+									<hr />
+
+									<p>
+										Estimado(a) <strong id="nombreClienteBoleteo"></strong>
+									</p>
+
+									<p>Adjuntamos reporte acumulado de boleteo anual por
+										contribuyente.</p>
+
+									<br> <strong id="cuerpoVistaEmailBoleteo"></strong>
+
+									<p>Saludos</p>
+									<p>
+										Se despide atentamente <strong id="nombreUsuarioEmailBoleteo"></strong>, <strong id="perfilUsuarioEmailBoleteo"></strong> de ANGKOR.
+									</p>
+
+								</div>
+								<div class="box-footer">
+									<button class="btn btn-success" type="submit"
+										id="envioMailBoleteo">
+										Enviar <span class="fa fa-send"></span>
+									</button>
+								</div>
+							</div>
+
+						</div>
+
+					</form>
+
+				</div>
+				<!--*********** Sección Vista Previa  Boleteo ***********-->
+
+
+				<!--*********** Sección Vista Previa Cobro PPM ***********-->
+				<div class="col-md-12" id="panelPPM" hidden="">
+
+					<form action="" id="formEmailPPM">
+						<div class="col-md-6">
+
+							<!-- Sección Email Cobro -->
+							<div class="box box-warning" id="">
+								<div class="box-header with-border">
+									<h3 class="box-title">
+										<strong>Email Resumen PPM</strong>
+									</h3>
+								</div>
+
+								<div class="box-body">
+
+									<div class="form-group">
+										<label for="asuntoEmailPPM">Asunto</label> <input
+											class="form-control" id="asuntoEmailPPM"
+											name="asuntoEmailPPM" type="text" placeholder="Asunto...">
+									</div>
+
+									<div class="form-group">
+										<label for="cuerpoEmailPPM">Cuerpo</label>
+										<textarea class="form-control" rows="3"
+											placeholder="Cuerpo del email..." id="cuerpoEmailPPM"
+											name="cuerpoEmailPPM"></textarea>
+									</div>
+
+
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-6">
+
+							<div class="box box-warning" id="panelVistaPPM">
+								<div class="box-header with-border">
+									<h3 class="box-title">
+										<strong>Vista Previa</strong>
+									</h3>
+									<button type="button" id="cierraPanelesPPM" class="close"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+
+								<div class="box-body">
+									<h4>Para:</h4>
+									<p id="paraEmailPPM"></p>
+									<hr />
+									<h4>Asunto:</h4>
+									<p id="asuntoVistaPPM"></p>
+									<hr />
+
+									<p>
+										Estimado(a) <strong id="nombreClientePPM"></strong>
+									</p>
+
+									<?php 
+									
+									$meses=array("","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+									 
+									$numeroMes = date("n");
+									 
+																	
+									$mesActual = $meses[$numeroMes];
+									
+									if(date("j")<=20){
+										
+										$resta = $numeroMes-1;
+										
+										if($resta == 0)
+										{
+											$mesActual = 12;
+										}else{
+											$mesActual = $meses[$resta];
+										}										
+										
+									}
+									
+									?>
+									
+									<p>Adjunto informaci&oacute;n PPM <?=$mesActual?></p>
+
+									<table id="tablePPM1">
+										<thead>
+											<tr>
+												<th
+													style="width: 190px; border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Contribuyente</th>
+												<th
+													style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">F29</th>
+												<th
+													style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Previred</th>
+												<th
+													style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Otros</th>
+												<th
+													style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Honorarios
+													Angkor</th>
+												<th
+													style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Total</th>
+											</tr>
+										</thead>
+										<tbody id="dataPPM">
+
+										</tbody>
+										<tfoot>
+											<tr>
+												<td colspan="5"
+													style="border: 1px solid black; padding: 5px;"
+													align="right"><strong>Total</strong></td>
+												<td id="totalPPM"
+													style="border: 1px solid black; padding: 5px; background-color: #FFCD00;"></td>
+											</tr>
+										</tfoot>
+									</table>
+
+									<br>
+
+									<table id="tablePPM2">
+										<thead>
+											<tr>
+												<th
+													style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Dep.
+													Angkor (1)</th>
+												<th
+													style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Pago
+													Directo Cliente (2)</th>
+												<th
+													style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">PEC
+													(3)</th>
+												<th
+													style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;">Cheque
+													SS (4)</th>
+											</tr>
+										</thead>
+										<tbody id="dataPPMDetalle">
+
+										</tbody>
+										<tfoot id="totalesDetallePPM">
+
+										</tfoot>
+									</table>
+
+									<br> <br>
+
+									<p id="msjDepAngkor"></p>
+
+									<p id="msjPagoDirecto"></p>
+
+									<p id="msjPEC"></p>
+
+									<p id="msjOrden"></p>
+
+									<strong id="cuerpoVistaEmailPPM"></strong>
+
+									<p>
+										Se despide atentamente <strong id="nombreUsuarioEmailPPM"></strong>,
+										<strong id="perfilUsuarioEmailPPM"></strong> de ANGKOR.
+									</p>
+
+								</div>
+								<div class="box-footer">
+									<button class="btn btn-success" type="submit"
+										id="envioEmailPPM">
+										Enviar <span class="fa fa-send"></span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!--*********** Sección Vista Previa Cobro PPM ***********-->
+
+			</div>
+
+
+			<!--*********** Sección Mensajes ***********-->
+
+			<div class="row">
+
+				<div class="col-md-12">
+					<div class="form-group">
+
+						<div class="alert alert-warning alert-dismissable hide"
+							id="seleccionaCliente">
+							<button type="button" class="close" id="buttonSeleccionaCliente"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>Debe seleccionar un cliente de la lista</p>
+						</div>
+
+
+						<div class="alert alert-warning alert-dismissable hide"
+							id="seleccionaAnioMes">
+							<button type="button" class="close" id="buttonSeleccionaAnioMes"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>Debe seleccionar una fecha</p>
+						</div>
+
+						<div class="alert alert-warning alert-dismissable hide"
+							id="seleccionaTipoEmail">
+							<button type="button" class="close"
+								id="buttonSeleccionaTipoEmail" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>Debe seleccionar tipo de email</p>
+						</div>
+
+						<div class="alert alert-warning alert-dismissable hide"
+							id="actualizaMetaBoleteo">
+							<button type="button" class="close"
+								id="buttonActualizaMetaBoleteo" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>Los rut asociados al cliente, no registran metas de boleteo
+								para el a&ntilde;o seleccionado</p>
+						</div>
+
+						<div class="alert alert-warning alert-dismissable hide"
+							id="sinDatosMasivos">
+							<button type="button" class="close" id="buttonSinDatosMasivos"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>No existen cobros masivos registrados</p>
+						</div>
+
+						<div class="alert alert-warning alert-dismissable hide"
+							id="sinDatos">
+							<button type="button" class="close" id="buttonSinDatos"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>El cliente no tiene cobros masivos registrados este mes</p>
+						</div>
+
+						<div class="alert alert-success alert-dismissable hide"
+							id="enviaEmailBoleteo">
+							<button type="button" class="close" id="buttonEnviaEmailBoleteo"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Email de boleteo enviado correctamente</p>
+						</div>
+
+						<div class="alert alert-success alert-dismissable hide"
+							id="enviaEmailPPM">
+							<button type="button" class="close" id="buttonEnviaEmailPPM"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Email de PPM enviado correctamente</p>
+						</div>
+
+						<div class="alert alert-danger alert-dismissable hide"
+							id="errorAccion">
+							<button type="button" class="close" id="buttonErrorAccion"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-remove"></i> Ops !
+							</h4>
+							<p>Problemas al realizar la acci&oacute;n</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!--*********** Termina sección Mensajes ***********-->
+
+		</div>
+
+		<div class="box-footer">
+			<button type="button" id="buttonRedactarEmail"
+				class="btn btn-primary">
+				Redactar <span class="fa fa-edit"></span>
+			</button>
+			
+			<?php if($this->rol=='1'||$this->rol=='2' || $this->rol=='3' || $this->rol=='7'){ ?>
+			<button class="btn btn-warning" id="descargaPDF">
+				Descargar PDF <span class="fa fa-eye"></span>
+			</button>
+
+			<button type="button" class="btn btn-success pull-right"
+				id="descargaPDFMasivo">
+				Generar PDF masivo <span class="fa fa-refresh"></span>
+			</button>
+			<?php } ?>
+		</div>
+
+	</div>
+	<!-- Resultados Filtro y Acciones -->
+
+</section>

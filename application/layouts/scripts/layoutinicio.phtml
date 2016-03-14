@@ -1,0 +1,50 @@
+<html>
+<head>
+
+<?= $this->render('head.phtml') ?>
+
+</head>
+<body>
+
+	<div class="header">
+
+		<div class="caja_navegacion">
+		
+		
+			<a class="logo_top_header" href="#">Info Bridge</a>
+		
+			<div class="barra_top">
+				<span>Bienvenido Oscar Rivera</span>
+			
+
+
+				<a class="link cerrar"	href="<?=$this->urlaplicacion?>index.php/index/logout/">CERRAR	SESI&Oacute;N</a>
+					
+			</div>
+			
+			
+			<div>
+				<ul class="adxm menu">
+					<li><a href="#">Digitaci&oacute;n</a>
+					</li>
+					<li><a href="#">Actualizaci&oacute;n</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--fin de caja navegacion-->
+
+	</div>
+	<!--fin de header-->
+
+
+	<div class="wrapper">
+
+
+<div class="contenidos">
+<?=$this->layout()->content?>
+</div>
+</div>
+<?=$this->render('footer.phtml') ?>       
+</body>
+</html>

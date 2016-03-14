@@ -1,0 +1,111 @@
+<section class="content-header">
+	<h1>B&uacute;squeda de clientes</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-user"></i> Cliente</a></li>
+		<li class="active">Buscar por Nombre</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<!-- Búsqueda Clientes -->
+
+	<div class="box box-primary">
+		<!-- Form -->
+
+		<form role="form" method="post" action="" id="formBuscarCliente">
+
+			<div class="box-header with-border">
+				<h3 class="box-title">
+					<strong>Buscar Cliente</strong>
+				</h3>
+			</div>
+
+			<div class="box-body">
+
+				<div class="form-group">
+					<label for="ejecutivoSelect">Ejecutivo</label> <select
+						class="form-control" id="ejecutivoSelect" name="ejecutivoSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="nombreClienteInput">Nombre del Cliente</label> <input
+						type="text" class="form-control" id="nombreClienteInput"
+						name="nombreClienteInput" placeholder="Amanda L&oacute;pez">
+				</div>
+				
+			</div>
+			<div class="box-footer">
+				<button class="btn btn-primary" type="submit">
+					Buscar<span class="fa fa-search"></span>
+				</button>
+			</div>
+			
+		</form>
+		<!-- End Form -->
+
+	</div>
+
+	<!-- Fin Búsqueda Clientes -->
+
+	<!--  Tabla de resultados -->
+
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Listado de Clientes</strong>
+			</h3>
+		</div>
+
+		<div class="box-body">
+
+			<div class="form-group">
+				<table id="tableListadoClientes"
+					class="table table-bordered table-hover compact">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Cliente</th>
+							<th>Ejecutivo</th>
+
+						</tr>
+					</thead>
+				</table>
+			</div>
+
+			<div class="form-group hide" id="seleccionaConceptoLista">
+
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" id="buttonCierraMsgSeleccion"
+						aria-hidden="true">&times;</button>
+					<h4>
+						<i class="icon fa fa-check"></i> Opps !
+					</h4>
+					<p>Primero debe seleccionar un cliente</p>
+				</div>
+
+			</div>
+
+		</div>
+		<div class="box-footer"> 			
+ 			<form id="formdetalle" action="/index.php/cliente/detallecliente">
+ 			<input type="hidden" id="idCliente" name="idCliente" value="">
+				<button class="btn btn-primary" id="irDetalleCliente">
+					Ver <span class="fa fa-eye"></span>
+				</button>
+			</form>
+		</div>
+
+	</div>
+
+	<!-- Fin Tabla de resultados -->
+
+
+</section>
+
+

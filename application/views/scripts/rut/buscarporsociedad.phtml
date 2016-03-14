@@ -1,0 +1,164 @@
+<section class="content-header">
+	<h1>Buscar Cliente Por RUTs Asociado</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-user"></i> Cliente</a></li>
+		<li class="active">Buscar por Rut Asociado</li>
+	</ol>
+
+</section>
+
+<section class="content">
+	<div class="row">
+		<!--Row -->
+		<div class="col-md-12">
+
+			<!-- Búsqueda Clientes -->
+			<div class="box box-primary">
+
+				<form role="form" action="" method="post" id="formBuscaRutAsociado">
+					<!-- Form -->
+
+					<div class="box-header with-border">
+						<h3 class="box-title">
+							<strong>Buscar Rut asociado</strong>
+						</h3>
+					</div>
+
+					<div class="box-body">
+
+						<div class="form-group">
+							<label for="ejecutiveSelect">Ejecutivo</label> <select
+								class="form-control" id="ejecutiveSelect" name="ejecutiveSelect">
+							</select>
+						</div>
+						
+						<div class="form-group">
+							<label for="nameRazonSocialInput">Nombre / Raz&oacute;n Social</label>
+							<input type="text" class="form-control" id="nameRazonSocialInput"
+								name="nameRazonSocialInput" placeholder="Andr&eacute;s Fuentes">
+						</div>
+						
+						<div class="form-group">
+							<label for="rutSociedadInput">RUT</label> <input type="text"
+								class="form-control" id="rutSociedadInput"
+								name="rutSociedadInput" maxlength="12"
+								placeholder="12.345.678-0">
+						</div>
+						
+						<div class="form-group">
+							<label for="numeroSociedadInput">N&uacute;mero de Sociedad</label>
+							<input type="text" class="form-control" id="numeroSociedadInput"
+								name="numeroSociedadInput" placeholder="0000123">
+						</div>
+						
+						
+						<div class="form-group">
+
+						<div class="alert alert-warning alert-dismissable hide" id="seleccionaEjecutivo">
+							<button type="button" class="close"
+								id="buttonSeleccionaEjecutivo" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Priemro debe seleccionar un ejecutivo</p>
+						</div>
+
+					</div>
+						
+					</div>
+					<div class="box-footer">
+						<button type="submit" class="btn btn-primary">
+							Buscar <span class="fa fa-search"></span>
+						</button>
+					</div>
+				</form>
+				<!-- End Form -->
+
+			</div>
+
+			<!-- Fin Búsqueda Clientes -->
+
+			<!------- Tabla de resultados ------->
+
+
+			<div class="box box-primary">
+
+				<div class="box-header with-border">
+					<h3 class="box-title">
+						<strong>Listado de Rut Asociados</strong>
+					</h3>
+				</div>
+
+				<div class="box-body">
+
+					<div class="form-group">
+						<table id="tableResultadoRuts"
+							class="table table-bordered table-hover compact">
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>Nombre / Raz&oacute;n</th>
+									<th>N&uacute;mero Sociedad</th>
+									<th>RUT</th>
+									<th>Ejecutivo</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+
+					<div class="form-group hide" id="seleccionaRutLista">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close"
+								id="buttonCierraSeleccionaRutLista" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>Primero debe seleccionar un rut</p>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="box-footer">
+					<button class="btn btn-primary" id="buttonDetalleRut">
+						Ver <span class="fa fa-eye"></span>
+					</button>
+				</div>
+
+			</div>
+
+			<!------- Fin Tabla de resultados ------->
+
+		</div>
+	</div>
+	<!--End Row -->
+</section>
+
+
+<!---------- Ventanas Modales ---------->
+
+<!-- Modal Rut Incorrecto -->
+<div class="modal modal-danger fade" id="modalRutIncorrecto">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Atenci&oacute;n</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>El rut ingresado es incorrecto</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-outline">Ok</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Rut Incorrecto -->

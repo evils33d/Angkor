@@ -1,0 +1,178 @@
+<section class="content-header">
+
+	<h1>Cartola Bancaria</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="/index.php/sistema/index"><i class="fa fa-line-chart"></i>
+				Reportes</a></li>
+		<li class="active">Reporte Cartola Bancaria</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Buscar Cartola</strong>
+			</h3>
+		</div>
+
+		<form role="form" action="" id="formCartolaBancaria">
+
+			<div class="row">
+				<div class="box-body">
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label for="cuentaCorrienteSelect">Cuenta Corriente</label> <select
+								class="form-control" id="cuentaCorrienteSelect"
+								name="cuentaCorrienteSelect">
+								<option value="">Seleccione</option>
+								<option value="1">345678</option>
+								<option value="2">556688</option>
+								<option value="3">123465</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="ingresoEgresoSelect">Ingreso / Egreso</label> <select
+								class="form-control" id="ingresoEgresoSelect"
+								name="ingresoEgresoSelect">
+								<option value="">Seleccione</option>
+								<option value="1">Ingreso</option>
+								<option value="2">Egreso</option>
+							</select>
+						</div>
+
+					</div>
+
+					<div class="col-md-6">
+					
+						<div class="form-group">
+							<label for="estadoSelect">Estado</label> <select
+								class="form-control" name="estadoSelect" id="estadoSelect">
+								<option value="">Seleccione</option>
+								<option value="1">Pendiente</option>
+								<option value="2">Dinero Recibido</option>
+								<option value="3">Pago Emitido</option>
+								<option value="4">Verificado</option>
+							</select>
+						</div>
+						
+						<div class="form-group">
+							<label>Seleccione una fecha de inicio y termino</label> <input
+								type="text" placeholder="dd/mm/yyyy - dd/mm/yyyy"
+								class="form-control pull-right" id="fechaDesdeHasta"
+								name="fechaDesdeHasta">
+						</div>
+						
+					</div>
+				</div>
+
+			</div>
+
+			<div class="box-footer">
+				<button type="submit" class="btn btn-success">
+					Buscar <span class="fa fa-search"></span>
+				</button>
+			</div>
+
+		</form>
+
+	</div>
+
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Resultados</strong>
+			</h3>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box-body">
+					<table class="table table-bordered table-hover cell-border compact"
+						id="tableCartolaBancaria">
+						<thead>
+							<th>Fecha</th>
+							<th>Glosa</th>
+							<th>Tipo Movimiento</th>
+							<th>Monto Movimiento</th>
+							<th>Monto Compensado</th>
+							<th>Pago a Proveedores</th>
+						</thead>
+						<tbody>
+
+							<tr>
+								<td>01/10/2015</td>
+								<td>Transferencia Electr&oacute;nica</td>
+								<td>Ingreso</td>
+								<td>$550.000</td>
+								<td>$0</td>
+								<td>$0</td>
+							</tr>
+
+							<tr>
+								<td>01/10/2015</td>
+								<td>Pago de cheque 4215</td>
+								<td>Egreso</td>
+								<td>- $225.000</td>
+								<td>$225.000</td>
+								<td>$0</td>
+							</tr>
+
+							<tr>
+								<td>01/10/2015</td>
+								<td>Transferencia</td>
+								<td>Egreso</td>
+								<td>$50.000</td>
+								<td>$10.000</td>
+								<td>$0</td>
+							</tr>
+
+						</tbody>
+					</table>
+					<br />
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</section>
+
+<!---------- Ventanas Modales ---------->
+
+<!-- Modal Ingreso Datos de Pago-->
+<div class="modal fade" id="modalIngresoDatosPago">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Ingreso Datos de Pago</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label><strong>N&uacute;mero de Factura</strong></label> <input
+						type="text" class="form-control" placeholder="000000">
+
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn bg-green btn-outline pull-left"
+					data-dismiss="modal">Guardar</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Confirma Baja Cliente -->

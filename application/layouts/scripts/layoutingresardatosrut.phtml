@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><?=$this->nombre_sitio?></title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<!-- Bootstrap 3.3.4 -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Ionicons -->
+<link href="/ionicons/css/ionicons.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- DATA TABLES -->
+<!-- <link href="/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />-->
+<link href="/plugins/datatables/jquery.dataTables.css" rel="stylesheet"
+	type="text/css" />
+<link href="/plugins/datatables/dataTables.tableTools.css"
+	rel="stylesheet">
+
+<link href="/plugins/datatables/dataTables.responsive.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- datepicker, estilos calendario -->
+
+<link href="/plugins/datepicker/datepicker3.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- iCheck for checkboxes and radio inputs -->
+<link href="../../plugins/iCheck/all.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- Select2 -->
+<link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+
+<!-- Theme style -->
+<link href="/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+<link href="/dist/css/skins/<?=$this->skin?>.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style>
+.editar {
+	width: 20px;
+	height: 40px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.marginBottomButton {
+	margin-bottom: 3px;
+}
+
+#ingresaRutAsociado .error {
+	color: Crimson
+}
+
+#formMetaBoleteo .error {
+	color: Crimson
+}
+</style>
+</head>
+<!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+<body class="<?=$this->skin?> sidebar-mini">
+	<div class="wrapper">
+
+
+		<!-- Main Header -->
+      	<?=$this->render('head.phtml') ?>	
+  <!-- Fin Main Header -->
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+
+				<!-- Sidebar user panel (optional) -->
+				<?=$this->render('sidebaruserpanel.phtml') ?>	
+		  <!-- Fin Sidebar user panel -->
+
+				<!-- Sidebar Menu -->
+				<?=$this->render('menu.phtml') ?>		
+        </section>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<!-- Main content -->
+       
+          <?=$this->layout()->content?>
+       
+        <!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+			
+			<?= $this->render('footer.phtml')?>
+
+      <!-- Control Sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED JS SCRIPTS -->
+
+	<!-- jQuery 2.1.4 -->
+	<script src="/plugins/jQuery/jQuery-2.1.4.min.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/jQuery/jquery-migrate-1.2.1.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/JqueryAlerts/jquery.alerts.js"
+		type="text/javascript"></script>
+
+	<!-- Script RUT -->
+	<script src="/plugins/jQueryRut/jquery.Rut.js" type="text/javascript"></script>
+
+	<!-- Bootstrap 3.3.2 JS -->
+	<script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!-- DATA TABES SCRIPT -->
+	<script src="/plugins/datatables/jquery.dataTables.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/datatables/dataTables.responsive.js"
+		type="text/javascript"></script>
+	<script src="/plugins/datatables/fnReloadAjax.js" cache="false"></script>
+	<script src="/plugins/datatables/dataTables.tableTools.js"
+		cache="false"></script>
+
+	<!-- <script src="/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+
+	<!-- SlimScroll -->
+	<script src="/plugins/slimScroll/jquery.slimscroll.min.js"
+		type="text/javascript"></script>
+
+	<!-- FastClick -->
+	<script src="/plugins/fastclick/fastclick.min.js"
+		type="text/javascript"></script>
+
+	<!-- AdminLTE App -->
+	<script src="/dist/js/app.min.js" type="text/javascript"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="/dist/js/demo.js" type="text/javascript"></script>
+
+	<!-- iCheck 1.0.1 Script checkbox y radiobuttons -->
+	<script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
+	<!-- Select2 -->
+	<script src="../../plugins/select2/select2.full.min.js"></script>
+
+	<!-- date-picker -->
+
+	<script src="/plugins/datepicker/bootstrap-datepicker.js"
+		type="text/javascript"></script>
+
+	<!-- Jquery Validate -->
+
+	<script src="/plugins/jqueryvalidate/jquery.validate.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/additional-methods.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/messages_es.min.js"
+		type="text/javascript"></script>
+
+	<!-- JQUERY Number -->
+	<script src="/plugins/jquerynumber/jquery.number.js"
+		type="text/javascript"></script>
+
+	<script type="text/javascript">
+	$(function(){
+
+		//recupero el id del cliente seleccionado en la busqueda.
+		var idCliente="<?php echo $_REQUEST['idCliente'] ?>";	
+		var dominio = '<?=$this->urlaplicacion?>';
+
+		if(idCliente=="")
+		{					
+			window.location.href=dominio+"index.php/cliente/buscarpornombre";
+		}
+
+		var valor=0;
+		var previredChecked=false;
+		var panelPersonaNatural;
+		var panelPersonaJuridica;
+		var previredChecked;
+		var valorUF=0;
+
+		$('#valorMensualidadInput').number( true, 1,',','.' );
+		$('#valorOtroServiciosInput').number( true, 1,',','.' );		
+		$('#montoMetasInput').number( true, 0,',','.' );
+		
+		controlJuridicaAdd();
+		
+		obtenerEjecutivos('#ejecutivoSelect');
+
+		obtenerSociedades('#tipoSociedadSelect');
+		
+		obtenerDatosCliente(idCliente);
+
+		obtenerListadoBancos('#bancoSelect');
+
+		var tableMetaBoleteo=$('#tablaMetaBoleteo').dataTable( {
+	        dom: 'T<"clear">lfrtip',
+	        bFilter: false,
+	        "responsive":true,
+	        "info":     false, 
+	        "bLengthChange": false,
+	        "autoWidth": false,	      
+	        tableTools: {		           
+	            "sRowSelect": "single",
+	            "aButtons": [ ]
+	        },
+	        "language": {
+				"lengthMenu": "Desplegando _MENU_ registros por p&aacute;gina",
+				"zeroRecords": "Nada encontrado - Lo sentimos",
+				"info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+				"infoEmpty": "No hay registros disponibles",
+				"infoPostFix":    "",
+				"thousands":      ",",
+				"loadingRecords": "Cargando...",
+				"processing":     "Procesando...",
+				"search":         "Buscar:",
+				"infoFiltered ": "(Filtrando de un total de _MAX_ registros)",
+				"paginate": {
+					"first":      "Primero",
+					"last":       "&Uacute;ltimo",
+					"next":       "Siguiente",
+					"previous":   "Anterior"
+					}
+				}		
+	    } );
+
+		$('#bancoSelect').select2();
+		$('#tipoPersonaSelect').select2();
+		$('#ejecutivoSelect').select2();
+		$('#anioMetasSelect').select2();
+		$('#sexoSelect').select2();
+		
+		var formIngresaRut=$('#ingresaRutAsociado').validate({
+			debug:true,
+			rules:{
+				nombreCliente:{
+					required:true
+				},
+				razonSocial:{
+					required:true
+				},
+				tipoPersonaSelect:{
+					required:true
+				},
+				tipoSociedadSelect:{
+					required:true
+				},
+				valorMensualidadInput:{
+					required:true
+				},			
+				valorOtroServiciosInput:{
+					required:true
+				},				
+				ejecutivoSelect:{
+					required:true
+				},
+				datosRutInput:{
+					required:true
+				},
+				numeroSociedadInput:{
+					required:true
+				},			
+				anioMetasSelect:{
+					required:true
+				},
+				montoMetasInput:{
+					required:true
+				},
+				claveSIIInput:{
+					required:true
+				},
+				clavePreviredInput:{
+					required:false
+				},
+				bancoSelect:{
+					required:false
+				},
+				numeroCuentaInput:{
+					required:false
+				},
+				fechaNacimientoDateInput:{
+					required:false
+				},
+				espcialidadInput:{
+					required:false
+				},
+				sexoSelect:{
+					required:false
+				},
+				trabajo1ClienteInput:{
+					required:false
+				}				
+			},
+			messages:{
+				nombreCliente:"Se requiere el nombre del cliente",
+				razonSocial:"Se require de la Raz&oacute;n Social",
+				tipoPersonaSelect:"Debe seleccionar un elemento de la lista",
+				tipoSociedadSelect:"Debe seleccionar un elemento de la lista",
+				valorMensualidadInput:"Debe ingresar el valor en uf de la mensualidad",	
+				valorOtroServiciosInput:"Debe ingresar el valor en uf de los servicios fijos",						
+				ejecutivoSelect:"Debe seleccionar un elemento de la listaS",
+				datosRutInput:"Debe ingresar el RUT asociado",
+				numeroSociedadInput:"Debe ingresar el n&uacute;mero de sociedad",		
+				anioMetasSelect:"Debe seleccionar el A&ntilde;o",
+				montoMetasInput:"Debe ingresar el monto de la meta de boleteo",
+				claveSIIInput:"Debe ingresar la clave de SII",
+				clavePreviredInput:"Debe ingresar la clave de previred",
+				bancoSelect:"Debe ingresar nombre del banco",
+				numeroCuentaInput:"Debe ingresar su n&uacute;mero de cuenta",
+				fechaNacimientoDateInput:"Debe ingresar la fecha de nacimiento",
+				espcialidadInput:"Debe ingresar la especialidad",
+				sexoSelect:"Debe seleccionar el sexo",
+				trabajo1ClienteInput:"Debe ingresar el lugar de trabajo",				
+			},
+			invalidHandler:function(event, validator)
+			{
+				
+			},	
+			submitHandler:function(form)
+			{
+					url = '/index.php/rut/ingresar';
+					
+					var seguro='2';
+										
+					var iva='2';
+					var f29='2';
+					var renta='2';
+					var previred='2';	
+
+					var empresarial='2'; 
+					var independiente='2'; 
+					var nanas='2'; 
+					var otro='2';
+					var socio='2'; 
+					var trabajadores='2';		
+					
+					if($('#tipoPersonaSelect').val()==2)
+					{
+						//natural 
+						if($('#fechaNacimientoDateInput').val()!='')
+						{
+							fechaNacimiento=$('#fechaNacimientoDateInput').val();	
+						}
+						else
+						{
+							fechaNacimiento="";
+						}
+						
+						especialidad=$('#espcialidadInput').val();
+						sexo=$('#sexoSelect').val();
+						trabajo1=$('#trabajo1ClienteInput').val();
+						trabajo2=$('#trabajo2ClienteInput').val();
+						
+						if($('.seguro').hasClass('checked'))
+						{
+							seguro='1';
+							
+						}	
+					}
+					else
+					{
+						//juridica 
+						fechaNacimiento="";
+						especialidad=$('#espcialidadInput').val();
+						trabajo1=$('#trabajo1ClienteInput').val();
+						trabajo2=$('#trabajo2ClienteInput').val();
+						sexo="";
+						seguro='2';
+					}
+
+					if($('.iva').hasClass('checked'))
+					{
+						iva='1';
+					}
+
+					if($('.f29').hasClass('checked'))
+					{
+						f29='1';
+					}
+
+					if($('.renta').hasClass('checked'))
+					{
+						renta='1';
+					}
+
+					if($('.previred').hasClass('checked'))
+					{
+						previred='1';
+					}
+
+					if($('.empre').hasClass('checked'))
+					{						
+						empresarial='1'; 
+					}
+
+					if($('.independiente').hasClass('checked'))
+					{						
+						independiente='1';							
+					}
+
+					if($('.nana').hasClass('checked'))
+					{					
+						 nanas='1'; 	
+					}
+
+					if($('.otro').hasClass('checked'))
+					{
+						otro='1';						
+					}
+
+					if($('.socio').hasClass('checked'))
+					{
+						socio='1';
+					}
+
+					if($('.trabajador').hasClass('checked'))
+					{
+						trabajadores='1';
+					}
+
+					var datosRut="idCliente="+idCliente+
+								 "&idSociedad="+$('#tipoSociedadSelect').val()+
+								 "&razonSocial="+$('#razonSocial').val().toUpperCase()+
+								 "&rut="+$('#datosRutInput').val().toString().replace(/\./g,'')+
+								 "&tipoPersona="+$('#tipoPersonaSelect').val()+
+								 "&numeroSociedad="+$('#numeroSociedadInput').val()+
+								 "&valorMensualidad="+$('#valorMensualidadInput').val()+
+								 "&valorServicios="+$('#valorOtroServiciosInput').val()+
+								 "&iva="+iva+
+								 "&f29="+f29+
+								 "&renta="+renta+
+								 "&previred="+previred+								 
+								 "&empresarial="+empresarial+
+								 "&independiente="+independiente+
+								 "&nanas="+nanas+
+								 "&otro="+otro+
+								 "&socio="+socio+
+								 "&trabajadores="+trabajadores+
+								 "&anioMeta="+$('#anioMetasSelect option:selected').text().trim()+
+								 "&montoMeta="+$('#montoMetasInput').val()+
+								 "&claveSii="+$('#claveSIIInput').val()+
+								 "&clavePrevired="+$('#clavePreviredInput').val()+
+								 "&nombreBanco="+$('#bancoSelect').val()+
+								 "&numeroCuenta="+$('#numeroCuentaInput').val()+							 
+								 "&fechaNacimiento="+fechaNacimiento+
+								 "&especialidad="+especialidad+
+								 "&sexo="+sexo+
+								 "&trabajo1="+trabajo1+
+								 "&trabajo2="+trabajo2+
+								 "&seguro="+seguro;
+					 
+					$.ajax({
+					    url: url,  
+					    type: "POST",
+					    data: datosRut,  
+					    success: function(datos)
+					    {	
+
+
+					    	if(datos.registro[0]=='6' || datos.registro[0]=='7' || datos.registro[0]=='8' || datos.registro[0]=='9')
+							{
+									$('#mensajeCorrectoRegistro').removeClass('hide');
+									limpiarControlesRegistroRut();
+									console.log(datos.registro[0]);											
+							}
+						    				   
+						    if(datos.registro[0]=='1')
+							{
+								$('#mensajeCorrectoRegistro').removeClass('hide');
+								limpiarControlesRegistroRut();											
+							}
+							else if(datos.registro[0]=='2')
+							{
+								$('#mensajeProblemasRegistro').removeClass('hide');
+								
+								 limpiarControlesRegistroRut();
+							}
+							else if(datos.registro[0]=='3')
+							{
+								$('#mensajeRutEncontrado').removeClass('hide');
+								$('#datosRutInput').val('');
+							}
+							else if(datos.registro[0]=='4')
+							{
+								$('#mensajeProblemasRegistro').removeClass('hide');
+							}
+							else if(datos.registro[0]=='5')
+							{
+								$('#numSociedadaExiste').removeClass('hide');
+							}						
+					    },				    
+					    error : function(xhr, status) 
+					    {					   
+					    	$('#mensajeProblemasRegistro').removeClass('hide');
+					    	 limpiarControlesRegistroRut();
+					    }	
+					}); 												
+			}
+		});
+
+
+		$('#buttonNumSociedadaExiste').on('click',function(){
+			$('#numSociedadaExiste').addClass('hide');
+		});
+		
+		$('#buttonMensajeCorrectoRegistro').on('click',function(){
+			$('#mensajeCorrectoRegistro').addClass('hide');
+		});
+
+		$('#buttonMensajeProblemasRegistro').on('click',function(){
+			$('#mensajeProblemasRegistro').addClass('hide');
+		});
+
+		$('#buttonMensajeRutEncontrado').on('click',function(){
+			$('#mensajeRutEncontrado').addClass('hide');
+		});		
+
+
+		/*** Panel check 1 ***/
+
+		$('#ivaCheck').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue iva',
+        }).on('ifChanged',function(e)
+        {
+            if($('.iva').hasClass('checked'))
+            {
+            	$('#claveSIIInput').attr({"disabled":true});
+            	$('#claveSIIInput').val('');   
+            }
+            else
+            {
+            	$('#claveSIIInput').attr({"disabled":false});
+            }        		
+        });
+
+		$('#f29Check').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue f29',
+        });
+
+		$('#rentaCheck').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue renta',
+        });	
+
+		/*** Termina panel check 1 ***/
+		
+		/*** Panel Previred Persona Natural ***/		
+		
+		$('#empresarialCheck').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue empre',
+        });
+
+		$('#independienteCheck').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue independiente',
+        });
+
+		$('#nanaCheck').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue nana',
+        });	
+
+		$('#otroCheck').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue otro',
+        });			
+		
+		/*** Termina panel Previred Persona Natural ***/
+		
+		/*** Panel Previred Persona Juridica ***/
+		
+		$('#socioCheck').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue socio',
+        });
+
+		$('#trabajadorCheck').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue trabajador',
+        });
+		
+		/*** Termina panel Previred Persona Juridica ***/
+		
+        $('#previredCheck').iCheck({
+            
+            checkboxClass: 'icheckbox_minimal-blue previred',
+            
+        }).on('ifChanged',function(e){
+
+          	previredChecked	=this.checked;	
+
+     		if(previredChecked)
+      	    {       	
+     			$('#clavePreviredInput').attr({"disabled":false});
+          	    	
+				if(valor==2)
+				{
+					panelPreviredNatural();
+				}
+				else if(valor==3)
+				{
+					pabelPreviredJuridica();
+				}			
+				else
+				{
+					ocultarPaneles();					
+				}
+  	    	}
+  	    	else
+      	    {
+  	    		$('#clavePreviredInput').attr({"disabled":true});
+  	    		$('#clavePreviredInput').val('');
+  	    		ocultarPaneles();    	    		
+  	        }
+          	
+      }).end();
+
+	  //checkbox seguro de vida	
+      $('#seguroVidaCheck').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue seguro',
+      });
+      
+      $('#tipoPersonaSelect').on('change',function()
+      {			
+		    valor=$(this).val();
+		 	
+		 	if(previredChecked && valor==2)
+			{
+				panelPreviredNatural();		
+				$('.socio').removeClass('checked');
+				$('.trabajador').removeClass('checked');				
+			}
+			else if(previredChecked && valor==3)
+			{
+				pabelPreviredJuridica();
+				$('.empre').removeClass('checked');
+				$('.independiente').removeClass('checked');
+				$('.nana').removeClass('checked');
+				$('.otro').removeClass('checked');					
+			}
+			else
+			{
+				ocultarPaneles();								
+			}	
+		 	
+       });
+      
+	    $('#tipoPersonaSelect').on('change',function(){
+	    	
+		 	valor=$(this).val();
+				if(valor==2)
+				{   					
+					controlJuridicaAdd();					
+				
+					$('.iva').removeClass('checked');
+					$('.iva').attr({'aria-checked':false});					
+					$('#ivaCheck').prop("disabled",true);
+
+					$('.f29').removeClass('checked');
+					$('.f29').attr({'aria-checked':false});
+					$('#f29Check').attr({"disabled":false});
+
+					$('.renta').removeClass('checked');
+					$('.renta').attr({'aria-checked':false});
+					$('#rentaCheck').attr({"disabled":false});
+					
+					$('#numeroSociedadInput').val('');
+					$('#tipoSociedadSelect').val('0');
+					$('#tipoSociedadSelect').find('option[value="0"]').attr({"disabled":false});	
+					$('#tipoSociedadSelect').find('option[value="1"],option[value="2"],option[value="3"]').attr({"disabled":true});	
+				}
+				else if(valor==3)
+				{   					
+					controlJuridicaRemove();		
+
+					$('#tipoSociedadSelect').val('');
+					$('#tipoSociedadSelect').find('option[value="0"]').attr({"disabled":true});	
+					$('#tipoSociedadSelect').find('option[value="1"],option[value="2"],option[value="3"]').attr({"disabled":false});			
+					
+					$('#ivaCheck').attr({"disabled":false});								
+				}
+				else
+				{   					
+					controlJuridicaAdd();
+				}	
+    	 });
+
+		 $('#datosRutInput').Rut({		  
+			 on_error: function()
+			 { 
+				   $('#modalRutIncorrecto').modal();
+				   $('#datosRutInput').val('');
+			 },
+			   format_on: 'keyup'
+		 });	      	
+
+		 function limpiarControl(idControl){
+			idControl.val('');	
+		 }
+
+		 function limpiarControlesRegistroRut()
+		 {
+		   	$('.control').val('');
+		   	
+	        $('#tipoSociedadSelect').prop("disabled",true);
+		   	$('.icheckbox_minimal-blue').removeClass('checked');
+		   	$('.icheckbox_minimal-blue').attr("aria-checked",false);
+	    	$('#numeroSociedadInput').attr({"disabled":true});
+		    $('#fechaNacimientoDateInput').attr({"disabled":false});
+			$('#sexoSelect').attr({"disabled":false});
+			$('#seguroVidaCheck').attr({"disabled":false});	
+		    	
+			panelPersonaNatural.addClass('hide');
+			panelPersonaJuridica.addClass('hide');
+			previredChecked=false;
+			obtenerSociedades('#tipoSociedadSelect');	
+		 }
+
+		 function ocultarPaneles()
+	     {
+	    	panelPersonaJuridica = $('#previredPersonaJuridica'),
+    		panelPersonaJuridica.addClass('hide');
+
+			panelPersonaNatural=$('#previredPersonaNatural'),
+    		panelPersonaNatural.addClass('hide');
+	     }
+
+	     function panelPreviredNatural()
+	     {
+	    	panelPersonaNatural=$('#previredPersonaNatural'),
+    		panelPersonaNatural.removeClass('hide');
+
+			panelPersonaJuridica = $('#previredPersonaJuridica'),
+    		panelPersonaJuridica.addClass('hide');
+	     }
+
+	     function pabelPreviredJuridica()
+	     {
+	    	panelPersonaNatural=$('#previredPersonaNatural'),
+    		panelPersonaNatural.addClass('hide');
+    		
+			panelPersonaJuridica = $('#previredPersonaJuridica'),
+    		panelPersonaJuridica.removeClass('hide');
+	     } 
+
+	     //se acciona este metodo cuado selecciono el tipo de persona juridica
+	     function controlJuridicaRemove()
+	     {	    	
+    	    $('#tipoSociedadSelect').prop("disabled",false);
+    	    $('#numeroSociedadInput').prop("disabled",false);
+
+			$('.f29').addClass('checked');
+			$('.f29').attr({'aria-checked':true});
+			
+
+			$('.renta').addClass('checked');
+			$('.renta').attr({'aria-checked':true});
+			
+			    	    
+		 	$('#fechaNacimientoDateInput').attr({"disabled":true});
+			$('#sexoSelect').attr({"disabled":true});
+			$('#seguroVidaCheck').attr({"disabled":true});	
+	     }
+
+	     //se ejecuta al cargar la pagina para desactivar controles.
+	     function controlJuridicaAdd()
+	     {
+    	   
+    	    $('#tipoSociedadSelect').prop("disabled",true);
+    	    $('#numeroSociedadInput').prop("disabled",true);
+    	    
+			$('#fechaNacimientoDateInput').attr({"disabled":false});
+			$('#sexoSelect').attr({"disabled":false});
+			$('#seguroVidaCheck').attr({"disabled":false});	
+    	    $('#tipoSociedadSelect').val('0');
+	     }  
+
+	     function obtenerDatosCliente(idCliente)
+	     {
+	      	url = '/index.php/cliente/obtener';
+	        	 
+	 		var dato="idCliente="+idCliente;
+	 		
+	 		$.ajax({
+	 		    url: url,  
+	 		    type: "POST",
+	 		    data: dato, 
+	 		   	async:false, 
+	 		    success: function(datos)
+	 		    {
+					 //valida que el idcliente exista
+	 				    
+	 			    if(typeof(datos.cliente) != "undefined" && datos.cliente != null)
+	 			    {
+	 	 		   		 //carga los datos, en la vista detalle cliente    
+	 	 			    $('#nombreCliente').val(datos.cliente[0]);								 	 						
+	 	 	   			$('#ejecutivoSelect').val(datos.cliente[3]); 
+	 	 	 	 		
+	 	 		    } 
+	 	 		    else
+	 	 		    { 	 			     	
+	 	 				window.location.href=dominio+"index.php/cliente/buscarpornombre";
+	 	 		    }					
+	 				
+	 			   },
+	 			 error : function(xhr, status) 
+	 			 {
+	 			   	 
+				 }
+	 		}); 
+	     }		     
+
+	     function obtenerEjecutivos(objetivo)
+		 {				
+		    url = '/index.php/usuario/listar';
+		    
+			$(objetivo).empty();			
+					
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+
+			var dato="";
+		
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    async:false,
+			    data: dato,  
+			    success: function(datos){
+				    
+			    	$.each(datos.data, function( index, value ) {
+						
+						 $('<option>').
+						   prop({value:value[0]}).
+						   text(value[1]).
+						   appendTo(objetivo);
+					});
+			    }
+			}); 			
+		 } 	 
+
+	   //funcion para obtener las sociedades y cargarlas al combobox
+		function obtenerSociedades(objetivo)
+		{				
+		    url = '/index.php/sociedad/listar';
+		    
+			$(objetivo).empty();	
+					
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+			
+			var dato="";
+		
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos){
+				    
+			    	$.each(datos.data, function( index, value ) 
+					{
+						
+						 $('<option>').
+						   prop({value:value[0]}).
+						   text(value[1]).
+						   appendTo(objetivo);
+					});
+			    }
+			}); 			
+		}
+		
+		function obtenerListadoBancos(objetivo)
+		{
+			url = '/index.php/rut/listadobancos';
+		    
+			$(objetivo).empty();		
+			
+			$('<option>').
+			attr({value:"0"}).
+			text('Seleccione').
+			prop({disabled: false}).
+			appendTo(objetivo);
+						
+			var dato="";
+		
+			$.ajax({
+			    url: url,  
+			    type: "POST",
+			    data: dato,  
+			    async:false,
+			    success: function(datos)
+			   	{	
+				   
+			    	$.each(datos.bancos, function( index, value ) {						
+						 $('<option>').
+						   prop({value:value[0]}).
+						   text(value[1]).
+						   appendTo(objetivo);
+					});		
+				   
+			    }
+			});	
+		} 
+	});
+
+		</script>
+</body>
+</html>

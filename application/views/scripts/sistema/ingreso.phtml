@@ -1,0 +1,113 @@
+<div class="msg_principal">Ingreso de Proyecto</div>
+<div id="formulario_ingreso" class="formulario_ingreso">
+	<form id="ingres_proyecto">
+
+			<div class="campo">
+				<label class="etiqueta" for="tienda">Seleccione tienda :</label>
+				<select id="tienda" name="tienda">
+				<option>Seleccione</option>
+				<?php 
+				foreach($this->tiendas as $key => $tienda){
+?>
+					<option value="<?=$tienda['ap06_idTienda']?>"><?=$tienda['ap06_direccionTienda']?></option>			
+
+<?php 				
+				}
+				
+				
+				?>
+				
+				</select>
+		</div>
+		<div class="campo">
+				<label class="etiqueta" for="coordinador">Seleccione Coordinador:</label>		
+				<select id="coordinador" name="coordinador">
+				<option>Seleccione</option>
+				<?php 
+				foreach($this->coordinadores as $key => $coordinador){
+?>
+					<option value="<?=$coordinador['ap02_idUsuario']?>"><?=$coordinador['ap02_nombreUsuario']." ".$coordinador['ap02_apellidoPaternoUsuario']?></option>			
+
+<?php 				
+				}
+				
+				
+				?>
+				
+				</select>
+				
+			</div>
+
+
+			<div class="campo">
+				<label class="etiqueta" for="tienda">Proyecto Asociado :</label>
+				<select id="tienda" name="tienda"><option>Seleccione</option></select>
+			</div>
+
+
+			<div class="campo">
+				<label class="etiqueta" for="tienda">Centro de Costo :</label>
+				<select id="tienda" name="tienda"><option>Seleccione</option></select>
+			</div>
+
+
+			<div class="campo">
+				<label class="etiqueta" for="tienda">Descripci&oacute;n:</label> 
+				<textarea >Trabajo de forrados en las areas de muebles, menaje y ...</textarea>
+			</div>
+
+
+			<div class="campo">
+				<label class="etiqueta" for="tienda">Monto Proyecto:</label>
+				<input id="u140" class="u140" type="text" value=" ">
+			</div>
+
+
+			<div class="campo">
+				<label class="etiqueta" for="tienda">Seleccione Tipo Comentario :</label>
+				<select id="tienda" name="tienda">
+				<option>Seleccione</option>
+				<?php 
+				foreach($this->tipos as $key => $tipo){
+?>
+					<option value="<?=$tipo['ap13_idTipoComentario']?>"><?=$tipo['ap13_nombreTipoComentario']?></option>			
+
+<?php 				
+				}
+				
+				
+				?>
+				
+				</select>
+			</div>
+
+
+			<div class="campo">
+				<label class="etiqueta">Fecha Solicitud</label>
+				<input type="text" id="fechasolicitud">
+			</div>
+
+
+			<div class="campo">
+				<label class="etiqueta">Fecha OC</label>
+				<input type="text" id="fechaoc">
+			</div>
+
+
+			<div class="campo">
+				<label class="etiqueta">Fecha Llegada OC</label>
+				<input type="text" id="fechallegada">
+			</div>
+
+
+			<div class="campo">
+				<label class="etiqueta">Fecha Inicio Solicitada</label>
+				<input type="text" id="fechainicio">
+			</div>
+			<div class="campo">
+				<label class="etiqueta">OC Adjunta</label>
+				<input type="file" name="ocadjunta" id="ocadjunta">
+			</div>
+
+	</form>
+</div>

@@ -1,0 +1,213 @@
+<section class="content-header">
+	<h1>Ingreso Cobro Individual</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-money"></i> Cobros</a></li>
+		<li class="active">Ingreso Cobro Individual</li>
+	</ol>
+</section>
+
+<section class="content">
+
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Datos del Cobro</strong>
+			</h3>
+		</div>
+		<form role="form" action="" method="post" id="formIngresoCobro">
+
+			<div class="box-body">
+
+				<div class="box box-info">
+					<div class="box-header with-border">
+						<h3 class="box-title">Detalle del rut asociado</h3>
+					</div>
+					<div class="box-body">
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Rut</label> <input type="text" id="rutCliente"
+										disabled="disabled" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Raz&oacute;n Social</label> <input type="text" value=""
+										disabled="disabled" id="razonSocialRut" class="form-control">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="nombreClienteInput">Nombre del Cliente</label> <input
+								type="text" class="form-control" id="nombreClienteInput"
+								name="nombreClienteInput" placeholder="Amanda L&oacute;pez"
+								disabled="disabled">
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label for="conceptoSelect">Concepto</label> <select
+								class="form-control control" id="conceptoSelect"
+								name="conceptoSelect">
+
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="golsaInput">Glosa</label> <input type="text"
+								class="form-control control" id="golsaInput" name="golsaInput"
+								placeholder="Detalle">
+						</div>
+
+						<div class="form-group">
+							<label for="">Valor de la UF</label> <select class="form-control"
+								id="valorUfInput" disabled="disabled">
+							</select>
+						</div>
+
+						<div class="form-group">
+
+							<div class="alert alert-warning alert-dismissable hide"
+								id="actualizarUF">
+								<button type="button" class="close" id="buttonActualizarUF"
+									aria-hidden="true">&times;</button>
+								<h4>
+									<i class="icon fa fa-warning"></i> Atenci&oacute;n !
+								</h4>
+								<p>Debe actualizar valor de la UF para el mes seleccionado</p>
+							</div>
+							
+						</div>
+
+						<div class="form-group">
+
+							<div class="row">
+								<div class="col-xs-6">
+									<label for="ingresoMontoUF">Monto en UF</label>
+
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+										<input type="text" id="ingresoMontoUF" name="ingresoMontoUF"
+											class="form-control control">
+									</div>
+								</div>
+
+								<div class="col-xs-6">
+									<label for="ingresoMontoMoneda">Monto en Moneda</label>
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+										<input type="text" id="ingresoMontoMoneda"
+											name="ingresoMontoMoneda" class="form-control control">
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="observacionesInput">Observaciones</label> <input
+								type="text" class="form-control control"
+								name="observacionesInput" id="observacionesInput"
+								placeholder="Detalles">
+						</div>
+					</div>
+
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label for="ejecutivoSelect">Ejecutivo</label> <select
+								class="form-control select" id="ejecutivoSelect"
+								name="ejecutivoSelect" disabled="disabled">
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="dateCobroInput">Fecha de Cobro</label> <input
+								id="dateCobroInput" name="dateCobroInput"
+								data-provide="datepicker" type="text" class="form-control"
+								placeholder="dd-mm-yyyy" data-date-format="dd-mm-yyyy">
+
+						</div>
+
+						<div class="form-group">
+							<label for="formaPagoSelect">Forma de Pago</label> <select
+								class="form-control select control" id="formaPagoSelect"
+								name="formaPagoSelect">
+								<option value="">Seleccione</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="ingresoCheck">&#191;Es ingreso?</label>
+							<div class="row">
+								<div class="col-xs-6">
+									<input type="checkbox" id="ingresoCheck" name="ingresoCheck"
+										class="minimal" disabled="disabled">
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- Mensajes del registro Conceptos -->
+				<div class="form-group hide" id="registrarValorUf">
+
+					<div class="alert alert-warning alert-dismissable">
+						<button type="button" class="close" id="buttonRegistrarValorUf"
+							aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-warning"></i> Ops !
+						</h4>
+						<p>Debe actualizar el valor de uf</p>
+					</div>
+
+				</div>
+
+
+				<div class="form-group hide" id="registroCobroCorrecto">
+
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close"
+							id="buttonRegistroCobroCorrecto" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ok !
+						</h4>
+						<p>Cobro registrado correctamente</p>
+					</div>
+
+				</div>
+
+				<div class="form-group hide" id="registroCobroIncorrecto">
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close"
+							id="buttonRegistroCobroIncorrecto" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ops !
+						</h4>
+						<p>Problemas al registrar el cobro</p>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="box-footer">
+				<button type="submit" class="btn btn-primary" id="buttonCobroIndividual">
+					Guardar <span class="fa fa-save"></span>
+				</button>
+			</div>
+
+		</form>
+	</div>
+
+</section>

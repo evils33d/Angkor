@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><?=$this->nombre_sitio?></title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<!-- Select2 -->
+<link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+<!-- Bootstrap 3.3.4 -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+	
+<link href = "/plugins/JqueryAlerts/jquery.alerts.css" rel = "stylesheet"> 	
+
+<!-- Ionicons -->
+<link href="/ionicons/css/ionicons.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- DATA TABLES -->
+<!-- <link href="/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />-->
+<link href="/plugins/datatables/jquery.dataTables.css" rel="stylesheet"
+	type="text/css" />
+<link href="/plugins/datatables/dataTables.tableTools.css"
+	rel="stylesheet">
+
+<link href="/plugins/datatables/dataTables.responsive.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- datepicker, estilos calendario -->
+<link href="/plugins/datepicker/datepicker3.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- DateRangePicker -->
+<link href="/plugins/daterangepicker/daterangepicker-bs3.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- iCheck for checkboxes and radio inputs -->
+<link href="../../plugins/iCheck/all.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- Theme style -->
+<link href="/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+<link href="/dist/css/skins/<?=$this->skin?>.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style>
+.editar {
+	width: 20px;
+	height: 40px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.marginBottomButton {
+	margin-bottom: 3px;
+}
+
+#formDatosRutAsociado .error {
+	color: Crimson
+}
+
+#formMetaBoleteo .error {
+	color: Crimson
+}
+
+#formMovimientosRut .error {
+	color: Crimson
+}
+
+#formaEditaDatosBancarios  .error {
+	color: Crimson
+}
+
+#formActualizaClaves  .error {
+	color: Crimson
+}
+
+#formActualizaPersonales .error {
+	color: Crimson
+}
+
+</style>
+</head>
+<!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+<body class="<?=$this->skin?> sidebar-mini">
+	<div class="wrapper">
+
+
+		<!-- Main Header -->
+      	<?=$this->render('head.phtml') ?>	
+  <!-- Fin Main Header -->
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+
+				<!-- Sidebar user panel (optional) -->
+				<?=$this->render('sidebaruserpanel.phtml') ?>	
+		  <!-- Fin Sidebar user panel -->
+
+				<!-- Sidebar Menu -->
+				<?=$this->render('menu.phtml') ?>		
+        </section>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<!-- Main content -->
+       
+          <?=$this->layout()->content?>
+       
+        <!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+			
+			<?= $this->render('footer.phtml')?>
+
+      <!-- Control Sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED JS SCRIPTS -->
+
+	<!-- jQuery 2.1.4 -->
+	<script src="/plugins/jQuery/jQuery-2.1.4.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jQuery/jquery-migrate-1.2.1.js"
+		type="text/javascript"></script>
+	<script src="/plugins/JqueryAlerts/jquery.alerts.js"
+		type="text/javascript"></script>
+
+	<!-- Script RUT -->
+	<script src="/plugins/jQueryRut/jquery.Rut.js" type="text/javascript"></script>
+
+	<!-- Bootstrap 3.3.2 JS -->
+	<script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<!-- DATA TABES SCRIPT -->
+	<script src="/plugins/datatables/jquery.dataTables.min.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/datatables/dataTables.responsive.js"
+		type="text/javascript"></script>
+
+	<!-- <script src="/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+	<!-- SlimScroll -->
+	<script src="/plugins/slimScroll/jquery.slimscroll.min.js"
+		type="text/javascript"></script>
+	<!-- FastClick -->
+
+	<script src="/plugins/datatables/fnReloadAjax.js" cache="false"></script>
+	<script src="/plugins/datatables/dataTables.tableTools.js"
+		cache="false"></script>
+
+	<script src="/plugins/fastclick/fastclick.min.js"
+		type="text/javascript"></script>
+
+	<!-- AdminLTE App -->
+	<script src="/dist/js/app.min.js" type="text/javascript"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="/dist/js/demo.js" type="text/javascript"></script>
+
+	<!-- iCheck 1.0.1 Script checkbox y radiobuttons -->
+	<script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+	
+	<!-- date-range-picker -->
+
+	<script src="/plugins/daterangepicker/moment.js" type="text/javascript"></script>
+	<script src="/plugins/daterangepicker/daterangepicker.js"
+		type="text/javascript"></script>
+
+	<!-- date-picker -->
+	<script src="/plugins/datepicker/bootstrap-datepicker.js"
+		type="text/javascript"></script>
+		
+	<!-- Jquery Validate -->
+
+	<script src="/plugins/jqueryvalidate/jquery.validate.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/additional-methods.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/messages_es.min.js"
+		type="text/javascript"></script>
+
+	<!-- JQUERY Number -->
+	<script src="/plugins/jquerynumber/jquery.number.js"
+		type="text/javascript"></script>
+		
+	<!-- Select2 -->
+	<script src="../../plugins/select2/select2.full.min.js"></script>
+
+	<script type="text/javascript">
+
+    	$(function()
+    	{
+			//recupero la id del rut.
+        	var idRut=<?php echo $_REQUEST['idRut'] ?>;
+        	var dominio ='<?=$this->urlaplicacion?>';
+
+        	obtenerListadoBancos('#bancoInput');
+			
+        	if(idRut=="")
+    		{	
+    			window.location.href=dominio+"index.php/rut/buscarporsociedad";
+    		}
+        	
+			var valor=0;			
+			var previredChecked=false;
+			var panelPersonaNatural;
+			var panelPersonaJuridica;	
+			var valorUF=0;
+
+			$('#ivaCheck').iCheck({
+	            checkboxClass: 'icheckbox_minimal-blue iva',
+	        });
+
+			$('#f29Check').iCheck({
+	            checkboxClass: 'icheckbox_minimal-blue f29',
+	        });
+
+			$('#rentaCheck').iCheck({
+	            checkboxClass: 'icheckbox_minimal-blue renta',
+	        });	
+
+			$('#empresarialCheck').iCheck({
+	            checkboxClass: 'icheckbox_minimal-blue empre',
+	        });
+
+			$('#independienteCheck').iCheck({
+	            checkboxClass: 'icheckbox_minimal-blue independiente',
+	        });
+
+			$('#nanaCheck').iCheck({
+	            checkboxClass: 'icheckbox_minimal-blue nana',
+	        });	
+
+			$('#otroCheck').iCheck({
+	            checkboxClass: 'icheckbox_minimal-blue otro',
+	        });	
+			
+			$('#socioCheck').iCheck({
+	            checkboxClass: 'icheckbox_minimal-blue socio',
+	        });
+
+			$('#trabajadorCheck').iCheck({
+	            checkboxClass: 'icheckbox_minimal-blue trabajador',
+	        });		
+
+			$('#previredCheck').iCheck({
+	              checkboxClass: 'icheckbox_minimal-blue previred',
+	            }).on('ifChanged',function(e){
+
+	            	previredChecked	=this.checked;	
+
+	       			if(previredChecked)
+	        	    { 					 	    		
+						if(valor==2)
+						{
+							panelPreviredNatural();										
+						}
+						else if(valor==3)
+						{
+							pabelPreviredJuridica();				
+						}			
+						else
+						{
+							ocultarPaneles();						
+						}
+	    	    	}
+	    	    	else
+	        	    {
+	    	    		ocultarPaneles();
+	    	    		limpiarCheckBox();    	    		
+	    	        }
+	            	
+	        }).end();
+
+
+			$('#seguroVidaCheckEdit').iCheck(
+			{
+	            checkboxClass: 'icheckbox_minimal-blue seguroedit',
+	        });	
+
+			//bloque controles, correspodiente solo a tipo de persona juridica, se activa cuando se selecciona.
+			controlJuridicaAdd();
+			
+			//acciono la funcion para cargar los ejecutivos al combobox
+			obtenerEjecutivos('#ejecutivoSelect');
+			
+			//acciono la funcion para cargar los tipos de sociedades
+			obtenerSociedades('#tipoSociedadSelect');
+
+			//obtengo los datos del rut seleccionado
+			obtenerDatosRutById(idRut);	
+
+			//obtengo las claves
+			obtenerClavesRut(idRut);
+
+			//obtengo datos banco
+			obtenerDatosBancoRut(idRut);
+
+			//obtengo datos personales asociados al rut
+			obtenerDatosPersonalesRut(idRut);
+
+			obtenerEstadosCobro('#estadoSelect');
+
+			obtieneTotalCobrosPendientes(idRut);
+
+			$('#modalEdicionRutCorrecta').on('hidden.bs.modal',function()
+			{
+				obtenerDatosRutById(idRut);
+			});
+
+			$('#valorMensualidadInput').number( true, 1,',','.');
+			$('#valorOtroServiciosInput').number( true, 1,',','.');
+			$('#valorMensualidadMoneda').number( true, 0,',','.');
+			$('#valorOtroServicioModena').number( true, 0,',','.');
+			$('#montoMetasInput').number( true, 0,',','.');
+
+			//inicializo la tabla meta de boleteo
+			var tableMetaBoleteo=$('#tablaMetaBoleteo').dataTable( {
+		        dom: 'T<"clear">lfrtip',
+		        bFilter: false,
+		        "responsive":true,
+		        "info":     false, 
+		        "bLengthChange": false,
+		        "autoWidth": false,	      
+		        tableTools: {		           
+		            "sRowSelect": "single",
+		            "aButtons": [ ]
+		        },
+		        "language": {
+					"lengthMenu": "Desplegando _MENU_ registros por p&aacute;gina",
+					"zeroRecords": "Nada encontrado - Lo sentimos",
+					"info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+					"infoEmpty": "No hay registros disponibles",
+					"infoPostFix":    "",
+					"thousands":      ",",
+					"loadingRecords": "Cargando...",
+					"processing":     "Procesando...",
+					"search":         "Buscar:",
+					"infoFiltered ": "(Filtrando de un total de _MAX_ registros)",
+					"paginate": {
+						"first":      "Primero",
+						"last":       "&Uacute;ltimo",
+						"next":       "Siguiente",
+						"previous":   "Anterior"
+						}
+					}	
+		    } );			
+
+			 //selecciono el anio y mes listada en la tabla meta de boleteo 
+			 //y paso los valores al formulario para editar.
+			 $('#tablaMetaBoleteo tbody').on('click', 'tr', function () 
+			 {
+				var anio="";
+				var monto="";	
+			        
+				 $('#tablaMetaBoleteo').find('tr.selected').each(function(){
+					 anio=$(this).find('td:first').html();	
+					 monto=$(this).find('td:first').next().html();	
+				 });
+				 
+				 $('#montoMetasInput').val(monto.toString().replace(/\./g,''));
+				 $('#anioMetasSelect').val(anio);
+				 
+			 } );
+
+			//inicializo la tabla movimientos del rut. 
+			var tablaCobrosAsociados=$('#tableMovimientosRut').dataTable( { 
+				dom: 'T<"clear">lfrtip',       
+		        bFilter: true,
+		        "responsive":true,
+		        "bLengthChange": false,
+		        "searching":true,
+		        "autoWidth": false,	      
+		        tableTools: {
+		            "sSwfPath": "/swf/copy_csv_xls_pdf.swf",
+		            "sRowSelect": "single",
+		            "aButtons": [ ]
+		        },
+		        "language": {
+					"lengthMenu": "Desplegando _MENU_ registros por p&aacute;gina",
+					"zeroRecords": "Nada encontrado - Lo sentimos",
+					"info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+					"infoEmpty": "No hay registros disponibles",
+					"infoPostFix":    "",
+					"thousands":      ",",
+					"loadingRecords": "Cargando...",
+					"processing":     "Procesando...",
+					"search":         "Buscar:",
+					"infoFiltered ": "(Filtrando de un total de _MAX_ registros)",
+					"paginate": {
+						"first":      "Primero",
+						"last":       "&Uacute;ltimo",
+						"next":       "Siguiente",
+						"previous":   "Anterior"
+						}
+					}	
+		    } );
+
+			$('#tipoPersonaSelect').select2();
+			$('#ejecutivoSelect').select2();			
+			$('#sexoSelect').select2();
+			$('#estadoSelect').select2();					    
+
+			//obtengo los cobros asociados al cliente
+			obtenerCobrosByRut(tablaCobrosAsociados,idRut);		
+
+			//valido formulario edicion de datos del rut
+			$('#formDatosRutAsociado').validate({
+				debug:true,
+				rules:{
+					nombreCliente:{
+						required:true
+					},
+					razonSocial:{
+						required:true
+					},
+					tipoPersonaSelect:{
+						required:true
+					},
+					valorMensualidadInput:{
+						required:true
+					},
+					valorMensualidadMoneda:{
+						required:true
+					},
+					valorOtroServiciosInput:{
+						required:true
+					},
+					valorOtroServicioModena:{
+						required:true
+					},
+					ejecutivoSelect:{
+						required:true
+					},
+					datosRutInput:{
+						required:true
+					},
+					numeroSociedadInput:{
+						required:true
+					},
+					
+					tipoSociedadSelect:{
+						required:true
+					}
+					
+				},
+				messages:{
+					nombreCliente:"Se requiere el nombre del cliente",
+					razonSocial:"Se require la Raz&oacute;n Social",
+					tipoPersonaSelect:"Debe seleccionar un elemento de la lista",
+					valorMensualidadInput:"Debe ingresar el valor de la mensualidad",
+					valorMensualidadMoneda:"Debe ingresar el valor monetario del cobro",
+					valorOtroServiciosInput:"Debe ingresar de otros servicios",
+					valorOtroServicioModena:"Debe ingresar el valor monetario del cobro",
+					ejecutivoSelect:"Debe seleccionar un elemento de la listaS",
+					datosRutInput:"Debe ingresar el RUT asociado",
+					numeroSociedadInput:"Debe ingresar el n&uacute;mero de sociedad",
+					tipoSociedadSelect:"Debe seleccionar un elemento de la lista"		
+				},
+				invalidHandler:function(event, validator)
+				{
+					
+				},	
+				submitHandler:function(form)
+				{					
+					url = '/index.php/rut/modificar';
+					
+					var iva='2';
+					var f29='2';
+					var renta='2';
+					var previred='2';
+					var empresarial='2'; 
+					var independiente='2'; 
+					var nanas='2'; 
+					var otro='2';
+					var socio='2'; 
+					var trabajadores='2';	
+
+					if($('.iva').hasClass('checked'))
+					{
+						iva='1';
+					}
+
+					if($('.f29').hasClass('checked'))
+					{
+						f29='1';
+					}
+
+					if($('.renta').hasClass('checked'))
+					{
+						renta='1';
+					}
+
+					if($('.previred').hasClass('checked'))
+					{
+						previred='1';
+					}
+
+					if($('.empre').hasClass('checked'))
+					{						
+						empresarial='1'; 
+					}
+
+					if($('.independiente').hasClass('checked'))
+					{						
+						independiente='1';							
+					}
+
+					if($('.nana').hasClass('checked'))
+					{					
+						 nanas='1'; 	
+					}
+
+					if($('.otro').hasClass('checked'))
+					{
+						otro='1';						
+					}
+
+					if($('.socio').hasClass('checked'))
+					{
+						socio='1';
+					}
+
+					if($('.trabajador').hasClass('checked'))
+					{
+						trabajadores='1';
+					}
+					
+					var datosRut="idRut="+idRut+
+								 "&idSociedad="+$('#tipoSociedadSelect').val()+
+								 "&razonSocial="+$('#razonSocial').val().toUpperCase()+
+								 "&rut="+$('#datosRutInput').val()+
+								 "&tipoPersona="+$('#tipoPersonaSelect').val()+
+								 "&numeroSociedad="+$('#numeroSociedadInput').val()+
+								 "&valorMensualidad="+$('#valorMensualidadInput').val()+
+								 "&valorServicios="+$('#valorOtroServiciosInput').val()+
+								 "&valorMensualidadMoneda="+$('#valorMensualidadMoneda').val()+
+								 "&valorServiciosMoneda="+$('#valorOtroServicioModena').val()+								 
+								 "&iva="+iva+
+								 "&f29="+f29+
+								 "&renta="+renta+
+								 "&previred="+previred+
+								 "&empresarial="+empresarial+
+								 "&independiente="+independiente+
+								 "&nanas="+nanas+
+								 "&otro="+otro+
+								 "&socio="+socio+
+								 "&trabajadores="+trabajadores;						 
+				
+					$.ajax({
+					    url: url,  
+					    type: "POST",
+					    data: datosRut,  
+					    success: function(datos)
+					    {					   
+						    if(datos.modifcar[0]=='1')
+							{
+						    	$('#modalEdicionRutCorrecta').modal();				
+							}
+							else if(datos.modifcar[0]=='2')
+							{
+								$('#modalProblemasAccion').modal();
+							}
+					    },				    
+					    error : function(xhr, status) 
+					    {					   
+					    	$('#modalProblemasAccion').modal();
+					    }	
+					});					
+						
+				}
+			});
+
+			//valido formulario metaboleteo del rut Edicion
+			var formMetaBoleteo=$('#formMetaBoleteo').validate({
+				debug:true,
+				rules:{
+					anioMetasSelect:{
+						required:true
+					},
+					montoMetasInput:{
+						required:true
+					}				
+				},
+				messages:{
+					anioMetasSelect:"Debe seleccionar el A&ntilde;o",
+					montoMetasInput:"Debe ingresar el monto de la meta de boleteo"
+				},
+				invalidHandler:function(event, validator){
+					
+				},	
+				submitHandler:function(form){					
+
+					url="/index.php/rut/ingresarmeta";
+					
+					var datosMeta="anioMeta="+$('#anioMetasSelect option:selected').text().trim()+"&montoMeta="+$('#montoMetasInput').val()+"&idRut="+idRut;
+					
+					$.ajax({
+					    url: url,  
+					    type: "POST",
+					    data: datosMeta,  
+					    success: function(datos)
+					    {					   
+						    if(datos.guardar[0]=='1')
+							{
+								$('#anioMetasSelect').val('');
+								$('#montoMetasInput').val('');	
+								listadoMetaBoleteo(tableMetaBoleteo,idRut);		
+								$('#mensajeCorrectoRegistroMeta').removeClass('hide');			    	
+							}
+							else if(datos.guardar[0]=='2')
+							{
+								$('#mensajeProblemasRegistroMeta').removeClass('hide');	
+							}
+					    },				    
+					    error : function(xhr, status) 
+					    {					   
+					    	$('#mensajeProblemasRegistroMeta').removeClass('hide');	
+					    }	
+					});
+				}				
+			});			
+
+			//valido formulario de busqueda de movimientos del rut
+			$('#formMovimientosRut').validate({
+				debug:true,
+				rules:{
+					fechaDesdeHasta:{
+						required:false
+					},
+					estadoSelect:{
+						required:false
+					},					
+					golsaMovimientosInput:{
+						required:false
+					}	
+				},
+				messages:{
+					fechaDesdeHasta:"Debe ingresar una fecha inicial y t&eacute;rmino",
+					estadoSelect:"Debe seleccionar un elemento de la lista",
+					golsaMovimientosInput:"Debe ingresar la glosa"
+				},
+				invalidHandler:function(event, validator)
+				{
+					//obtengo los cobros asociados al cliente
+					obtenerCobrosByRut(tablaCobrosAsociados,idRut);		
+				},	
+				submitHandler:function(form)
+				{		
+
+					var fechaFiltroInicio="";
+					var fechaFiltroFinal="";
+					
+					if($('#fechaDesdeHasta').val()!='')
+					{
+					var data=$('#fechaDesdeHasta').val().split('-');	
+					var fechaInicial=$.trim(data[0]).split('/');
+					var fechaFinal=$.trim(data[1]).split('/');
+
+					fechaFiltroInicio=fechaInicial[0]+"-"+fechaInicial[1]+"-"+fechaInicial[2];
+					fechaFiltroFinal=fechaFinal[0]+"-"+fechaFinal[1]+"-"+fechaFinal[2];
+					}
+					
+					url = '/index.php/cobroindividual/filtramovimientos?id='+idRut+
+																	   '&fechaInicial='+fechaFiltroInicio+
+																	   '&fechaFinal='+fechaFiltroFinal+
+																	   '&idEstado='+$('#estadoSelect').val()+
+																	   '&glosa='+$('#golsaMovimientosInput').val()+
+																	   '&origen=2';
+					tablaCobrosAsociados.fnClearTable();				
+					tablaCobrosAsociados.fnReloadAjax(url);
+				}				
+			});
+
+			$('#buttonModificaDatosPersonales').on('click',function()
+			{
+				$('#modalEdicionDatosPersonales').modal();
+			
+				$('#fechaNacimientoDateEdit').val($('#fechaNacimientoDateInput').val());
+				$('#espcialidadEdit').val($('#espcialidadInput').val());
+				$('#sexoSelectEdit').val($('#sexoSelect').val());
+				$('#trabajo1ClienteEdit').val($('#trabajo1ClienteInput').val());
+				$('#trabajo2ClienteEdit').val($('#trabajo2ClienteInput').val());
+
+				if($('.seguro ').hasClass('checked'))
+				{
+					$('.seguroedit').addClass('checked');
+				}	
+			});
+
+			$("#fechaNacimientoDateEdit").datepicker({
+				format: "dd-mm-yyyy",
+				language: "es",
+				autoclose: true,
+				todayBtn: true
+			}).on('show',function()
+					{
+				// Obtener valores actuales z-index de cada elemento
+				var zIndexModal = $('#modalEdicionDatosPersonales').css('z-index');
+				var zIndexFecha = $('.datepicker').css('z-index');
+
+				$(".datepicker").css('z-index',zIndexModal+1);
+
+			});
+			
+
+			//valido formulario de busqueda de movimientos del rut
+			$('#formActualizaPersonales').validate({
+				debug:true,
+				rules:{
+					fechaNacimientoDateEdit:{
+						required:false
+					},
+					espcialidadEdit:{
+						required:false
+					},
+					sexoSelectEdit:{
+						required:false
+					},
+					trabajo1ClienteEdit:{
+						required:false
+					},
+					trabajo2ClienteEdit:{
+						required:false
+					},
+					seguroVidaCheckEdit:{
+						required:false
+					}
+				},
+				messages:{
+					fechaNacimientoDateEdit:"Debe ingresar la fecha de nacimiento",
+					espcialidadEdit:"Debe ingresar la especialidad",
+					sexoSelectEdit:"Debe seleccionar un elemento de la lista",
+					trabajo1ClienteEdit:"Debe ingresar la fecha de nacimiento",
+					seguroVidaCheckEdit:"Debe ingresar la fecha de nacimiento"
+				},
+				invalidHandler:function(event, validator)
+				{					
+					
+				},	
+				submitHandler:function(form)
+				{		
+					url="/index.php/rut/actualizadatospersonales";
+
+					var seguro="2";
+
+					if($('.seguroedit').hasClass('checked'))
+					{
+						seguro="1";
+					}	
+					
+					datos="idRut="+idRut+
+					      "&fechaNacimiento="+$('#fechaNacimientoDateEdit').val()+
+					      "&especialidad="+$('#espcialidadEdit').val()+
+					      "&sexo="+$('#sexoSelectEdit').val()+
+					      "&trabajo1="+$('#trabajo1ClienteEdit').val()+
+					      "&trabajo2="+$('#trabajo2ClienteEdit').val()+
+					      "&seguro="+seguro;
+
+					$.ajax({
+					    url: url,  
+					    type: "POST",
+					    data: datos,  
+					    success: function(datos)
+					    {					   
+						    if(datos.actualiza[0]=='1')
+							{
+								$('#personalesActualizada').removeClass('hide');
+							}
+							else if(datos.actualiza[0]=='2')
+							{
+								$('#personalesErrorActualiza').removeClass('hide');
+							}
+					    },				    
+					    error : function(xhr, status) 
+					    {					   
+					    	
+					    }	
+					});					
+				}				
+			});	
+
+
+			$('#modalEdicionDatosPersonales').on('hidden.bs.modal',function()
+			{			
+				$('#personalesActualizada').addClass('hide');
+				$('#personalesErrorActualiza').addClass('hide');
+
+				obtenerDatosPersonalesRut(idRut);
+			});
+
+			$('#buttonModificaClaves').on('click',function()
+			{
+				$('#modalEdicionDatosClaves').modal();
+				
+				$('#siiClaveEdit').val($('.sii').val());
+				$('#previredClaveEdit').val($('.previredInput').val());
+			});
+
+			$('#formActualizaClaves').validate({
+				debug:true,
+				rules:{
+					siiClaveEdit:{
+						required:true
+					},
+					previredClaveEdit:{
+						required:true
+					}
+				},
+				messages:{
+					siiClaveEdit:"Debe ingresar la clave de SII",
+					previredClaveEdit:"Debe ingresar la clave de Pevired",
+				},
+				invalidHandler:function(event, validator)
+				{					
+										
+				},	
+				submitHandler:function(form)
+				{		
+					url="/index.php/rut/actualizaclaves";
+
+					datos="idRut="+idRut+"&sii="+$('#siiClaveEdit').val()+"&previred="+$('#previredClaveEdit').val();
+					
+					$.ajax({
+					    url: url,  
+					    type: "POST",
+					    data: datos,  
+					    success: function(datos)
+					    {					   
+						    if(datos.actualiza[0]=='1')
+							{
+								$('#claveActualizada').removeClass('hide');
+								
+							}
+							else if(datos.actualiza[0]=='2')
+							{
+								$('#claveErrorActualiza').removeClass('hide');
+							}
+					    },				    
+					    error : function(xhr, status) 
+					    {					   
+					    	
+					    }	
+					});				
+				}				
+			});	
+
+			$('#modalEdicionDatosClaves').on('hidden.bs.modal',function()
+			{			
+				$('#claveActualizada').addClass('hide');
+				$('#claveErrorActualiza').addClass('hide');
+
+				obtenerClavesRut(idRut);
+			});
+
+			$('#buttonModificaDatosBanco').on('click',function()
+			{
+				$('#modalEdicionDatosBancarios').modal();
+
+				
+				obtenerListadoBancos('#bancoSelectEdit');
+
+				
+				$('#bancoSelectEdit').val($('#bancoInput').val());
+				$('#numeroCuentaEdit').val($('#numeroCuentaInput').val());
+			});
+
+
+			$('#formaEditaDatosBancarios').validate({
+				debug:true,
+				rules:{
+					bancoSelectEdit:{
+						required:true
+					},
+					numeroCuentaEdit:{
+						required:true
+					}
+				},
+				messages:{
+					bancoSelectEdit:"Debe seleccionar un elemento de la lista",
+					numeroCuentaEdit:"Debe ingresar el n&uacute;mero de cuenta"					
+				},
+				invalidHandler:function(event, validator)
+				{					
+					
+				},	
+				submitHandler:function(form)
+				{		
+					url="/index.php/rut/actualizadatosbancarios";
+
+					datos="idRut="+idRut+"&idBanco="+$('#bancoSelectEdit').val()+"&numeroCuenta="+$('#numeroCuentaEdit').val();
+					
+					$.ajax({
+					    url: url,  
+					    type: "POST",
+					    data: datos,  
+					    success: function(datos)
+					    {					   
+						    if(datos.actualiza[0]=='1')
+							{
+								$('#bancoActualizada').removeClass('hide');
+								
+							}
+							else if(datos.actualiza[0]=='2')
+							{
+								$('#bancoErrorActualiza').removeClass('hide');
+							}
+							else if(datos.actualiza[0]=='3')
+							{
+								$('#bancoExiteNumeroCuenta').removeClass('hide');
+							}
+					    },				    
+					    error : function(xhr, status) 
+					    {					   
+					    	
+					    }	
+					});			
+				}				
+			});	
+			
+			$('#modalEdicionDatosBancarios').on('hidden.bs.modal',function()
+			{			
+				$('#bancoActualizada').addClass('hide');
+				$('#bancoErrorActualiza').addClass('hide');
+				$('#bancoExiteNumeroCuenta').addClass('hide');
+
+				obtenerDatosBancoRut(idRut);
+			});
+
+			$('#bancoSelectEdit').on('change',function()
+			{
+				$('#numeroCuentaEdit').val('');
+			});
+		
+			
+			/********************** Seccion datos del Rut **********************/
+			
+
+			//accion para transforma la uf en moneda para el valor de mensualidad
+			$('#valorMensualidadInput').on('keyup',function()
+			{
+				if($('#valorMensualidadInput').val()!='')
+				{
+					$('#valorMensualidadMoneda').val((parseFloat(valorUF)*parseFloat($('#valorMensualidadInput').val())).toFixed(0));
+				}
+				else
+				{
+					$('#valorMensualidadMoneda').val('');
+				}
+							
+			});
+
+			//accion para transforma el valor monetario de la mensualidad a uf
+			$('#valorMensualidadMoneda').on('keyup',function()
+			{
+				if($('#valorMensualidadMoneda').val()!='')
+				{
+					$('#valorMensualidadInput').val((parseFloat($('#valorMensualidadMoneda').val())/parseFloat(valorUF)).toFixed(2));
+				}
+				else
+				{
+					$('#valorMensualidadInput').val('');
+				}
+			});
+
+			//accion para transforma la uf en moneda para el valor de otros servicios.
+			$('#valorOtroServiciosInput').on('keyup',function()
+			{
+				if($('#valorOtroServiciosInput').val()!='')
+				{
+					$('#valorOtroServicioModena').val((parseFloat(valorUF)*parseFloat($('#valorOtroServiciosInput').val())).toFixed(0));
+				}
+				else
+				{
+					$('#valorOtroServicioModena').val('');
+				}
+								
+			});
+
+			//accion para transforma el valor monetario de concepto de otros servicios a uf
+			$('#valorOtroServicioModena').on('keyup',function()
+			{
+				if($('#valorOtroServicioModena').val()!='')
+				{
+					$('#valorOtroServiciosInput').val((parseFloat($('#valorOtroServicioModena').val())/parseFloat(valorUF)).toFixed(2));
+				}
+				else
+				{
+					$('#valorOtroServiciosInput').val('');
+				}
+			});		
+			
+			//comobobox tipo personal que musetra paneles de checkbox segun el tipo de persona seleccionada            
+	        $('#tipoPersonaSelect').on('change',function(){
+			
+			    valor=$(this).val();
+				 	
+			 	if(previredChecked && valor==2)
+				{
+					panelPreviredNatural();	
+					limpiarCheckBox();	
+												
+				}
+				else if(previredChecked && valor==3)
+				{
+					pabelPreviredJuridica();	
+					limpiarCheckBox();								
+				}
+				else
+				{
+					ocultarPaneles();
+					limpiarCheckBox();								
+				}	
+	        });
+
+	        	 //comobobox tipo personal que mustra en el textbox numero interno y combo tipo de sociedad  
+	        $('#tipoPersonaSelect').on('change',function(){
+
+	   		 	valor=$(this).val();
+
+	   		 	if(valor==1)
+				{
+					controlJuridicaAdd();
+				}
+				else if(valor==2)
+				{   					
+		   			controlJuridicaAdd();			   			
+		   			
+		   			$('#rentaCheck').attr({"disabled":false});
+		   			$('.renta').removeClass('checked');
+					$('.renta').attr({"aria-checked":false});
+		   			
+			  		$('#f29Check').attr({"disabled":false});
+			  		$('.f29').removeClass('checked');
+					$('.f29').attr({"aria-checked":false});
+
+					$('#ivaCheck').attr({"disabled":true});
+					$('.iva').removeClass('checked');
+
+					$('#numeroSociedadInput').attr({"disabled":true});
+					$('#numeroSociedadInput').val('');
+
+					$('#tipoSociedadSelect').val('0');
+					$('#tipoSociedadSelect').find('option[value="0"]').attr({"disabled":false});	
+					$('#tipoSociedadSelect').find('option[value="1"],option[value="2"],option[value="3"]').attr({"disabled":true});	
+		   			
+		   		}
+		   		else if(valor==3)
+		   		{   					
+		   			controlJuridicaRemove();
+
+		   			//$('#rentaCheck').attr({"disabled":true});
+		   			$('.renta').addClass('checked');					
+					
+			  		//$('#f29Check').attr({"disabled":true});
+			  		$('.f29').addClass('checked');					
+
+					$('#tipoSociedadSelect').val('');
+					$('#tipoSociedadSelect').find('option[value="0"]').attr({"disabled":true});	
+					$('#tipoSociedadSelect').find('option[value="1"],option[value="2"],option[value="3"]').attr({"disabled":false});			
+					
+					$('#ivaCheck').attr({"disabled":false});
+					$('#numeroSociedadInput').attr({"disabled":false});
+					
+		   		}
+		   		else
+		   		{   					
+		   			controlJuridicaAdd();
+		   		}	
+	        });
+	           
+			$('#datosRutInput').Rut({		  
+				 on_error: function()
+				 { 
+				    $('#modalRutIncorrecto').modal();
+					$('#datosRutInput').val('');
+				 },
+				 format_on: 'keyup'
+			});	 
+
+    	    $('#buttonBajaRut').click(function(){
+    			$('#modalBajaRut').modal();
+        	});
+        	
+			/********************** Termina Seccion datos del Rut **********************/
+			
+			/********************** Seccion Meta de Boleteo **********************/
+			
+			$('#buttonMensajeCorrectoRegistroMeta').on('click',function(){
+				$('#mensajeCorrectoRegistroMeta').addClass('hide');
+			});
+
+			$('#buttonMensajeProblemasRegistro').on('click',function(){
+				$('#mensajeProblemasRegistroMeta').addClass('hide');
+			});
+
+			 //muestra el panel de meta de boleteo
+			$('#clickMetaBoleteo').click(function(){
+				formMetaBoleteo.resetForm();
+	    		$("#metasBoleteo").fadeToggle("slow");
+	    		//carga las metas de boleteo asociadas al rut de cada anio
+	    		listadoMetaBoleteo(tableMetaBoleteo,idRut);
+	        }); 
+
+			 //cierra el panel de meta de boleteo
+			$('#cierraMetaBoleteo').click(function(){
+				formMetaBoleteo.resetForm();
+	    		$("#metasBoleteo").fadeToggle("slow");    		
+	        });		
+			
+			/********************** Termina Seccion Meta de Boleteo **********************/
+			
+			/********************** Seccion Movimientos del Rut **********************/			
+			
+			$('#buttonModificarCobroIndividual').on('click',function()
+			{
+				if(obtieneEstadoCobro()!='anulado')
+				{
+					if($('#tableMovimientosRut tbody tr').hasClass('selected'))
+					{
+						if(tipoCobro()!='3')
+						{
+							if(<?=$this->rol ?>!='5' && (obtieneGlosa()=='Cobro Mensualidad' || obtieneGlosa()=='Cobro Servicio Variable'))
+							{
+
+								if(<?=$this->rol ?>=='7')
+								{
+									window.location.href=dominio+"/index.php/cobroindividual/modificar?idCobro="+obtenerIdCobro()+"&tipo="+tipoCobro();
+								}
+								else
+								{
+									jAlert("No esta autorizado para modificar este cobro.","Aviso!");	
+								}								
+							}
+							else
+							{
+								window.location.href=dominio+"/index.php/cobroindividual/modificar?idCobro="+obtenerIdCobro()+"&tipo="+tipoCobro();
+							}	
+
+						}
+						else
+						{
+							$('#noModificaMasivo').removeClass('hide');
+						}			
+					}
+					else
+					{
+						$('#seleccionaCobroLista').removeClass('hide');
+					}	
+				}
+				else
+				{
+					$('#cobroAnulado').removeClass('hide');
+				}							
+			});
+
+			$('#buttonNoModificaMasivo').on('click',function()
+			{
+				$('#noModificaMasivo').addClass('hide');
+			});
+
+			$('#buttonEliminarMovimiento').click(function()
+			{			
+				if(obtieneEstadoCobro()!='anulado')
+				{
+					if(obtieneEstadoCobro()=='pendiente')
+					{
+						if(!obtieneGlosa()=='F29')
+						{
+							if( <?=$this->rol ?>!='5' && (obtieneGlosa()=='Cobro Mensualidad' || obtieneGlosa()=='Cobro Servicio Variable'))
+							{
+								if(<?=$this->rol ?>=='7')
+								{
+									$('#modalEliminarMovimientosRut').modal();
+								}
+								else
+								{
+									jAlert("No esta autorizado para eliminar este cobro.","Aviso!");	
+								}							
+							}
+							else if(<?=$this->rol ?>!='4' && obtieneGlosa()=='Previred')
+							{
+								if(<?=$this->rol ?>=='7')
+								{
+									$('#modalEliminarMovimientosRut').modal();
+								}
+								else
+								{
+									jAlert("No esta autorizado para eliminar este cobro.","Aviso!");	
+								}	
+							}
+							else
+							{
+								$('#modalEliminarMovimientosRut').modal();
+							}	
+						}
+						else
+						{
+							jAlert("Este tipo de cobro no puede ser eliminado","Aviso!");
+						}
+					}
+					else
+					{
+						$('#noAnulaCobro').removeClass('hide');
+					}	
+				}
+				else
+				{
+					$('#cobroAnulado').removeClass('hide');
+				}			    
+			});  
+
+
+			function obtieneGlosa()
+			{
+				var glosa="";
+							
+				$('#tableMovimientosRut').find('tr.selected').each(function(){
+
+					glosa=$(this).find('td:first').next().next().next().html();		
+						
+				});
+				
+				return glosa;
+			}
+
+			$('#buttonAnularCobro').on('click',function()
+			{
+				url="/index.php/cobroindividual/modificaestadocobro";
+					
+				var datos="idCobro="+obtenerIdCobro()+"&tipoCobro="+tipoCobro();
+					
+				$.ajax({
+		 		    url: url,  
+		 		    type: "POST",
+		 		    data: datos, 
+		 		    success: function(datos)
+		 		    {
+						if(datos.estado[0]=='1')
+						{
+							$('#modalEliminarMovimientosRut').modal('hide');	
+			 		    	$('#movimientoAnulado').removeClass('hide');	
+
+			 		    	//obtengo los cobros asociados al cliente
+			 				obtenerCobrosByRut(tablaCobrosAsociados,idRut);			 			    		
+						}
+						else if(datos.estado[0]=='2')
+						{
+							$('#movimientoAnulado').removeClass('hide');
+							$('#modalEliminarMovimientosRut').modal('hide');	
+						}		 			    		
+		 			},
+		 			error : function(xhr, status) 
+		 			{
+		 			   		$('#movimientoAnulado').removeClass('hide');
+		 			    	$('#modalEliminarMovimientosRut').modal('hide');	
+					    }
+		 			});		
+			});
+
+			$('#buttonMovimientoAnulado').on('click',function()
+			{
+				$('#movimientoAnulado').addClass('hide');
+			});
+
+			$('#buttonNoAnulaCobro').on('click',function()
+			{
+				$('#noAnulaCobro').addClass('hide');
+			});
+
+			$('#buttonCobroAnulado').on('click',function()
+			{
+				$('#cobroAnulado').addClass('hide');
+			});
+			
+			$('#seguroVidaCheck').iCheck({
+	            checkboxClass: 'icheckbox_minimal-blue seguro',
+	        });
+	        
+    	    $('#fechaDesdeHasta').daterangepicker();	
+
+    	    $('#buttonCierraMsgCobroLista').on('click',function()
+    	   	{
+    	    	$('#seleccionaCobroLista').addClass('hide');
+        	});
+
+        	$('#claveSIIInput').attr({"disabled":true});
+        	$('#clavePreviredInput').attr({"disabled":true});
+			
+			/********************** Termina Seccion Movimientos del Rut **********************/
+			
+			
+			
+			/********************** Seccion Finanzas del Rut **********************/
+			
+			function obtieneTotalCobrosPendientes(idRuts)
+			{
+					url="/index.php/rut/obtienetotalcobrospendientes";
+
+					dato="idRut="+idRuts;
+
+					$.ajax({
+	     			    url: url,  
+	     			    type: "POST",
+	     			    data: dato, 
+	     			    async:false,
+	     			    success: function(datos)
+	     			    {
+		     			    if(datos.estado!='2')
+		     			    {
+		     			    	$('#nombreClienteFinanzasInput').val(datos.valor);
+		     			    }		     			   
+	     			    },
+	     			    error:function(status)
+	     			   	{		     			   	
+	     			    }
+					});
+			}
+			
+			/********************** Termina Seccion Finanzas del Rut **********************/
+
+    		//funcion que obtiene un rut especifico por un id
+    		function obtenerDatosRutById(idRut)
+    		{
+    			url = '/index.php/rut/obtenerrubyid';
+           	 
+     			var dato="idRut="+idRut;
+     		
+     			$.ajax({
+     			    url: url,  
+     			    type: "POST",
+     			    data: dato, 
+     			    async:false,
+     			    success: function(datos)
+     			    {
+    					//valida que el idcliente exista     	 			    
+     	 			    if(datos.rut!=null)
+     	 			    {     	 			    	
+     	 			    	$('#nombreCliente').val(datos.rut[0]);     	 			    	
+     	 			   		$('#ejecutivoSelect').val(datos.rut[1]);     	 			   		     	 			   		
+     	 			   		$('#razonSocial').val(datos.rut[3]);     	 			   		
+     	 			   		$('#datosRutInput').val(datos.rut[4]);     	
+     	 			   		 			   		
+     	 			  		$('#tipoPersonaSelect').val(datos.rut[5]);
+     	 			  		valor=datos.rut[5];
+     	 			  		$('#numeroSociedadInput').val(datos.rut[6]);
+     	 			  		     	 			  		
+     	 			  		$('#valorMensualidadInput').val((datos.rut[7].toString().replace('.',',')));
+     	 			  		$('#valorOtroServiciosInput').val((datos.rut[8].toString().replace('.',','))); 
+     	 			  		
+     	 			  		if(datos.rut[9]=='1')
+     	 			  		{
+         	 			  		$('.iva').addClass('checked');
+         	 			  		$('.iva').attr({"aria-checked":true});
+     	 			  		}
+     	 			  
+     	 			  		if(datos.rut[10]=='1')
+         	 			  	{
+     	 			  			$('.f29').addClass('checked');
+     	 			  			$('.f29').attr({"aria-checked":true});
+     	 			  		} 
+     	 			  
+     	 			  		if(datos.rut[11]=='1')
+     	 			  		{
+     	 			  			$('.renta').addClass('checked');
+     	 			  			$('.renta').attr({"aria-checked":true});
+ 	 			  			} 	 
+     	 			  		
+     	 			  		if(datos.rut[12]=='1')
+ 	 			  			{
+     	 			  			$('.previred').addClass('checked');
+     	 			  			$('.previred').attr({"aria-checked":true});
+     	 			  			previredChecked=true;     			  		
+	 			  			}
+
+	 			  			if(datos.rut[13]=='1')
+	 			  			{
+	 			  				$('.empre').addClass('checked');
+	 			  				$('.empre').attr({"aria-checked":true});
+	 			  			}
+
+	 			  			if(datos.rut[14]=='1')
+	 			  			{
+	 			  				$('.independiente').addClass('checked');
+	 			  				$('.independiente').attr({"aria-checked":true});
+	 			  			}
+
+	 			  			if(datos.rut[15]=='1')
+	 			  			{
+	 			  				$('.nana').addClass('checked');
+	 			  				$('.nana').attr({"aria-checked":true}); 
+	 			  			}
+
+	 			  			if(datos.rut[16]=='1')
+	 			  			{
+	 			  				$('.otro').addClass('checked');
+ 			  					$('.otro').attr({"aria-checked":true});
+	 			  			}
+
+	 			  			if(datos.rut[17]=='1')
+	 			  			{
+	 			  				$('.socio').addClass('checked');
+	 			  				$('.socio').attr({"aria-checked":true}); 
+	 			  			}
+
+	 			  			if(datos.rut[18]=='1')
+	 			  			{
+	 			  				$('.trabajador').addClass('checked');
+ 			  					$('.trabajador').attr({"aria-checked":true});
+	 			  			}	
+
+	 			  			if(datos.rut[2]!='0')
+	 			  			{	 			  				
+	 							$('#tipoSociedadSelect').find('option[value="0"]').attr({"disabled":true});	
+	 							$('#tipoSociedadSelect').find('option[value="1"],option[value="2"],option[value="3"]').attr({"disabled":false});			
+	 			  			}
+
+	 			  			$('#tipoSociedadSelect').val(datos.rut[2]);
+	 			  			
+							//si el valor es 3 corresponde a tipo de persona juridica.
+     	 			  		if(valor=='3')
+     	 			  		{     	 			  		
+     	 			  			
+     	 			  			$('#numeroInternoInput').prop({disabled: false});
+     	 			  			$('#tipoSociedadSelect').prop({disabled: false});
+							
+     	 			  			//$('#rentaCheck').attr({"disabled":true});
+     	 			  			//$('#f29Check').attr({"disabled":true});
+     	 			  			$('#numeroSociedadInput').attr({"disabled":false});
+     	 			  			
+	     	 			  		if(datos.rut[12]=='1')
+	 	 			  			{
+	     	 			  			pabelPreviredJuridica(); 
+	 	 			  			}     	 			  			   	 			  			
+     	 			  		}
+     	 			  		else         	 			  		
+ 	 			  			{ 
+	     	 			  		if(datos.rut[12]=='1')
+	 	 			  			{
+	     	 			  			panelPreviredNatural();
+	 	 			  			}  
+
+		     	 			  	$('#ivaCheck').attr({"disabled":true});
+		    					$('.iva').removeClass('checked');	 		  				 			  			
+		    					$('#numeroSociedadInput').val('');
+		    					$('#numeroSociedadInput').attr({"disabled":true});
+ 	 			  			}
+     	 			  		
+     	 			    } 
+     	 			    else
+     	 			    {     	 	 			    
+     	 					window.location.href=dominio+"index.php/rut/buscarporsociedad";
+     	 			    }					
+     					
+     			    },
+     			    error : function(xhr, status) 
+     			    {
+     			    	
+    			    }
+     			}); 
+    		}  
+
+    		//funcion que cara los cobros asociados al rut
+    		function obtenerCobrosByRut(table,idRuts)
+		    {
+				url="/index.php/cobroindividual/obtenercobros?idRut="+idRuts;
+				table.fnClearTable();				
+				table.fnReloadAjax(url);			
+			} 
+
+    		//funcion que carga la metas de boleteo asociadas al rut
+    		function listadoMetaBoleteo(table,idRuts)
+		    {
+				url="/index.php/rut/listarmeta?idRut="+idRuts;
+				table.fnClearTable();				
+				table.fnReloadAjax(url);			
+			}
+
+    		//funcion que carga los ejecutivos registrados
+    		function obtenerEjecutivos(objetivo)
+			{				
+			     url = '/index.php/usuario/listar';
+			    
+				 $(objetivo).empty();			
+						
+				 $('<option>').
+				 attr({value:""}).
+				 text('Seleccione').
+				 prop({disabled: false}).
+				 appendTo(objetivo);
+
+				 var dato="";
+				
+				 $.ajax({
+				     url: url,  
+				     type: "POST",
+				     data: dato,
+				     async:false,
+				     success: function(datos)
+				     {				 	    
+				    	 $.each(datos.data, function( index, value ) {
+								
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(value[1]).
+							   appendTo(objetivo);
+						});	
+				    }
+				}); 			
+			 }	
+
+    		//funcion que carga las claves asociadas al rut
+    		function obtenerClavesRut(idRuts)
+			{				
+			     url = '/index.php/rut/obtenerclavescyidrut';
+			     
+				 var datoRut="idRut="+idRuts;
+				
+				 $.ajax({
+				     url: url,  
+				     type: "POST",
+				     data: datoRut,
+				     async:false,
+				     success: function(datos)
+				     {				 	    
+				 		$('#claveSIIInput').val(datos.claves[0]);
+				 		$('#clavePreviredInput').val(datos.claves[1]);
+				     }
+				}); 			
+			 }	
+
+    		//funcion que carga las datos asociados al banco banco del cliente
+    		function obtenerDatosBancoRut(idRuts)
+			{				
+			     url = '/index.php/rut/obtenercuentasbyidrut';
+			     
+				 var datoRut="idRut="+idRuts;
+				
+				 $.ajax({
+				     url: url,  
+				     type: "POST",
+				     data: datoRut,
+				     async:false,
+				     success: function(datos)
+				     {
+					    if(typeof(datos.cuenta) != "undefined" && datos.cuenta != null)
+					     {				 	    
+					 		$('#numeroCuentaInput').val(datos.cuenta[1]);
+					 		$('#bancoInput').val(datos.cuenta[0]);
+					 		
+					     }
+					     else
+						 {
+					    	 $('#numeroCuentaInput').val('');
+						 	 $('#bancoInput').val('');
+						 }
+				     }
+				}); 			
+			 }	
+
+    		//obtiene datos personales asociados al rut, con tipo persona de persona natural 
+    		function obtenerDatosPersonalesRut(idRuts)
+			{				
+			     url = '/index.php/rut/obtenerdatospersonalesbyidrut';
+			     
+				 var datoRut="idRut="+idRuts;
+				
+				 $.ajax({
+				     url: url,  
+				     type: "POST",
+				     data: datoRut,
+				     async:false,
+				     success: function(datos)
+				     {
+					     if(datos.datospersonales!=null)
+					     {
+					    	 $('#fechaNacimientoDateInput').val(datos.datospersonales[0]);
+						 	 $('#espcialidadInput').val(datos.datospersonales[1]);
+						 	 $('#sexoSelect').val(datos.datospersonales[2]);
+						 	 $('#trabajo1ClienteInput').val(datos.datospersonales[3]);
+						 	 $('#trabajo2ClienteInput').val(datos.datospersonales[4]);
+						 	
+							 if(datos.datospersonales[5]=='1')
+				 			 {					 			 
+			 	 			 	$('.seguro').addClass('checked');
+			 	 			 	$('.seguro').attr({"aria-checked":true}); 		
+			 			  	 }else{
+			 			  		$('.seguro').removeClass('checked');
+			 	 			 	$('.seguro').attr({"aria-checked":false}); 	
+			 			  	 }
+						 	 
+					     }
+				     }
+				}); 			
+			 }	
+
+    		//funcion para obtener las sociedades y cargarlas al combobox
+			function obtenerSociedades(objetivo)
+			{				
+			    url = '/index.php/sociedad/listar';
+			    
+				$(objetivo).empty();
+							
+				$('<option>').
+				attr({value:""}).
+				text('Seleccione').
+				prop({disabled: false}).
+				appendTo(objetivo);
+				
+				var dato="";
+			
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,
+				    async:false,
+				    success: function(datos)
+				    {					    
+				    	$.each(datos.data, function( index, value ) 
+						{							
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(value[1]).
+							   appendTo(objetivo);
+						});	
+
+				    }
+				}); 			
+			}
+			
+    		function limpiarCheckBox()
+            {
+            	$('.socio').removeClass('checked');
+			  	$('.socio').attr({"aria-checked":false});
+			  	$('.trabajador').removeClass('checked');
+			  	$('.trabajador').attr({"aria-checked":false});
+			  	$('.nana').removeClass('checked');
+	 			$('.nana').attr({"aria-checked":false});
+	 			$('.empre').removeClass('checked');
+ 			  	$('.empre').attr({"aria-checked":false});
+ 			  	$('.trabajador').removeClass('checked');
+	 			$('.trabajador').attr({"aria-checked":false});
+	 			$('.otro').removeClass('checked');
+ 			  	$('.otro').attr({"aria-checked":false});
+ 			  	$('.independiente').removeClass('checked');
+	 			$('.independiente').attr({"aria-checked":false});
+            } 		
+    		
+        	function ocultarPaneles()
+    	    {
+    	    	panelPersonaJuridica = $('#previredPersonaJuridica'),
+	    		$clone =panelPersonaJuridica.addClass('hide');
+
+				panelPersonaNatural=$('#previredPersonaNatural'),
+	    		$clone =panelPersonaNatural.addClass('hide');
+    	    }
+
+    	    function panelPreviredNatural()
+    	    {
+    	    	panelPersonaNatural=$('#previredPersonaNatural'),
+	    		panelPersonaNatural.removeClass('hide');
+
+				panelPersonaJuridica = $('#previredPersonaJuridica'),
+	    		panelPersonaJuridica.addClass('hide');
+    	    }
+
+    	    function pabelPreviredJuridica()
+    	    {
+    	    	panelPersonaNatural=$('#previredPersonaNatural'),
+	    		panelPersonaNatural.addClass('hide');
+	    		
+				panelPersonaJuridica = $('#previredPersonaJuridica'),
+	    		panelPersonaJuridica.removeClass('hide');
+    	    } 
+
+    	    function controlJuridicaRemove()
+    	    {
+    	    	$('#numeroInternoInput').prop("disabled",false);
+        	    $('#tipoSociedadSelect').prop("disabled",false);        	    
+    	    }
+
+    	    function controlJuridicaAdd()
+    	    {
+        	    $('#numeroInternoInput').prop("disabled",true);
+        	    $('#tipoSociedadSelect').prop("disabled",true);
+        	    
+        	    $('#numeroInternoInput').val('');
+        	    $('#tipoSociedadSelect').val('');
+    	    }
+
+    		function limpiarControl(idControl){
+    			idControl.val('');	
+    		}
+
+			//da formato a la fecha ontenida en el control, para poder registrarla en la bd
+    		function formatoFechaControl(fecha)
+    		{
+    			var data=fecha.split('-');	
+    			var fechaBd=data[2]+"/"+data[1]+"/"+data[0];
+    			return fechaBd;
+    		}  
+
+    		//funcion para obtener el id cobro asociado al rut.
+    		function obtenerIdCobro()
+    		{
+    			var id="";			
+    				$('#tableMovimientosRut').find('tr.selected').each(function(){
+    					id=$(this).find('td:first').html();				
+    				});
+    			return id;
+    		}
+
+			//me indica si el cobro que estoy modificando es honorario o cobroindividual
+			//ya que las tablas para los honorarios y cobros indivudlaes estan sepradas.
+    		function tipoCobro()
+    		{
+    			var id="";			
+				$('#tableMovimientosRut').find('tr.selected').each(function(){
+					id=$(this).find('td:first').next().html();		
+					if(id=="Honorario")
+					{
+						id="1";
+					}
+					else if(id=="Cobro")
+					{
+						id="2";
+					}
+					else
+					{
+						id="3";
+					}
+						
+				});
+			return id;
+    		}
+
+			//funcion para asignar el valor e id de la uf con la que el rut fue registrado, 
+			//para los montos de mensualidad y otros servicios
+    		function obtenerUfAsociadaAlRut(objetivo,valor,text)
+    		{    		    
+    			$(objetivo).empty();		
+    			
+    			$('<option>').
+    			attr({value:valor}).
+    			text("$ "+text).
+    			prop({disabled: false}).
+    			appendTo(objetivo);   
+
+    		} 
+
+    		function obtenerEstadosCobro(objetivo)
+    		{				
+    		    url = '/index.php/cobro/obtenerestados';
+    			    
+    			$(objetivo).empty();			
+    						
+    			$('<option>').
+    			attr({value:""}).
+    			text('Seleccione').
+    			prop({disabled: false}).
+    			appendTo(objetivo);
+    		
+    			var dato="";
+    			
+    			$.ajax({
+    			    url: url,  
+    			    type: "POST",
+    			    data: dato, 
+    			    async:false, 
+    			    success: function(datos){
+    					    
+    			    	$.each(datos.data, function( index, value ) {
+    				    	
+    						 $('<option>').
+    						   attr({value:value.id_estado}).
+    						   text(value.nombre_estado).
+    						   appendTo(objetivo);
+    					});
+    			    }
+    			}); 			
+    		} 
+
+    		function obtieneEstadoCobro()
+    		{
+    			var estado="";
+    						
+    			$('#tableMovimientosRut').find('tr.selected').each(function()
+    			{
+    				estados=$(this).find('td:first').next().next().next().next().next().next().next().next().html();
+    				
+    				switch(estados)
+    				{
+    					case 'pendiente': 
+    						estado='pendiente';  
+    						break;
+    					case 'pendiente(S/M)': 
+    						estado='pendiente';  
+    						break;	
+    					case 'dinero recibido': 
+    						estado='dinero recibido';  
+    						break;
+    					case 'pago emitido': 
+    						estado='pago emitido';  
+    						break;
+    					case 'verificado': 
+    						estado='verificado';  
+    						break;
+    					case 'S/M': 
+    						estado='S/M';  
+    						break;
+    					case 'anulado': 
+    						estado='anulado'; 
+    						break;
+    					case 'anulado(S/M)': 
+    						estado='anulado'; 
+    						break;
+    				}
+    			});			
+
+    			return $.trim(estado);			
+    		}
+
+    		function obtenerListadoBancos(objetivo)
+    		{
+    			url = '/index.php/rut/listadobancos';
+    		    
+    			$(objetivo).empty();		
+    			
+    			$('<option>').
+    			attr({value:""}).
+    			text('Seleccione').
+    			prop({disabled: false}).
+    			appendTo(objetivo);
+    						
+    			var dato="";
+    		
+    			$.ajax({
+    			    url: url,  
+    			    type: "POST",
+    			    data: dato,  
+    			    async:false,
+    			    success: function(datos)
+    			   	{	
+    				   
+    			    	$.each(datos.bancos, function( index, value ) {						
+    						 $('<option>').
+    						   prop({value:value[0]}).
+    						   text(value[1]).
+    						   appendTo(objetivo);
+    					});		
+    				   
+    			    }
+    			});	
+    		}
+		});
+    </script>
+
+
+</body>
+</html>

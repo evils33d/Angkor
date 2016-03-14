@@ -1,0 +1,122 @@
+<section class="content-header">
+
+	<h1>Reporte de Cobros</h1>
+	<ol class="breadcrumb">
+		<li><a href="/index.php/sistema/index"><i class="fa fa-users"></i>
+				Reportes</a></li>
+		<li class="active">Buscar Cobros</li>
+	</ol>
+</section>
+
+<section class="content">
+
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Buscar Cobro</strong>
+			</h3>
+		</div>
+
+		<form role="form" action="" method="post" id="formBuscarCobros">
+
+			<div class="box-body">
+
+				<div class="form-group">
+					<label for="ejecutivoSelect">Ejecutivo</label> <select
+						class="form-control control" id="ejecutivoSelect"
+						name=ejecutivoSelect>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="clienteSelect">Clientes</label> <select
+						class="form-control control" id="clienteSelect"
+						name="clienteSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="rutSelect">Ruts Del Cliente</label> <select
+						class="form-control control" id="rutSelect" name="rutSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="tipoSelect">Tipo Cobro</label> <select
+						class="form-control control" id="tipoSelect" name="tipoSelect">
+						<option value="">Seleccione</option>
+						<option value="1">Ingreso</option>
+						<option value="2">Canje</option>
+					</select>
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="estadoSelect">Estado del cobro</label> <select
+						class="form-control control" id="estadoSelect" name="estadoSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>Seleccione una fecha de inicio y termino</label> <input
+						type="text" placeholder="dd/mm/yyyy - dd/mm/yyyy"
+						class="form-control pull-right control" id="fechaDesdeHasta"
+						name="fechaDesdeHasta">
+				</div>
+
+			</div>
+			<div class="box-footer">
+				<button type="submit" class="btn btn-primary">
+					Buscar <span class="fa fa-search"></span>
+				</button>
+			</div>
+		</form>
+
+	</div>
+
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Resultados</strong>
+			</h3>
+		</div>
+		<div class="box-body">
+			<div class="form-group">
+				<table class="table table-bordered table-hover cell-border compact"
+					id="tablePagarCobros">
+					<thead>
+						<th>Id</th>
+						<th>Tipo</th>
+						<th>Fecha</th>
+						<th>Glosa</th>
+						<th>N&uacute;mero Sociedad</th>
+						<th>RUT Asociado</th>
+						
+						<th>Clave Previred</th>
+						<th>Clave SII</th>
+						
+						<th>Cuenta Dep&oacute;sito</th>
+						<th>Monto Cobrado</th>
+						<th>Monto Pagado</th>
+						<th>Estado</th>
+						<th>Forma de Pago</th>
+						<th>N&uacute;mero Factura</th>
+						<th>Observaciones</th>
+					</thead>
+
+				</table>
+			</div>
+
+
+
+		</div>
+
+
+	</div>
+
+</section>

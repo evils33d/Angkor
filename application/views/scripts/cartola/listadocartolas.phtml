@@ -1,0 +1,127 @@
+<?php 
+
+if(isset($this->mensaje)){
+	echo $this->mensaje;
+}
+
+?>
+
+<section class="content-header">
+
+	<h1>Detalle de Cartola</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="/index.php/sistema/index"><i class="fa fa-users"></i>
+				Cartola</a></li>
+		<li class="active">Detalle Cartola</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+<?php 
+
+ if(isset($this->msg))
+ {	
+ 	
+ 	if($this->msg['valor'] == true)
+ 	{	
+
+?>
+		 <div class="row">
+		            <div class="col-md-12">
+		              <div class="box box-solid">
+		                  <div class="alert alert-success alert-dismissable">
+		                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		                    <h4>	<i class="icon fa fa-check"></i> Carga Correcta!</h4>
+		                    <?=$this->msg['mensaje']?>
+		                  </div>
+		              </div><!-- /.box -->
+		            </div><!-- /.col -->
+		</div>
+<?php 
+ 	}elseif($this->msg['valor'] == false)
+ 	{
+?> 	
+ 		<div class="row">
+            <div class="col-md-12">
+              <div class="box box-solid">
+                  <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i> Problemas con la carga del archivo!</h4>
+						<?=$this->msg['mensaje']?>
+                    </div>
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div>	
+<?php  	
+	}
+ }
+
+
+if(isset($this->cartolas)){
+?>
+ 
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Detalle de movimientos de cartola</strong>
+			</h3>
+		</div>
+			<table id="example1" class="table table-bordered responsive nowrap" cellspacing="0" width="100%">
+			                  <!-- <table id="example1" class=" table table-striped table-hover dt-responsive" cellspacing="0" width="100%">-->                 
+			                    <thead>
+			                      <tr>
+				                      <th>Id Cartola</th>
+				                      <th>Id Cuenta</th>
+			                      	  <th>N&uacute;mero Cuenta</th>
+			                      	  <th>Archivo</th>
+				                      <th>Fecha Carga</th>
+				                      <th>Acci&oacute;n</th>
+
+			                      </tr>
+			                    </thead>
+			                    <tbody>
+<?php 
+foreach($this->cartolas as $key => $detalle)
+{
+?>                  
+				     				<tr>
+				                      	  <td><?=$detalle['ci16_idcartola']?></td>
+				                      	  <td><?=$detalle['ci62_idCuenta']?></td>
+										  <td><?=$detalle['ci62_nroCuenta']?></td>
+										  <td><?=$detalle['ci14_nombreArchivo']?></td>
+										  <td><?=$detalle['ci14_fechaCarga']?></td>	
+										  <td>
+										    <a href="/index.php/cartola/detallecartola?id_cartola=<?=$detalle['ci16_idcartola']?>"
+													<button class="btn btn-primary" id="irDetalleCliente">Detalle <span class="fa fa-eye"></span></button>
+											</a>
+										  </td>	 
+				                    </tr>  
+<?php 
+}
+?>     
+			                    </tbody>
+			                    </table>
+	</div>
+<?php 
+}else{
+?>	
+ 		<div class="row">
+            <div class="col-md-12">
+              <div class="box box-solid">
+                  <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i> No se han cargado cartolas</h4>
+                    </div>
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div>
+<?php 
+}
+?>
+
+
+</section>

@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><?=$this->nombre_sitio?></title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+
+<!-- JqueryAlerts -->
+<link href = "/plugins/JqueryAlerts/jquery.alerts.css" rel = "stylesheet"> 	
+<!-- Select2 -->
+<link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+<!-- Bootstrap 3.3.4 -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Ionicons -->
+<link href="/ionicons/css/ionicons.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- DATA TABLES -->
+
+<!-- <link href="/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />-->
+
+<link href="/plugins/datatables/jquery.dataTables.css" rel="stylesheet"
+	type="text/css" />
+
+<link href="/plugins/datatables/dataTables.tableTools.css"
+	rel="stylesheet">
+
+<link href="/plugins/datatables/dataTables.responsive.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- datepicker, estilos calendario -->
+<link href="/plugins/datepicker/datepicker3.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- DateRangePicker -->
+<link href="/plugins/daterangepicker/daterangepicker-bs3.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- iCheck for checkboxes and radio inputs -->
+<link href="../../plugins/iCheck/all.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- Theme style -->
+<link href="/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+<link href="/dist/css/skins/<?=$this->skin?>.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style>
+.editar {
+	width: 20px;
+	height: 40px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#formBusquedaCoboMasivo .error {
+	color: Crimson
+}
+
+</style>
+
+
+</head>
+<!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+<body class="<?=$this->skin?> sidebar-mini">
+	<div class="wrapper">
+
+
+		<!-- Main Header -->
+      	<?=$this->render('head.phtml') ?>	
+  <!-- Fin Main Header -->
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+
+				<!-- Sidebar user panel (optional) -->
+				<?=$this->render('sidebaruserpanel.phtml') ?>	
+		  <!-- Fin Sidebar user panel -->
+
+				<!-- Sidebar Menu -->
+				<?=$this->render('menu.phtml') ?>		
+        </section>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<!-- Main content -->
+       
+          <?=$this->layout()->content?>
+       
+        <!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+			
+			<?= $this->render('footer.phtml')?>
+
+      <!-- Control Sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED JS SCRIPTS -->
+
+	<!-- jQuery 2.1.4 -->
+	<script src="/plugins/jQuery/jQuery-2.1.4.min.js"
+		type="text/javascript"></script>
+
+	<!-- Script RUT -->
+	<script src="/plugins/jQueryRut/jquery.Rut.js" type="text/javascript"></script>
+
+	<!-- Bootstrap 3.3.2 JS -->
+	<script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!-- DATA TABES SCRIPT -->
+
+	<script src="/plugins/datatables/jquery.dataTables.min.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/datatables/dataTables.responsive.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/datatables/fnReloadAjax.js" cache="false"></script>
+
+	<script src="/plugins/datatables/dataTables.tableTools.js"
+		cache="false"></script>
+
+	<script src="/plugins/datatables/dataTables.fixedColumns.min.js"
+		cache="false"></script>
+
+	<!-- <script src="/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+
+	<!-- SlimScroll -->
+	<script src="/plugins/slimScroll/jquery.slimscroll.min.js"
+		type="text/javascript"></script>
+	<!-- FastClick -->
+
+	<script src="/plugins/fastclick/fastclick.min.js"
+		type="text/javascript"></script>
+
+	<!-- AdminLTE App -->
+	<script src="/dist/js/app.min.js" type="text/javascript"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="/dist/js/demo.js" type="text/javascript"></script>
+
+	<!-- date-picker -->
+	<script src="/plugins/datepicker/bootstrap-datepicker.js"
+		type="text/javascript"></script>
+
+	<!-- date-range-picker -->
+	<script src="/plugins/daterangepicker/moment.js" type="text/javascript"></script>
+	<script src="/plugins/daterangepicker/daterangepicker.js"
+		type="text/javascript"></script>
+
+	<!-- iCheck 1.0.1 Script checkbox y radiobuttons -->
+	<script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
+	<!-- Jquery Validate -->
+
+	<script src="/plugins/jqueryvalidate/jquery.validate.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/additional-methods.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/messages_es.min.js"
+		type="text/javascript"></script>
+
+	<!-- JQUERY Number -->
+	<script src="/plugins/jquerynumber/jquery.number.js"
+		type="text/javascript"></script>
+
+	<!-- Select2 -->
+	<script src="../../plugins/select2/select2.full.min.js"></script>
+	
+	<!-- page script -->
+	<script src = "/plugins/JqueryAlerts/jquery.alerts.js" type = "text/javascript"></script>
+	<script src = "/plugins/jQuery/jquery-migrate-1.2.1.js" type = "text/javascript"></script>
+	
+	<script type="text/javascript">
+
+    $(function()
+	{
+    	$('#f29').addClass('hide');
+		$('#renta').addClass('hide');
+
+		var dominio = '<?=$this->urlaplicacion?>';
+		
+		if(<?=$this->hideRenta?>!='0')
+		{
+			if(<?=$this->hideRenta?>=='1')
+			{
+				$('#renta').removeClass('hide');
+				$('.dateCobroF29').attr({"disabled":true});
+				formatoCalendario('.dateCobroRenta','yyyy','years');
+			}
+			else
+			{
+				$('#f29').removeClass('hide');
+				$('.dateCobroRenta').attr({"disabled":true});
+				formatoCalendario('.dateCobroF29','mm-yyyy','months');
+			}
+		}
+		
+		$('#tipoCobroSelect').on('change',function()
+		{			
+			if($('#tipoCobroSelect').val()=='2')
+			{
+				$('#f29').addClass('hide');
+				$('#renta').removeClass('hide');
+				
+				$('.dateCobroRenta').val($('.dateCobroRenta').val().slice(-4));
+				
+				
+				$('.dateCobroRenta').attr({"disabled":false});
+				$('.dateCobroF29').attr({"disabled":true});
+				formatoCalendario('.dateCobroRenta','yyyy','years');
+			}
+			else
+			{
+				$('#renta').addClass('hide');
+				$('#f29').removeClass('hide');
+				
+				if($('.dateCobroF29').val().length<7)
+				{
+					$('.dateCobroF29').val('');
+				}
+				
+				$('.dateCobroRenta').attr({"disabled":true});
+				$('.dateCobroF29').attr({"disabled":false});
+				formatoCalendario('.dateCobroF29','mm-yyyy','months');
+			}				
+		});	
+
+		function formatoCalendario(id,formato,mode)
+		{				
+			$(id).datepicker({
+				 format: formato,
+				 viewMode: mode, 
+				 minViewMode: mode,
+				 autoclose:true
+			}).attr("placeholder", formato);
+		}	
+		
+    	obtenerConceptosMasivos('#tipoCobroSelect');
+
+    	$('#tipoCobroSelect').val(<?= $this->tipoCobro ?>);
+
+    	obtenerEjecutivos('#ejecutivoSelect');
+
+    	if(<?= $this->idEjecutivo ?>!='0')
+    	{
+    		$('#ejecutivoSelect').val(<?= $this->idEjecutivo ?>);
+    		obtenerClientesByjecutivo('#nombreClienteSelect',$('#ejecutivoSelect').val());    		
+    	}
+
+		if(<?= $this->idCliente ?>!='0')
+		{
+			if($('#ejecutivoSelect').val()!='')
+			{
+				$('#nombreClienteSelect').val(<?= $this->idCliente ?>);
+				obtenerRutCliente('#rutCobroMasivoSelect',$('#nombreClienteSelect').val());	
+			}
+		}
+
+		if(<?= $this->idRut ?>!='')
+		{
+			if($('#nombreClienteSelect').val()!='')
+			{
+				$('#rutCobroMasivoSelect').val(<?= $this->idRut ?>);	
+			}
+		}
+		
+    	var valorTasaPers=0;
+    	
+    	obtieneTasaPersonaNatural($('.dateCobroF29').val());		
+
+		var id_user = '<?= $this->id_usuario ?>';
+		var perfil= <?= $this->rol ?>;
+		
+		switch(perfil)
+		{
+			case 1:			
+					$('#ejecutivoSelect').val(id_user);									
+					obtenerClientesByjecutivo('#nombreClienteSelect',$('#ejecutivoSelect').val());
+					
+					if(<?= $this->idCliente ?>!='0')
+					{
+						$('#nombreClienteSelect').val(<?= $this->idCliente ?>);
+					}
+			break;
+		}
+
+		$('#formBusquedaCoboMasivo').validate({
+			debug:true,
+			rules:{
+				tipoCobroSelect:{
+					required:true
+				},
+				dateCobroInput:{
+					required:true
+				}
+			},
+			messages:{
+				tipoCobroSelect:" - Debe seleccionar un tipo de cobro",
+				dateCobroInput:"Debe seleccionar una fecha"
+			},	
+			submitHandler:function(form)
+			{
+				if(perfil!='1')
+				{
+					form.submit();	
+				}
+				else if(perfil=='1' && $('#ejecutivoSelect').val()!='')
+				{
+					form.submit();	
+					$('#seleccioneEjecutivo').addClass('hide');
+				}
+				else
+				{
+					$('#seleccioneEjecutivo').removeClass('hide');
+				}
+			}
+		});
+
+		$('#ejecutivoSelect').select2();
+		$('#tipoCobroSelect').select2();
+		$('#nombreClienteSelect').select2();
+		$('#rutCobroMasivoSelect').select2();
+
+
+		$('.montoF29').number( true, 0,',','.' );
+		$('.montoRenta').number( true, 0,',','.' );
+		$('.montoPrevired').number( true, 0,',','.' );
+		$('.tasaInput').number( true, 2,',','.' );
+
+
+		$(document).on('click','input',function()
+		{
+			$('#buttonF29').addClass('disabled');
+		});	
+		
+		//**********SECCION FILTROS BUSQUEDA*************// 		
+						
+		$('#ejecutivoSelect').on('change',function()
+		{				
+			if($('#tipoCobroSelect').val()!='')
+			{
+				if($('#ejecutivoSelect').val()!='')
+				{
+					obtenerClientesByjecutivo('#nombreClienteSelect',$('#ejecutivoSelect').val());
+					$('#seleccioneEjecutivo').addClass('hide');
+				}
+			}
+			else
+			{
+				$('#seleccioneTipoCobro').removeClass('hide');
+			}
+		});
+
+		$('#nombreClienteSelect').on('change',function()
+		{
+			if($('#tipoCobroSelect').val()!='')
+			{
+				if($('#ejecutivoSelect').val()!='')
+				{
+					obtenerRutCliente('#rutCobroMasivoSelect',$('#nombreClienteSelect').val());									
+				}
+			}
+			else
+			{
+				$('#seleccioneTipoCobro').removeClass('hide');
+			}
+		});		
+		
+		$('#buttonSeleccioneTipoCobro').on('click',function()
+		{
+			$('#seleccioneTipoCobro').addClass('hide');
+		});
+
+		$('#buttonSeleccioneEjecutivo').on('click',function()
+		{
+			$('#seleccioneEjecutivo').addClass('hide');
+		});
+
+		//**********SECCION INGRESO COBROS F29*************// 
+						
+		 $('#buttonF29').on('click',function()
+		 {	
+			if($('.dateCobroF29').val()!='')
+			{		 		
+				if($(this).hasClass('disabled'))
+				{
+					$('#realizarCalculoF29').removeClass('hide');
+				}
+				else
+				{
+					var formPago=true;
+
+					if(perfil=='4' && $('#tipoCobroSelect').val()=='1')
+					{
+						var url='/index.php/cobromasivo/registraimpuestounico';
+					}
+					else
+					{
+						var url='/index.php/cobromasivo/registracobrof29';	
+					}						
+						
+					var datosF29=new Array();		
+					    
+					$('#tableIngresoCobroMasivoF29 tbody tr').each(function(index)
+					{					
+						var color,id, ingSRet, ingCRet, IngSoc, RetSoc, idTasa, BolRet, ImpUnic, IvaPa, Rema, idForPago,primCat,sociedad,monto,ppmnetdet,retencion,actualiza;
+						
+
+							$(this).children('td').each(function(index2)
+							{							
+								switch(index2)
+								{				
+									case 0: 
+										id = $(this).text(); 
+										color=color=$(this).css("color");
+										
+										break;
+
+									case 6: 
+										sociedad= $(this).text();  
+										break;
+													
+									case 7: 
+										ingSRet = $(this).children('div.input-group').find('input').val();
+										break;
+										
+									case 8: 
+										ingCRet= $(this).children('div.input-group').find('input').val(); 
+										break;	
+										
+									case 9: 
+										IngSoc= $(this).children('div.input-group').find('input').val();
+										break;
+											
+									case 10: 
+										RetSoc= $(this).children('div.input-group').find('input').val();
+										break;	
+										
+									case 11: 
+
+										if($(this).children('div.input-group').find('input').hasClass('tasaInput'))
+										{
+											idTasa= $(this).children('div.input-group').find('input').val();
+											primCat="1";									
+										}
+										else
+										{
+											idTasa= $(this).children('select').val();
+											primCat="2"; 						
+										}
+										
+										break;	
+									case 12: 
+										ppmnetdet=$.trim($(this).text().toString().replace('$','').replace(/\./g,'')); 
+										break;								
+																			
+									case 13: 
+										BolRet= $(this).children('div.input-group').find('input').val(); 
+										break;	
+
+									case 14: 
+										retencion=$.trim($(this).text().toString().replace('$','').replace(/\./g,'')); 
+										break;
+										
+									case 15: 
+										ImpUnic= $(this).children('div.input-group').find('input').val();
+										break;	
+										
+									case 16: 
+										IvaPa= $(this).children('div.input-group').find('input').val(); 
+										break;	
+										
+									case 17: 
+										Rema= $(this).children('div.input-group').find('input').val(); 
+										break;
+
+									case 18:
+										monto=$.trim($(this).text().toString().replace('$','').replace(/\./g,''));
+										break;
+																			
+									case 19: 
+										idForPago= $(this).children('select').val(); 
+										break;		
+								}						
+							});	
+
+							if($.trim(monto)!='' && color!='rgb(255, 0, 0)' && perfil!='7')
+							{	
+								if(idForPago=='')
+								{
+									formPago=false;
+
+									if(perfil=='4')
+									{
+										formPago=true;
+									}
+								}
+
+								fechaCobro=$('.dateCobroF29').val();
+								
+								datosF29.push(JSON.stringify({id,ingSRet,ingCRet,IngSoc,RetSoc,idTasa,BolRet,ImpUnic,IvaPa,Rema,idForPago,primCat,sociedad,monto,ppmnetdet,retencion,fechaCobro,actualiza}));
+							}
+							
+							if(perfil=='7')
+							{								
+								if($.trim(monto)!='')
+								{
+									if(idForPago=='')
+									{
+										formPago=false;
+									}
+
+									fechaCobro=$('.dateCobroF29').val();
+									
+									datosF29.push(JSON.stringify({id,ingSRet,ingCRet,IngSoc,RetSoc,idTasa,BolRet,ImpUnic,IvaPa,Rema,idForPago,primCat,sociedad,monto,ppmnetdet,retencion,fechaCobro,actualiza}));
+										
+								}
+							}												
+						});
+
+						var json="["+datosF29+"]";
+					
+						data="dataF29="+json;	
+						
+						if(datosF29.length>0)
+						{
+							if(formPago)
+							{														
+								$.ajax({
+								    url: url,  
+								    type: "POST",
+								    data: data, 
+								    success: function(datos)
+								    {
+									    if(datos.registro[0]=='1')
+									    {
+									    	jAlert("Cobro Registrado Correctamente!","Alerta");
+
+									    	window.location.href = dominio+"ingresomasivocobro";
+									    	
+									    }
+									    else if(datos.registro[0]=='2')
+									    {
+									    	 $('#errorRegistroF29').removeClass('hide');
+									    	 $('#buttonF29').attr({"disabled":true});
+										     $('#buttonCalculoF29').attr({"disabled":true});
+									    }				    		
+									}, 
+									error:function(status)
+									{
+										 $('#errorRegistroF29').removeClass('hide');
+										 $('#buttonF29').attr({"disabled":true});
+									     $('#buttonCalculoF29').attr({"disabled":true});
+									}
+								});	
+							}
+							else
+							{
+								$('#campoRequeridoF29').removeClass('hide');
+								$('#buttonF29').addClass('disabled');
+							}
+						}
+						else
+						{
+							$('#sinDatosRegistroF29').removeClass('hide');
+							$('#buttonF29').addClass('disabled');
+						}
+					}
+			}
+			else
+			{
+				$('#ingreseFecha').removeClass('hide');
+			}
+								    	
+		 });
+
+		 $('#buttonIngreseFecha').on('click',function()
+		 {
+			 $('#ingreseFecha').addClass('hide');
+		 });
+
+		 $('#buttonSinDatosRegistroF29').on('click',function()
+		 {
+			 $('#sinDatosRegistroF29').addClass('hide');
+		 });
+		 
+		 $('#buttonCalculoF29').on('click',function()
+		 {			
+				$('#tableIngresoCobroMasivoF29 tbody tr').each(function(index)
+				{
+					 var col6,col7,col8,col9,col10,col11,col12,col13,col14,col15,col16,monto; 
+							 
+						 $(this).children('td').each(function(index2)
+						 {					
+								 switch(index2)
+								 {
+									 			
+								  	case 6:		col6=$(this).text();									  											  											  			
+								  				break;
+
+									case 7:		col7=$(this).children('div.input-group').find('input').val();									
+												validaNumeroNegativo(parseInt(col7));	
+								  			
+								  				break;
+
+									case 8:		col8=$(this).children('div.input-group').find('input').val();
+												validaNumeroNegativo(parseInt(col8));	
+												break;
+
+									case 9:		col9=$(this).children('div.input-group').find('input').val();
+												validaNumeroNegativo(parseInt(col9));  
+												break;
+
+								  	case 10:	col10=$(this).children('div.input-group').find('input').val();  
+								  				validaNumeroNegativo(parseInt(col10));  
+									  			break;
+
+								  	case 11:	if($(this).children('div.input-group').find('input').hasClass('tasaInput'))
+												{
+								  					col11= $(this).children('div.input-group').find('input').val(); 
+								  					validaNumeroNegativo(parseFloat(col11)); 
+												}
+												else
+												{
+													col11=$(this).children('select').text();
+												}
+									  			break;
+									  			
+								  	case 12:	switch(col6)
+									  			{
+									  			case 'Persona Natural':
+														data=col11.toString().replace('Seleccione','');																										
+										  				ppmPN=Math.round((parseInt(col7.toString())*parseInt(data.toString().replace('%','')))/parseInt(100));
+										  				col12=ppmPN;
+									  					$(this).text("$ "+format(ppmPN.toString()));
+
+									  					if(isNaN(ppmPN))
+							 							{
+							 								$(this).text("$");
+							 							}
+							 							else
+								 						{
+							 								$(this).text("$ "+ format(ppmPN.toString()) );
+							 							}
+							 							
+										  				break;
+						 						case 'Primera Categoria':
+							 							ppmPC=Math.round((parseInt(col9.toString())*parseFloat(col11.toString()))/parseInt(100));
+							 							col12=ppmPC;
+
+							 							if(isNaN(ppmPC))
+							 							{
+							 								$(this).text("$");
+							 							}
+							 							else
+								 						{
+							 								$(this).text("$ "+ format(ppmPC.toString()) );
+							 							}
+						 								
+										  				break;
+						 						case 'Segunda Categoria':
+							 							data=col11.toString().replace('Seleccione','');												
+										  				ppmSC=Math.round((parseInt(col7.toString())*parseInt(data.toString().replace('%','')))/parseInt(100));
+										  				col12=ppmSC;
+									  					$(this).text("$ "+format(ppmSC.toString()));
+
+									  					if(isNaN(ppmSC))
+							 							{
+							 								$(this).text("$");
+							 							}
+							 							else
+								 						{
+							 								$(this).text("$ "+ format(ppmSC.toString()) );
+							 							}
+									  					
+										  				break;
+						 						case  '14 BIS':
+							 							data=col11.toString().replace('Seleccione','');												
+										  				ppmBIS=Math.round((parseInt(col10.toString())*parseFloat(data.toString().replace('%','')))/parseInt(100));
+										  				col12=ppmBIS;
+									  					$(this).text("$ "+format(ppmBIS.toString()));
+
+									  					if(isNaN(ppmBIS))
+							 							{
+							 								$(this).text("$");
+							 							}
+							 							else
+								 						{
+							 								$(this).text("$ "+ format(ppmBIS.toString()) );
+							 							}
+									  					
+										  				break;
+									  			}
+									  			break;
+									  			
+								  	case 13:   	col13=$(this).children('div.input-group').find('input').val();  
+								  				validaNumeroNegativo(parseInt(col13));  
+									  			break;
+
+									case 14: 	col14=Math.round((parseInt(col13)*parseFloat(valorTasaPers))/parseInt(100));
+
+												if(isNaN(col14))
+					 							{
+					 								$(this).text("$");
+					 							}
+					 							else
+						 						{
+					 								$(this).text("$ "+format(col14.toString()));
+					 							}
+												
+									  			break;
+
+									case 15:	col15=$(this).children('div.input-group').find('input').val();  
+												validaNumeroNegativo(parseInt(col15));  
+												break;
+
+									case 16:	col16=$(this).children('div.input-group').find('input').val(); 
+												validaNumeroNegativo(parseInt(col16));
+												break;
+												
+									case 17:	col17=$(this).children('div.input-group').find('input').val(); 
+												validaNumeroNegativo(parseInt(col17));
+												break;
+												
+									case 18:    										
+												if(col15!=""  && perfil=='4' )		
+												{		
+													$(this).text("$ "+format(col15));
+													monto=col15;
+												}
+												else
+												{
+													$(this).text("$");
+												}
+
+												if(perfil=='1'||perfil=='2'||perfil=='3'||perfil=='7')
+												{
+													if(col6=='Persona Natural')
+													{
+														total=(parseInt(col12)+parseInt(col14));
+														monto=total;
+	
+														if(isNaN(total))
+							 							{
+							 								$(this).text("$");
+							 							}
+							 							else
+								 						{
+							 								$(this).text("$ "+format(total.toString()));
+							 							}
+													}
+													else
+													{
+														total=(parseInt(col12)+parseFloat(col14)+parseInt(col15)+parseInt(col16));
+														monto=total;
+														if(isNaN(total))
+							 							{
+							 								$(this).text("$");
+							 							}
+							 							else
+								 						{
+							 								$(this).text("$ "+format(total.toString()));
+							 							}
+													}		
+												}
+																			
+												break;
+									 case 19:		
+
+										 			if(!isNaN(monto))
+						 							{
+							 							if(monto==0)
+							 							{
+							 								$(this).children('select').val('6').attr({"disabled":true});					 								
+							 							}
+							 							else
+								 						{
+									 						if($(this).children('select').val()=='6')
+									 						{
+									 							$(this).children('select').find('option[value="6"]').attr({"disabled":true});
+								 								$(this).children('select').val('').attr({"disabled":false});	
+									 						}
+									 						else
+										 					{
+									 							$(this).children('select').find('option[value="6"]').attr({"disabled":true});
+								 								$(this).children('select').attr({"disabled":false});	
+									 						}							 									
+							 							}
+						 							}				
+										
+												break;  
+								}			 			 										
+						 });
+					});
+
+				 
+				 $('#buttonF29').removeClass('disabled');
+
+				 if(negativo)
+				 {
+					 $('#numeroNegativo').removeClass('hide');
+					 $('#buttonF29').addClass('disabled');
+				 }
+
+				 negativo=false;
+					
+		 });	
+
+		 $('#buttonNumeroNegativo').on('click',function()
+		 {
+			 $('#numeroNegativo').addClass('hide');
+	     });
+
+		 var negativo=false;
+
+		 function validaNumeroNegativo(numero)
+		 {	
+			 if(numero!='')		
+			 {
+				 if(numero<0)
+				 {
+					 negativo= true;
+				 }	 
+			 }	 			  
+
+			 return negativo;
+		 }
+
+		 function format(input)
+		 {
+		 	var num = input.replace(/\./g,'');
+		 	
+		 	if(!isNaN(num))
+			{
+		 		num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+		 		num = num.split('').reverse().join('').replace(/^[\.]/,'');
+		 		
+		 	}
+		 	return num;
+		 }
+		 
+		 $('#buttonF29').addClass('disabled');
+
+		 $('#buttonRealizarCalculoF29').on('click',function()
+		 {
+			$('#realizarCalculoF29').addClass('hide');
+		 });					
+		 
+		 $('#buttonCampoRequeridoF29').on('click',function()
+	     {
+		     $('#campoRequeridoF29').addClass('hide');
+		 });
+
+		 $('#buttonRegistraF29').on('click',function()
+	     {
+		     $('#registraF29').addClass('hide');
+		 });
+
+		 $('#buttonErrorRegistroF29').on('click',function()
+		 {
+		     $('#errorRegistroF29').addClass('hide');
+		 });
+			
+		//**********SECCION INGRESO COBROS RENTA*************// 
+		
+		validaCobroSinMovimiento('input.montoRenta');
+	
+		$('#buttonRenta').on('click',function()
+		{
+			if($('.dateCobroRenta').val()!='')
+			{
+				var formPago=true;
+			
+				var url='/index.php/cobromasivo/registracobrorenta';
+
+				var datosRenta=new Array();				
+				
+				$('#tableIngresoCobroMasivoRenta tbody tr').each(function(index)
+				{
+					var monto, idPago,idRut;
+					
+					$(this).children('td').each(function(index2)
+					{							
+						switch(index2)
+						{				
+							case 0:
+								 
+								idRut = $(this).text();  
+								
+								break;			
+
+							case 6:
+								 
+								monto = $(this).children('div.input-group').find('input').val();  
+								
+								break;
+
+							case 7:
+								 
+								idPago= $(this).children('select').val(); 
+																
+								break;		
+						}					
+					});
+
+					if(monto!='')
+					{
+						if(idPago=='')
+						{
+							formPago=false;
+						}
+
+						fechaCobro=$('.dateCobroRenta').val();
+						
+						datosRenta.push(JSON.stringify({idRut,monto,idPago,fechaCobro}));	
+					}																	
+				});
+
+				var json="["+datosRenta+"]";
+	
+				data="dataRenta="+json;
+				
+				if(datosRenta.length>0)
+				{
+					if(formPago)
+					{
+										
+							$.ajax({
+							    url: url,  
+							    type: "POST",
+							    data: data, 
+							    success: function(datos)
+							    {
+									if(datos.registro[0]=='1')
+									{		
+										jAlert("Cobro Registrado Correctamente!","Alerta");			
+												
+										window.location.href = dominio+"ingresomasivocobro";										
+									}	
+									else if(datos.registro[0]=='2')
+			 						{
+										$('#errorRegistroRenta').removeClass('hide');
+										$('#buttonRenta').attr({"disabled":true});
+									}			
+								}, 
+								error:function(status)
+								{
+									$('#errorRegistroRenta').removeClass('hide');
+									$('#buttonRenta').attr({"disabled":true});
+								}
+							});
+
+											
+					}
+					else
+					{
+						$('#campoRequeridoRenta').removeClass('hide');
+					}					
+				}
+				else
+				{
+					$('#sindatosRegistroRenta').removeClass('hide');
+				}
+			}
+			else
+			{
+				$('#ingreseFechaRenta').removeClass('hide');
+			}
+	    });
+
+	    $('#buttonIngreseFechaRenta').on('click',function()
+	    {
+	    	$('#ingreseFechaRenta').addClass('hide');
+		});
+
+	    $('#buttonSindatosRegistroRenta').on('click',function()
+	   	{
+	    	$('#sindatosRegistroRenta').addClass('hide');   
+	    });
+
+	    $('#buttonRegistraRenta').on('click',function()
+	    {
+	    	$('#registraRenta').addClass('hide');
+		});
+
+		$('#buttonErrorRegistroRenta').on('click',function()
+		{
+			$('#errorRegistroRenta').addClass('hide');
+		});
+
+	    $('#buttonCampoRequeridoRenta').on('click',function()
+	   	{
+	    	$('#campoRequeridoRenta').addClass('hide');
+		});
+
+	    //**********SECCION INGRESO COBROS PREVIRED*************// 
+
+	   
+		validaCobroSinMovimiento('input.montoPrevired');
+    	    
+	    $('#buttonPrevired').on('click',function()
+	    {
+		    if($('.dateCobroF29').val()!='')
+			{	    
+	    		var formPago=true;
+	    		var correctaFormaPago=true;
+				
+	    		var url='/index.php/cobromasivo/registracobroprevired';
+
+				var datosPrevired=new Array();				
+				
+				$('#tableIngresoCobroMasivoPrevired tbody tr').each(function(index)
+				{
+					var monto, idPago,idRut,conceptoPrevired;
+					
+					$(this).children('td').each(function(index2)
+					{							
+						switch(index2)
+						{				
+							case 0: 
+									idRut = $(this).text();  
+									break;			
+
+							case 7: 
+									monto = $(this).children('div.input-group').find('input').val();  
+									validaNumeroNegativo(monto);
+									break;
+
+							case 8: 
+									idPago= $(this).children('select').val(); 
+	
+									
+									break;
+									
+							case 6: 
+									conceptoPrevired= $(this).text(); 
+									break;		
+						}											
+					});
+
+					if(monto!='')
+					{
+						if(idPago=='')
+						{
+							formPago=false;
+						}
+
+						fechaCobro=$('.dateCobroF29').val();
+						
+						datosPrevired.push(JSON.stringify({idRut,monto,idPago,conceptoPrevired,fechaCobro}));	
+					}														
+				});
+
+				var json="["+datosPrevired+"]";
+	
+				data="dataPrevired="+json;
+
+				if(datosPrevired.length>0)
+				{
+					if(!negativo)
+					{					
+						if(formPago)
+						{																
+								$.ajax({
+								    url: url,  
+								    type: "POST",
+								    data: data, 
+								    success: function(datos)
+								    {
+										if(datos.registro[0]=='1')
+										{
+											jAlert("Cobro Registrado Correctamente!","Alerta");	
+											window.location.href = dominio+"ingresomasivocobro";									
+										}	
+										else if(datos.registro[0]=='2')
+				 						{
+											$('#errorRegistroRenta').removeClass('hide');
+											$('#buttonPrevired').attr({"disabled":true});
+										}			
+									}, 
+									error:function(status)
+									{
+										$('#errorRegistroPrevired').removeClass('hide');
+										$('#buttonPrevired').attr({"disabled":true});
+									}
+								});
+						}
+						else
+						{
+							$('#campoRequeridoPrevired').removeClass('hide');
+						}
+					}
+					else
+					{
+						$('#numeroNegativoPrevired').removeClass('hide');
+					}
+				}
+				else
+				{
+					$('#sinDatosRegistroPrevired').removeClass('hide');
+				}
+				
+				negativo=false;	
+		    }
+		    else
+			{
+				$('#ingreseFechaPrevired').removeClass('hide');
+		    }		
+		});
+
+	    $('#buttonSeleccionarFormaPagoCorrectaP').on('click',function()
+	    {
+	    	$('#seleccionarFormaPagoCorrectaP').addClass('hide');
+	    });
+
+		$('#buttonIngreseFechaRentaPrevired').on('click',function()
+		{
+			$('#ingreseFechaPrevired').addClass('hide');
+		});
+
+		$('#buttonNumeroNegativoPrevired').on('click',function()
+		{
+			$('#numeroNegativoPrevired').addClass('hide');
+		});
+		
+	    $('#buttonSinDatosRegistroPrevired').on('click',function()
+	    {
+	       	$('#sinDatosRegistroPrevired').addClass('hide');
+	    });		
+
+	    $('#buttonErrorRegistroPrevired').on('click',function()
+	    {
+	    	$('#errorRegistroPrevired').addClass('hide');
+	    });
+
+		$('#buttonRegistraPrevired').on('click',function()
+		{
+			$('#registraPrevired').addClass('hide');
+		});
+
+	    $('#buttonCampoRequeridoPrevired').on('click',function()
+	    {
+	    	$('#campoRequeridoPrevired').addClass('hide');
+		});
+	    
+	    //**********FUNCIONALIDADES*************//
+	     
+		$('#fechaDesdeHasta').daterangepicker(
+		{
+		   locale: {
+		      format: 'MM/YYYY'
+		    }
+		}); 
+
+		$('#fechaDesdeHasta').daterangepicker({
+			  showDropdowns: true,
+			  format: 'MM/YYYY'
+		});
+
+		 $('#rutMasivoInput').Rut({		  
+			 on_error: function(){ 
+				 $('#modalRutIncorrecto').modal();	
+				 $("#rutMasivoInput").val('');				 
+			  },
+			   format_on: 'keyup'
+		 });
+
+
+		//**********SECCION FUNCIONES*************// 
+		 	
+		 	
+		function validaCobroSinMovimiento(controlClase)
+		{
+			$(controlClase).on('keyup',function()
+			{
+				if($(this).val()!='')
+				{
+					if($(this).val()==0)
+					{
+						$(this).parent().parent().next().find("select").val('6');
+						$(this).parent().parent().next().find("select").attr({"disabled":true});
+					}
+					else if($(this).val()>0)
+					{
+						$(this).parent().parent().next().find("select").attr({"disabled":false});
+						$(this).parent().parent().next().find("select").val('');
+						$(this).parent().parent().next().find("select").find('option[value="6"]').attr({"disabled":true});
+					}
+				}
+				else
+				{
+					$(this).parent().parent().next().find("select").attr({"disabled":false});
+					$(this).parent().parent().next().find("select").val('');
+					$(this).parent().parent().next().find("select").find('option[value="6"]').attr({"disabled":false});
+				}	
+			});
+		} 		
+		 
+		function validoControl(selector)
+		{
+		    var validado=true;
+			    
+		   	$(selector).each(function()
+		   	{
+			   	if(!$(this).is('[disabled]'))
+			   	{
+			   		if($(this).val()=='')
+			   		{
+				   		validado=false;	   		
+			   		}	
+			   	}		   					    				
+		   	});
+
+		    return validado;		    
+     	}
+    	  
+		$('#buttonSinDatos').on('click',function()
+		{
+			$('#sinDatos').addClass('hide');
+		});
+		  
+		 function obtieneTasaPersonaNatural(fecha)
+		 {
+		  	url="/index.php/valores/valortasaactualmesanio";
+		  	
+			data="fecha="+fecha;
+			
+			$.ajax({
+			   url : url,					    
+			   type: "POST",					   
+			    data : data,
+			    async:false,
+			    success: function(tasa)
+			    { 	
+				    if(tasa.data.length>0)
+					{
+						 valorTasaPers=parseInt(tasa.data[1].toString()); 	
+					}			  
+			    }
+			});
+		  }
+
+		 //funcion para obtener a los ejecutvos y cargarlos al combobox
+		 function obtenerEjecutivos(objetivo)
+		 {				
+		     url = '/index.php/usuario/listar';
+		 	    
+		  	$(objetivo).empty();
+						
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false, selected: true}).
+			appendTo(objetivo);
+			
+			var id_perfil=<?= $this->rol?>;
+			var id_user = '<?= $this->id_usuario ?>';
+
+			var dato="";
+				
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos)
+				   	{
+				    	 $.each(datos.data, function( index, value ) 
+						 {
+
+							 option='<option>';
+
+							 if(id_perfil=='1' && (value[0]!=id_user))
+							 {
+								 option='<option disabled>';
+							 }
+
+							 $(option).
+							   prop({value:value[0]}).
+							   text(value[1]).
+							   appendTo(objetivo); 
+							
+						});
+			 	    }
+				}); 
+			 		
+		 }
+
+
+		 function obtenerClientesByjecutivo(objetivo,idEjecutivo)
+		 {				
+			    url = '/index.php/cliente/listarbyejecutivo?idUsuario='+idEjecutivo;
+			    
+				$(objetivo).empty();			
+						
+				$('<option>').
+				attr({value:""}).
+				text('Seleccione').
+				prop({disabled: false}).
+				appendTo(objetivo);
+
+				var dato="";
+			
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos){
+					    
+				    	 $.each(datos.data, function( index, value ) {
+								
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(value[1]).
+							   appendTo(objetivo);
+						});
+				    }
+				}); 			
+		 } 
+
+		 function obtenerRutCliente(objetivo,idCliente)
+		 {				
+			    url = '/index.php/rut/listadorutbyidcliente';
+				$(objetivo).empty();
+						
+				$('<option>').
+				attr({value:""}).
+				text('Seleccione').
+				prop({disabled: false, selected: true}).
+				appendTo(objetivo);
+
+				var dato="idCliente="+idCliente;
+			
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos){
+
+				    	 $.each(datos.data, function( index, value ) {
+
+				    		 var detalle=value[3]+" - "+value[1];				    		 	
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(detalle).
+							   appendTo(objetivo);
+						});					    
+				    }
+				});
+		 }
+			
+
+		 //funcion para obtener a los conceptos de cobros masivos
+		 function obtenerConceptosMasivos(objetivo)
+		 {				
+		     url = '/index.php/concepto/listarconceptosmasivos';
+		 	    
+		  	$(objetivo).empty();
+						
+			$('<option>').
+			attr({value:""}).
+			text('Seleccione').
+			prop({disabled: false, selected: true}).
+			appendTo(objetivo);
+
+			var option='<option>';
+			var id_perfil=<?= $this->rol?>;
+			var dato="";
+				
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos)
+				    {					    
+				    	 $.each(datos.data, function( index, value ) 
+						 {
+							if(id_perfil=='3'&& value[0]=='3')
+							{
+								 option='<option disabled>';
+							}							
+							else if(id_perfil=='4'&& value[0]=='2')
+							{
+								option='<option disabled>';
+							}
+							else if(id_perfil=='2'&& value[0]=='3')
+							{
+								option='<option disabled>';
+							}
+							else if(id_perfil=='1'&& value[0]!='1' && value[0]!='2')
+							{
+								option='<option disabled>';
+							}
+							else
+							{
+								 option='<option>';
+							}
+							 		
+							 $(option).
+							   prop({value:value[0]}).
+							   text(value[1]).
+							   appendTo(objetivo);
+						});
+			 	    }
+				}); 
+			 		
+			}
+			
+		});
+	</script>
+	
+</body>
+</html>

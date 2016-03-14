@@ -1,0 +1,300 @@
+<section class="content-header">
+
+	<h1>Mantenedor concepto de cobros</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-pencil"></i> Mantenedores</a></li>
+		<li class="active">Mantenedor de Concepto de Cobro</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<!-- Formulario Registro de conceptos -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Crean nuevo concepto<strong>
+			
+			</h3>
+		</div>
+		<form role="" method="" action="" id="formNuevoConcepto">
+			<div class="box-body">
+
+				<div class="form-group">
+					<label for="nombreConceptoInput">Nombre del Concepto</label> <input
+						id="nombreConceptoInput" name="nombreConceptoInput" type="text"
+						class="form-control" placeholder="Concepto">
+				</div>
+
+				<div class="form-group">
+
+
+					<div class="row">
+
+
+						<div class="col-md-2">
+							<label>Es agrupable</label> <input type="checkbox"
+								class="form-control minimal" id="checkAgrupable" />
+						</div>
+						<div class="col-md-2">
+							<label>Es ingreso</label> <input type="checkbox"
+								class="form-control minimal" id="checkIngreso" />
+						</div>
+					</div>
+
+
+				</div>
+
+				<!-- Mensajes del registro Conceptos -->
+				<div class="form-group hide" id="mensajeCorrectoRegistro">
+
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeCorrectoRegistro" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ok !
+						</h4>
+						<p>Concepto creado correctamente</p>
+					</div>
+
+				</div>
+
+				<div class="form-group hide" id="mensajeProblemasRegistro">
+
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeProblemasRegistro" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ops !
+						</h4>
+						<p>Problemas a crear un nuevo concepto</p>
+					</div>
+
+				</div>
+
+				<div class="form-group hide" id="mensajeRegistroNombreIgual">
+
+					<div class="alert alert-warning alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeRegistroNombreIgual" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ops !
+						</h4>
+						<p>El concepto que trata de registrar ya existe</p>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="box-footer">
+				<div class="box-body">
+					<button type="submit" class="btn btn-primary">
+						Guardar <span class="fa fa-save"></span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- Termina Formulario Registro de conceptos -->
+
+	<!-- Listado de conceptos -->
+	<div class="box box-primary">
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Listado de Conceptos<strong>
+			
+			</h3>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box-body">
+
+					<div class="form-group">
+						<table id="tableMantenedorConceptoCobro"
+							class="table table-bordered table-hover cell-border compact">
+							<thead>
+
+								<th>id</th>
+								<th>Nombre Concepto</th>
+								<th>Es agrupable</th>
+								<th>Es ingreso</th>
+
+							</thead>
+						</table>
+					</div>
+
+					<div class="form-group hide" id="seleccionaConceptoLista">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttonCierraMsgSeleccion"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Opps !
+							</h4>
+							<p>Primero debe seleccionar un concepto</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="conceptoEliminado">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" id="buttonCierraMsgEliminado"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Concepto eliminado correctamente</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="conceptoActualizado">
+
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close"
+								id="buttonCierraMsgActualizado" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ok !
+							</h4>
+							<p>Concepto actualizado correctamente</p>
+						</div>
+					</div>
+
+					<div class="form-group hide" id="mensajeProblemaAccion">
+
+						<div class="alert alert-danger alert-dismissable">
+							<button type="button" class="close"
+								id="buttonMensajeProblemaAccion" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-check"></i> Ops !
+							</h4>
+							<p>Problemas al realizar la acci&oacute;n</p>
+						</div>
+
+					</div>
+
+					<div class="form-group hide" id="mensajeConceptoNoMantenible">
+
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close"
+								id="buttonMensajeConceptoNoMantenible" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>Este concepto no es mantenible</p>
+						</div>
+					</div>
+
+				</div>
+				<div class="box-footer">
+					<div class="form-group">
+						<button class="btn btn-success marginBottomButton editUser"
+							id="buttonEditaConcepto">
+							Modificar <span class="fa fa-edit"></span>
+						</button>
+						<button class="btn btn-danger marginBottomButton deletUser"
+							id="buttonEliminarConcepto">
+							Eliminar <span class="fa fa-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- Termina listado de conceptos -->
+
+	<!---------- Ventanas Modales ---------->
+
+	<!-- Modal Borrar Concepto de Cobro -->
+	<div class="modal modal-danger fade" id="modalEliminaronceptoCobro">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Eliminar Concepto de Cobro</strong>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>Est&aacute; a punto de eliminar un concepto, seguro quiere
+						realizar esta acci&oacute;n?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline pull-left"
+						data-dismiss="modal">
+						<span class="fa fa-remove"></span>
+					</button>
+					<button type="button" data-dismiss="modal" id="buttonEliminaCocept"
+						class="btn btn-outline">
+						<span class="fa fa-check"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Borrar Concepto de Cobro -->
+
+	<!-- Modal Editar Concepto de Cobro -->
+	<div class="modal modal-success fade" id="modalEditarConceptoCobro">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<strong>Editar Concepto</strong>
+					</h4>
+				</div>
+				<form role="form" action="" method="post" id="formConceptoEditar">
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="nombreConcptoEdit">Nombre del Concepto</label> <input
+								id="nombreConcptoEdit" name="nombreConcptoEdit" type="text"
+								class="form-control" placeholder="Concepto">
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<label> <input type="checkbox" id="checkAgrupableEdit"
+											name="checkAgrupableEdit" class="minimal" /> Es agrupable
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label> <input type="checkbox" id="checkIngresoEdit"
+											name="checkIngresoEdit" class="minimal" /> Es ingreso
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline pull-left"
+							data-dismiss="modal">
+							<span class="fa fa-remove"></span>
+						</button>
+						<button type="submit" class="btn btn-outline">
+							<span class="fa fa-check"></span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Termina Modal Editar Concepto de Cobro -->
+
+</section>

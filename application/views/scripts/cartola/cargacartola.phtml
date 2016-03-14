@@ -1,0 +1,113 @@
+<?php 
+
+if(isset($this->mensaje)){
+	echo $this->mensaje;
+}
+
+?>
+
+<section class="content-header">
+
+	<h1>Carga de cartola</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="/index.php/sistema/index"><i class="fa fa-users"></i>
+				Cartola</a></li>
+		<li class="active">Cargar Cartola</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+<?php 
+
+ if(isset($this->msg))
+ {	
+ 	
+ 	if($this->msg['valor'] == true)
+ 	{	
+
+?>
+		 <div class="row">
+		            <div class="col-md-12">
+		              <div class="box box-solid">
+		                  <div class="alert alert-success alert-dismissable">
+		                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		                    <h4>	<i class="icon fa fa-check"></i> Carga Correcta!</h4>
+		                    <?=$this->msg['mensaje']?>
+		                  </div>
+		              </div><!-- /.box -->
+		            </div><!-- /.col -->
+		</div>
+<?php 
+ 	}elseif($this->msg['valor'] == false)
+ 	{
+?> 	
+ 		<div class="row">
+            <div class="col-md-12">
+              <div class="box box-solid">
+                  <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i> Problemas con la carga del archivo!</h4>
+						<?=$this->msg['mensaje']?>
+                    </div>
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div>	
+<?php  	
+	}
+ }
+ ?>
+
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Seleccionar cartola</strong>
+			</h3>
+		</div>
+		<form role="form" action="" method="post" id="formCargaCartola" enctype="multipart/form-data">
+			<div class="row">
+				<div class="box-body">
+
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<label for="numeroCuentaSelect">Cuenta bancaria a cargar</label>
+							<select id="numeroCuentaSelect" name="numeroCuentaSelect" class="form-control" required>
+								<option value="1">003960108719</option>
+								<option value="2">000050256506</option>
+							</select>
+
+						</div>
+						<div class="form-group">
+							<label for="file">Seleccione su cartola</label> 
+								<input id="archivo" name="archivo" class="file" type="file" required>
+						</div>
+						<p>
+							<strong id="mensaje" class="hide msm"> Debe seleccionar la cartola</strong>
+						</p>
+					</div>
+
+
+
+				</div>
+
+			</div>
+			<div class="box-footer">
+				<button type="submit" class="btn btn-primary">Subir <span class="fa fa-upload"></span></button>
+				<?php 
+				if($this->msg['valor'] == true)
+				{
+				?>
+					<a href="/index.php/cartola/detallecartola?id_cartola=<?=$this->msg['id']?>"
+							<button class="btn btn-primary" id="irDetalleCliente">Ver detalle aqu&iacute; <span class="fa fa-eye"></span></button>
+					</a>
+				<?php 
+				}
+				?>
+			</div>
+		</form>
+	</div>
+</section>

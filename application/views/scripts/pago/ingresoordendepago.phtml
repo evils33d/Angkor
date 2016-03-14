@@ -1,0 +1,298 @@
+<section class="content-header">
+	<h1>Ingreso Orden de Pago</h1>
+
+	<ol class="breadcrumb">
+		<li><a href="/index.php/sistema/index"><i class="fa fa-file-text"></i>
+				Orden de Pago</a></li>
+		<li class="active">Ingreso Orden de Pago</li>
+	</ol>
+
+</section>
+
+<section class="content">
+
+	<!-- Filtrar Orden de pago -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Orden de Pago</strong>
+			</h3>
+		</div>
+
+		<form role="form" action="" method="post" id="formBuscarOrdenPago">
+
+			<div class="box-body">
+
+				<div class="form-group">
+					<label for="ejecutivoOrdenPagoSelect">Ejecutivo</label> <select
+						class="form-control control" id="ejecutivoOrdenPagoSelect"
+						name="ejecutivoOrdenPagoSelect">
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="clienteOrdenPagoSelect">Clientes</label> <select
+						class="form-control control" id="clienteOrdenPagoSelect"
+						name="clienteOrdenPagoSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="rutOrdenPagoSelect">Ruts Del Cliente</label> <select
+						class="form-control control" id="rutOrdenPagoSelect"
+						name="rutOrdenPagoSelect">
+						<option value="">Seleccione</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>Seleccione una fecha de inicio y termino</label> <input
+						type="text" placeholder="dd/mm/yyyy - dd/mm/yyyy"
+						class="form-control pull-right control" id="fechaDesdeHasta"
+						name="fechaDesdeHasta">
+				</div>
+			</div>
+
+
+
+			<div class="box-footer">
+				<button type="button" id="btnBuscar" class="btn btn-primary">
+					Buscar <span class="fa fa-search"></span>
+				</button>
+			</div>
+
+		</form>
+
+	</div>
+
+	<!-- Listado de cobros por pagar -->
+	<div class="box box-primary">
+
+		<div class="box-header with-border">
+			<h3 class="box-title">
+				<strong>Listado de cobros por pagar</strong>
+			</h3>
+		</div>
+
+		<form role="form" action="" method="post">
+
+			<div class="box-body">
+				<div class="form-group">
+					<table class="table table-bordered table-hover cell-border compact"
+						id="tablePagarCobros">
+						<thead>
+							<th>Id</th>
+							<th>Tipo</th>
+							<th>Fecha</th>
+							<th>Glosa</th>
+							<th>N&uacute;mero de Sociedad</th>
+							<th>RUT Asociado</th>
+							<th>Monto Cobrado</th>
+							<th>Dinero Recibido</th>
+							<th>N&uacute;mero Orden Pago</th>
+							<th>Estado</th>
+							<th>Forma de Pago</th>
+							<th>Observaciones</th>
+						</thead>
+					</table>
+				</div>
+
+				<div class="form-group hide" id="mensajeSeleccioneCobro">
+					<div class="alert alert-warning alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeSeleccioneCobro" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-warning"></i> Ops !
+						</h4>
+						<p>Primero debe seleccionar un cobro</p>
+					</div>
+				</div>
+
+				<div class="form-group hide" id="mensajeDineroRecibido">
+					<div class="alert alert-warning alert-dismissable">
+						<button type="button" class="close"
+							id="buttonMensajeDineroRecibido" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-warning"></i> Ops !
+						</h4>
+						<p>El cobro est&aacute; en estado de dinero recibido y el monto
+							cobrado, cubierto totalmente</p>
+					</div>
+				</div>
+
+				<div class="form-group hide" id="mensajeCobroIngresado">
+					<div class="alert alert-success alert-dismissable">
+						<button type="button" class="close"
+							id="buttoMensajeCobroIngresado" aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-check"></i> Ok
+						</h4>
+						<p>Orden de pago registrada correctamente</p>
+					</div>
+				</div>
+
+				<div class="form-group hide" id="mensajeCobroProblema">
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close" id="buttoMensajeCobroProblema"
+							aria-hidden="true">&times;</button>
+						<h4>
+							<i class="icon fa fa-remove"></i> Ops !
+						</h4>
+						<p>Problemas al realizar la acci&oacute;n</p>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="box-footer">
+				<button type="button" class="btn btn-primary" id="buttonOrdenDePago">
+					Ingreso Orden de Pago <span class="glyphicon glyphicon-arrow-down"></span>
+				</button>
+			</div>
+		</form>
+
+
+	</div>
+
+</section>
+
+<!---------- Ventanas Modales ---------->
+
+<!-- Modal Rut Incorrecto -->
+<div class="modal modal-danger fade" id="modalRutIncorrecto">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Atenci&oacute;n</strong>
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>El rut ingresado es incorrecto</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn btn-outline">Ok</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Rut Incorrecto -->
+
+<!-- Modal Ingreso Orden de Pago -->
+<div class="modal modal-success fade" id="modalIngresoOrdenPago">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					<strong>Ingrese orden de pago</strong>
+				</h4>
+			</div>
+			<form role="form" method="post" action="" id="formIngresoOrdenPago">
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="nombreBancoSelect">Banco</label> <select
+							class="form-control" id="nombreBancoSelect"
+							name="nombreBancoSelect">
+							<option value="">Seleccione</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="nombretitularInput">Titular</label> <input type="text"
+							class="form-control" id="nombretitularInput"
+							name="nombretitularInput" placeholder="Daniel Fuentes">
+					</div>
+
+					<div class="form-group">
+						<label for="numeroChequeInput">N&uacute;mero de Cheque</label> <input
+							type="text" class="form-control" id="numeroChequeInput"
+							name="numeroChequeInput" placeholder="0000000">
+					</div>
+
+					<div class="form-group">
+						<label for="montoInput">Monto</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+							<input type="text" class="form-control" id="montoInput"
+								name="montoInput">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="montoTotalPago">Total a Pagar</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+							<input type="text" class="form-control" id="montoTotalPago"
+								name="montoTotalPago" disabled="disabled">
+						</div>
+					</div>
+
+					<div class="form-group hide" id="mensajeMontoMayor">
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close" id="buttoMensajeMontoMayor"
+								aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>El monto debe ser igual al monto cobrado</p>
+						</div>
+					</div>
+
+					<div class="form-group hide" id="mensajeNumeroCheque">
+						<div class="alert alert-warning alert-dismissable">
+							<button type="button" class="close"
+								id="buttonMensajeNumeroCheque" aria-hidden="true">&times;</button>
+							<h4>
+								<i class="icon fa fa-warning"></i> Ops !
+							</h4>
+							<p>El n&uacute;mero de cheque ya est&aacute; registrado</p>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-outline">Ok</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Termina Modal Ingreso Orden de Pago -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

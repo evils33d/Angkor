@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title><?=$this->nombre_sitio?></title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+	
+<!-- datepicker, estilos calendario -->
+
+<link href="/plugins/datepicker/datepicker3.css" rel="stylesheet"
+	type="text/css" />
+	
+<!-- Select2 -->
+<link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+<!-- Bootstrap 3.3.4 -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Font Awesome Icons -->
+<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Ionicons -->
+<link href="/ionicons/css/ionicons.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- DATA TABLES -->
+<!-- <link href="/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />-->
+<link href="/plugins/datatables/jquery.dataTables.css" rel="stylesheet"
+	type="text/css" />
+<link href="/plugins/datatables/dataTables.tableTools.css"
+	rel="stylesheet">
+
+<link href="/plugins/datatables/dataTables.responsive.css"
+	rel="stylesheet" type="text/css" />
+
+<!-- iCheck for checkboxes and radio inputs -->
+<link href="../../plugins/iCheck/all.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- Theme style -->
+<link href="/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+<link href="/dist/css/skins/<?=$this->skin?>.min.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style>
+.editar {
+	width: 20px;
+	height: 40px;
+	padding: 0px;
+	margin: 0px;
+}
+
+formBusquedaCliente .error {
+	color: Crimson
+}
+
+formBoleteo  .error {
+	color: Crimson
+}
+
+formBusquedaCliente  .error {
+	color: Crimson
+}
+
+button{
+	margin:2px;
+}
+</style>
+</head>
+<!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+<body class="<?=$this->skin?> sidebar-mini">
+	<div class="wrapper">
+
+
+		<!-- Main Header -->
+      	<?=$this->render('head.phtml') ?>	
+  <!-- Fin Main Header -->
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+
+				<!-- Sidebar user panel (optional) -->
+				<?=$this->render('sidebaruserpanel.phtml') ?>	
+		  <!-- Fin Sidebar user panel -->
+
+				<!-- Sidebar Menu -->
+				<?=$this->render('menu.phtml') ?>		
+        </section>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<!-- Main content -->
+       
+          <?=$this->layout()->content?>
+       
+        <!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+			
+			<?= $this->render('footer.phtml')?>
+
+      <!-- Control Sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED JS SCRIPTS -->
+
+	<!-- jQuery 2.1.4 -->
+	<script src="/plugins/jQuery/jQuery-2.1.4.min.js"
+		type="text/javascript"></script>
+	<!-- Bootstrap 3.3.2 JS -->
+	<script src="/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<!-- DATA TABES SCRIPT -->
+	<script src="/plugins/datatables/jquery.dataTables.min.js"
+		type="text/javascript"></script>
+
+	<script src="/plugins/datatables/dataTables.responsive.js"
+		type="text/javascript"></script>
+
+	<!-- <script src="/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+	<!-- SlimScroll -->
+	<script src="/plugins/slimScroll/jquery.slimscroll.min.js"
+		type="text/javascript"></script>
+	<!-- FastClick -->
+
+	<script src="/plugins/datatables/fnReloadAjax.js" cache="false"></script>
+	<script src="/plugins/datatables/dataTables.tableTools.js"
+		cache="false"></script>
+
+	<script src="/plugins/fastclick/fastclick.min.js"
+		type="text/javascript"></script>
+	<!-- AdminLTE App -->
+	<script src="/dist/js/app.min.js" type="text/javascript"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="/dist/js/demo.js" type="text/javascript"></script>
+
+	<!-- iCheck 1.0.1 Script checkbox y radiobuttons -->
+	<script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+
+	<!-- Jquery Validate -->
+
+	<script src="/plugins/jqueryvalidate/jquery.validate.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/additional-methods.min.js"
+		type="text/javascript"></script>
+	<script src="/plugins/jqueryvalidate/messages_es.min.js"
+		type="text/javascript"></script>
+
+	<!-- JQUERY Number -->
+	<script src="/plugins/jquerynumber/jquery.number.js"
+		type="text/javascript"></script>
+		
+	<!-- Select2 -->
+	<script src="../../plugins/select2/select2.full.min.js"></script>
+	
+		<!-- date-picker -->
+
+	<script src="/plugins/datepicker/bootstrap-datepicker.js"
+		type="text/javascript"></script>
+
+
+	<!-- page script -->
+	<script type="text/javascript">
+
+	$(function()	
+	{
+			var dominio = '<?= $this->urlaplicacion ?>';
+			
+			obtenerEjecutivos('#ejecutivoSelect');
+
+			var dFecha = new Date();
+			
+		 	var tableResultados=$('#tableListadoClientes').dataTable( {
+		        dom: 'T<"clear">lfrtip',
+		        bFilter: false,
+		        "responsive":true,
+		        "bLengthChange": false,
+		        "autoWidth": false,
+		        tableTools: {		           
+		            "sRowSelect": "single",
+		            "aButtons": [  ]
+		        },
+		        "language": {
+					"lengthMenu": "Desplegando _MENU_ registros por p&aacute;gina",
+					"zeroRecords": "Nada encontrado - Lo sentimos",
+					"info": "Mostrando p&aacute;gina _PAGE_ de _PAGES_",
+					"infoEmpty": "No hay registros disponibles",
+					"infoPostFix":    "",
+					"thousands":      ",",
+					"loadingRecords": "Cargando...",
+					"processing":     "Procesando...",
+					"search":         "Buscar:",
+					"infoFiltered ": "(Filtrando de un total de _MAX_ registros)",
+					"paginate": {
+						"first":      "Primero",
+						"last":       "&Uacute;ltimo",
+						"next":       "Siguiente",
+						"previous":   "Anterior"
+						}
+					}		        
+		    } );
+
+
+		 	$('#dateCobroAnio').datepicker({
+				 format: 'yyyy',
+				 viewMode: 'years', 
+				 minViewMode: 'years',
+				 autoclose:true
+			}).attr("placeholder", 'yyyy');
+
+		 	$('#dateCobroMesAnio').datepicker({
+				 format: 'mm-yyyy',
+				 viewMode: 'months', 
+				 minViewMode: 'months',
+				 autoclose:true
+			}).attr("placeholder", 'mm-yyyy');
+
+		 	listadoClientes(tableResultados);
+		 	
+		 	var id_user =<?= $this->id_usuario ?>;
+			var perfil=<?= $this->rol ?>;
+			
+			switch(perfil)
+			{
+				case 1:	$('#ejecutivoSelect').val(id_user);
+						$('#ejecutivoSelect').attr({"disabled":true});
+						
+						listadoClientesByEjecutivo(tableResultados,$('#ejecutivoSelect').val());
+				break;										
+			}			
+
+			$('#ejecutivoSelect').select2();
+
+			var meses = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+			                   "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ];
+            
+			var d =new Date();
+		 	
+		 	$("#formBusquedaCliente").validate({
+				debug:true,
+				rules:{
+					nombreClienteInput:{
+						required:false
+					},
+					ejecutivoSelect:{
+						required: false
+					},								
+				},
+				messages:{
+					nombreClienteInput:"Debe ingresar un nombre.",
+					ejecutivoSelect:"Debe seleccionar un elemento de la lista.",				
+				},
+				invalidHandler:function(event, validator){
+					
+				},	
+				submitHandler:function(form)
+				{
+					url="/index.php/cliente/listarbynombrecliente?idEjecutivo="+$('#ejecutivoSelect').val()+"&nombreCliente="+$('#nombreClienteInput').val();
+					tableResultados.fnClearTable();				
+					tableResultados.fnReloadAjax(url);
+				}			
+			});
+
+		 	$("#formBoleteo").validate({
+				debug:true,
+				rules:{
+					asuntoEmailBoleteo:{
+						required:true
+					}													
+				},
+				messages:{
+					asuntoEmailBoleteo:"Debe ingresar el asunto del email",									
+				},
+				invalidHandler:function(event, validator){
+					
+				},	
+				submitHandler:function(form)
+				{
+					url='/index.php/cobromasivo/envioemailboleteo';
+
+					data="asunto="+$('#asuntoEmailBoleteo').val()+
+					     "&cuerpo="+$('#cuerpoEmailBoleteo').val()+
+					     "&idUsuario="+'<?= $this->id_usuario ?>'+
+					     "&idCliente="+obtenerIdCliente()+
+					     "&anio="+d.getFullYear()+
+					     "&mes="+(((d.getMonth()+1)<10 ? '0' : '')+(d.getMonth()+1))+
+					     "&nombreCliente="+obtenerNombreCliente();
+
+					$.ajax({
+					    url: url,  
+					    type: "POST",
+					    data: data,  
+					    success: function(datos)
+					    {
+						    if(datos.registro[0]=='1')
+						    {
+							    $('#enviaEmailBoleteo').removeClass('hide');
+							    $('#panelBoleteo').hide('slow');
+							    limpiarAsuntoCuerpo();							    
+						    }
+						    else if(datos.registro[0]=='2')
+						    {
+						    	$('#errorAccion').removeClass('hide');
+						    }
+						      
+					    },
+					    error:function(status)
+					    {
+					    	$('#errorAccion').removeClass('hide'); 
+					    }
+					}); 
+					
+				}			
+			});
+
+			$('#buttonEnviaEmailBoleteo').on('click',function()
+			{
+				$('#enviaEmailBoleteo').addClass('hide');
+			});
+
+			$('#buttonErrorAccion').on('click',function()
+			{
+				$('#errorAccion').addClass('hide'); 	
+			});
+
+		 	$("#formEmailPPM").validate({
+				debug:true,
+				rules:{
+					asuntoEmailPPM:{
+						required:true
+					},
+												
+				},
+				messages:{
+					asuntoEmailPPM:"Debe ingresar el asunto del email",						
+				},
+				invalidHandler:function(event, validator){
+					
+				},	
+				submitHandler:function(form)
+				{
+					url="/index.php/cobromasivo/envioemailppm";
+					
+					dato="asunto="+$('#asuntoEmailPPM').val()+
+					     "&cuerpo="+$('#cuerpoEmailPPM').val()+
+					     "&emails="+$('#paraEmailPPM').text()+
+					     "&fecha="+
+					     "&idCliente="+obtenerIdCliente()+
+					     "&idUsuario="+<?= $this->id_usuario ?>+
+					     "&nombreCliente="+obtenerNombreCliente();
+							
+					$.ajax({
+					    url: url,  
+					    type: "POST",
+					    data: dato,  
+					    success: function(datos)
+					    {
+						     if(datos.registro[0]=='1')
+						     {
+								$('#enviaEmailPPM').removeClass('hide');
+								$('#panelPPM').hide('slow');
+								 limpiarAsuntoCuerpo();		
+							 }
+							 else if(datos.registro[0]=='2')
+							 {
+								 $('#errorAccion').removeClass('hide');
+							 }
+							 else if(datos.registro[0]=='3')
+							 {
+								 $('#errorAccion').removeClass('hide');
+							 }
+							 else if(datos.registro[0]=='4')
+							 {
+								 $('#errorAccion').removeClass('hide');
+							 }   
+					    }
+						,error:function(status)
+						{
+						  $('#errorAccion').removeClass('hide'); 
+						}
+					}); 					
+				}			
+			});
+
+			$('#buttonEnviaEmailPPM').on('click',function()
+			{
+				$('#enviaEmailPPM').addClass('hide');
+			});
+			
+			/*************** SECCION EMAIL BOLETEO *********************/
+			
+			$('#asuntoEmailBoleteo').on('keyup',function()
+			{
+				$('#asuntoVistaBoleteo').text($('#asuntoEmailBoleteo').val());
+			});
+
+			$('#cuerpoEmailBoleteo').on('keyup',function()
+			{
+				$('#cuerpoVistaEmailBoleteo').text($('#cuerpoEmailBoleteo').val());
+			});			
+			
+			$('#cierraPanelesBoleteo').on('click',function()
+			{
+				$('#panelBoleteo').hide('slow');
+				limpiarAsuntoCuerpo();
+			});			
+			
+			/*************** TERMINA EMAIL BOLETEO *********************/
+			
+			
+			/***************   SECCION EMAIL PPM   *********************/
+			
+			$('#asuntoEmailPPM').on('keyup',function()
+			{
+				$('#asuntoVistaPPM').text($('#asuntoEmailPPM').val());
+			});
+
+			$('#cuerpoEmailPPM').on('keyup',function()
+			{
+				$('#cuerpoVistaEmailPPM').text($('#cuerpoEmailPPM').val());
+			});			
+			
+			$('#cierraPanelesPPM').on('click',function()
+			{
+				$('#panelPPM').hide('slow');
+				limpiarAsuntoCuerpo();
+			});		
+			
+			/***************   TERMINA EMAIL PPM   *********************/
+			
+			/********** SECCIÓN GENERA PDF CLIENTE ***************/
+			
+			$('#descargaPDF').on('click',function()
+			{
+				if($('#tipoCorreoSelect').val()!='')
+				{
+					if($('#tableListadoClientes tbody tr').hasClass('selected'))
+					{							
+							if($('#tipoCorreoSelect').val()=='1')
+							{								
+								if($('#dateCobroMesAnio').val()!='')
+								{																				
+										url="/index.php/cobromasivo/generapdfclienteppm?idCliente="+obtenerIdCliente()+"&fecha="+$('#dateCobroMesAnio').val()+"&nombreCliente="+obtenerNombreCliente();
+										window.open(dominio+url);									
+								}
+								else
+								{
+									$('#seleccionaAnioMes').removeClass('hide');
+								}							
+							}
+							else
+							{
+								if($('#dateCobroAnio').val()!='')
+								{							
+									url="/index.php/cobromasivo/generapdfclienteboleteo?idCliente="+obtenerIdCliente()+"&anio="+$('#dateCobroAnio').val()+"&nombreCliente="+obtenerNombreCliente();
+									window.open(dominio+url);											
+								}
+								else
+								{
+									$('#seleccionaAnioMes').removeClass('hide');
+								}								
+							}		
+					}
+					else
+					{
+						$('#seleccionaCliente').removeClass('hide');
+					}
+				}
+				else
+				{
+					$('#seleccionaTipoEmail').removeClass('hide');
+				}
+			});
+
+			$('#buttonSeleccionaAnioMes').on('click',function()
+			{
+				$('#seleccionaAnioMes').addClass('hide');
+			});
+
+			$('#buttonActualizaMetaBoleteo').on('click',function()
+			{
+				$('#actualizaMetaBoleteo').addClass('hide');
+			});
+
+			$('#buttonSinDatos').on('click',function()
+			{
+				$('#sinDatos').addClass('hide');
+			});
+			
+			$('#anioSelect').val(d.getFullYear());
+			
+			$('#mesSelect').val(((d.getMonth()+1)<10 ? '0' : '')+(d.getMonth()+1));
+					
+			/********** TERMINA SECCIÓN GENERA PDF CLIENTE ***************/
+			
+			
+			/********** SECCIÓN GENERA PDF MASIVO ***************/
+			
+			$('#descargaPDFMasivo').on('click',function()
+			{
+				if($('#tipoCorreoSelect').val()!='')
+				{			
+										
+					if($('#tipoCorreoSelect').val()=='1')
+					{					
+						if($('#dateCobroMesAnio').val()!='')
+						{						
+							url="/index.php/cobromasivo/generapdfclienteppmmasivo?fecha="+$('#dateCobroMesAnio').val()+"&idUsuario="+$('#ejecutivoSelect').val();											
+							window.open(dominio+url);
+						}
+						else
+						{
+							$('#seleccionaAnioMes').removeClass('hide');
+						}
+					}
+					else
+					{
+						if($('#dateCobroAnio').val()!='')
+						{							
+								url="/index.php/cobromasivo/generapdfclienteboleteomasivo?anio="+$('#dateCobroAnio').val()+"&idUsuario="+$('#ejecutivoSelect').val();	
+								window.open(dominio+url);	
+						}
+						else
+						{
+							$('#seleccionaAnioMes').removeClass('hide');
+						}
+					}					
+				}
+				else
+				{
+					$('#seleccionaTipoEmail').removeClass('hide');
+				}
+			});
+			
+			function verificaDatosMasivos(fecha)
+			{
+				url="/index.php/cobromasivo/verificadatosmasivos";
+				dato="fecha="+fecha;
+
+				var data=0;
+				
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,
+					async:false, 
+				    success: function(datos)
+				    {					    
+				    	data=datos[0];					    					   
+				    },
+				    error: function(status)
+				    {
+				    }			    
+				}); 
+
+				return data;
+			}
+			
+			$('#buttonSinDatosMasivos').on('click',function()
+			{
+				$('#sinDatosMasivos').addClass('hide');
+			});
+			
+			/********** TERMINA SECCIÓN GENERA PDF MASIVO ***************/
+							
+			
+		 	$('#buttonRedactarEmail').on('click',function()
+			{
+				if($('#tipoCorreoSelect').val()!='')
+				{
+					if($('#tableListadoClientes tbody tr').hasClass('selected'))
+					{
+							if($('#tipoCorreoSelect').val()=='1')
+							{
+								if(verificaDescargaPDFinvidual()=='1')
+								{
+									$('#panelPPM').show("slow");	
+									$('#panelBoleteo').hide("slow");
+									$('#asuntoVistaBoleteo').text('');	
+									$('#cuerpoVistaEmailBoleteo').text('');	
+
+									datosUsuarioVistaPrevia(<?= $this->id_usuario ?>,'1');	
+
+									listaEmailNombre(obtenerIdCliente());
+
+									obtieneDatosPPM(obtenerIdCliente());
+
+									if(dFecha.getDate()<=20)
+									{
+										if((dFecha.getMonth()-1)<0)
+										{
+											$('#asuntoEmailPPM').val('PPM '+ meses[11]);	
+											$('#asuntoVistaPPM').text('PPM '+meses[11]);
+										}
+										else
+										{
+											$('#asuntoEmailPPM').val('PPM '+ meses[dFecha.getMonth()-1]);	
+											$('#asuntoVistaPPM').text('PPM '+ meses[dFecha.getMonth()-1]);
+										}
+									}else{
+											$('#asuntoEmailPPM').val('PPM '+ meses[dFecha.getMonth()]);	
+											$('#asuntoVistaPPM').text('PPM '+ meses[dFecha.getMonth()]);
+									}
+									
+									
+
+								}
+								else
+								{
+									$('#sinDatosMasivos').removeClass('hide');
+								}
+												
+							}
+							else if($('#tipoCorreoSelect').val()=='2')
+							{
+									$('#panelBoleteo').show("slow");
+									$('#panelPPM').hide("slow");
+									$('#asuntoVistaPPM').text('');
+									$('#cuerpoVistaEmailPPM').text();
+	
+									datosUsuarioVistaPrevia(<?= $this->id_usuario ?>,'2');
+	
+									listaEmailNombre(obtenerIdCliente());
+
+									$('#asuntoEmailBoleteo').val('Boleteo Acumulado '+ d.getFullYear());
+									$('#asuntoVistaBoleteo').text('Boleteo Acumulado '+ d.getFullYear());								
+							}
+							else
+							{
+								$('#panelPPM').hide("slow");
+								$('#panelBoleteo').hide("slow");
+								limpiarAsuntoCuerpo();
+							}						
+					}
+					else
+					{						
+						$('#seleccionaCliente').removeClass('hide');
+					}		
+				}
+				else
+				{
+					$('#seleccionaTipoEmail').removeClass('hide');
+				}	 						
+			});
+
+			$('#fechaAnio').addClass('hide');
+			$('#fechaMesAnio').addClass('hide');
+			$('#tituloFecha').addClass('hide');
+			$('#fechaMesAnio').attr({"disabled":true});
+			$('#fechaAnio').attr({"disabled":true});
+			
+			$('#tipoCorreoSelect').on('change',function()
+			{
+				$('#panelPPM').hide('slow');	
+				$('#panelBoleteo').hide('slow');	
+				limpiarAsuntoCuerpo();
+
+				if($('#tipoCorreoSelect').val()=='1')
+				{
+					$('#fechaAnio').addClass('hide');
+					$('#fechaMesAnio').removeClass('hide');
+					$('#tituloFecha').removeClass('hide');
+					$('#fechaAnio').attr({"disabled":true});
+					$('#fechaMesAnio').attr({"disabled":false});
+					
+					$('#dateCobroMesAnio').val(fechaActual('1'));
+					
+				}
+				else if($('#tipoCorreoSelect').val()=='2')
+				{
+					$('#fechaAnio').removeClass('hide');
+					$('#fechaMesAnio').addClass('hide');
+					$('#tituloFecha').removeClass('hide');
+					$('#fechaMesAnio').attr({"disabled":true});
+					$('#fechaAnio').attr({"disabled":false});
+					
+					$('#dateCobroAnio').val(fechaActual('2'));
+			
+				}		
+				else
+				{
+					$('#fechaAnio').addClass('hide');
+					$('#fechaMesAnio').addClass('hide');
+					$('#tituloFecha').addClass('hide');
+					$('#fechaMesAnio').attr({"disabled":true});
+					$('#fechaAnio').attr({"disabled":true});
+				}		
+			});
+			
+			$('#tableListadoClientes').on('click',function()
+			{
+				$('#panelPPM').hide("slow");
+				$('#panelBoleteo').hide("slow");
+				limpiarAsuntoCuerpo();
+			});			
+
+			$('#buttonSeleccionaCliente').on('click',function()
+			{
+				$('#seleccionaCliente').addClass('hide');
+			});
+
+			$('#buttonSeleccionaTipoEmail').on('click',function()
+			{
+				$('#seleccionaTipoEmail').addClass('hide');
+			});
+
+			function obtieneDatosPPM(idCliente)
+			{
+				url="/index.php/cobromasivo/datosemailppm";
+
+				dato="idCliente="+idCliente;
+
+				$('#dataPPM').empty();
+				$('#dataPPMDetalle').empty();
+				$('#totalesDetallePPM').empty();
+				$('#msjDepAngkor').empty();
+				$('#msjPagoDirecto').empty();
+				$('#msjPEC').empty();
+				$('#msjOrden').empty();
+
+				var saldo_cliente=0;
+
+				var dep_angkor=0;
+				var pago_directo=0;
+				var pec=0;
+				var orden_pago=0;
+
+				var total_saldo=0;
+				
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    success: function(datos)
+				    {  
+				    	if(datos.ppm.length!=0)
+				    	{
+				    		$.each(datos.ppm, function( index, value ) 
+							{ 	
+								$('#dataPPM').append('<tr>'+												
+														 '<td style="border: 1px solid black; padding: 5px;">'+value[1]+'</td>'+
+														 '<td style="border: 1px solid black; padding: 5px;">$ '+value[2]+'</td>'+
+														 '<td style="border: 1px solid black; padding: 5px;">$ '+value[3]+'</td>'+
+														 '<td style="border: 1px solid black; padding: 5px;">$ '+value[4]+'</td>'+
+														 '<td style="border: 1px solid black; padding: 5px;">$ '+value[5]+'</td>'+
+														 '<td style="border: 1px solid black; padding: 5px;">$ '+value[6]+' </td>'+
+													 '</tr>');
+								
+
+							    $('#totalPPM').text('$ '+value[7]);	
+
+						$('#dataPPMDetalle').append('<tr>'+												
+														 '<td style="border: 1px solid black; padding: 5px;">$ '+value[8]+'</td>'+
+														 '<td style="border: 1px solid black; padding: 5px;">$ '+value[9]+'</td>'+
+														 '<td style="border: 1px solid black; padding: 5px;">$ '+value[10]+'</td>'+
+														 '<td style="border: 1px solid black; padding: 5px;">$ '+value[11]+'</td>'+
+													 '</tr>');
+						 
+								dep_angkor=value[12];
+								pago_directo=value[13];
+								pec=value[14];
+								orden_pago=value[15];						 	
+								saldo_cliente=value[16];
+								total_saldo=value[17];
+							
+							});
+							
+				    		if(parseInt(dep_angkor)>0)
+							{
+								$('#msjDepAngkor').append('(1) Favor depositar o transferir a ANGKOR CONSULTING S.A, RUT 78342990-K, BANCO DE CHILE, cuenta corriente 00-005-02565-06.');
+							}
+
+							if(parseInt(pago_directo)>0)
+							{
+								$('#msjPagoDirecto').append('(2) Listo para su pago directo en web del servicio.');
+							}
+
+							if(parseInt(pec)>0)
+							{
+								$('#msjPEC').append('(3) Informado por PEC');
+							}
+
+							if(parseInt(orden_pago)>0)
+							{
+								$('#msjOrden').append('(4) Cheque a nombre del servicio');
+							}
+
+							if(parseInt(saldo_cliente)>0)
+							{								
+								saldo_cli='<tr>'+
+												'<td style="border: 1px solid black; padding: 5px;">$ '+saldo_cliente+'</td>'+
+												'<td style="border: 1px solid black; padding: 5px;">$ 0</td>'+
+												'<td style="border: 1px solid black; padding: 5px;">$ 0</td>'+
+												'<td style="border: 1px solid black; padding: 5px;">$ 0</td>'+
+												'<td style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;"><strong>Saldo a Favor</strong></td>'+
+									     '</tr>';
+							}
+							else
+							{
+								saldo_cli='';
+							}
+
+				    		$('#totalesDetallePPM').append('<tr>'+
+																'<td style="border: 1px solid black; padding: 5px;background-color: #FFCD00;">$ '+dep_angkor+'</td>'+
+																'<td style="border: 1px solid black; padding: 5px;background-color: #FFCD00;">$ '+pago_directo+'</td>'+
+																'<td style="border: 1px solid black; padding: 5px;background-color: #FFCD00;">$ '+pec+'</td>'+
+																'<td style="border: 1px solid black; padding: 5px;background-color: #FFCD00;">$ '+orden_pago+'</td>'+
+														   '</tr>'+
+														   '<tr>'+
+														    	'<td colspan="4" style="border: 1px solid black; padding: 5px;"></td>'+
+														   '</tr>'
+														   +
+														   	saldo_cli
+														   +
+														   '<tr>'+
+																'<td style="border: 1px solid black; padding: 5px;">$ '+total_saldo+'</td>'+
+																'<td style="border: 1px solid black; padding: 5px;">$ '+pago_directo+'</td>'+
+																'<td style="border: 1px solid black; padding: 5px;">$ '+pec+'</td>'+
+																'<td style="border: 1px solid black; padding: 5px;">$ '+orden_pago+'</td>'+
+																'<td style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;"><strong>Total</strong></td>'+
+														   '</tr>');	
+				    	}
+				    	else
+					    {
+				    		$('#dataPPM').append('<tr>'+												
+													 '<td style="border: 1px solid black; padding: 5px;"></td>'+
+													 '<td style="border: 1px solid black; padding: 5px;"></td>'+
+													 '<td style="border: 1px solid black; padding: 5px;"></td>'+
+													 '<td style="border: 1px solid black; padding: 5px;"></td>'+
+													 '<td style="border: 1px solid black; padding: 5px;"></td>'+
+													 '<td style="border: 1px solid black; padding: 5px;"></td>'+
+												'</tr>');
+
+				    $('#dataPPMDetalle').append('<tr>'+												
+												  	'<td style="border: 1px solid black; padding: 5px;"></td>'+
+												 	'<td style="border: 1px solid black; padding: 5px;"></td>'+
+												 	'<td style="border: 1px solid black; padding: 5px;"></td>'+
+												 	'<td style="border: 1px solid black; padding: 5px;"></td>'+
+												 	'<td style="border: 1px solid black; padding: 5px;"></td>'+
+												 '</tr>');
+
+				 $('#totalesDetallePPM').append('<tr>'+
+													'<td style="border: 1px solid black; padding: 5px;background-color: #FFCD00;"></td>'+
+													'<td style="border: 1px solid black; padding: 5px;background-color: #FFCD00;"></td>'+
+													'<td style="border: 1px solid black; padding: 5px;background-color: #FFCD00;"></td>'+
+													'<td style="border: 1px solid black; padding: 5px;background-color: #FFCD00;"></td>'+
+												'</tr>'+
+												'<tr>'+
+													'<td colspan="4" style="border: 1px solid black; padding: 5px;"></td>'+
+												'</tr>'+
+												'<tr>'+
+													'<td style="border: 1px solid black; padding: 5px;"></td>'+
+													'<td style="border: 1px solid black; padding: 5px;"></td>'+
+													'<td style="border: 1px solid black; padding: 5px;"></td>'+
+													'<td style="border: 1px solid black; padding: 5px;"></td>'+
+													'<td style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;"><strong>Saldo a Favor</strong></td>'+
+												'</tr>'+
+												'<tr>'+
+													'<td style="border: 1px solid black; padding: 5px;"></td>'+
+													'<td style="border: 1px solid black; padding: 5px;"></td>'+
+													'<td style="border: 1px solid black; padding: 5px;"></td>'+
+													'<td style="border: 1px solid black; padding: 5px;"></td>'+
+													'<td style="border: 1px solid black; padding: 5px; background-color: #FFCD00; color: white;"><strong>Total</strong></td>'+
+												'</tr>');	
+							 
+				    	}		    	
+				    }
+				}); 
+			}
+
+			function verificaDescargaPDFinvidual()
+			{
+				url="/index.php/cobromasivo/verificainfodesacargapdf";
+					
+				var dato="idCliente="+obtenerIdCliente();
+				var data=0;
+				
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos)
+				    { 
+				    	data=datos[0];
+				    },
+				    error:function(status)
+				    {
+				    }
+				});
+
+				return data;
+			}
+			
+			
+
+		 	//funcion para obtener los clientes asociados a cada ejecutivo
+			function listadoClientesByEjecutivo(table,idEjecutivo)
+			{
+				url="/index.php/cliente/listarbyejecutivo?idUsuario="+idEjecutivo;
+				table.fnClearTable();				
+				table.fnReloadAjax(url);
+			}
+
+			//funcion para obtener los clientes asociados a cada ejecutivo
+			function listadoClientes(table)
+			{
+				url='/index.php/cliente/listar';
+				table.fnClearTable();				
+				table.fnReloadAjax(url);
+			}
+
+		 	//funcion para obtener a los ejecutvos y cargarlos al combobox
+			function obtenerEjecutivos(objetivo)
+			{				
+			    url = '/index.php/usuario/listar';
+			    
+				$(objetivo).empty();
+						
+				$('<option>').
+				attr({value:""}).
+				text('Seleccione').
+				prop({disabled: false, selected: true}).
+				appendTo(objetivo);
+
+				var dato="";
+			
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos){
+					    
+				    	 $.each(datos.data, function( index, value ) 
+						 {								
+							 $('<option>').
+							   prop({value:value[0]}).
+							   text(value[1]).
+							   appendTo(objetivo);
+						});
+				    }
+				}); 
+			}	
+
+			//obtengo los datos del usuario que enviará el email
+			function datosUsuarioVistaPrevia(idUsuario,tipoCobro)
+			{
+				url='/index.php/cliente/obtienedatosusuarioemail';
+				
+				var dato="idUsuario="+idUsuario;
+				
+				var emails="";
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos)
+				    {   				    
+						if(datos.usuario!=null)
+						{
+							if(tipoCobro=='1')
+							{
+								$('#nombreUsuarioEmailPPM').text(datos.usuario[0]);
+								$('#perfilUsuarioEmailPPM').text(datos.usuario[1]);
+							}
+							else
+							{
+								$('#nombreUsuarioEmailBoleteo').text(datos.usuario[0]);
+								$('#perfilUsuarioEmailBoleteo').text(datos.usuario[1]);	
+							}
+							
+						}
+				    }
+				}); 
+			}
+
+			//obtengo email para detallar a quien será enviado el correo.
+			function listaEmailNombre(idClientes,tipoCorreo)
+			{
+				url='/index.php/cliente/obtieneemailasociados';
+				
+				var dato="idCliente="+idClientes;
+				var emails="";
+				var nombres="";
+				
+				$.ajax({
+				    url: url,  
+				    type: "POST",
+				    data: dato,  
+				    async:false,
+				    success: function(datos)
+				    {   				    
+						if(datos.emails!=null)
+						{
+							$.each(datos.emails,function(index,value)
+							{
+								emails+=value[0]+", ";	
+								nombres+=value[1]+", ";	
+							});	
+
+							if($('#tipoCorreoSelect').val()=='1')
+							{
+								$('#paraEmailPPM').text(emails.substring(0,emails.length-2));
+								$('#nombreClientePPM').text(nombres.substring(0,nombres.length-2));								
+								$('#envioEmailPPM').attr({"disabled":false});	
+							}
+							else
+							{
+								$('#paraEmailBoleteo').text(emails.substring(0,emails.length-2));
+								$('#nombreClienteBoleteo').text(nombres.substring(0,nombres.length-2));
+								$('#envioMailBoleteo').attr({"disabled":false});
+							}			
+						}
+						else
+						{
+							$('#paraEmailPPM').text("No existen contactos asociados al cliente");	
+							$('#envioEmailPPM').attr({"disabled":true});	
+							
+							$('#paraEmailBoleteo').text("No existen contactos asociados al cliente");	
+							$('#envioMailBoleteo').attr({"disabled":true});
+						}
+				    }
+				}); 
+			}
+			
+			//obtengo el id del listado de clientes
+			function obtenerIdCliente()
+			{
+				var id="";			
+					$('#tableListadoClientes').find('tr.selected').each(function()
+					{
+						id=$(this).find('td:first').html();				
+					});
+				return id;
+			}	
+
+			//obtengo el id del listado de clientes
+			function obtenerNombreCliente()
+			{
+				var nombre="";			
+					$('#tableListadoClientes').find('tr.selected').each(function()
+					{
+						nombre=$(this).find('td:first').next().html();				
+					});
+				return nombre;
+			}	
+
+			function limpiarAsuntoCuerpo()
+			{
+				$('#asuntoVistaPPM').text('');
+				$('#cuerpoVistaEmailPPM').text('');
+				$('#asuntoVistaBoleteo').text('');	
+				$('#cuerpoVistaEmailBoleteo').text('');
+				$('#asuntoEmailPPM').val('');
+				$('#cuerpoEmailPPM').val('');
+				$('#asuntoEmailBoleteo').val('');
+				$('#cuerpoEmailBoleteo').val('');	
+			}			
+
+			function fechaActual(cobro)
+			{
+				var d = new Date();
+				var fecha;
+				var month = d.getMonth()+1;
+				var day = d.getDate();			
+
+				if(cobro=='1')
+				{
+					//para ppm
+					
+					fecha =  (month<10 ? '0' : '') + month + '-' +d.getFullYear();	
+					
+					if(d.getDate()<=20)
+					{
+						fecha =  ((month-1)<10 ? '0' : '') + (month-1) + '-' +d.getFullYear();	
+						
+						if((month-1)<1)
+						{
+							fecha='12-'+(d.getFullYear()-1);
+						}
+					}			
+				}
+				else
+				{
+					//para renta
+					fecha =  d.getFullYear();		
+				}
+				
+				return fecha;			    
+			}  
+	});
+
+  
+    </script>
+
+
+</body>
+</html>
